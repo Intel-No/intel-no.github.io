@@ -2,8 +2,8 @@
     "version": "https://jsonfeed.org/version/1",
     "title": "云泽の小屋",
     "description": "",
-    "home_page_url": "https://intel-no.github.io",
-    "feed_url": "https://intel-no.github.io/feed.json",
+    "home_page_url": "https://zeyun.dpdns.org",
+    "feed_url": "https://zeyun.dpdns.org/feed.json",
     "user_comment": "",
     "author": {
         "name": "云泽"
