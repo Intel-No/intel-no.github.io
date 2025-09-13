@@ -1,0 +1,25 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "云泽の小屋",
+    "description": "",
+    "home_page_url": "https://intel-no.github.io",
+    "feed_url": "https://intel-no.github.io/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "云泽"
+    },
+    "items": [
+        {
+            "id": "https://intel-no.github.io/.html",
+            "url": "https://intel-no.github.io/.html",
+            "title": "??",
+            "author": {
+                "name": "云泽"
+            },
+            "tags": [
+            ],
+            "date_published": "2025-09-14T01:04:49+08:00",
+            "date_modified": "2025-09-14T01:04:49+08:00"
+        }
+    ]
+}

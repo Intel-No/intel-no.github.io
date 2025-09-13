@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>云泽の小屋</title>
+    <link href="https://intel-no.github.io/feed.xml" rel="self" />
+    <link href="https://intel-no.github.io" />
+    <updated>2025-09-14T01:04:49+08:00</updated>
+    <author>
+        <name>云泽</name>
+    </author>
+    <id>https://intel-no.github.io</id>
+
+    <entry>
+        <title>??</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://intel-no.github.io/.html"/>
+        <id>https://intel-no.github.io/.html</id>
+
+        <updated>2025-09-14T01:04:49+08:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
+</feed>
