@@ -3,10 +3,70 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>1970-01-01T08:00:00+08:00</updated>
+    <updated>2025-09-14T13:43:55+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.dpdns.org</id>
 
+    <entry>
+        <title>文章测试3</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/wen-zhang-ce-shi-3.html"/>
+        <id>https://zeyun.dpdns.org/wen-zhang-ce-shi-3.html</id>
+
+        <updated>2025-09-14T13:43:43+08:00</updated>
+            <summary>
+                <![CDATA[
+                    内容ing
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>内容ing</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>文章测试2</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/wen-zhang-ce-shi-2.html"/>
+        <id>https://zeyun.dpdns.org/wen-zhang-ce-shi-2.html</id>
+
+        <updated>2025-09-14T13:43:39+08:00</updated>
+            <summary>
+                <![CDATA[
+                    内容ing
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>内容ing</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>文章测试1</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/ce-shi-1.html"/>
+        <id>https://zeyun.dpdns.org/ce-shi-1.html</id>
+
+        <updated>2025-09-14T13:37:32+08:00</updated>
+            <summary>
+                <![CDATA[
+                    一、函数调用时的传参，就像“送快递” 📦 想象你有一个函数（比如叫 `做菜()`），你需要给它一些材料（比如鸡蛋、西红柿）。调用函数时，你得把这些材料“送”过去，这就是传参。 但问题来了：送材料的时候，是送“原件”还是“复印件”？ 这就是C语言传参的核心：默认情况下，函数收到的是你给的“复印件”！ --- 二、值传递（传复印件） 📋 场景： 你有一张纸条上写数字 `5`，你把这张纸条的复印件送给函数&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>一、函数调用时的传参，就像“送快递” 📦<br><br>想象你有一个函数（比如叫 `做菜()`），你需要给它一些材料（比如鸡蛋、西红柿）。调用函数时，你得把这些材料“送”过去，这就是传参。<br><br>但问题来了：送材料的时候，是送“原件”还是“复印件”？  <br>这就是C语言传参的核心：默认情况下，函数收到的是你给的“复印件”！<br><br>---<br><br>二、值传递（传复印件） 📋<br><br>场景：  <br>你有一张纸条上写数字 `5`，你把这张纸条的复印件送给函数 `做菜()`。  <br>函数内部拿到的是复印件，它可以在复印件上涂改（比如改成 `10`），但原纸条上的 `5` 不会变！<br><br>代码例子：<br>```c<br>void 改数字(int x) { <br>    x = 10; // 修改的是复印件，原纸条不变<br>}<br><br>int main() {<br>    int 原纸条 = 5;<br>    改数字(原纸条); // 传复印件<br>    printf("%d", 原纸条); // 输出还是5！<br>    return 0;<br>}<br>```<br><br>总结：  <br>• 值传递：函数拿到的是实参的“复印件”。<br><br>• 特点：函数内修改参数，不会影响外面的变量。<br><br>---<br><br>三、指针传递（传地址，相当于“告诉对方你家地址” 🏠）<br><br>场景：  <br>你有一张纸条写数字 `5`，这次你不送纸条的复印件，而是告诉对方纸条的存放地址（比如“你家冰箱里的第3层”）。  <br>函数拿到地址后，可以直接去你家冰箱里修改纸条上的数字！<br><br>代码例子：<br>```c<br>void 改数字(int *地址) { <br>    *地址 = 10; // 通过地址找到原纸条，直接修改！<br>}<br><br>int main() {<br>    int 原纸条 = 5;<br>    改数字(&amp;原纸条); // 传地址（相当于“你家冰箱地址”）<br>    printf("%d", 原纸条); // 输出变成10！<br>    return 0;<br>}<br>```<br><br>总结：  <br>• 指针传递：函数拿到的是变量的“地址”（相当于“说明书”）。<br><br>• 特点：通过地址，函数可以直接修改外面的变量。<br><br>---<br><br>四、为什么要用指针？ 🤔<br><br>场景1：你想让函数帮你改多个变量  <br>比如，你想让函数同时修改你的年龄和身高，这时候传复印件需要传两份，而传地址只需要传两个地址。<br><br>场景2：处理“很大的数据”  <br>比如你要传一个1000页的文档，传复印件（复制1000页）太麻烦，传地址（只传一张纸条写地址）更高效。<br><br>---<br><br>五、一句话总结 🌟<br><br>• 值传递：函数拿到的是“复印件”，改了也没用（原变量不变）。<br><br>• 指针传递：函数拿到的是“地址”，能直接修改原变量。<br><br>---<br><br>六、生活中的类比 💡<br><br>1. 值传递：你给朋友发一张照片（复印件），朋友在照片上涂鸦，你的原照片不受影响。<br>2. 指针传递：你告诉朋友你家的地址，朋友直接去你家修改你的照片。<br><br>---<br><br>七、常见疑问解答 ❓<br><br>问：指针是不是很难？  <br>答：其实就像记地址，记住“通过地址能找到东西”就行！<br><br>问：什么时候用值传递？  <br>答：当你只需要让函数“看一下”数据，不需要修改原变量时（比如计算总和）。<br><br>问：什么时候用指针传递？  <br>答：当你需要让函数“修改”原变量，或者处理大数据时（比如修改你的年龄、身高）。<br><br>---<br><br>学会了吗？简单来说：  <br>• 值传递 → 传复印件，函数内修改无效。<br><br>• 指针传递 → 传地址，函数内修改有效。<br><br>多写代码练习，很快就能掌握啦！ 😊</p>
+            ]]>
+        </content>
+    </entry>
 </feed>
