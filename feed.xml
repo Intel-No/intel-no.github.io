@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-09-14T23:15:39+08:00</updated>
+    <updated>2025-09-15T22:05:15+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -35,8 +35,9 @@
         <author>
             <name>云泽</name>
         </author>
-        <link href="https://zeyun.dpdns.org/wen-zhang-ce-shi-2.html"/>
-        <id>https://zeyun.dpdns.org/wen-zhang-ce-shi-2.html</id>
+        <link href="https://zeyun.dpdns.org/cook_mujica.html"/>
+        <id>https://zeyun.dpdns.org/cook_mujica.html</id>
+            <category term="技术分享"/>
 
         <updated>2025-09-14T13:43:39+08:00</updated>
             <summary>
@@ -72,8 +73,9 @@
         <author>
             <name>云泽</name>
         </author>
-        <link href="https://zeyun.dpdns.org/ce-shi-1.html"/>
-        <id>https://zeyun.dpdns.org/ce-shi-1.html</id>
+        <link href="https://zeyun.dpdns.org/jieshui.html"/>
+        <id>https://zeyun.dpdns.org/jieshui.html</id>
+            <category term="生活小灵感"/>
 
         <updated>2025-09-14T13:37:32+08:00</updated>
             <summary>
