@@ -55,8 +55,8 @@
     <div class="status" id="status">生命: 5 | 分数: 0</div>
     <canvas id="gameCanvas" width="480" height="640"></canvas>
     <div class="controls">
+        <button class="btn" id="start-btn" onclick="startGame()">开始游戏</button>
         <button class="btn" id="pause-btn" onclick="togglePause()">暂停</button>
-        <button class="btn" id="restart-btn" onclick="restartGame()">重新开始</button>
     </div>
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -73,15 +73,11 @@
             lives: 5,
             score: 0,
             cheatMode: false,
-            dragging: false,
         };
 
-        const bullets = [];
         const enemies = [];
-        const enemyBullets = [];
-
         let isPaused = false;
-        let restartCount = 0;
+        let startCount = 0;
 
         function togglePause() {
             isPaused = !isPaused;
@@ -89,19 +85,19 @@
             pauseButton.textContent = isPaused ? '继续' : '暂停';
         }
 
-        function restartGame() {
-            restartCount++;
-            if (restartCount === 5) {
+        function startGame() {
+            startCount++;
+            if (startCount === 3) {
                 alert('作弊模式已激活：锁血且积分累加！');
                 player.cheatMode = true;
-                restartCount = 0;
+                startCount = 0;
             } else {
                 player.lives = 5;
                 player.score = 0;
                 player.cheatMode = false;
-                bullets.length = 0;
                 enemies.length = 0;
-                enemyBullets.length = 0;
+                isPaused = false;
+                gameLoop();
             }
         }
 
@@ -124,10 +120,21 @@
             });
         }
 
-        function updateEnemyBullets() {
-            enemyBullets.forEach((bullet, index) => {
-                bullet.y += bullet.speed;
-                if (bullet.y > canvas.height) enemyBullets.splice(index, 1);
+        function drawEnemies() {
+            ctx.fillStyle = 'black';
+            const blockSize = 10;
+            enemies.forEach(enemy => {
+                const blocks = [
+                    { x: enemy.x, y: enemy.y },
+                    { x: enemy.x + blockSize, y: enemy.y },
+                    { x: enemy.x + 2 * blockSize, y: enemy.y },
+                    { x: enemy.x + blockSize, y: enemy.y + blockSize },
+                    { x: enemy.x, y: enemy.y + 2 * blockSize },
+                    { x: enemy.x + 2 * blockSize, y: enemy.y + 2 * blockSize },
+                ];
+                blocks.forEach(block => {
+                    ctx.fillRect(block.x, block.y, blockSize, blockSize);
+                });
             });
         }
 
@@ -135,12 +142,10 @@
             if (!isPaused) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 drawPlayer();
-                updateEnemyBullets();
+                drawEnemies();
             }
             requestAnimationFrame(gameLoop);
         }
-
-        gameLoop();
     </script>
 </body>
 </html>
