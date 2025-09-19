@@ -34,11 +34,93 @@
 					</div>
 				</div>
 			</div>
-			<div class="mod-button">
-			</div>
 		</div>
 		<script src="./static/script/game.js"></script>
 		<script src="./static/script/index.js"></script>
+		<script>
+			// 初始化 game 对象
+			document.addEventListener('DOMContentLoaded', function() {
+				window.game = new Game('canvas', {});
+			});
+		</script>
+		<script>
+			// 添加按钮事件监听
+			document.addEventListener('DOMContentLoaded', function() {
+				var upBtn = document.getElementById('up-btn');
+				var leftBtn = document.getElementById('left-btn');
+				var downBtn = document.getElementById('down-btn');
+				var rightBtn = document.getElementById('right-btn');
+				var startBtn = document.getElementById('start-btn');
+
+				// 方向键控制
+				upBtn.addEventListener('click', function() { game.keyDown({keyCode:38}); });
+				leftBtn.addEventListener('click', function() { game.keyDown({keyCode:37}); });
+				downBtn.addEventListener('click', function() { game.keyDown({keyCode:40}); });
+				rightBtn.addEventListener('click', function() { game.keyDown({keyCode:39}); });
+
+				// 开始游戏
+				startBtn.addEventListener('click', function() { game.start(); });
+			});
+		</script>
+		<style>
+			/* 手机端按键布局优化 */
+			@media (max-width: 768px) {
+				.mod-button {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					padding: 20px;
+					background-color: #333;
+					border: 5px solid #555;
+					border-radius: 15px;
+					box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+				}
+				.direction-buttons {
+					display: grid;
+					grid-template-areas:
+						'. up .'
+						'left . right'
+						'. down .';
+					gap: 20px;
+					margin-bottom: 20px;
+				}
+				.direction-buttons .btn {
+					width: 70px;
+					height: 70px;
+					font-size: 24px;
+					border-radius: 50%;
+					background-color: #444;
+					color: #fff;
+					border: 2px solid #666;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					transition: transform 0.2s, background-color 0.2s;
+				}
+				.direction-buttons .btn:hover {
+					background-color: #555;
+					transform: scale(1.1);
+				}
+				#up-btn { grid-area: up; }
+				#left-btn { grid-area: left; }
+				#down-btn { grid-area: down; }
+				#right-btn { grid-area: right; }
+				#start-btn {
+					margin-top: 20px;
+					width: 150px;
+					height: 60px;
+					font-size: 20px;
+					background-color: #444;
+					color: #fff;
+					border: 2px solid #666;
+					border-radius: 10px;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+					transition: transform 0.2s, background-color 0.2s;
+				}
+				#start-btn:hover {
+					background-color: #555;
+					transform: scale(1.1);
+				}
+			}
+		</style>
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
 	</body>
 </html>

@@ -1075,5 +1075,27 @@
 	myFont.load().then(font => {
 	  	document.fonts.add(font);
 		game.init();
+		
+		// 方向按钮事件
+		document.getElementById('up-btn').addEventListener('click', function() {
+			game.keyDown({keyCode: 38});
+		});
+		
+		document.getElementById('left-btn').addEventListener('click', function() {
+			game.keyDown({keyCode: 37});
+		});
+		
+		document.getElementById('down-btn').addEventListener('click', function() {
+			game.keyDown({keyCode: 40});
+		});
+		
+		document.getElementById('right-btn').addEventListener('click', function() {
+			game.keyDown({keyCode: 39});
+		});
+		
+		// 开始游戏按钮
+		document.getElementById('start-btn').addEventListener('click', function() {
+			game.keyDown({keyCode: 13});
+		});
 	});
 })();

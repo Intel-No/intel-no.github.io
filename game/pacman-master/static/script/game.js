@@ -423,3 +423,37 @@ function Game(id,params){
         this.start();
     };
 }
+
+// 添加 keyDown 方法
+this.keyDown = function(event) {
+    var keyCode = event.keyCode;
+    var stage = _stages[_index];
+    switch (keyCode) {
+        case 13: // 回车键
+            this.nextStage();
+            break;
+        case 32: // 空格键
+            stage.status = stage.status === 2 ? 1 : 2; // 切换暂停状态
+            break;
+        case 37: // 左方向键
+            stage.getItemsByType(1).forEach(function(player) {
+                player.control = { orientation: 2 };
+            });
+            break;
+        case 38: // 上方向键
+            stage.getItemsByType(1).forEach(function(player) {
+                player.control = { orientation: 3 };
+            });
+            break;
+        case 39: // 右方向键
+            stage.getItemsByType(1).forEach(function(player) {
+                player.control = { orientation: 0 };
+            });
+            break;
+        case 40: // 下方向键
+            stage.getItemsByType(1).forEach(function(player) {
+                player.control = { orientation: 1 };
+            });
+            break;
+    }
+};
