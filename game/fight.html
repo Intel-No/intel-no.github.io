@@ -72,10 +72,12 @@
             borderColor: 'black',
             lives: 5,
             score: 0,
-            cheatMode: false,
+            dragging: false,
         };
 
+        const bullets = [];
         const enemies = [];
+        const enemyBullets = [];
         let isPaused = false;
         let startCount = 0;
 
@@ -96,7 +98,10 @@
                 player.score = 0;
                 player.cheatMode = false;
                 enemies.length = 0;
+                bullets.length = 0;
+                enemyBullets.length = 0;
                 isPaused = false;
+                spawnEnemy();
                 gameLoop();
             }
         }
@@ -120,6 +125,13 @@
             });
         }
 
+        function drawBullets() {
+            ctx.fillStyle = 'black';
+            bullets.forEach(bullet => {
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+        }
+
         function drawEnemies() {
             ctx.fillStyle = 'black';
             const blockSize = 10;
@@ -138,13 +150,165 @@
             });
         }
 
+        function drawEnemyBullets() {
+            ctx.fillStyle = 'red';
+            enemyBullets.forEach(bullet => {
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+            });
+        }
+
+        function spawnEnemy() {
+            const enemy = {
+                x: Math.random() * (canvas.width - 40),
+                y: -40,
+                width: 40,
+                height: 40,
+                speed: 2 + player.score * 0.1,
+            };
+            enemies.push(enemy);
+        }
+
+        function spawnEnemyBullet(enemy) {
+            const bullet = {
+                x: enemy.x + enemy.width / 2 - 5,
+                y: enemy.y + enemy.height,
+                width: 10,
+                height: 10,
+                speed: 3 + player.score * 0.1,
+            };
+            enemyBullets.push(bullet);
+        }
+
+        function shootBullet() {
+            const bulletPatterns = player.score >= 50 || player.cheatMode ? 5 : player.score >= 20 ? 3 : 1;
+            const angleStep = bulletPatterns > 1 ? Math.PI / 8 : 0;
+
+            for (let i = 0; i < bulletPatterns; i++) {
+                const angle = -Math.PI / 2 + angleStep * (i - Math.floor(bulletPatterns / 2));
+                const bullet = {
+                    x: player.x + player.width / 2 - 5,
+                    y: player.y,
+                    width: 10,
+                    height: 10,
+                    speed: 5,
+                    dx: Math.cos(angle) * 5,
+                    dy: Math.sin(angle) * 5,
+                };
+                bullets.push(bullet);
+            }
+        }
+
+        function updateBullets() {
+            bullets.forEach((bullet, bulletIndex) => {
+                bullet.x += bullet.dx || 0;
+                bullet.y += bullet.dy || -bullet.speed;
+
+                if (bullet.y < 0 || bullet.x < 0 || bullet.x > canvas.width) bullets.splice(bulletIndex, 1);
+
+                enemies.forEach((enemy, enemyIndex) => {
+                    if (
+                        bullet.x < enemy.x + enemy.width &&
+                        bullet.x + bullet.width > enemy.x &&
+                        bullet.y < enemy.y + enemy.height &&
+                        bullet.y + bullet.height > enemy.y
+                    ) {
+                        bullets.splice(bulletIndex, 1);
+                        enemies.splice(enemyIndex, 1);
+                        player.score++;
+                    }
+                });
+            });
+        }
+
+        function updateEnemyBullets() {
+            enemyBullets.forEach((bullet, bulletIndex) => {
+                bullet.y += bullet.speed;
+                if (bullet.y > canvas.height) enemyBullets.splice(bulletIndex, 1);
+
+                if (
+                    bullet.x < player.x + player.width &&
+                    bullet.x + bullet.width > player.x &&
+                    bullet.y < player.y + player.height &&
+                    bullet.y + bullet.height > player.y
+                ) {
+                    enemyBullets.splice(bulletIndex, 1);
+                    if (!player.cheatMode) player.lives--;
+                }
+            });
+        }
+
+        function updateEnemies() {
+            enemies.forEach((enemy, index) => {
+                enemy.y += enemy.speed;
+                if (enemy.y > canvas.height) enemies.splice(index, 1);
+
+                if (Math.random() < 0.01) spawnEnemyBullet(enemy);
+            });
+        }
+
+        function checkGameOver() {
+            if (player.lives <= 0) {
+                isPaused = true;
+                alert(`游戏结束！您的得分是：${player.score}`);
+            }
+        }
+
+        function updateStatus() {
+            statusDiv.textContent = `生命: ${player.lives} | 分数: ${player.score}`;
+        }
+
         function gameLoop() {
             if (!isPaused) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 drawPlayer();
+                drawBullets();
                 drawEnemies();
+                drawEnemyBullets();
+                updateBullets();
+                updateEnemyBullets();
+                updateEnemies();
+                updateStatus();
+                checkGameOver();
+
+                if (Math.random() < 0.02) spawnEnemy();
             }
             requestAnimationFrame(gameLoop);
+        }
+
+        setInterval(shootBullet, 500);
+        canvas.addEventListener('mousedown', handleMouseDown);
+        canvas.addEventListener('mousemove', handleMouseMove);
+        canvas.addEventListener('mouseup', handleMouseUp);
+
+        function handleMouseDown(event) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            if (
+                mouseX > player.x &&
+                mouseX < player.x + player.width &&
+                mouseY > player.y &&
+                mouseY < player.y + player.height
+            ) {
+                player.dragging = true;
+            }
+        }
+
+        function handleMouseMove(event) {
+            if (player.dragging) {
+                const rect = canvas.getBoundingClientRect();
+                player.x = event.clientX - rect.left - player.width / 2;
+                player.y = event.clientY - rect.top - player.height / 2;
+
+                // Ensure the player stays within the canvas boundaries
+                player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+                player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+            }
+        }
+
+        function handleMouseUp() {
+            player.dragging = false;
         }
     </script>
 </body>
