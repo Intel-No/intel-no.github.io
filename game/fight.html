@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>飞机大战</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+            font-family: 'Press Start 2P', sans-serif;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            background-color: #444;
+            color: white;
+            border: 2px solid #666;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .status {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="status" id="status">生命: 5 | 分数: 0</div>
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
+    <div class="controls">
+        <button class="btn" id="pause-btn" onclick="togglePause()">暂停</button>
+        <button class="btn" id="restart-btn" onclick="restartGame()">重新开始</button>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const statusDiv = document.getElementById('status');
+
+        const player = {
+            x: canvas.width / 2 - 20,
+            y: canvas.height - 60,
+            width: 40,
+            height: 40,
+            color: 'white',
+            borderColor: 'black',
+            lives: 5,
+            score: 0,
+            cheatMode: false,
+            dragging: false,
+        };
+
+        const bullets = [];
+        const enemies = [];
+        const enemyBullets = [];
+
+        let isPaused = false;
+        let restartCount = 0;
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseButton = document.getElementById('pause-btn');
+            pauseButton.textContent = isPaused ? '继续' : '暂停';
+        }
+
+        function restartGame() {
+            restartCount++;
+            if (restartCount === 5) {
+                alert('作弊模式已激活：锁血且积分累加！');
+                player.cheatMode = true;
+                restartCount = 0;
+            } else {
+                player.lives = 5;
+                player.score = 0;
+                player.cheatMode = false;
+                bullets.length = 0;
+                enemies.length = 0;
+                enemyBullets.length = 0;
+            }
+        }
+
+        function drawPlayer() {
+            ctx.fillStyle = player.color;
+            ctx.strokeStyle = player.borderColor;
+            ctx.lineWidth = 2;
+            const blockSize = 10;
+            const blocks = [
+                { x: player.x, y: player.y },
+                { x: player.x + blockSize, y: player.y },
+                { x: player.x + 2 * blockSize, y: player.y },
+                { x: player.x + blockSize, y: player.y + blockSize },
+                { x: player.x, y: player.y + 2 * blockSize },
+                { x: player.x + 2 * blockSize, y: player.y + 2 * blockSize },
+            ];
+            blocks.forEach(block => {
+                ctx.fillRect(block.x, block.y, blockSize, blockSize);
+                ctx.strokeRect(block.x, block.y, blockSize, blockSize);
+            });
+        }
+
+        function updateEnemyBullets() {
+            enemyBullets.forEach((bullet, index) => {
+                bullet.y += bullet.speed;
+                if (bullet.y > canvas.height) enemyBullets.splice(index, 1);
+            });
+        }
+
+        function gameLoop() {
+            if (!isPaused) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawPlayer();
+                updateEnemyBullets();
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>
