@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-10-19T08:57:49+08:00</updated>
+    <updated>2025-10-19T09:31:47+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -75,49 +75,49 @@
 </ol>
 <h2>M1 Pro / Max / Ultra：性能的层层扩展</h2>
 <p>苹果在 M1 成功的基础上，开始了分层策略：</p>
-<table style="width: 76.7806%; height: 1178.8px;">
+<table class=" align-center" style="width: 100%; border-collapse: collapse; table-layout: auto;">
 <thead>
 <tr style="height: 48.5625px;">
-<th style="width: 13.31%; height: 48.5625px;">芯片</th>
-<th style="width: 24.5184%; height: 48.5625px;">CPU规格</th>
-<th style="width: 31.8739%; height: 48.5625px;">GPU规格</th>
-<th style="width: 30.4729%; height: 48.5625px;">使用设备</th>
+<th style="width: 13.2832%; height: 48.5625px;">芯片</th>
+<th style="width: 24.5614%; height: 48.5625px;">CPU规格</th>
+<th style="width: 31.8296%; height: 48.5625px;">GPU规格</th>
+<th style="width: 30.3258%; height: 48.5625px;">使用设备</th>
 </tr>
 </thead>
 <tbody>
-<tr style="height: 417.562px;">
-<td style="width: 13.31%; height: 417.562px;">M1</td>
-<td style="width: 24.5184%; height: 417.562px;">
+<tr style="height: 237.562px;">
+<td style="width: 13.2832%; height: 237.562px;">M1</td>
+<td style="width: 24.5614%; height: 237.562px;">
 <div class="li-div-cpu li-div-cpu-b">3.20GHz ×4<br>2.06GHz ×4</div>
 </td>
-<td style="width: 31.8739%; height: 417.562px;">Apple ×7<br>112 EUs<br>896 ALUs/Apple ×8<br>128 EUs<br>1024 ALUs<br>@1278MHz</td>
-<td style="width: 30.4729%; height: 417.562px;">MacBook Air (M1, 2020 年)<br>MacBook Pro (13英寸,M1,2020年)<br>Mac mini (M1, 2020 年)<br>iMac (24 英寸, M1, 2021 年)<br>iPad Air (第 5 代)<br>iPad Pro 11 英寸 (第 3 代)<br>iPad Pro 12.9 英寸 (第 5 代)</td>
+<td style="width: 31.8296%; height: 237.562px;">Apple ×7<br>112 EUs<br>896 ALUs/Apple ×8<br>128 EUs<br>1024 ALUs<br>@1278MHz</td>
+<td style="width: 30.3258%; height: 237.562px;">MacBook Air (M1, 2020 年)<br>MacBook Pro (13英寸,M1,2020年)<br>Mac mini (M1, 2020 年)<br>iMac (24 英寸, M1, 2021 年)<br>iPad Air (第 5 代)<br>iPad Pro 11 英寸 (第 3 代)<br>iPad Pro 12.9 英寸 (第 5 代)</td>
 </tr>
-<tr style="height: 210.555px;">
-<td style="width: 13.31%; height: 210.555px;">M1 Pro</td>
-<td style="width: 24.5184%; height: 210.555px;">3.23GHz ×6<br>2.06GHz ×2/3.23GHz ×8<br>2.06GHz ×2</td>
-<td style="width: 31.8739%; height: 210.555px;">Apple ×14<br>224 EUs<br>1792 ALUs/Apple ×16<br>256 EUs<br>2048 ALUs<br>@1296MHz</td>
-<td style="width: 30.4729%; height: 210.555px;">
+<tr style="height: 183.562px;">
+<td style="width: 13.2832%; height: 183.562px;">M1 Pro</td>
+<td style="width: 24.5614%; height: 183.562px;">3.23GHz ×6<br>2.06GHz ×2/3.23GHz ×8<br>2.06GHz ×2</td>
+<td style="width: 31.8296%; height: 183.562px;">Apple ×14<br>224 EUs<br>1792 ALUs/Apple ×16<br>256 EUs<br>2048 ALUs<br>@1296MHz</td>
+<td style="width: 30.3258%; height: 183.562px;">
 <div class="li-div-device li-div-device-b">MacBook Pro (14 英寸,2021 年)<br>MacBook Pro (16 英寸,2021 年)</div>
 </td>
 </tr>
-<tr style="height: 318.562px;">
-<td style="width: 13.31%; height: 318.562px;">M1 Max</td>
-<td style="width: 24.5184%; height: 318.562px;">
+<tr style="height: 183.562px;">
+<td style="width: 13.2832%; height: 183.562px;">M1 Max</td>
+<td style="width: 24.5614%; height: 183.562px;">
 <div class="li-div-cpu li-div-cpu-b">3.23GHz ×8<br>2.06GHz ×2</div>
 </td>
-<td style="width: 31.8739%; height: 318.562px;">Apple ×24<br>384 EUs<br>3072 ALUs/Apple ×32<br>512 EUs<br>4096 ALUs<br>@1296MHz</td>
-<td style="width: 30.4729%; height: 318.562px;">
+<td style="width: 31.8296%; height: 183.562px;">Apple ×24<br>384 EUs<br>3072 ALUs/Apple ×32<br>512 EUs<br>4096 ALUs<br>@1296MHz</td>
+<td style="width: 30.3258%; height: 183.562px;">
 <div class="li-div-device li-div-device-b">MacBook Pro (14 英寸,2021 年)<br>MacBook Pro (16 英寸, 2021 年)<br>Mac Studio (2022 年)</div>
 </td>
 </tr>
-<tr style="height: 183.555px;">
-<td style="width: 13.31%; height: 183.555px;">M1 Ultra</td>
-<td style="width: 24.5184%; height: 183.555px;">
+<tr style="height: 93.555px;">
+<td style="width: 13.2832%; height: 93.555px;">M1 Ultra</td>
+<td style="width: 24.5614%; height: 93.555px;">
 <div class="li-div-cpu li-div-cpu-b">3.23GHz ×16<br>2.06GHz ×4</div>
 </td>
-<td style="width: 31.8739%; height: 183.555px;">Apple ×48<br>768 EUs<br>6144 ALUs/Apple ×48<br>768 EUs<br>6144 ALUs@1296MHz</td>
-<td style="width: 30.4729%; height: 183.555px;">
+<td style="width: 31.8296%; height: 93.555px;">Apple ×48<br>768 EUs<br>6144 ALUs/Apple ×48<br>768 EUs<br>6144 ALUs@1296MHz</td>
+<td style="width: 30.3258%; height: 93.555px;">
 <div class="li-div-device li-div-device-b">Mac Studio (2022 年)</div>
 </td>
 </tr>
@@ -139,54 +139,54 @@
 </li>
 </ul>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/26/v2-55271f2c1e3bc6329bf2aa37a90286f2_1440w-2.webp" alt="" width="832" height="468" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/26/responsive/v2-55271f2c1e3bc6329bf2aa37a90286f2_1440w-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/26/responsive/v2-55271f2c1e3bc6329bf2aa37a90286f2_1440w-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/26/responsive/v2-55271f2c1e3bc6329bf2aa37a90286f2_1440w-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/26/responsive/v2-55271f2c1e3bc6329bf2aa37a90286f2_1440w-2-xl.webp 1024w"></figure>
-<table style="width: 89.0313%; height: 1116.8px;">
+<table class=" align-center" style="width: 100%; border-collapse: collapse; table-layout: auto;">
 <thead>
-<tr style="height: 168.555px;">
-<th style="width: 13.5828%; height: 168.555px;">芯片</th>
-<th style="width: 14.4425%; height: 168.555px;" align="right">CPU（高性能 × 高能效）</th>
-<th style="width: 12.3793%; height: 168.555px;" align="right">GPU（最大核数）</th>
-<th style="width: 15.9899%; height: 168.555px;" align="right">Neural Engine</th>
-<th style="width: 12.8951%; height: 168.555px;" align="right">统一内存带宽</th>
-<th style="width: 11.3477%; height: 168.555px;" align="right">最大统一内存</th>
-<th style="width: 19.6005%; height: 168.555px;">常见搭载设备</th>
+<tr style="height: 105.555px;">
+<th style="width: 11.214%; height: 105.555px;">芯片</th>
+<th style="width: 17.4897%; height: 105.555px;" align="right">CPU（高性能 × 高能效）</th>
+<th style="width: 16.6667%; height: 105.555px;" align="right">GPU（最大核数）</th>
+<th style="width: 9.5679%; height: 105.555px;" align="right">Neural Engine</th>
+<th style="width: 16.6667%; height: 105.555px;" align="right">统一内存带宽</th>
+<th style="width: 17.2798%; height: 105.555px;" align="right">最大统一内存</th>
+<th style="width: 11.2181%; height: 105.555px;">常见搭载设备</th>
 </tr>
 </thead>
 <tbody>
-<tr style="height: 318.562px;">
-<td style="width: 13.5828%; height: 318.562px;"><strong>M2</strong></td>
-<td style="width: 14.4425%; height: 318.562px;" align="right">8 核（4P + 4E）</td>
-<td style="width: 12.3793%; height: 318.562px;" align="right">8 / 10 核（机型差异）</td>
-<td style="width: 15.9899%; height: 318.562px;" align="right">16 核</td>
-<td style="width: 12.8951%; height: 318.562px;" align="right">100 GB/s</td>
-<td style="width: 11.3477%; height: 318.562px;" align="right">24 GB</td>
-<td style="width: 19.6005%; height: 318.562px;">MacBook Air (M2)、13" MacBook Pro (M2)、iPad Pro（部分型号）。(<a href="https://support.apple.com/en-us/111867?utm_source=chatgpt.com" title="MacBook Air (M2, 2022) - Tech Specs">苹果支持</a>)</td>
+<tr style="height: 183.562px;">
+<td style="width: 11.214%; height: 183.562px;"><strong>M2</strong></td>
+<td style="width: 17.4897%; height: 183.562px;" align="right">8 核（4P + 4E）</td>
+<td style="width: 16.6667%; height: 183.562px;" align="right">8 / 10 核</td>
+<td style="width: 9.5679%; height: 183.562px;" align="right">16 核</td>
+<td style="width: 16.6667%; height: 183.562px;" align="right">100 GB/s</td>
+<td style="width: 17.2798%; height: 183.562px;" align="right">24 GB</td>
+<td style="width: 11.2181%; height: 183.562px;">MacBook Air (M2)、13" MacBook Pro (M2)、iPad Pro（部分型号）。(<a href="https://support.apple.com/en-us/111867?utm_source=chatgpt.com" title="MacBook Air (M2, 2022) - Tech Specs">苹果支持</a>)</td>
 </tr>
-<tr style="height: 291.562px;">
-<td style="width: 13.5828%; height: 291.562px;"><strong>M2 Pro</strong></td>
-<td style="width: 14.4425%; height: 291.562px;" align="right">可达 12 核（8P + 4E）或 10 核（6P + 4E）</td>
-<td style="width: 12.3793%; height: 291.562px;" align="right">16 / 19 核</td>
-<td style="width: 15.9899%; height: 291.562px;" align="right">16 核</td>
-<td style="width: 12.8951%; height: 291.562px;" align="right">200 GB/s</td>
-<td style="width: 11.3477%; height: 291.562px;" align="right">32 GB</td>
-<td style="width: 19.6005%; height: 291.562px;">14"/16" MacBook Pro、Mac mini（部分配置）</td>
+<tr style="height: 129.562px;">
+<td style="width: 11.214%; height: 129.562px;"><strong>M2 Pro</strong></td>
+<td style="width: 17.4897%; height: 129.562px;" align="right">可达 12 核（8P + 4E）或 10 核（6P + 4E）</td>
+<td style="width: 16.6667%; height: 129.562px;" align="right">16 / 19 核</td>
+<td style="width: 9.5679%; height: 129.562px;" align="right">16 核</td>
+<td style="width: 16.6667%; height: 129.562px;" align="right">200 GB/s</td>
+<td style="width: 17.2798%; height: 129.562px;" align="right">32 GB</td>
+<td style="width: 11.2181%; height: 129.562px;">14"/16" MacBook Pro、Mac mini（部分配置）</td>
 </tr>
-<tr style="height: 264.562px;">
-<td style="width: 13.5828%; height: 264.562px;"><strong>M2 Max</strong></td>
-<td style="width: 14.4425%; height: 264.562px;" align="right">可达 12 核（8P + 4E）</td>
-<td style="width: 12.3793%; height: 264.562px;" align="right">可达 30 / 38 核</td>
-<td style="width: 15.9899%; height: 264.562px;" align="right">16 核</td>
-<td style="width: 12.8951%; height: 264.562px;" align="right">400 GB/s</td>
-<td style="width: 11.3477%; height: 264.562px;" align="right">96 GB</td>
-<td style="width: 19.6005%; height: 264.562px;">14"/16" MacBook Pro（高阶）、Mac Studio（部分版本）</td>
+<tr style="height: 74.562px;">
+<td style="width: 11.214%; height: 74.562px;"><strong>M2 Max</strong></td>
+<td style="width: 17.4897%; height: 74.562px;" align="right">可达 12 核（8P + 4E）</td>
+<td style="width: 16.6667%; height: 74.562px;" align="right">可达 30 / 38 核</td>
+<td style="width: 9.5679%; height: 74.562px;" align="right">16 核</td>
+<td style="width: 16.6667%; height: 74.562px;" align="right">400 GB/s</td>
+<td style="width: 17.2798%; height: 74.562px;" align="right">96 GB</td>
+<td style="width: 11.2181%; height: 74.562px;">14"/16" MacBook Pro（高阶）、Mac Studio（部分版本）</td>
 </tr>
-<tr style="height: 73.562px;">
-<td style="width: 13.5828%; height: 73.562px;"><strong>M2 Ultra</strong></td>
-<td style="width: 14.4425%; height: 73.562px;" align="right">24 核（16P + 8E，Ultra 为两颗 M2 Max 互联）</td>
-<td style="width: 12.3793%; height: 73.562px;" align="right">可达 60 / 76 核</td>
-<td style="width: 15.9899%; height: 73.562px;" align="right">32 核</td>
-<td style="width: 12.8951%; height: 73.562px;" align="right">800 GB/s</td>
-<td style="width: 11.3477%; height: 73.562px;" align="right">192 GB</td>
-<td style="width: 19.6005%; height: 73.562px;">Mac Studio、Mac Pro（部分型号）</td>
+<tr style="height: 102.562px;">
+<td style="width: 11.214%; height: 102.562px;"><strong>M2 Ultra</strong></td>
+<td style="width: 17.4897%; height: 102.562px;" align="right">24 核（16P + 8E，Ultra 为两颗 M2 Max 互联）</td>
+<td style="width: 16.6667%; height: 102.562px;" align="right">可达 60 / 76 核</td>
+<td style="width: 9.5679%; height: 102.562px;" align="right">32 核</td>
+<td style="width: 16.6667%; height: 102.562px;" align="right">800 GB/s</td>
+<td style="width: 17.2798%; height: 102.562px;" align="right">192 GB</td>
+<td style="width: 11.2181%; height: 102.562px;">Mac Studio、Mac Pro（部分型号）</td>
 </tr>
 </tbody>
 </table>
@@ -336,7 +336,7 @@
 <p>M4 是苹果首个“面向人工智能”优化的芯片。<br>它采用 <strong>第二代 3nm 工艺</strong>，并在内部增加了全新的 <strong>高带宽内存架构（HBM-like设计思路）</strong>，使数据传输效率进一步提高</p>
 <h3 data-start="2044" data-end="2074">平台生态与 Apple Intelligence</h3>
 <p data-start="2075" data-end="2243">苹果在 M4 发布时强调，这一代芯片是为了支撑 <strong data-start="2099" data-end="2121">Apple Intelligence</strong> 而打造——即“个人人工智能”在设备端的实现<br data-start="2183" data-end="2186">换句话说，M4 不仅是面向创作者或专业用户的算力平台，更是面向“人人都能用 AI 助手／本地模型”时代的硬件基石</p>
-<table style="width: 93.4473%;">
+<table class=" align-center" style="width: 100%; border-collapse: collapse; table-layout: auto;">
 <thead>
 <tr>
 <th style="width: 9.48861%;">芯片</th>
@@ -386,7 +386,7 @@
 <blockquote>
 <p>M1 改变了电脑的形态，M4 改变了电脑的思维</p>
 </blockquote>
-<table style="width: 100%; height: 323.812px;">
+<table class=" align-center" style="width: 100%; border-collapse: collapse; table-layout: auto;">
 <thead>
 <tr style="height: 75.5625px;">
 <th style="width: 9.90362%; height: 75.5625px;">代数</th>
