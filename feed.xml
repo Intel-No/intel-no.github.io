@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-02T05:57:02+08:00</updated>
+    <updated>2025-11-02T06:00:44+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -16,6 +16,7 @@
         </author>
         <link href="https://zeyun.dpdns.org/my_sql_part1.html"/>
         <id>https://zeyun.dpdns.org/my_sql_part1.html</id>
+            <category term="学习笔记"/>
 
         <updated>2025-11-02T03:00:50+08:00</updated>
             <summary>
@@ -426,7 +427,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/apple_silicon_m1tom4chip.html"/>
         <id>https://zeyun.dpdns.org/apple_silicon_m1tom4chip.html</id>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-10-19T08:48:16+08:00</updated>
             <summary>
@@ -878,7 +879,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         <link href="https://zeyun.dpdns.org/kjcx.html"/>
         <id>https://zeyun.dpdns.org/kjcx.html</id>
             <category term="随便写写"/>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-10-07T02:39:21+08:00</updated>
             <summary>
@@ -927,7 +928,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/ipad_fx.html"/>
         <id>https://zeyun.dpdns.org/ipad_fx.html</id>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-10-06T01:04:39+08:00</updated>
             <summary>
@@ -1224,7 +1225,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/macos7.html"/>
         <id>https://zeyun.dpdns.org/macos7.html</id>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-09-22T00:25:10+08:00</updated>
             <summary>
@@ -1280,7 +1281,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/ios26.html"/>
         <id>https://zeyun.dpdns.org/ios26.html</id>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-09-16T13:43:00+08:00</updated>
             <summary>
@@ -1382,7 +1383,7 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/cook_mujica.html"/>
         <id>https://zeyun.dpdns.org/cook_mujica.html</id>
-            <category term="技术分享"/>
+            <category term="科技分享"/>
 
         <updated>2025-09-14T13:43:39+08:00</updated>
             <summary>
