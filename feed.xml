@@ -3,12 +3,422 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-10-19T09:31:47+08:00</updated>
+    <updated>2025-11-02T05:54:07+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.dpdns.org</id>
 
+    <entry>
+        <title>数据库基础入门指南  Prat 1</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/shu-ju-ku-ji-chu.html"/>
+        <id>https://zeyun.dpdns.org/shu-ju-ku-ji-chu.html</id>
+
+        <updated>2025-11-02T03:00:50+08:00</updated>
+            <summary>
+                <![CDATA[
+                    本章内容：从软件的下载到数据库的简单查询 本章难度：(🌵🌵🌵/🌵🌵) Navicat Premium 17&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h1>本章内容：从软件的下载到数据库的简单查询</h1>
+<p>本章难度：(🌵🌵🌵/🌵🌵)</p>
+<h3>Stp 1：如何下载？</h3>
+<p>Navicat Premium 17 安装及下载链接：<a href="https://www.123865.com/s/foFNjv-EK9TH" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>为了便于演示和理解，以下内容将使用 Navicat Premium 17 演示</p>
+<p>说实话，我不建议直接copy我的示例代码，我认为自己敲一遍能加深初学的印象</p>
+<p>（<strong>Don't copy. Study it by yourself！</strong>）        ヾ(≧▽≦*)o</p>
+<p>此外由于代码部分的内容全由本人敲写，由于中英混用，难免出现些符号的问题，例如：（；&amp;;）（，&amp;,），如果执意copy我示例代码的，如果出错了，还请多多包涵(；′⌒`)</p>
+<h3>Stp 2：适当了解些基础概念</h3>
+<p>1.字段：可以理解成Excel表格里横着的表头，不可再划分的最小单位</p>
+<p>2.第一范式：所有字段值都是不可分解的原子值</p>
+<p>3.主键（PRIMARY KEY）：一张表中仅有一个主键，不能为NULL，设置为主键的字段不能重复，构成主键的字段可是多个（联合主键）</p>
+<p>4.唯一键（UNIQE）：一张表中可以有多个唯一键，字段可以重复，构成主键的字段可是多个</p>
+<p>5.外键（FOREIGN KEY）：与主键建立关系的键，一张表中 “引用另一张表主键” 的字段，作用是把两个表 “绑在一起”的就是外键</p>
+<p>6.非空约束值（NOT NULL）：代表这个字段不能为空值</p>
+<p>7.自增约束值（AUTO_INCREMENT）：实现（主键，唯一键，外键）的数值自增，实际中用到的最多的是主键的自增约束</p>
+<h3>Stp 3：实操演练</h3>
+<p>不妨看看数据库在实际中应用的例子，边用边学，才会有效果（此内容为虚构，仅供教学使用，请勿当真）</p>
+<p>假设你是xx学校教务处的实习生，现在需要用 SQL 语句管理该校的学生成绩数据，从<strong>创建专属数据库</strong>开始，到<strong>创建表存储学生信息和成绩</strong>，再到<strong>录入数据</strong>、<strong>修正错误</strong>成绩、<strong>删除</strong>无效记录，最后按老师要求<strong>查询</strong>各类成绩报表</p>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br">第一步：创建专属数据库（数据库管理）</h5>
+<p>首先是得要新建一个连接</p>
+<p>打开Navicat17，左上角新建连接→选择my sql→随便输入连接名称和你记得住的密码→双击左侧打开（一般是变成绿色），即可创建成功</p>
+<p>点击左上角“新建查询”按钮，即可开始以下指令的操作</p>
+<p>要求：数据库名为<code>student+两个数字</code>（比如我是 66，就叫<code>student66</code>），字符集用<code>utf8mb4</code>（支持中文和特殊符号，避免乱码，默认就是）</p>
+<pre class="language-sql line-numbers"><code>--创建数据库，指定字符集
+CREATE DATABASE student66 CHARACTER SET utf8mb4; 
+
+--创建数据库的语法格式
+CREATE DATABASE + 数据库名 + CHERATE SET + 字符类型 ;
+
+--切换到刚创建的数据库（后续操作都在这个库下） 
+USE student66;
+
+--切换数据库的语法格式
+USE + 数据库名</code></pre>
+<p>输入之后，选择你输入的这条代码，点击”运行已选择的“按钮，即可运行成功（这里不建议全选运行，或者直接不选择单条代码直接点击”运行“，因为同时多条代码运行起来大概率会导致报错。主要是这玩意同时运行，总会会遇到很多奇奇怪怪的问题）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-02-041834.png" alt="" width="1021" height="229" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-041834-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-041834-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-041834-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-041834-xl.webp 1024w"></figure>
+<p>确保这个数据库变为上图这样，也就是切换成你所创建的之后再写，否则所有的内容都将会运行失败（左侧可使用右击鼠标右键或者按下键盘上的 F5 按键，来刷新实时的表的状态）没出现的话，可以多刷新几次，有时会不太灵敏</p>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br">第二步：创建数据表（数据表管理）</h5>
+<p>要求：需要两个表：<code>student_info_66</code>（存学生基本信息）和<code>student_score_66</code>（存学生成绩）字段要求已给</p>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>1. 创建学生信息表（student_info_66）</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">字段要求：如下</div>
+<div class="auto-hide-last-sibling-br mdbox-table-root table-container-GhL7Lo" data-scroll-inline-overflow="false" data-scroll-inline-at-start="true" data-scroll-inline-start-overflow="false" data-scroll-inline-at-end="true" data-scroll-inline-end-overflow="false">
+<div class="table-scroll-container-hgHkfW mdbox-table-scroll-container">
+<table style="width: 91.5954%;">
+<thead>
+<tr>
+<th style="width: 26.3158%;">字段名</th>
+<th style="width: 17.7033%;">字段类型</th>
+<th style="width: 17.5439%;">字段约束</th>
+<th style="width: 38.437%;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width: 26.3158%;">student_id</td>
+<td style="width: 17.7033%;">字符串</td>
+<td style="width: 17.5439%;">主键</td>
+<td style="width: 38.437%;">学号（唯一）</td>
+</tr>
+<tr>
+<td style="width: 26.3158%;">student_name</td>
+<td style="width: 17.7033%;">字符串</td>
+<td style="width: 17.5439%;">非空</td>
+<td style="width: 38.437%;">姓名（不能为空）</td>
+</tr>
+<tr>
+<td style="width: 26.3158%;">student_class</td>
+<td style="width: 17.7033%;">字符串</td>
+<td style="width: 17.5439%;"> </td>
+<td style="width: 38.437%;">班级</td>
+</tr>
+<tr>
+<td style="width: 26.3158%;">student_sex</td>
+<td style="width: 17.7033%;">字符串</td>
+<td style="width: 17.5439%;"> </td>
+<td style="width: 38.437%;">性别</td>
+</tr>
+</tbody>
+</table>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>2.创建学生成绩表（student_score_66）</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">字段要求：如下</div>
+<div class="auto-hide-last-sibling-br mdbox-table-root table-container-GhL7Lo" data-scroll-inline-overflow="false" data-scroll-inline-at-start="true" data-scroll-inline-start-overflow="false" data-scroll-inline-at-end="true" data-scroll-inline-end-overflow="false">
+<div class="table-scroll-container-hgHkfW mdbox-table-scroll-container">
+<table style="width: 91.453%;">
+<thead>
+<tr>
+<th style="width: 22.4583%;">字段名</th>
+<th style="width: 21.2443%;">字段类型</th>
+<th style="width: 18.3612%;">字段约束</th>
+<th style="width: 37.9363%;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width: 22.4583%;">student_id</td>
+<td style="width: 21.2443%;">字符串</td>
+<td style="width: 18.3612%;">主键（联合主键）</td>
+<td style="width: 37.9363%;">学号</td>
+</tr>
+<tr>
+<td style="width: 22.4583%;">student_class</td>
+<td style="width: 21.2443%;">整数</td>
+<td style="width: 18.3612%;">非空</td>
+<td style="width: 37.9363%;">班级（比如 2318）</td>
+</tr>
+<tr>
+<td style="width: 22.4583%;">subject</td>
+<td style="width: 21.2443%;">字符串</td>
+<td style="width: 18.3612%;">主键（联合主键）</td>
+<td style="width: 37.9363%;">科目</td>
+</tr>
+<tr>
+<td style="width: 22.4583%;">score</td>
+<td style="width: 21.2443%;">小数</td>
+<td style="width: 18.3612%;"> </td>
+<td style="width: 37.9363%;">成绩（支持小数，比如 58.9）</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>示例如下：</p>
+</div>
+</div>
+<pre class="language-sql line-numbers"><code>--添加表的代码示例
+CREATE TABLE student_info_66(
+student_id VARCHAR(20) PRIMARY KEY,
+student_name VARCHAR(50) NOT NULL,
+student_class VARCHAR(10), 
+student_sex VARCHAR(10)
+);
+
+--添加表的语法格式
+CREATE TABLE 表名(
+student_id VARCHAR(20) PRIMARY KEY,
+表的字段名 + 类型 + 约束 + ,
+如下同理可得...
+);</code></pre>
+<p>注意的是使用VARCHAR/CHAR都需要加（）应为这个类型是用来限制长度的，VARCHAR/CHAR都会需要预设长度，一般来说，使用VARCHAR就行，通用性很高</p>
+<h6 class="header-vfC6AV auto-hide-last-sibling-br">避坑点</h6>
+<ul class="auto-hide-last-sibling-br">
+<li>学号用<code>VARCHAR</code>（字符串）而非<code>INT</code>（整数）：因为学号可能以 0 开头（比如 001），用整数会丢失前面的 0</li>
+<li><code>NOT NULL</code>约束：姓名必须填，否则插入数据时会报错，避免 “无名学生” 的无效数据</li>
+</ul>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>（附加题）删除学生信息表</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">如果建表后发现字段错了，需要删除表（注意：删除表会清空所有数据，谨慎操作）：</div>
+<pre class="language-sql line-numbers"><code>--删除学生信息表
+DROP TABLE student_info_66;
+
+--删除表的语法格式
+DROP TABLE + 表名 + ;</code></pre>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br">第三步：管理表数据（DML 操作：增删改）</h5>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">表建好后，我们需要录入成绩数据、修正不及格成绩、删除无效科目记录，这三步对应 SQL 的<code>INSERT</code><strong>（增）</strong>、<code>UPDATE</code><strong>（改）</strong>、<code>DELETE</code><strong>（删）</strong></div>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>1. 插入成绩数据（INSERT）</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">要求：将给了的 9 条成绩数据，插入到<code>student_score_66</code>：</div>
+<div class="auto-hide-last-sibling-br mdbox-table-root table-container-GhL7Lo" data-scroll-inline-overflow="false" data-scroll-inline-at-start="true" data-scroll-inline-start-overflow="false" data-scroll-inline-at-end="true" data-scroll-inline-end-overflow="false">
+<div class="table-scroll-container-hgHkfW mdbox-table-scroll-container">
+<table style="width: 75.3561%;">
+<thead>
+<tr>
+<th style="width: 27.8431%;">学号</th>
+<th style="width: 25.1872%;">班级</th>
+<th style="width: 22.3485%;">科目</th>
+<th style="width: 24.6212%;">成绩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width: 27.8431%;">2024001</td>
+<td style="width: 25.1872%;">2318</td>
+<td style="width: 22.3485%;">语文</td>
+<td style="width: 24.6212%;">58.9</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024001</td>
+<td style="width: 25.1872%;">2318</td>
+<td style="width: 22.3485%;">数学</td>
+<td style="width: 24.6212%;">90</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024002</td>
+<td style="width: 25.1872%;">2319</td>
+<td style="width: 22.3485%;">语文</td>
+<td style="width: 24.6212%;">90</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024002</td>
+<td style="width: 25.1872%;">2319</td>
+<td style="width: 22.3485%;">数学</td>
+<td style="width: 24.6212%;">79</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024003</td>
+<td style="width: 25.1872%;">2320</td>
+<td style="width: 22.3485%;">语文</td>
+<td style="width: 24.6212%;">92</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024003</td>
+<td style="width: 25.1872%;">2320</td>
+<td style="width: 22.3485%;">数学</td>
+<td style="width: 24.6212%;">94</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024004</td>
+<td style="width: 25.1872%;">2321</td>
+<td style="width: 22.3485%;">语文</td>
+<td style="width: 24.6212%;">66</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024004</td>
+<td style="width: 25.1872%;">2321</td>
+<td style="width: 22.3485%;">数学</td>
+<td style="width: 24.6212%;">9.5</td>
+</tr>
+<tr>
+<td style="width: 27.8431%;">2024004</td>
+<td style="width: 25.1872%;">2321</td>
+<td style="width: 22.3485%;">test</td>
+<td style="width: 24.6212%;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="language-sql line-numbers"><code>--添加表中的数据示例
+INSERT INTO student_score_66 (student_id, student_class, subject, score) 
+VALUES --多个值，一定要加s
+('2024001', 2318, '语文', 58), 
+('2024001', 2318, '数学', 90.0), -- 小数可以写90或90.0，不影响 
+('2024002', 2319, '语文', 90), 
+('2024002', 2319, '数学', 79), 
+('2024003', 2320, '语文', 92),
+('2024003', 2320, '数学', 94), 
+('2024004', 2321, '语文', 66), 
+('2024004', 2321, '数学', 9.5), 
+('2024004', 2321, 'test', 100);
+
+--添加表中的数据的代码语法格式
+INSERT INTO + 表名 +（字段1，字段2，字段3...）
+VALUES + （数据1，数据2，数据3...）+ ;</code></pre>
+<h6 class="header-vfC6AV auto-hide-last-sibling-br">特别注意</h6>
+<ul class="auto-hide-last-sibling-br">
+<li>学号用<code>VARCHAR</code>（字符串）：所以必须使用 ' ' （上引号），将数据括起来</li>
+<li>而非<code>INT</code>（整数）：可以不适用 ' ' ，直接写数字就行</li>
+<li>字段名需要和数据一一对应，字段顺序要和<code style="font-weight: var(--font-weight-normal);">VALUES</code><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">里的数据顺序一致：比如</span><code style="font-weight: var(--font-weight-normal);">(student_id, student_class)</code><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">对应</span><code style="font-weight: var(--font-weight-normal);">('2024001', 2318)</code><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">，不能颠倒</span></li>
+</ul>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>2. 修正不及格成绩（UPDATE）</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">要求：将成绩低于 60 分的同学，成绩统一改成 60 分（避免不及格）</div>
+<div>
+<pre class="language-sql line-numbers"><code>--将成绩 &lt;60 的记录，修改为60分示例：
+UPDATE student_score_66 
+SET score = 60.0 
+WHERE score &lt; 60;
+
+--修改数据部分的代码语法格式：
+UPDATE + 需要修改的表的表名
+SET + 需要修改后的数据
+WHERE + 判断的条件 + ;</code></pre>
+</div>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>关键说明</strong></p>
+<ul class="auto-hide-last-sibling-br">
+<li>必须加<code>WHERE</code>条件：如果没加，会把所有学生的成绩都改成 60 分，酿成大错！！</li>
+<li>后面没有加入逗号的原因是：这原本是个一行的代码语句，为了提高代码的<strong>可读性</strong>和美观考虑，我写成了换行的样式，<strong>全选这部分代码后的运行结果和单行的结果是一样的</strong></li>
+</ul>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>3. 删除无效科目记录（DELETE）</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">要求：发现有个 “test” 科目是测试数据，要求删除该科目的所有成绩</div>
+<pre class="language-sql line-numbers"><code>--删除科目为test的记录代码示例：
+DELETE FROM student_score_66 WHERE subject = 'test';
+
+--删除数据的代码语法格式：
+DELETE FROM +需要删除的表名 WHERE + 删除条件 + ;</code></pre>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>避坑点</strong></p>
+<ul class="auto-hide-last-sibling-br">
+<li>同样要加<code>WHERE</code>条件：没加的话会删除表中所有成绩数据，无法恢复</li>
+<li>字符串匹配要准确：<code>'test'</code>区分大小写（比如<code>'Test'</code>不会被匹配），按实际数据写</li>
+</ul>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br">第四步：成绩查询（SQL 核心：SELECT语句）</h5>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">要求 ：以下将会使用 4 类查询，覆盖了“筛选、排序、限制数量”等常用场景，也是工作中最常遇到的需求</div>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>1. 查询学号为 2024001 的成绩，按成绩从高到低排序</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">需求拆解：筛选学号 = 2024001 的记录，输出学号（<code>student_id</code>）、班级（<code>student_class</code>）、科目（<code>subject</code>）、成绩（<code>score</code>），按成绩<strong>降序</strong>排列</div>
+<ul>
+<li>温馨提示：升序（<code>ASC</code>），降序（<code>DESC</code>）</li>
+</ul>
+<div class="code-block-element-YDlfvc dark-xmPie6 dark custom-code-block-container--sql hide-indicator disable-theme-style custom-code-block-container">
+<div class="code-area-tZtDgG code-area" dir="ltr">
+<div class="content-EGRozu code-content light-scrollbar-TbsSwi">
+<pre class="language-sql line-numbers"><code>--查询代码语句示例：
+SELECT student_id, student_class, subject, score
+FROM student_score_66
+WHERE student_id = '2024001'  -- 筛选指定学号
+ORDER BY score DESC;  -- 按成绩降序（从高到低）
+
+--查询代码语法格式：
+SELECT + 查询数据1，查询数据2，查询数据3 +...
+FROM  + 所要查询数据来源的表名
+WHERE + 判断的条件
+ORDER BY + 排序字段 + 升序/降序 + ;</code></pre>
+</div>
+</div>
+</div>
+<p><strong>目标结果如下：（*注：原 58.9 已改成 60）</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-02-051724.png" alt="" width="854" height="397" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051724-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051724-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051724-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051724-xl.webp 1024w"></figure>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>2. 查询数学成绩 90-100 分的记录，按班级升序、成绩降序排列</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">需求拆解：筛选科目 = 数学且成绩在 90-100 之间的记录，输出指定字段</div>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space"><strong>排序时注意：先按班级从低到高，再按成绩从高到低排序</strong></div>
+<p>示例代码如下：</p>
+<pre class="language-sql line-numbers"><code>--查询代码示例
+SELECT student_id, student_class, subject, score
+FROM student_score_66
+WHERE subject = '数学' 
+AND score BETWEEN 90 AND 100  -- 成绩在90-100之间（包含90和100）
+ORDER BY student_class ASC, score DESC;  -- 先按班级升序，再按成绩降序
+
+--查询代码语法格式
+SELECT + 要查询且打印输出的数据
+FROM + 数据来源的表名
+WHERE + 筛选条件
+AND + 所要筛选的字段名 + BETWEEN 最低的分数线 AND 最高的分数线 --可理解为阈值
+ORDER BY + 先排序的字段 + 排序方式  + , + 再需要排序的字段 + ;</code></pre>
+<p><strong>目标结果如下：</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-02-051225.png" alt="" width="754" height="232" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051225-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051225-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051225-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-051225-xl.webp 1024w"></figure>
+<p><strong>关键说明</strong></p>
+<ul class="auto-hide-last-sibling-br">
+<li><code>BETWEEN 90 AND 100</code>：等价于<code>score &gt;=90 AND score &lt;=100</code>，只不过我个人认为这样的写法更简洁</li>
+<li>多字段排序：先按<code>student_class ASC</code>（班级从<strong>低到高</strong>），同一班级的再按<code>score DESC</code>（成绩从高到低），排序优先级按字段顺序来</li>
+</ul>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>3. 查询语文成绩 &lt;70 或&gt; 90 的记录，按班级升序排列</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">需求拆解：筛选科目 = 语文且成绩 “低于 70 或高于 90” 的记录，按班级从低到高排序</div>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space"><strong>先筛选，再判断（需要注意判断符号的关系），后排序</strong></div>
+<pre class="language-sql line-numbers"><code>--查询代码示例
+SELECT student_id, student_class, subject, score
+FROM student_score_66
+WHERE subject = '语文'
+AND (score &lt; 70 OR score &gt; 90)  -- 括号不能少！
+ORDER BY student_class ASC;
+
+--查询代码语法格式
+SELECT + 要查询且打印输出的数据
+FROM + 数据来源的表名
+WHERE + 筛选条件
+AND + 判断的条件 --这里加入括号的原因是 AND 的优先级高于 OR ，所以需要加入括号
+ORDER BY + 排序的字段 + 排序方式  + ;</code></pre>
+<p><strong>目标结果如下：</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-02-053902.png" alt="" width="866" height="525" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-053902-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-053902-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-053902-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-053902-xl.webp 1024w"></figure>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>避坑点</strong></p>
+<ul class="auto-hide-last-sibling-br">
+<li>括号必须加：<code>AND</code>优先级高于<code>OR</code>，如果没加括号，会被解析为<code>(subject='语文' AND score&lt;70) OR score&gt;90</code>，从而导致 “非语文科目且成绩&gt; 90” 的记录被误查</li>
+<li>逻辑判断要准确：“低于 70 或高于 90” = 不包含 70 和 90，按需求写条件</li>
+</ul>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br">4. 查询全校语文成绩前 3 名</h5>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">需求拆解：筛选科目 = 语文的记录，按成绩降序排列，取前 3 条</div>
+<div><strong>先筛选，再排序，后取前三</strong></div>
+<div>
+<pre class="language-sql line-numbers"><code>--查询代码示例
+SELECT student_id, student_class, subject, score
+FROM student_score_66
+WHERE subject = '语文'
+ORDER BY score DESC  -- 先按成绩降序，确保高分在前
+LIMIT 3;  -- 取前3条，即前3名
+
+--查询代码语法格式
+SELECT + 要查询且打印输出的数据
+FROM + 数据来源的表名
+WHERE + 筛选条件
+ORDER BY + 排序的字段 + 排序方式  --DESC降序，ASC升序
+LIMIT + 需要取的排名数量 + ;</code></pre>
+</div>
+<p><strong>目标结果如下：</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-02-054712.png" alt="" width="1010" height="521" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-054712-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-054712-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-054712-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-02-054712-xl.webp 1024w"></figure>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>关键说明</strong></p>
+<ul class="auto-hide-last-sibling-br">
+<li><code>LIMIT 3</code>：必须在<code>ORDER BY</code>之后 ，如果先取 3 条再排序，会导致取的是 “随机 3 条再排序”，不是真正的前 3 名</li>
+<li>如果有成绩并列：比如第 3 名有 2 个学生都是 90 分，<code>LIMIT 3</code>会只取其中 1 条，若要包含并列，需要调整逻辑（比如先查第 3 名的分数，再查≥该分数的记录）</li>
+</ul>
+<h2 class="header-vfC6AV auto-hide-last-sibling-br">至此，你已经基本学会数据库核心操作</h2>
+<p> </p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">跟着这些小题实操下来，你会发现：数据库操作说白了其实就是</div>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space"><strong>“建库→建表→填数据→查数据” </strong>的流程，核心 SQL 就那几个：</div>
+<ul class="auto-hide-last-sibling-br">
+<li><strong>建库建表</strong>：<code>CREATE DATABASE</code>/<code>CREATE TABLE</code>；</li>
+<li><strong>增删改数据</strong>：<code>INSERT</code>/<code>DELETE</code>/<code>UPDATE</code>（记住加<code>WHERE</code>）；</li>
+<li><strong>查询数据</strong>：<code>SELECT</code>（结合<code>WHERE</code>筛选、<code>ORDER BY</code>排序、<code>LIMIT</code>限制数量）</li>
+</ul>
+<p> </p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">接下来，你可以试着换个数字（比如把你的<code>studentxx</code>改成<code>abcd</code>），自己尝试重新走一遍流程，或者自己加个需求（比如，查询 2318 班所有学生的数学成绩）</div>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">基本上多练几次就能熟练掌握</div>
+<div> </div>
+<div class="align-center">以上就是数据库的入门指南 Part 1 的教程，</div>
+<div class="align-center">后面有时间会更新进阶版本的Part 2，敬请期待ψ(｀∇´)ψ</div>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>Apple M系列芯片全分析</title>
         <author>
