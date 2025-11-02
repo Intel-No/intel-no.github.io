@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-02T15:29:09+08:00</updated>
+    <updated>2025-11-02T15:29:53+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -73,36 +73,36 @@ USE + 数据库名</code></pre>
 <table style="width: 91.5954%;">
 <thead>
 <tr>
-<th style="width: 26.3158%;">字段名</th>
-<th style="width: 17.7033%;">字段类型</th>
-<th style="width: 17.5439%;">字段约束</th>
-<th style="width: 38.437%;">备注</th>
+<th style="width: 26.3243%;">字段名</th>
+<th style="width: 21.4973%;">字段类型</th>
+<th style="width: 21.9612%;">字段约束</th>
+<th style="width: 30.2184%;">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="width: 26.3158%;">student_id</td>
-<td style="width: 17.7033%;">字符串</td>
-<td style="width: 17.5439%;">主键</td>
-<td style="width: 38.437%;">学号（唯一）</td>
+<td style="width: 26.3243%;">student_id</td>
+<td style="width: 21.4973%;">字符串</td>
+<td style="width: 21.9612%;">主键</td>
+<td style="width: 30.2184%;">学号（唯一）</td>
 </tr>
 <tr>
-<td style="width: 26.3158%;">student_name</td>
-<td style="width: 17.7033%;">字符串</td>
-<td style="width: 17.5439%;">非空</td>
-<td style="width: 38.437%;">姓名（不能为空）</td>
+<td style="width: 26.3243%;">student_name</td>
+<td style="width: 21.4973%;">字符串</td>
+<td style="width: 21.9612%;">非空</td>
+<td style="width: 30.2184%;">姓名（不能为空）</td>
 </tr>
 <tr>
-<td style="width: 26.3158%;">student_class</td>
-<td style="width: 17.7033%;">字符串</td>
-<td style="width: 17.5439%;"> </td>
-<td style="width: 38.437%;">班级</td>
+<td style="width: 26.3243%;">student_class</td>
+<td style="width: 21.4973%;">字符串</td>
+<td style="width: 21.9612%;"> </td>
+<td style="width: 30.2184%;">班级</td>
 </tr>
 <tr>
-<td style="width: 26.3158%;">student_sex</td>
-<td style="width: 17.7033%;">字符串</td>
-<td style="width: 17.5439%;"> </td>
-<td style="width: 38.437%;">性别</td>
+<td style="width: 26.3243%;">student_sex</td>
+<td style="width: 21.4973%;">字符串</td>
+<td style="width: 21.9612%;"> </td>
+<td style="width: 30.2184%;">性别</td>
 </tr>
 </tbody>
 </table>
