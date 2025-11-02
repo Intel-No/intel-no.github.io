@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-02T06:09:25+08:00</updated>
+    <updated>2025-11-02T13:40:51+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -37,11 +37,11 @@
 <h3>Stp 2：适当了解些基础概念</h3>
 <p>1.字段：可以理解成Excel表格里横着的表头，不可再划分的最小单位</p>
 <p>2.第一范式：所有字段值都是不可分解的原子值</p>
-<p>3.主键（PRIMARY KEY）：一张表中仅有一个主键，不能为NULL，设置为主键的字段不能重复，构成主键的字段可是多个（联合主键）</p>
-<p>4.唯一键（UNIQE）：一张表中可以有多个唯一键，字段可以重复，构成主键的字段可是多个</p>
+<p>3.主键（PRIMARY KEY）：一张表中仅有一个主键，不能为NULL，设置为主键的字段不能重复，多个字段共同构成的主键称为联合主键</p>
+<p>4.唯一键（UNIQE）：字段值不能重复”（允许 NULL 值，且多个 NULL 不视为重复）</p>
 <p>5.外键（FOREIGN KEY）：与主键建立关系的键，一张表中 “引用另一张表主键” 的字段，作用是把两个表 “绑在一起”的就是外键</p>
 <p>6.非空约束值（NOT NULL）：代表这个字段不能为空值</p>
-<p>7.自增约束值（AUTO_INCREMENT）：实现（主键，唯一键，外键）的数值自增，实际中用到的最多的是主键的自增约束</p>
+<p>7.自增约束值（AUTO_INCREMENT）：实现（主键，唯一键）的数值自增，实际中用到的最多的是主键的自增约束，外键不能设置自增</p>
 <h3>Stp 3：实操演练</h3>
 <p>不妨看看数据库在实际中应用的例子，边用边学，才会有效果（此内容为虚构，仅供教学使用，请勿当真）</p>
 <p>假设你是xx学校教务处的实习生，现在需要用 SQL 语句管理该校的学生成绩数据，从<strong>创建专属数据库</strong>开始，到<strong>创建表存储学生信息和成绩</strong>，再到<strong>录入数据</strong>、<strong>修正错误</strong>成绩、<strong>删除</strong>无效记录，最后按老师要求<strong>查询</strong>各类成绩报表</p>
@@ -54,7 +54,7 @@
 CREATE DATABASE student66 CHARACTER SET utf8mb4; 
 
 --创建数据库的语法格式
-CREATE DATABASE + 数据库名 + CHERATE SET + 字符类型 ;
+CREATE DATABASE + 数据库名 + CHARACTER SET + 字符类型 ;
 
 --切换到刚创建的数据库（后续操作都在这个库下） 
 USE student66;
