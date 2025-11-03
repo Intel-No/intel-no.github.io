@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-03T20:54:05+08:00</updated>
+    <updated>2025-11-03T21:38:05+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -74,34 +74,34 @@ USE + 数据库名</code></pre>
 <thead>
 <tr>
 <th style="width: 26.3243%;">字段名</th>
-<th style="width: 21.4973%;">字段类型</th>
-<th style="width: 21.9612%;">字段约束</th>
+<th style="width: 21.4956%;">字段类型</th>
+<th style="width: 21.9629%;">字段约束</th>
 <th style="width: 30.2184%;">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="width: 26.3243%;">student_id</td>
-<td style="width: 21.4973%;">字符串</td>
-<td style="width: 21.9612%;">主键</td>
+<td style="width: 21.4956%;">字符串</td>
+<td style="width: 21.9629%;">主键</td>
 <td style="width: 30.2184%;">学号（唯一）</td>
 </tr>
 <tr>
 <td style="width: 26.3243%;">student_name</td>
-<td style="width: 21.4973%;">字符串</td>
-<td style="width: 21.9612%;">非空</td>
+<td style="width: 21.4956%;">字符串</td>
+<td style="width: 21.9629%;">非空</td>
 <td style="width: 30.2184%;">姓名（不能为空）</td>
 </tr>
 <tr>
 <td style="width: 26.3243%;">student_class</td>
-<td style="width: 21.4973%;">字符串</td>
-<td style="width: 21.9612%;"> </td>
+<td style="width: 21.4956%;">字符串</td>
+<td style="width: 21.9629%;"> </td>
 <td style="width: 30.2184%;">班级</td>
 </tr>
 <tr>
 <td style="width: 26.3243%;">student_sex</td>
-<td style="width: 21.4973%;">字符串</td>
-<td style="width: 21.9612%;"> </td>
+<td style="width: 21.4956%;">字符串</td>
+<td style="width: 21.9629%;"> </td>
 <td style="width: 30.2184%;">性别</td>
 </tr>
 </tbody>
@@ -155,7 +155,7 @@ USE + 数据库名</code></pre>
 CREATE TABLE student_info_66(
 student_id VARCHAR(20) PRIMARY KEY,
 student_name VARCHAR(50) NOT NULL,
-student_class VARCHAR(10), 
+student_class VARCHAR(20), 
 student_sex VARCHAR(10)
 );
 
@@ -174,18 +174,50 @@ student_id VARCHAR(20) PRIMARY KEY,
 如下同理可得...
 );</code></pre>
 <p>注意的是使用VARCHAR/CHAR都需要加（）应为这个类型是用来限制长度的，VARCHAR/CHAR都会需要预设长度，一般来说，使用VARCHAR就行，通用性很高</p>
-<h6 class="header-vfC6AV auto-hide-last-sibling-br">避坑点</h6>
+<h6 class="header-vfC6AV auto-hide-last-sibling-br">此处的避坑点如下：</h6>
 <ul class="auto-hide-last-sibling-br">
 <li>学号用<code>VARCHAR</code>（字符串）而非<code>INT</code>（整数）：因为学号可能以 0 开头（比如 001），用整数会丢失前面的 0</li>
 <li><code>NOT NULL</code>约束：姓名必须填，否则插入数据时会报错，避免 “无名学生” 的无效数据</li>
 </ul>
-<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>（附加题）删除学生信息表</strong></p>
-<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">如果建表后发现字段错了，需要删除表（注意：删除表会清空所有数据，谨慎操作）：</div>
+<h5 class="header-vfC6AV auto-hide-last-sibling-br"><strong>附加题</strong></h5>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>1.尝试添加一个外键</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">现在需要给<code>student_info_66</code>里的<code>student_class</code>添加一个外键，并且关联到<code>student_score_66</code>这张表里，命名为<code>class_id</code></div>
+<pre class="language-sql line-numbers"><code>--添加外键代码示例（两种方法）
+--方法一：使用常规方法，建表时直接定义外键
+CREATE TABLE student_info_66 (
+student_id VARCHAR(20) PRIMARY KEY,
+student_name VARCHAR(20) NOT NULL,
+student_class VARCHAR(20),  -- 外键字段（关联班级表的 class_id）
+student_sex VARCHAR(20),
+FOREIGN KEY (student_class) REFERENCES class_info(class_id) -- 定义外键：关联班级表的主键 class_id
+);
+
+--方法二：使用 ALTER 方法，如果表已创建，用 ALTER TABLE 添加外键
+ALTER TABLE student_info_66
+ADD FOREIGN KEY (student_class)  -- 本表里的外键字段
+REFERENCES class_info_66(class_id);  -- 关联班级表的主键
+
+-- ALTER 方法的添加外键的代码语法格式
+ALTER TABLE + 需要修改的表名
+ADD + FOREIGN KEY + 需要添加本表里的外键字段 
+REFERENCES + 主表名 + (主表主键) + ;</code></pre>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>本题的注意事项：</strong></p>
+<ol class="auto-hide-last-sibling-br">
+<li>外键关联的必须是主表的<strong>主键或唯一键</strong>（否则会报错 “无法添加外键约束”）</li>
+<li>从表的外键字段（<code>student_class</code>）和主表的被关联字段（比如 <code>class_id</code> 或 <code>student_class</code>）且<strong>数据类型必须完全一致</strong>（比如都是 <code>VARCHAR(20)</code> 或 <code>INT</code>）</li>
+</ol>
+<p class="header-vfC6AV auto-hide-last-sibling-br"><strong>2.删除学生信息表</strong></p>
+<div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">如果建表后发现字段错了，需要删除表（<strong>注意：删除表会清空所有数据，谨慎操作</strong>）</div>
 <pre class="language-sql line-numbers"><code>--删除学生信息表
 DROP TABLE student_info_66;
 
 --删除表的语法格式
 DROP TABLE + 表名 + ;</code></pre>
+<p>注意区分<code>DROP</code>和<code>DELETE</code>的用法：</p>
+<ul>
+<li>想删<strong>整个表 / 库 / 结构</strong> → 用 <code>DROP</code>（再次注意，此操作删除时须谨慎！！！）</li>
+<li>想删<strong>表中的部分 / 全部数据</strong>，但保留表 → 用 <code>DELETE</code>（记得加 <code>WHERE</code> 条件，避免误删所有）</li>
+</ul>
 <h5 class="header-vfC6AV auto-hide-last-sibling-br">第三步：管理表数据（DML 操作：增删改）</h5>
 <div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">表建好后，我们需要录入成绩数据、修正不及格成绩、删除无效科目记录，这三步对应 SQL 的<code>INSERT</code><strong>（增）</strong>、<code>UPDATE</code><strong>（改）</strong>、<code>DELETE</code><strong>（删）</strong></div>
 <p class="header-vfC6AV auto-hide-last-sibling-br"><strong>1. 插入成绩数据（INSERT）</strong></p>
