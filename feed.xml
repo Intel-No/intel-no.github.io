@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-03T20:47:42+08:00</updated>
+    <updated>2025-11-03T20:49:13+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -261,7 +261,7 @@ DROP TABLE + 表名 + ;</code></pre>
 </div>
 </div>
 <pre class="language-sql line-numbers"><code>--添加表中的数据示例
-INSERT INTO student_score_66 (student_id, student_class, subject, score) 
+INSERT INTO student_score_66 (student_id,student_class,subject,score) 
 VALUES --多个值，一定要加s
 ('2024001', 2318, '语文', 58), 
 ('2024001', 2318, '数学', 90.0), -- 小数可以写90或90.0，不影响 
