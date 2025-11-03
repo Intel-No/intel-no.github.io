@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-03T21:38:05+08:00</updated>
+    <updated>2025-11-03T21:59:10+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -327,6 +327,8 @@ UPDATE + 需要修改的表的表名
 SET + 需要修改后的数据
 WHERE + 判断的条件 + ;</code></pre>
 </div>
+<p>运行成功效果如下：（可以看到，原本的两条数据已被修改）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/28/Ping-Mu-Jie-Tu-2025-11-03-215753.png" alt="" width="741" height="522" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-03-215753-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-03-215753-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-03-215753-md.webp 768w ,https://zeyun.dpdns.org/media/posts/28/responsive/Ping-Mu-Jie-Tu-2025-11-03-215753-xl.webp 1024w"></figure>
 <p class="header-vfC6AV auto-hide-last-sibling-br"><strong>关键说明</strong></p>
 <ul class="auto-hide-last-sibling-br">
 <li>必须加<code>WHERE</code>条件：如果没加，会把所有学生的成绩都改成 60 分，酿成大错！！</li>
