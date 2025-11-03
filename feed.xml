@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-03T20:49:13+08:00</updated>
+    <updated>2025-11-03T20:54:05+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -159,7 +159,7 @@ student_class VARCHAR(10),
 student_sex VARCHAR(10)
 );
 
-CREATE TABLE student_scroe_66(
+CREATE TABLE student_score_66(
 student_id VARCHAR(20),
 student_class INT NOT NULL,
 subject VARCHAR(20),
