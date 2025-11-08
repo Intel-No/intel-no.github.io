@@ -3,12 +3,136 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-05T21:46:39+08:00</updated>
+    <updated>2025-11-09T00:13:26+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.dpdns.org</id>
 
+    <entry>
+        <title>网络设备配置实战分析</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/network_with_huawei_ensp.html"/>
+        <id>https://zeyun.dpdns.org/network_with_huawei_ensp.html</id>
+            <category term="网络设备配置技术学习笔记"/>
+
+        <updated>2025-11-08T16:20:07+08:00</updated>
+            <summary>
+                <![CDATA[
+                    本人贴心的做了专业名词的超链接，如有不懂的，可直接点击红色文字直接跳转相关名词解释的网页 新手常识补充： 网络设备配置技术：通过路由器和交换机协同工作，实现数据在不同设备、网段间的高效传输 路由器：用于识别网络地址，并选择最佳路径进行数据传输。它通常被称为网络层设备，因为它们在网络层上进行数据传输。工作在网络层（3 层），基于&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <blockquote>
+<p>本人贴心的做了专业名词的超链接，如有不懂的，可直接点击<strong>红色文字</strong>直接跳转相关名词解释的网页</p>
+</blockquote>
+<p>新手常识补充：</p>
+<ul style="list-style-type: circle;">
+<li>通常进入这个设备时显示的&lt;huawei&gt;代表着当前为用户模式，权限较低，通常来说，这个模式用于保存数据（save命令）</li>
+<li>[huawei]这个为系统模式/特权模式。该模式的权限较高，可以在这个模式下进行配网，划分vlan，配置接口ip等操作</li>
+<li>使用键盘上的Tab，可以补全命令</li>
+<li>按下键盘的"q"同quit，返回上一级</li>
+<li>在系统视图下，可使用display current-configuration来查看所有的配置信息，以便后续排错</li>
+<li>在对应的接口，或者系统模式的子模式下，使用display this来查看当前这个子模式的配置情况</li>
+</ul>
+<h4>基础概念&amp;设备</h4>
+<p>网络设备配置技术：通过路由器和交换机协同工作，实现数据在不同设备、网段间的高效传输</p>
+<p><strong>路由器</strong>：用于识别网络地址，并选择最佳路径进行数据传输。它通常被称为网络层设备，因为它们在网络层上进行数据传输。工作在网络层（3 层），基于 IP 地址转发数据，核心作用是跨网段路径选择、网络互联，还能实现防火墙、NAT 等功能，实体机就长以下这样</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-210301.png" alt="" width="1389" height="579" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-xl.webp 1024w"></figure>
+<p><strong>交换机</strong>：一种用于电（光）信号转发的网络设备，广泛应用于各种网络环境中。本质是数据转发设备，核心是基于特定地址快速转发数据，按工作层级分为 2/3/4 层，层级决定其处理数据的能力范围，实体机就长以下这样</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-153425.png" alt="" width="1486" height="770" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-xl.webp 1024w"></figure>
+<p>以下讲解将会全部使用华为的ENSP环境来模拟，请先准备好运行环境</p>
+<p>华为ENSP下载教程：<a href="https://blog.csdn.net/weixin_43113691/article/details/124847964" target="_blank" rel="noopener noreferrer">点我直达</a></p>
+<p>本次所使用的知识点大全：<a href="https://wwve.lanzn.com/b014wtwq5g" target="_blank" rel="noopener noreferrer">点我下载</a>，密码：8m8l</p>
+<p>现在我们来模拟一个现实的网络环境，从而实现边学边用</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-152835.png" alt="" width="2359" height="1314" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-xl.webp 1024w"></figure>
+<p>网络拓扑图分析：现将PC2-3，PC4-5，PC6-7&amp;Client-1，划分成3个不同的vlan，代表着3中不同的网络环境，统一使用2层交换机来管理，并且最终将会汇聚到一个三层交换机中，使得可以连接路由器去访问在vlan100和vlan110下的网络，真实环境的效果图如下（使用思科模拟搭建）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-204836.png" alt="" width="2458" height="1158" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-xl.webp 1024w"></figure>
+<h5>实验1：给设备重命名</h5>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-160334-2.png" alt="" width="485" height="266" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-xl.webp 1024w"></figure>
+<p>如果不重新命名的话，默认的名字会导致后面的配网工作混淆，导致不能顺利的理清思路，所以一般来说，会使用<strong>设备层次+设备名称+编号来命名</strong>，这里我将会使用L2-JR-SW1来去命名这台交换机，后面的设备也是同理</p>
+<pre class="language-apacheconf line-numbers"><code>#进入系统视图，通常前面的设备会从 &lt;huawei&gt; 变成 [huawei] 这样，就代表成功了
+system-view
+
+#改名，将[huawei]改成[L2-JR-SW1]
+sysname L2-JR-SW1</code></pre>
+<p>改名完成后如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-161330.png" alt="" width="903" height="178" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161330-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161330-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161330-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161330-xl.webp 1024w"></figure>
+<h5>实验2：关闭烦人的消息日志</h5>
+<p>通常情况下，我们每次输入完成指令后，都会弹出一长串的消息日志，这些日志对我们输入一些长指令的时候很不友好，通常情况下，会选择关闭（每台交换机和路由器都会这样做）指令如下：</p>
+<pre class="language-apacheconf line-numbers"><code>undo info-center enable </code></pre>
+<p>关闭后的指令如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-161908.png" alt="" width="1014" height="94" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161908-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161908-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161908-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-161908-xl.webp 1024w"></figure>
+<h5>实验3：配置合理的<a href="https://baike.baidu.com/item/IP%E5%9C%B0%E5%9D%80/150859" target="_blank" rel="noopener noreferrer">IP地址</a>和<a href="https://baike.baidu.com/item/%E7%BD%91%E5%85%B3/98992" target="_blank" rel="noopener noreferrer">网关</a>，使得<strong>各个区域的网络设备和计算机能够正常的内网通讯</strong></h5>
+<p>通常会将同一个vlan下的网络设备划分到同一网段，PC3的配网如下图所示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-162645.png" alt="" width="1493" height="365" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162645-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162645-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162645-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162645-xl.webp 1024w"></figure>
+<p>PC2的配网如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-162912.png" alt="" width="1481" height="369" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162912-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162912-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162912-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-162912-xl.webp 1024w"></figure>
+<p>验证成果（使用PC3的终端去 ping PC2 的IP，检测是否Ping通）：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-163106.png" alt="" width="1101" height="525" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-163106-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-163106-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-163106-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-163106-xl.webp 1024w"></figure>
+<p>可以看到，我这台PC3的IP为192.168.3.1去ping192.168.3.2的时候是可以ping的通的</p>
+<p>其余的设备也是如此，我在下面写了网段的划分，只需将这个IP地址的后一位划分成1/2就行，通常情况下我们习惯将网关设置成254，<a href="https://baike.baidu.com/item/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81?fromModule=lemma_search-box" target="_blank" rel="noopener noreferrer">子网掩码</a>通常划分成255.255.255.0就行</p>
+<h5>实验4：<strong>在交换机上划分对应的VLAN，并且将其对应的物理端口划入到对应的<a href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91/419962?fromtitle=VLAN&amp;fromid=320429&amp;fromModule=lemma_search-box" target="_blank" rel="noopener noreferrer">VLAN</a>中，使其能够进行正常的网络通讯</strong></h5>
+<p>进入L2-JR-SW2，vlan10的创建，划分和修改接口类型的步骤如下：</p>
+<pre class="language-apacheconf line-numbers"><code>#先创建vlan，这里是创建vlan10的指令如下
+vlan 10
+
+#按下q退出这个[L2-JR-SW1-vlan10]模式，这里只是创建，而不是进入
+q
+
+#进入需要划分的接口，注意是eth口还是ge口
+int e0/0/1
+
+#随后修改接口类型为access模式
+port link-type access 
+
+#将该接口划分至vlan10
+port default vlan 10</code></pre>
+<p>其他的设备也都是如此，比如vlan10，20，30，100，110</p>
+<p>以上的操作都是进入交换机的<strong>系统模式</strong>下进行的操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-210138.png" alt="" width="2398" height="1168" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-xl.webp 1024w"></figure>
+<p>成功过后可以看到，在同一vlan下的PC相互能够成功通讯，而不在同一vlan下的PC相互不可通讯</p>
+<p><strong>实验5：设置VLAN30的地址方式为DHCP获取，并且在HX-SW1上为VLAN30配置DHCP服务（其中DNS设置为DNS服务器的地址），使其能够正常获取IP地址</strong></p>
+<p>step1：先进入L2-JR-SW3，配置接口（g0/0/1，e0/0/1，e0/0/2）类型为acc，以及划分vlan30，二层交换机不配置IP地址，仅为转发的操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-232449.png" alt="" width="1077" height="585" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-xl.webp 1024w"></figure>
+<p>step2：进入L3-HX-SW1，配置各个接口的类型（使用acc即可）以及所对应的vlan和对应IP，例如这里的g/0/0/1所对应的是vlan10，添加的IP地址为192.168.3.254 24这个网段，同理可得g/0/0/24所对应的是vlan40，IP地址为10.1.1.1 24这个网段（填写网关IP即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-233507.png" alt="" width="727" height="422" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-xl.webp 1024w"></figure>
+<p>这里我用vlan30示例，添加IP的代码vlan10和vlan20也是代码如下：</p>
+<pre class="language-apacheconf line-numbers"><code>interface vlan 30
+
+ip address 192.168.103.254 24 #255.255.255.0 或 24 都可以
+</code></pre>
+<p>并且启动DHCP服务，代码如下：</p>
+<p>IP地址及vlan划分完成后，在L3-HX-SW1上启用DHCP服务</p>
+<pre class="language-apacheconf line-numbers"><code>DHCP enable</code></pre>
+<p>创建DHCP地址池：</p>
+<pre class="language-apacheconf line-numbers"><code>ip pool VLAN30_pool #创建地址池子，其中VLAN30_pool为自定义名字
+network 192.168.103.0 mask 255.255.255.0  #定义IP地址范围
+gateway-list 192.168.103.254  #网关地址
+dns-list 172.17.3.1  # DNS服务器地址</code></pre>
+<p>在vlan30下调用地址池：</p>
+<pre class="language-apacheconf line-numbers"><code>interface Vlanif30
+dhcp select global  # 调用全局DHCP池（即上面创建的VLAN30_pool）</code></pre>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-232911.png" alt="" width="871" height="217" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-xl.webp 1024w"></figure>
+<p>可以使用display vlan这个命令来查看（这里我简写成dis vlan的效果是一样的）</p>
+<p>在HX-AR1上给g0/0/0口设置端口IP地址，代码示例如下：</p>
+<pre class="language-apacheconf line-numbers"><code>interface GigabitEthernet 0/0/0
+ip address 10.1.1.2 255.255.255.0</code></pre>
+<p>另外配置一下在HJ-SW1的GE0/0/1接口</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-235354.png" alt="" width="660" height="263" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-xl.webp 1024w"></figure>
+<p>以及对应的vlan100和vlan110的接口IP</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-09-001046.png" alt="" width="1119" height="443" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-xl.webp 1024w"></figure>
+<p> </p>
+<h1 class="align-center"><strong>未完待续</strong></h1>
+<p> </p>
+<p> </p>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>数据库基础入门指南  Part 1</title>
         <author>
@@ -16,7 +140,7 @@
         </author>
         <link href="https://zeyun.dpdns.org/my_sql_part1.html"/>
         <id>https://zeyun.dpdns.org/my_sql_part1.html</id>
-            <category term="学习笔记"/>
+            <category term="数据库学习笔记"/>
 
         <updated>2025-11-02T03:00:50+08:00</updated>
             <summary>
