@@ -3,14 +3,14 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-11T01:48:40+08:00</updated>
+    <updated>2025-11-13T21:42:30+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.dpdns.org</id>
 
     <entry>
-        <title>网络设备配置实战分析</title>
+        <title>网络设备配置实战分析 Part1</title>
         <author>
             <name>云泽</name>
         </author>
@@ -95,41 +95,8 @@ port default vlan 10</code></pre>
 <p>以上的操作都是进入交换机的<strong>系统模式</strong>下进行的操作</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-210138.png" alt="" width="2398" height="1168" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210138-xl.webp 1024w"></figure>
 <p>成功过后可以看到，在同一vlan下的PC相互能够成功通讯，而不在同一vlan下的PC相互不可通讯</p>
-<p><strong>实验5：设置VLAN30的地址方式为DHCP获取，并且在HX-SW1上为VLAN30配置DHCP服务（其中DNS设置为DNS服务器的地址），使其能够正常获取IP地址</strong></p>
-<p>step1：先进入L2-JR-SW3，配置接口（g0/0/1，e0/0/1，e0/0/2）类型为acc，以及划分vlan30，二层交换机不配置IP地址，仅为转发的操作</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-232449.png" alt="" width="1077" height="585" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232449-xl.webp 1024w"></figure>
-<p>step2：进入L3-HX-SW1，配置各个接口的类型（使用acc即可）以及所对应的vlan和对应IP，例如这里的g/0/0/1所对应的是vlan10，添加的IP地址为192.168.3.254 24这个网段，同理可得g/0/0/24所对应的是vlan40，IP地址为10.1.1.1 24这个网段（填写网关IP即可）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-233507.png" alt="" width="727" height="422" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-233507-xl.webp 1024w"></figure>
-<p>这里我用vlan30示例，添加IP的代码vlan10和vlan20也是代码如下：</p>
-<pre class="language-apacheconf line-numbers"><code>interface vlan 30
-
-ip address 192.168.103.254 24 #255.255.255.0 或 24 都可以
-</code></pre>
-<p>并且启动DHCP服务，代码如下：</p>
-<p>IP地址及vlan划分完成后，在L3-HX-SW1上启用DHCP服务</p>
-<pre class="language-apacheconf line-numbers"><code>DHCP enable</code></pre>
-<p>创建DHCP地址池：</p>
-<pre class="language-apacheconf line-numbers"><code>ip pool VLAN30_pool #创建地址池子，其中VLAN30_pool为自定义名字
-network 192.168.103.0 mask 255.255.255.0  #定义IP地址范围
-gateway-list 192.168.103.254  #网关地址
-dns-list 172.17.3.1  # DNS服务器地址</code></pre>
-<p>在vlan30下调用地址池：</p>
-<pre class="language-apacheconf line-numbers"><code>interface Vlanif30
-dhcp select global  # 调用全局DHCP池（即上面创建的VLAN30_pool）</code></pre>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-232911.png" alt="" width="871" height="217" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-232911-xl.webp 1024w"></figure>
-<p>可以使用display vlan这个命令来查看（这里我简写成dis vlan的效果是一样的）</p>
-<p>在HX-AR1上给g0/0/0口设置端口IP地址，代码示例如下：</p>
-<pre class="language-apacheconf line-numbers"><code>interface GigabitEthernet 0/0/0
-ip address 10.1.1.2 255.255.255.0</code></pre>
-<p>另外配置一下在HJ-SW1的GE0/0/1接口</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-235354.png" alt="" width="660" height="263" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-235354-xl.webp 1024w"></figure>
-<p>以及对应的vlan100和vlan110的接口IP</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-09-001046.png" alt="" width="1119" height="443" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-09-001046-xl.webp 1024w"></figure>
-<p> </p>
-<h1 class="align-center"><strong>未完待续</strong></h1>
-<p> </p>
-<p> </p>
-<p> </p>
+<p class="align-center"><strong>至此，最基础的子网划分以及一些基本操作你已经学会</strong></p>
+<p class="align-center"><strong>敬请期待后续的更新</strong></p>
             ]]>
         </content>
     </entry>
