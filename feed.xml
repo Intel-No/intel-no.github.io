@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-16T23:49:20+08:00</updated>
+    <updated>2025-11-16T23:52:48+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -180,7 +180,7 @@ INSERT INTO products (model_name, release_year, series_id, battery_capacity_mah,
 <h2 class="align-center">Stp 3：实战演练</h2>
 <h5 class="align-center"><code>*注</code>：以下题目会配合讲解一同出现，如有必要，请自行先看题，再去看解析</h5>
 <h4 class="header-iWP5WJ auto-hide-last-sibling-br">题目 1：请查询所有产品的型号名称、所属系列名称和产品类型</h4>
-<p class="header-iWP5WJ auto-hide-last-sibling-br"><strong>此题核心点：基础内连接查询，最基础的内连接查询（获取产品 + 系列关联信息</strong>）</p>
+<p class="header-iWP5WJ auto-hide-last-sibling-br"><strong>此题核心点：基础的内连接查询（获取产品 + 系列关联信息</strong>）</p>
 <div class="auto-hide-last-sibling-br paragraph-pP9ZLC paragraph-element br-paragraph-space"> </div>
 <div class="auto-hide-last-sibling-br paragraph-pP9ZLC paragraph-element br-paragraph-space">本题的SQL示例语句如下：</div>
 <div>
