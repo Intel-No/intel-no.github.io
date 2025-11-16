@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-16T23:45:28+08:00</updated>
+    <updated>2025-11-16T23:49:20+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -827,9 +827,11 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
 <div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">接下来，你可以试着换个数字（比如把你的<code>studentxx</code>改成<code>abcd</code>），自己尝试重新走一遍流程，或者自己加个需求（比如，查询 2318 班所有学生的数学成绩）</div>
 <div class="auto-hide-last-sibling-br paragraph-JOTKXA paragraph-element br-paragraph-space">基本上多练几次就能熟练掌握</div>
 <div> </div>
-<div class="align-center">以上就是数据库的入门指南 Part 1 的教程</div>
+<div class="align-center">以上就是数据库的入门指南 Part 1 的教程ψ(｀∇´)ψ</div>
 <div> </div>
-<div class="align-center">后面有时间会更新进阶版本的Part 2，敬请期待ψ(｀∇´)ψ</div>
+<div class="align-center">进阶版本的 ”Part 2--内连接的查询入门“</div>
+<div class="align-center">现已经更新</div>
+<div class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part2.html">点我跳转</a></div>
             ]]>
         </content>
     </entry>
