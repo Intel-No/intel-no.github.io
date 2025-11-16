@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-16T23:52:48+08:00</updated>
+    <updated>2025-11-17T00:01:32+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -177,6 +177,16 @@ INSERT INTO products (model_name, release_year, series_id, battery_capacity_mah,
 <p>注意：创建完成后别忘记了<code>USE apple_products_db;</code></p>
 <p>成功后你会看到以下两张表已经创建成功，并且这两张表的数据也会出现</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/30/Ping-Mu-Jie-Tu-2025-11-16-225738.png" alt="" width="427" height="571" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-225738-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-225738-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-225738-md.webp 768w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-225738-xl.webp 1024w"></figure>
+<h6>可以使用以下的语句去查看这个product_series表的创建是否成功</h6>
+<pre class="language-sql line-numbers"><code>--查询语句，升序（从小到大排序）
+SELECT * FROM product_series ORDER BY series_id ASC;</code></pre>
+<p>成功后如下图所示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/30/Ping-Mu-Jie-Tu-2025-11-16-235518.png" alt="" width="1960" height="776" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235518-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235518-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235518-md.webp 768w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235518-xl.webp 1024w"></figure>
+<h6>如下语句去查看这个products表是否成功</h6>
+<pre class="language-sql line-numbers"><code>--简单的全查询语句，详细解释请看上一篇Part1
+SELECT * FROM products;</code></pre>
+<p>成功后如下图所示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/30/Ping-Mu-Jie-Tu-2025-11-16-235929.png" alt="" width="1906" height="1284" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235929-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235929-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235929-md.webp 768w ,https://zeyun.dpdns.org/media/posts/30/responsive/Ping-Mu-Jie-Tu-2025-11-16-235929-xl.webp 1024w"></figure>
 <h2 class="align-center">Stp 3：实战演练</h2>
 <h5 class="align-center"><code>*注</code>：以下题目会配合讲解一同出现，如有必要，请自行先看题，再去看解析</h5>
 <h4 class="header-iWP5WJ auto-hide-last-sibling-br">题目 1：请查询所有产品的型号名称、所属系列名称和产品类型</h4>
