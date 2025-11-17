@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-17T00:01:32+08:00</updated>
+    <updated>2025-11-17T14:55:06+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -253,28 +253,27 @@ AND 筛选条件2;  -- 多个条件用AND连接</code></pre>
 <h4 class="header-iWP5WJ auto-hide-last-sibling-br">题目 3：请统计每个 iPad 系列的产品平均屏幕尺寸，结果按平均屏幕尺寸从大到小排序</h4>
 <p><strong>此题核心点：内连接 + 排序（按发布时间整理结果）</strong></p>
 <p>本题的SQL示例语句如下：</p>
-<pre class="language-sql line-numbers"><code>-- 查询2020年后发布的iPad Air系列产品，按发布年份倒序排列
+<pre class="language-sql line-numbers"><code>--请统计每个 iPad 系列的产品平均屏幕尺寸，结果按平均屏幕尺寸从大到小排序
 SELECT 
-  p.model_name AS 型号名称,
-  p.release_year AS 发布年份,
-  p.initial_os AS 初始系统
+  ps.series_name,
+AVG(p.screen_size_inch) AS avg_screen_size
 FROM products p
 INNER JOIN product_series ps
 ON p.series_id = ps.series_id
-WHERE ps.product_type = 'iPad'        -- 产品类型为iPad
-  AND ps.series_name = 'Air'          -- 系列为Air
-  AND p.release_year &gt; 2020           -- 2020年后发布
-ORDER BY p.release_year DESC;         -- 按发布年份倒序（最新的在前）
+WHERE ps.product_type = 'iPad'
+GROUP BY ps.series_name
+ORDER BY avg_screen_size DESC;
 
 --语法结构如下
 SELECT 
-  表1别名.字段1 [AS 别名1],
-  表1别名.字段2 [AS 别名2]
+  表2别名.分组字段,
+  聚合函数(表1别名.数值字段) AS 别名
 FROM 表1 表1别名
 INNER JOIN 表2 表2别名
 ON 表1别名.关联字段 = 表2别名.关联字段
 WHERE 筛选条件
-ORDER BY 排序字段 [ASC/DESC];  -- ASC升序（默认），DESC倒序</code></pre>
+GROUP BY 表2别名.分组字段
+ORDER BY 聚合结果别名 DESC;</code></pre>
 <p class="header-iWP5WJ auto-hide-last-sibling-br"><strong>含义解释：</strong></p>
 <ul class="auto-hide-last-sibling-br">
 <li>相比前两个示例，多了<code>ORDER BY p.release_year DESC</code>：对查询结果按 "发布年份" <strong>倒序</strong>排列</li>
