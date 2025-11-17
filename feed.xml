@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-17T14:55:06+08:00</updated>
+    <updated>2025-11-17T15:18:11+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -406,7 +406,7 @@ port default vlan 10</code></pre>
                 <h1>本章内容：从软件的下载，到学会数据库的简单查询</h1>
 <p>本章难度：(🌵🌵🌵/🌵🌵)</p>
 <h3>Stp 1：如何下载？</h3>
-<p>Navicat Premium 17 安装及下载链接：<a href="https://www.123865.com/s/foFNjv-EK9TH" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>Navicat Premium 17 安装及下载链接：<a href="https://pan-yz.cldisk.com/v2/external/resourceDetail.html?appid=2539F541-76D2-4949-9F18-52C967AE8F47&amp;nonce=1593457381&amp;timestamp=1763363866895&amp;showAppBar=true&amp;autoPreview=true&amp;objectId=f8381e87172187a773ccf76b9606c713&amp;signature=6d68c469627cb3385c0734f0fecde813" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <p>为了便于演示和理解，以下内容将使用 Navicat Premium 17 演示</p>
 <p>说实话，我不建议直接copy我的示例代码，我认为自己敲一遍能加深初学的印象</p>
 <p>（<strong>Don't copy. Study it by yourself！</strong>）        ヾ(≧▽≦*)o</p>
