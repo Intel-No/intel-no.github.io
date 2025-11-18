@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-17T15:21:18+08:00</updated>
+    <updated>2025-11-18T14:51:07+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -276,10 +276,13 @@ GROUP BY 表2别名.分组字段
 ORDER BY 聚合结果别名 DESC;</code></pre>
 <p class="header-iWP5WJ auto-hide-last-sibling-br"><strong>含义解释：</strong></p>
 <ul class="auto-hide-last-sibling-br">
-<li>相比前两个示例，多了<code>ORDER BY p.release_year DESC</code>：对查询结果按 "发布年份" <strong>倒序</strong>排列</li>
-<li>比如查询结果会先显示 2024 年的 iPad Air 7，再显示 2023 年的 iPad Air 6，最后显示 2022 年的 iPad Air 5</li>
-<li>作用：让结果按业务需求（如时间、大小）有序展示，方便阅读和分析</li>
+<li><code>WHERE ps.product_type = 'iPad'</code>：先筛选出所有 iPad 类型的产品，排除 iPhone 的数据干扰</li>
+<li><code>GROUP BY ps.series_name</code>：将筛选后的 iPad 产品按系列名称分组，比如 "数字版"、"Air"、"Pro" 等各自成为一组</li>
+<li><code>AVG(p.screen_size_inch)</code>：对每组内的屏幕尺寸字段计算平均值，例如 Pro 系列可能平均 11.9 英寸，mini 系列可能平均 8.1 英寸</li>
+<li><code>AS avg_screen_size</code>：给计算出的平均值字段起个别名，让结果更易读</li>
+<li><code>ORDER BY avg_screen_size DESC</code>：按平均屏幕尺寸从大到小排序，结果会显示 Pro 系列（最大）在最前面，mini 系列（最小）在最后面</li>
 </ul>
+<div class="auto-hide-last-sibling-br paragraph-pP9ZLC paragraph-element br-paragraph-space">作用：实现 "先筛选特定类型→按系列分组→计算每组平均值→按平均值排序" 的完整统计流程，能快速看出不同 iPad 系列的屏幕尺寸差异</div>
 <h2 class="align-center">Stp 4：核心语法总结</h2>
 <h5 class="auto-hide-last-sibling-br paragraph-pP9ZLC paragraph-element br-paragraph-space"><strong>内连接查询的固定 "公式"：</strong></h5>
 <pre class="language-sql line-numbers"><code>SELECT 要显示的字段
