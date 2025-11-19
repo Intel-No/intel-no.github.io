@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-11-19T22:45:36+08:00</updated>
+    <updated>2025-11-19T22:49:49+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -28,7 +28,7 @@
             <![CDATA[
                 <h2 class="header-iWP5WJ auto-hide-last-sibling-br align-center">前提环境准备说明</h2>
 <div class="auto-hide-last-sibling-br paragraph-pP9ZLC paragraph-element br-paragraph-space align-center">本文所有题目基于以下两张核心表（就是我在 Part 2 里须要copy的那张表）</div>
-<div class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part2.html" target="_blank" rel="noopener noreferrer">点我跳转</a></div>
+<div class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part2.html" target="_blank" rel="noopener noreferrer">点我跳转 <strong>Part 2</strong></a></div>
 <div> </div>
 <h5 class="align-center">表格内容回顾</h5>
 <ul class="auto-hide-last-sibling-br">
@@ -700,8 +700,8 @@ ON 别名1.关联字段 = 别名2.关联字段  -- 必须写，否则会出现�
 <p class="align-center">内连接就像 "找朋友"，只有两张表中共同有 "<strong>关联字段匹配</strong>" 的数据才能被选中</p>
 <p class="align-center">就像只有互相认识的人才能成为朋友一样～</p>
 <h3 class="align-center">结束语：以上就是数据库的入门指南 Part 2 的教程(●'◡'●)</h3>
-<p class="align-center"><strong>数据库入门指南 Part3 已经上线</strong></p>
-<p class="align-center"><strong>点我跳转</strong></p>
+<p class="align-center"><strong>数据库入门指南 Part3 已经上线，欢迎访问\^o^/</strong></p>
+<p class="align-center"><strong><a href="https://zeyun.dpdns.org/my_sql_part3.html" target="_blank" rel="noopener noreferrer">点我跳转 Part 3</a></strong></p>
             ]]>
         </content>
     </entry>
@@ -1248,9 +1248,9 @@ LIMIT + 需要取的排名数量 + ;</code></pre>
 <div> </div>
 <div class="align-center">以上就是数据库的入门指南 Part 1 的教程ψ(｀∇´)ψ</div>
 <div> </div>
-<div class="align-center">进阶版本的 ”Part 2--内连接的查询入门“</div>
+<div class="align-center">进阶版本的 ”Part 2 内连接的查询入门“</div>
 <div class="align-center">现已经更新</div>
-<div class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part2.html">点我跳转</a></div>
+<div class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part2.html" target="_blank" rel="noopener noreferrer">点我跳转 <strong>Part 2</strong></a></div>
             ]]>
         </content>
     </entry>
