@@ -393,10 +393,6 @@
 </image:image>
 </url>
 <url>
-<loc>https://zeyun.dpdns.org/my_sql_part2-2.html</loc>
-<lastmod>2025-11-19T22:45:02+08:00</lastmod>
-</url>
-<url>
 <loc>https://zeyun.dpdns.org/my_sql_part2.html</loc>
 <lastmod>2025-11-19T21:58:32+08:00</lastmod>
 <image:image>
@@ -411,6 +407,10 @@
 <image:loc>https://zeyun.dpdns.org/media/posts/30/Ping-Mu-Jie-Tu-2025-11-16-235929.png</image:loc>
 <image:title><![CDATA[]]></image:title>
 </image:image>
+</url>
+<url>
+<loc>https://zeyun.dpdns.org/my_sql_part3.html</loc>
+<lastmod>2025-11-19T22:45:36+08:00</lastmod>
 </url>
 <url>
 <loc>https://zeyun.dpdns.org/network_with_huawei_ensp.html</loc>
