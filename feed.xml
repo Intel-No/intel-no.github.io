@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-07T01:46:35+08:00</updated>
+    <updated>2025-12-07T02:05:18+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2025-12-06T16:45:00+08:00</updated>
             <summary>
                 <![CDATA[
-                    本项目基于华为的ensp模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 密码：&hellip;
+                    本项目基于华为的ensp模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 密码：8hc8&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -40,10 +40,11 @@
 <li>Rip路由与OSPF的结合</li>
 </ol>
 </blockquote>
-<p>拓扑下载：点我下载 密码：</p>
+<p>拓扑下载：<a href="https://wwbte.lanzn.com/b014wwaaja" target="_blank" rel="noopener noreferrer">点我下载</a> </p>
+<p>密码：8hc8</p>
 <p>本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-161423.png" alt="" width="1903" height="1329" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161423-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161423-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161423-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161423-xl.webp 1024w"></figure>
-<p>开始之前，可以输入sys（等同于system-view，为了方便，以下我将会使用sys这个简化后的指令来操作）进入特权模式（就是[huawei]的这个）输入以下指令，从而关闭烦人的操作日志：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-015236.png" alt="" width="1924" height="1242" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xl.webp 1024w"></figure>
+<p>开始之前，可以输入sys（等同于system-view，为了方便，以下我将会使用sys这个简化后的指令来操作），进入特权模式（就是[huawei]的这个）输入以下指令，从而关闭烦人的操作日志：</p>
 <pre class="language-c line-numbers"><code>undo info-center enable </code></pre>
 <p>出现以下提示则关闭成功：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162219.png" alt="" width="696" height="90" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-xl.webp 1024w"></figure>
