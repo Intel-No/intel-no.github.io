@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-07T02:07:15+08:00</updated>
+    <updated>2025-12-07T02:20:21+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -250,12 +250,13 @@ network 12.0.0.0
         <updated>2025-11-23T02:22:35+08:00</updated>
             <summary>
                 <![CDATA[
-                    屏蔽Edge更新方法一 使用Windows内置防火墙禁用Edge更新 stp1：打开文件资源管理器，找到默认路径C:\Program Files (x86)\Microsoft\EdgeUpdate&hellip;
+                    以下操作需要确保你当前的系统为win10/win11专业版及以上，否则无效 屏蔽Edge更新方法一 使用Windows内置防火墙禁用Edge更新 stp1：打开文件资源管理器，找到默认路径C:\Program Files&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <h2 class="align-center">屏蔽Edge更新方法一</h2>
+                <h5 class="align-center">以下操作需要确保你当前的系统为win10/win11专业版及以上，否则无效</h5>
+<h2 class="align-center">屏蔽Edge更新方法一</h2>
 <p class="align-center">使用Windows内置防火墙禁用Edge更新</p>
 <p>stp1：打开文件资源管理器，找到默认路径<code>C:\Program Files (x86)\Microsoft\EdgeUpdate</code></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/32/Ping-Mu-Jie-Tu-2025-11-23-014517.png" alt="" width="2119" height="722" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/32/responsive/Ping-Mu-Jie-Tu-2025-11-23-014517-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/32/responsive/Ping-Mu-Jie-Tu-2025-11-23-014517-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/32/responsive/Ping-Mu-Jie-Tu-2025-11-23-014517-md.webp 768w ,https://zeyun.dpdns.org/media/posts/32/responsive/Ping-Mu-Jie-Tu-2025-11-23-014517-xl.webp 1024w"></figure>
