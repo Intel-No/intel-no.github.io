@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-07T01:41:32+08:00</updated>
+    <updated>2025-12-07T01:46:35+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -34,7 +34,7 @@
 <p>本章的主要讲解的内容如下</p>
 <ol style="list-style-type: upper-roman;">
 <li>网关的配置</li>
-<li>Rip路由&amp;对端的简单加密</li>
+<li>Rip路由&amp;Rip的对端的简单加密</li>
 <li>DHCP服务</li>
 <li>OSPF路由</li>
 <li>Rip路由与OSPF的结合</li>
@@ -104,7 +104,7 @@ network 12.0.0.0
 <p>同理可得，在AR2，AR3....上也是如此，输入两个相邻的网段的IP，即可</p>
 <p>最终结果，实现全网互通（这里我用的是PC3去Ping的PC1来进行验证）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-221243.png" alt="" width="2225" height="1169" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-xl.webp 1024w"></figure>
-<h5>RIP的对端简单加密：</h5>
+<h5>Rip的对端简单加密：</h5>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-231938.png" alt="" width="611" height="202" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-xl.webp 1024w"></figure>
 <p>这里演示AR2和AR3的GE0/0/2和GE0/0/2口的端口加密</p>
 <p>首先进入AR2的g0/0/2端口，代码示例如下：</p>
