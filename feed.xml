@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-07T02:20:21+08:00</updated>
+    <updated>2025-12-07T02:27:18+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -52,7 +52,7 @@
 <pre class="language-apacheconf line-numbers"><code>sys + 你设备的名称</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162524.png" alt="" width="315" height="33" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xl.webp 1024w"></figure>
 <p>上图为我给我的路由器1，命名为AR1的截图</p>
-<p>此外，退出特权模式（就是[huawei]的这个），进入用户模式下（就是&lt;huuawei&gt;的这个），输入save，再按照提示输入y，可以随时保存（此操作枪类建议经常做，遇到ensp模拟器死机的时候，重启设备的时候，保存前的信息不会丢）</p>
+<p>此外，退出特权模式（就是[huawei]的这个），进入用户模式下（就是&lt;huuawei&gt;的这个），输入save，再按照提示输入y，可以随时保存（此操作强烈建议经常做，如遇到ensp模拟器死机的时候，重启设备的时候，保存前的信息不会丢）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162855.png" alt="" width="1247" height="207" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xl.webp 1024w"></figure>
 <p><strong>以上的操作非必须，但是建议这样做</strong></p>
 <h5>项目1：给每个网段，配对应的网关</h5>
