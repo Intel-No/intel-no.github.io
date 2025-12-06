@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-07T01:36:29+08:00</updated>
+    <updated>2025-12-07T01:41:32+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2025-12-06T16:45:00+08:00</updated>
             <summary>
                 <![CDATA[
-                    本项目基于华为的ensp模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 1.网关的配置 2.Rip路由&amp;对端的简单加密&hellip;
+                    本项目基于华为的ensp模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 密码：&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -32,11 +32,13 @@
 </ul>
 <blockquote>
 <p>本章的主要讲解的内容如下</p>
-<p>1.网关的配置</p>
-<p>2.Rip路由&amp;对端的简单加密</p>
-<p>3.DHCP服务</p>
-<p>4.OSPF路由</p>
-<p>5.Rip路由与OSPF的结合</p>
+<ol style="list-style-type: upper-roman;">
+<li>网关的配置</li>
+<li>Rip路由&amp;对端的简单加密</li>
+<li>DHCP服务</li>
+<li>OSPF路由</li>
+<li>Rip路由与OSPF的结合</li>
+</ol>
 </blockquote>
 <p>拓扑下载：点我下载 密码：</p>
 <p>本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
@@ -1083,7 +1085,7 @@ port default vlan 10</code></pre>
 <p>成功过后可以看到，在同一vlan下的PC相互能够成功通讯，而不在同一vlan下的PC相互不可通讯</p>
 <p class="align-center"><strong>至此，最基础的子网划分以及一些基本操作你已经学会ヾ(≧ ▽ ≦)ゝ</strong></p>
 <p class="align-center"><span style="color: #f2f2f5;"><strong>看第二章前，请务必记住本章开头的”常识补充“</strong></span></p>
-<p class="align-center"><strong>第二篇已经更新，点我跳转</strong></p>
+<p class="align-center"><strong>第二篇已经更新，<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part2.html" target="_blank" rel="noopener noreferrer">点我跳转</a></strong></p>
             ]]>
         </content>
     </entry>
