@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-13T01:15:23+08:00</updated>
+    <updated>2025-12-13T01:51:30+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -34,7 +34,7 @@
 </ul>
 <p>环境准备：点我下载拓扑图</p>
 <p>全图总览如下：</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-12-235352.png" alt="" width="2363" height="1385" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235352-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235352-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235352-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235352-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-012607.png" alt="" width="2381" height="1383" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xl.webp 1024w"></figure>
 <h4 class="align-center">实验一：实现全网互通</h4>
 <p><span style="color: #e03e2d;">Step1：</span>先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理</p>
 <p>PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）</p>
@@ -90,10 +90,32 @@
 //设置端口模式为access
 [L2-SW1-Ethernet0/0/1]port default vlan 10
 //划分vlan10到这个端口内</code></pre>
+<p>别忘了在L2-SW1/2还是有两根线连接着L3-SW1/2的（<strong>GE0/0/1，GE0/0/2</strong>口），所以你还需要进入这<strong>两个口</strong>里去配置接口模式，我这里依旧以PC1所对应的L2-SW1演示</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-011844.png" alt="" width="997" height="190" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011844-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011844-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011844-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011844-xl.webp 1024w"></figure>
+<p>这里的思路依旧是：系统视图下→进入对应的端口→设置模式为<code>Trunk</code>模式→放行所有端口</p>
 <p>这里使用PC1去Ping网关验证，看看能否Ping通对应网关（PC1的就是之前设置的192.168.10.254的那个）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-011004.png" alt="" width="1083" height="515" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xl.webp 1024w"></figure>
 <p>可以看到，我这里已经验证成功</p>
 <p>这里的PC2所对应的L2-SW2也是同理，我这里就不过多赘述了（唯一需要注意的就是网关别配错，我这里PC2所对应的网关是192.168.20.253，别弄成254了）</p>
+<p>Step5：设置在L3-AR1上配置基础信息以及OSPF路由</p>
+<p>以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013328.png" alt="" width="1257" height="346" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xl.webp 1024w"></figure>
+<p>在L3-AR1上创建OSPF路由（就是加入临近的网段），如下图所示</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013705.png" alt="" width="1233" height="194" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xl.webp 1024w"></figure>
+<p>如果OSPF忘记了的朋友，可以去看看我的上一篇文章，里面有讲，这里我就不过多赘述了</p>
+<p>配置完成后再次回到L3-SW1/2中，我们需要在这<strong>两个设备</strong>中添加OSPF路由，从而实现全网互通</p>
+<p>这是我在L3-SW1配置的操作，如下图所示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-014426.png" alt="" width="1257" height="291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xl.webp 1024w"></figure>
+<p>分别对应的是：</p>
+<ul style="list-style-type: circle;">
+<li>192.168.10.0的网段 + 反掩码</li>
+<li>192.168.20.0的网段 + 反掩码</li>
+<li>10.0.0.0的网段 + 反掩码</li>
+</ul>
+<p><code>注：</code>L3-SW2也需要操作，切记不可以忘记！！！</p>
+<p>这里我们依旧使用PC3去PingPC1测试，可以看到即使不在同一个网段也能Ping通，即为成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-015100.png" alt="" width="2466" height="1363" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-xl.webp 1024w"></figure>
+<p class="align-center"><strong>至此，恭喜你已经实现基础的全网通</strong></p>
             ]]>
         </content>
     </entry>
