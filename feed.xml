@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-13T01:51:30+08:00</updated>
+    <updated>2025-12-13T01:56:16+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -97,12 +97,12 @@
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-011004.png" alt="" width="1083" height="515" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xl.webp 1024w"></figure>
 <p>可以看到，我这里已经验证成功</p>
 <p>这里的PC2所对应的L2-SW2也是同理，我这里就不过多赘述了（唯一需要注意的就是网关别配错，我这里PC2所对应的网关是192.168.20.253，别弄成254了）</p>
-<p>Step5：设置在L3-AR1上配置基础信息以及OSPF路由</p>
+<p><span style="color: #e03e2d;">Step5：</span>设置在L3-AR1上配置基础信息以及OSPF路由</p>
 <p>以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013328.png" alt="" width="1257" height="346" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xl.webp 1024w"></figure>
 <p>在L3-AR1上创建OSPF路由（就是加入临近的网段），如下图所示</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013705.png" alt="" width="1233" height="194" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xl.webp 1024w"></figure>
-<p>如果OSPF忘记了的朋友，可以去看看我的上一篇文章，里面有讲，这里我就不过多赘述了</p>
+<p>如果OSPF忘记了的朋友，可以去看看我的上一篇文章里面有讲，这里我就不过多赘述了</p>
 <p>配置完成后再次回到L3-SW1/2中，我们需要在这<strong>两个设备</strong>中添加OSPF路由，从而实现全网互通</p>
 <p>这是我在L3-SW1配置的操作，如下图所示：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-014426.png" alt="" width="1257" height="291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xl.webp 1024w"></figure>
