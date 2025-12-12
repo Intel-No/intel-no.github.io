@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-12T23:20:01+08:00</updated>
+    <updated>2025-12-12T23:26:26+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -212,6 +212,8 @@ network 12.0.0.0
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-011906.png" alt="" width="2356" height="1339" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-xl.webp 1024w"></figure>
 <p class="align-center">那么至此，你已经成功掌握以上的所有内容</p>
 <p class="align-center">感谢您的阅读，您的肯定是我更新的最大动力(/≧▽≦)/</p>
+<p class="align-center">此外，实战分析 Part 3 已经上线，欢迎访问(‾◡◝)</p>
+<p class="align-center"><a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part3.html" target="_blank" rel="noopener noreferrer">点我跳转</a></p>
             ]]>
         </content>
     </entry>
