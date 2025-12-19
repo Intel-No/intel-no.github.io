@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-20T02:01:07+08:00</updated>
+    <updated>2025-12-20T02:14:49+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -297,8 +297,8 @@ return
 </div>
 <div>配置命令如下（这里我以L3-SW1演示）：</div>
 <div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-220218.png" alt="" width="785" height="163" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xl.webp 1024w"></figure></div>
-<pre class="language-cpp line-numbers"><code>[L3-SW1]router id	
-[L3-SW1]router id 2.2.2.2</code></pre>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]router id 2.2.2.2
+//修改router id</code></pre>
 <p class="align-left">至于在L3-AR1，L3-SW1与L3-SW2之间的OSPF部分，我已经在前面的部分说过了，这里我就不在过多赘述了（前面配过的可以跳过此步骤，没配的记得配一下）</p>
 <h5 class="align-left">验证环节</h5>
 <p class="align-left">这里我使用wireshark抓包工具向你直观的展示VRRP的“起死回生”环节</p>
