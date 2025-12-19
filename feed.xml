@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-20T01:45:05+08:00</updated>
+    <updated>2025-12-20T02:01:07+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -29,8 +29,8 @@
                 <p>本次项目实验目标：</p>
 <ul style="list-style-type: square;">
 <li>实现全网互通（包含OSPF，不同网段vlan规划）</li>
-<li>冗余网关协议（聚合链路，VRRP）</li>
-<li>生成树协议STP&amp;MSTP</li>
+<li>冗余网关协议（包含聚合链路，VRRP实验）</li>
+<li>生成树协议STP&amp;MSTP（待更新）</li>
 </ul>
 <p>环境准备：点我下载拓扑图</p>
 <p><strong>全图总览如下：</strong></p>
@@ -222,12 +222,12 @@
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-214540.png" alt="" width="1120" height="300" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xl.webp 1024w"></figure>
 <p><code>*常见问题</code>：如果我想要配了不同/相同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-012320.png" alt="" width="1110" height="231" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xl.webp 1024w"></figure>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
+<div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
 <div> </div>
 <div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Xiang-Tong-vlan20De-ipDi-Zhi.png" alt="" width="2388" height="1431" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xl.webp 1024w"></figure></div>
-<div>这个很显然就是L3-SW1和L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
-<div> </div>
-<div>操作如下（比如我这里就是L3-SW1上的vlan20的ip配错了，不小心配成和L3-SW2一样的ip了）：</div>
+<div class="align-left">这个很显然就是L3-SW1和L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
+<div class="align-left"> </div>
+<div class="align-left">操作如下（比如我这里就是L3-SW1上的vlan20的ip配错了，不小心配成和L3-SW2一样的ip了）：</div>
 <div>
 <pre class="language-cpp line-numbers"><code>&lt;L3-SW1&gt;sys
 //进入系统试图
@@ -251,8 +251,8 @@ return
 <p>修改后即可恢复正常状态（如下图所示）：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-014347.png" alt="" width="1106" height="236" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014347-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014347-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014347-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014347-xl.webp 1024w"></figure>
 </div>
-<div> </div>
-<div class=" old-record-id-SEXrdattxoG9eJxTXq4cOjarnSg"><span style="color: #e03e2d;">Step3</span>：设置完成VRRP之后，需要将全部网络进行联通，所以需要在三层设备上配置OSPF路由，首先进行路由器ID设置，设置路由器的ID信息如下</div>
+<div class="align-left"> </div>
+<div class=" old-record-id-SEXrdattxoG9eJxTXq4cOjarnSg align-left"><span style="color: #e03e2d;">Step3</span>：设置完成VRRP之后，需要将全部网络进行联通，所以需要在三层设备上配置OSPF路由，首先进行路由器ID设置，设置路由器的ID信息如下</div>
 <div>
 <div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="true">
 <div>
@@ -297,20 +297,20 @@ return
 </div>
 <div>配置命令如下（这里我以L3-SW1演示）：</div>
 <div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-220218.png" alt="" width="785" height="163" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xl.webp 1024w"></figure></div>
-<div>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]router id	
 [L3-SW1]router id 2.2.2.2</code></pre>
-<p>至于在L3-AR1，L3-SW1与L3-SW2之间的OSPF部分，我已经在前面的部分说过了，这里我就不在过多赘述了（前面配过的可以跳过此步骤，没配的记得配一下）</p>
-<h5>验证环节</h5>
-<p>这里我使用wireshark抓包工具向你直观的展示VRRP的“起死回生”</p>
-<p>我们首先使用PC1去一直Ping PC3（我使用的是ping + ip地址 + ”-t“命令）来保持PC1一直往PC3发送<a href="https://baike.baidu.com/item/ICMP/572452" target="_blank" rel="noopener noreferrer">ICMP</a>的报文</p>
-<p>可以看到这里的PC1走的是GE0/0/2口（图中展示了GE0/0/2抓到了来自PC1与PC3之间通讯的ICMP报文，而这个GE0/0/1口则没有，只是普通的VRRP和OSPF的<a href="https://blog.csdn.net/x13262608581/article/details/134025835" target="_blank" rel="noopener noreferrer">多播协议</a>）</p>
+<p class="align-left">至于在L3-AR1，L3-SW1与L3-SW2之间的OSPF部分，我已经在前面的部分说过了，这里我就不在过多赘述了（前面配过的可以跳过此步骤，没配的记得配一下）</p>
+<h5 class="align-left">验证环节</h5>
+<p class="align-left">这里我使用wireshark抓包工具向你直观的展示VRRP的“起死回生”环节</p>
+<p class="align-left">我们首先使用PC1去一直Ping PC3（我使用的是ping + ip地址 + ”-t“命令）来保持PC1一直往PC3发送<a href="https://baike.baidu.com/item/ICMP/572452" target="_blank" rel="noopener noreferrer">ICMP</a>的报文</p>
+<p class="align-left">可以看到这里的PC1走的是GE0/0/2口（图中展示了GE0/0/2抓到了来自PC1与PC3之间通讯的ICMP报文，而这个GE0/0/1口则没有，只是普通的VRRP和OSPF的<a href="https://blog.csdn.net/x13262608581/article/details/134025835" target="_blank" rel="noopener noreferrer">多播协议</a>）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Zhua-Bao-GE02Kou-You-Shu-Ju.png" alt="" width="2450" height="1413" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-xl.webp 1024w"></figure>
-<p>接下来，我将这个PC1与PC3通讯的L3-SW2给它物理关掉，那么则会发生下图的的情况（由于本人的电脑性能不佳，等待了较长的时间）最终成功等待到了这个L3-SW1的再次通讯</p>
-<p>可以看到我在下图的这个GE0/0/1口，成功捕捉到了来自于这个VRRP协议再次拉起的PC1于PC3的ICMP的通讯信息的数据包</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Zhua-Bao-GE01Kou-You-Shu-Ju.png" alt="" width="2435" height="1426" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE01Kou-You-Shu-Ju-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE01Kou-You-Shu-Ju-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE01Kou-You-Shu-Ju-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE01Kou-You-Shu-Ju-xl.webp 1024w"></figure>
+<p class="align-left">接下来，我将这个PC1与PC3通讯的L3-SW2机器给它物理关掉，那么则会发生下图的的情况（由于本人的电脑性能不佳，等待了较长的时间）最终成功等待到了这个L3-SW1的再次通讯</p>
+<p class="align-left">可以看到我在下图的这个GE0/0/1口，成功捕捉到了来自于这个VRRP协议再次拉起的PC1于PC3的ICMP的通讯信息的数据包</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-014945.png" alt="" width="2400" height="1543" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xl.webp 1024w"></figure>
 <p>从以上的实验可简单说明这个VRRP冗余网关协议的作用</p>
-</div>
+<p class="align-center"><strong>至此，VRRP配置的部分就已经成功配置完毕了</strong></p>
+<h4>实验三：生成树协议STP&amp;MSTP（更新中ing）</h4>
 </div>
 </div>
             ]]>
