@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-20T02:14:49+08:00</updated>
+    <updated>2025-12-20T02:19:41+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -223,9 +223,9 @@
 <p><code>*常见问题</code>：如果我想要配了不同/相同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-012320.png" alt="" width="1110" height="231" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xl.webp 1024w"></figure>
 <div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div> </div>
+<div>上图的这个vlan20理应是Backup，而不是Master</div>
 <div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Xiang-Tong-vlan20De-ipDi-Zhi.png" alt="" width="2388" height="1431" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xl.webp 1024w"></figure></div>
-<div class="align-left">这个很显然就是L3-SW1和L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
+<div class="align-left">这个很显然就是L3-SW1或L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
 <div class="align-left"> </div>
 <div class="align-left">操作如下（比如我这里就是L3-SW1上的vlan20的ip配错了，不小心配成和L3-SW2一样的ip了）：</div>
 <div>
