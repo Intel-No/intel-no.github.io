@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-21T12:44:47+08:00</updated>
+    <updated>2025-12-21T16:06:48+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2025-12-12T23:16:59+08:00</updated>
             <summary>
                 <![CDATA[
-                    本次项目实验目标： 环境准备：点我下载拓扑图 全图总览如下： Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）&hellip;
+                    本次项目实验目标： 环境准备：点我下载拓扑图，密码： 全图总览如下 Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -30,10 +30,10 @@
 <ul style="list-style-type: square;">
 <li>实现全网互通（包含OSPF，不同网段vlan规划）</li>
 <li>冗余网关协议（包含聚合链路，VRRP实验）</li>
-<li>生成树协议STP&amp;MSTP（待更新）</li>
+<li>生成树协议STP&amp;MSTP（含测试实验）</li>
 </ul>
-<p>环境准备：点我下载拓扑图</p>
-<p class="align-center"><strong>全图总览如下：</strong></p>
+<p>环境准备：点我下载拓扑图，密码：</p>
+<p class="align-center"><strong>全图总览如下</strong></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-012607.png" alt="" width="2381" height="1383" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xl.webp 1024w"></figure>
 <h4 class="align-center">实验一：实现全网互通</h4>
 <p class="align-left"><span style="color: #e03e2d;">Step1：</span>先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理</p>
@@ -98,7 +98,7 @@
 <p class="align-left">可以看到，我这里已经验证成功</p>
 <p class="align-left">这里的PC2所对应的L2-SW2也是同理，我这里就不过多赘述了（唯一需要注意的就是网关别配错，我这里PC2所对应的网关是192.168.20.253，别弄成254了）</p>
 <p class="align-left"><span style="color: #e03e2d;">Step5：</span>设置在L3-AR1上配置基础信息以及OSPF路由</p>
-<p class="align-center">以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
+<p class="align-left">以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013328.png" alt="" width="1257" height="346" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xl.webp 1024w"></figure>
 <p class="align-center">在L3-AR1上创建OSPF路由（就是加入临近的网段），如下图所示</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013705.png" alt="" width="1233" height="194" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xl.webp 1024w"></figure>
@@ -167,7 +167,7 @@
 </div>
 <div class="align-left">以上这条指令会把 <code>GigabitEthernet0/0/23</code>和 <code>GigabitEthernet0/0/24</code>这两个物理端口，批量加入到刚刚配置的 Eth-Trunk 2 的链路聚合组中</div>
 <div class="align-left"> </div>
-<div class="align-left">可使用我下图中蓝色高亮的指令去验证，在L3-SW1/2任意一台设备上</div>
+<div class="align-left">可使用我下图中<strong>蓝色高亮</strong>的指令去验证，在L3-SW1/2任意一台设备上</div>
 <div class="align-left">去输入一下（若和我下图示范的一样，那么则为配置正确）</div>
 <div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-210320.png" alt="" width="1257" height="603" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-xl.webp 1024w"></figure></div>
 <div class="align-center"> </div>
@@ -203,7 +203,7 @@
 //配置vlan20的vrrp的虚拟id</code></pre>
 </div>
 </div>
-<p class="align-center"> 此外在L3-SW2上也亦是如此：</p>
+<p class="align-left">此外在L3-SW2上也亦是如此：</p>
 <pre class="language-cpp line-numbers"><code>[L3-SW2]interface vlan10
 [L3-SW2-Vlanif10] vrrp vrid 10 virtual-ip 192.168.10.251
 //以上用于在这个L3-SW2上去宣告vlan10下的的虚拟id
@@ -218,14 +218,15 @@
 //设置vlan20下的虚拟id链路抢占时间为20秒
 [L3-SW2-Vlanif20] vrrp vrid 20 track interface GigabitEthernet0/0/22
 //让vrrp 20的配置应用在L3-SW2的g0/0/22端口</code></pre>
-<p class="align-center"> 配置图片如下：</p>
+<p class="align-center"> L3-SW2的配置图片如下：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-214540.png" alt="" width="1120" height="300" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xl.webp 1024w"></figure>
-<p class="align-left"><code>*常见问题</code>：如果我想要配了不同/相同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
+<p class="align-left"><code>*常见问题</code>：如果我已经配了不同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-012320.png" alt="" width="1110" height="231" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xl.webp 1024w"></figure>
 <div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class="align-center">上图的这个vlan20理应是Backup，而不是Master</div>
+<div class="align-center">上图的这个vlan20理应是Backup，而不是Master（此处为错误示范）</div>
 <div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Xiang-Tong-vlan20De-ipDi-Zhi.png" alt="" width="2388" height="1431" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xl.webp 1024w"></figure></div>
 <div class="align-left">这个很显然就是L3-SW1或L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
+<h5>需要注意的是这里的vlan10/20的ip不能和同网段的ip一样，否则大概率失败</h5>
 <div class="align-left"> </div>
 <div class="align-left">操作如下（比如我这里就是L3-SW1上的vlan20的ip配错了，不小心配成和L3-SW2一样的ip了）：</div>
 <div class="align-center">
@@ -310,7 +311,7 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-014945.png" alt="" width="2400" height="1543" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xl.webp 1024w"></figure>
 <p class="align-center">从以上的实验可简单说明这个VRRP冗余网关协议的作用</p>
 <p class="align-center"><strong>至此，VRRP配置的部分就已经成功配置完毕了</strong></p>
-<h4 class="align-center">实验三：生成树协议STP&amp;MSTP（更新中ing）</h4>
+<h4 class="align-center">实验三：生成树协议STP&amp;MSTP</h4>
 <p class="align-left">在学习这个概念之前，我们需要先简单的了解有关于以下这几个问题的产生原理，才能理解这STP协议和MSTP协议的本质</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-093943.png" alt="" width="2199" height="1106" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-093943-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-093943-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-093943-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-093943-xl.webp 1024w"></figure>
 <blockquote>
@@ -326,7 +327,7 @@ return
 <p class="align-left"><strong>A：</strong>生成树算法STA（Spanning Tree Algorithm）是生成树协议STP（Spanning Tree Protocol）的核心。而它的实现目标是：<strong>在包含有物理环路的网络中，构建出一个能够连通全网各节点的树型无环逻辑拓扑</strong></p>
 </blockquote>
 <p class="align-left align-center"><strong>接下来我来为你展示STP是怎么工作的</strong></p>
-<p class="align-left">首先我们线看到下图，这张图表示着有3台PC（分别为命名为 H1 &amp; 2 &amp; 3），在每台机器的上层都连接着一个交换机，为了保障这3台机器之间能正常通讯，我们会把这3个交换机的连接设置成环路（目的是为了利用环路的优势去创建备用链路），而这个STP协议就是为了防止环路的产生而设置的（而这个STP协议则会在保证线路通畅的同时，暂时阻塞一个用不着的端口，从而实现防止环路的形成）</p>
+<p class="align-left">首先我们线看到下图，这张图表示着有3台PC（分别为命名为H1&amp;2&amp;3），在每台机器的上层都连接着一个交换机，为了保障这3台机器之间能正常通讯，我们会把这3个交换机的连接设置成环路（目的是为了利用环路的优势去创建备用链路），而这个STP协议就是为了防止环路的产生而设置的（而这个STP协议则会在保证线路通畅的同时，暂时阻塞一个用不着的端口，从而实现防止环路的形成）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-171138.png" alt="" width="1245" height="648" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-171138-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-171138-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-171138-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-171138-xl.webp 1024w"></figure>
 <p class="align-left">如上图所示，我们在3台交换机上设置了STP生成树协议，可以看出STP协议的工作原理是把交换机C上的一个接口调整成暂时阻塞的状态，来实现保证网络拓扑的树状结构的</p>
 <p class="align-left">如下图所示，我们的交换机A的一个端口出现了故障，那么这个STP协议就会立即打开原本阻塞的端口<strong>顶替已经故障的线路</strong>，实现内网的正常通讯</p>
@@ -338,6 +339,22 @@ return
 <li class="align-left">“选举”根端口</li>
 <li class="align-left">“选举”指定端口并阻塞备用端口</li>
 </ol>
+<p class="align-left">现在我们在之前的那个拓扑里再次添加几个路由器，和一台“傻瓜”交换机（这里的傻瓜不是字面意思，指的是这个交换机不做配置，只是默认当成路由器的集线器使用）组成一个新的网段，并设置成VRRP来实验</p>
+<p>由于前面我说过这个VRRP的配置过程了，那我这里只作简要说明了</p>
+<p class="align-left">（1）：给L3-AR1添加网口，用于拓展连接（记住，这里新添加的接口是GE4/0/*了，别ip配错了）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-151107.png" alt="" width="2033" height="1229" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-xl.webp 1024w"></figure>
+<p class="align-left">（2）：添加&amp;配置新的路由，拓扑如下（改名，配端口ip等基础操作）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-155210.png" alt="" width="2406" height="1397" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-xl.webp 1024w"></figure>
+<p class="align-left"><code>*注意点</code>：</p>
+<p class="align-left">（1）L3-AR1的OSPF要添加一条来自于10.3.3.0网段的记录</p>
+<p class="align-left">（2）新添加的L3-AR2/AR3都要添加OSPF（网段来自10段和172段的）</p>
+<p class="align-left">（3）新添加的这个L3-AR2/3对应的router id分别为4.4.4.4和5.5.5.5（1~3已经被前面的L3-SW1/2&amp;L3-AR1占用了）</p>
+<p class="align-left">（4）VRRP设置的时候需要将L3-AR2设置成Master节点，所有优先级设置为120，L3-AR3则不需要设置</p>
+<p class="align-left">（5）PC3的网关改成VRRP的虚拟ip，这个直接配在L3-AR2/3的GE0/0/2口就行（PC3的地址我配置的默认是172.16.100.1）</p>
+<p class="align-left">（6）L2-SW3可以不用做任何的设置，直接当成“傻瓜”交换机就行</p>
+<p> </p>
+<p class="align-left"> </p>
+<p class="align-left"> </p>
 <h5> 未完待续ing</h5>
 </div>
 </div>
@@ -356,13 +373,13 @@ return
         <updated>2025-12-06T16:45:00+08:00</updated>
             <summary>
                 <![CDATA[
-                    本项目基于华为的ensp模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 密码：8hc8&hellip;
+                    本项目基于华为的ENSP模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 ，密码：8hc8 本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <ul style="list-style-type: square;">
-<li>本项目基于华为的ensp模拟器实现</li>
+<li>本项目基于华为的ENSP模拟器实现</li>
 <li>我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai</li>
 </ul>
 <blockquote>
@@ -375,8 +392,7 @@ return
 <li>Rip路由与OSPF的结合</li>
 </ol>
 </blockquote>
-<p>拓扑下载：<a href="https://wwbte.lanzn.com/b014wwaaja" target="_blank" rel="noopener noreferrer">点我下载</a> </p>
-<p>密码：8hc8</p>
+<p>拓扑下载：<a href="https://wwbte.lanzn.com/b014wwaaja" target="_blank" rel="noopener noreferrer">点我下载</a> ，密码：8hc8</p>
 <p>本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-015236.png" alt="" width="1924" height="1242" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xl.webp 1024w"></figure>
 <p>开始之前，可以输入sys（等同于system-view，为了方便，以下我将会使用sys这个简化后的指令来操作），进入特权模式（就是[huawei]的这个）输入以下指令，从而关闭烦人的操作日志：</p>
@@ -1367,16 +1383,19 @@ ON 别名1.关联字段 = 别名2.关联字段  -- 必须写，否则会出现�
 </ul>
 <h4>基础概念&amp;设备</h4>
 <p>网络设备配置技术：通过路由器和交换机协同工作，实现数据在不同设备、网段间的高效传输</p>
-<p><strong>路由器</strong>：用于识别网络地址，并选择最佳路径进行数据传输。它通常被称为网络层设备，因为它们在网络层上进行数据传输。工作在网络层（3 层），基于 IP 地址转发数据，核心作用是跨网段路径选择、网络互联，还能实现防火墙、NAT 等功能，实体机就长以下这样</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-210301.png" alt="" width="1389" height="579" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-210301-xl.webp 1024w"></figure>
-<p><strong>交换机</strong>：一种用于电（光）信号转发的网络设备，广泛应用于各种网络环境中。本质是数据转发设备，核心是基于特定地址快速转发数据，按工作层级分为 2/3/4 层，层级决定其处理数据的能力范围，实体机就长以下这样</p>
+<p><strong>路由器</strong>：用于识别网络地址，并选择最佳路径进行数据传输。它通常被称为网络层设备，因为它们在网络层上进行数据传输。工作在网络层（3 层），基于 IP 地址转发数据，核心作用是跨网段路径选择、网络互联，还能实现防火墙、NAT 等功能</p>
+<p class="align-center">实体机就长以下这样（图源：ENSP的AR3200）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-12-21-144401.png" alt="" width="2013" height="615" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144401-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144401-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144401-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144401-xl.webp 1024w"></figure>
+<p><strong>交换机</strong>：一交换机是局域网基于 MAC 转发数据帧、分割冲突域的设备。二层仅 MAC 转发，不能跨 VLAN；三层叠加 IP 路由，可跨 VLAN。ENSP 中 S3700 多为弱三层（仅简单 VLAN 间路由），S5700 是全三层（支持 OSPF 等动态路由，适合汇聚 / 核心）</p>
+<p class="align-center">实体机就长以下这样（下一来源：ENSP的S5700，下二来源：互联网）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-12-21-144556.png" alt="" width="2002" height="206" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144556-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144556-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144556-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-12-21-144556-xl.webp 1024w"></figure>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-153425.png" alt="" width="1486" height="770" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-153425-xl.webp 1024w"></figure>
-<p>以下讲解将会全部使用华为的ENSP环境来模拟，请先准备好运行环境</p>
+<p><strong>以下讲解将会全部使用华为的ENSP环境来模拟，请先准备好运行环境</strong></p>
 <p>华为ENSP下载教程：<a href="https://blog.csdn.net/weixin_43113691/article/details/124847964" target="_blank" rel="noopener noreferrer">点我直达</a></p>
 <p>本次所使用的知识点大全：<a href="https://wwve.lanzn.com/b014wtwq5g" target="_blank" rel="noopener noreferrer">点我下载</a>，密码：8m8l</p>
-<p>现在我们来模拟一个现实的网络环境，从而实现边学边用</p>
+<p>现在我们来模拟一个企业的网络环境，从而实现边学边用</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-152835.png" alt="" width="2359" height="1314" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-152835-xl.webp 1024w"></figure>
-<p>网络拓扑图分析：现将PC2-3，PC4-5，PC6-7&amp;Client-1，划分成3个不同的vlan，代表着3中不同的网络环境，统一使用2层交换机来管理，并且最终将会汇聚到一个三层交换机中，使得可以连接路由器去访问在vlan100和vlan110下的网络，真实环境的效果图如下（使用思科模拟搭建）</p>
+<p>网络拓扑图分析：现将PC2-3，PC4-5，PC6-7&amp;Client-1，划分成3个不同的vlan，代表着3中不同的网络环境，统一使用2层交换机来管理，并且最终将会汇聚到一个三层交换机中，使得可以连接路由器去访问在vlan100和vlan110下的网络，真实环境的效果图如下（使用思科模拟搭建模拟）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-204836.png" alt="" width="2458" height="1158" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-204836-xl.webp 1024w"></figure>
 <h5>实验1：给设备重命名</h5>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/29/Ping-Mu-Jie-Tu-2025-11-08-160334-2.png" alt="" width="485" height="266" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/29/responsive/Ping-Mu-Jie-Tu-2025-11-08-160334-2-xl.webp 1024w"></figure>
