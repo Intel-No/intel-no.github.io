@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-21T16:06:48+08:00</updated>
+    <updated>2025-12-21T16:36:09+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -30,7 +30,7 @@
 <ul style="list-style-type: square;">
 <li>实现全网互通（包含OSPF，不同网段vlan规划）</li>
 <li>冗余网关协议（包含聚合链路，VRRP实验）</li>
-<li>生成树协议STP&amp;MSTP（含测试实验）</li>
+<li>生成树协议STP&amp;MSTP（含测试实验&amp;拓扑扩展）</li>
 </ul>
 <p>环境准备：点我下载拓扑图，密码：</p>
 <p class="align-center"><strong>全图总览如下</strong></p>
@@ -345,14 +345,21 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-151107.png" alt="" width="2033" height="1229" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-151107-xl.webp 1024w"></figure>
 <p class="align-left">（2）：添加&amp;配置新的路由，拓扑如下（改名，配端口ip等基础操作）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-155210.png" alt="" width="2406" height="1397" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-155210-xl.webp 1024w"></figure>
-<p class="align-left"><code>*注意点</code>：</p>
+<p class="align-left"><code>*注意点</code>：（重要核对排查信息点已使用方框括起来了）</p>
 <p class="align-left">（1）L3-AR1的OSPF要添加一条来自于10.3.3.0网段的记录</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/l3-ar1-area0-ospf.png" alt="" width="620" height="410" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1-area0-ospf-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1-area0-ospf-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1-area0-ospf-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1-area0-ospf-xl.webp 1024w"></figure>
 <p class="align-left">（2）新添加的L3-AR2/AR3都要添加OSPF（网段来自10段和172段的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-161257-2.png" alt="" width="1387" height="393" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-161257-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-161257-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-161257-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-161257-2-xl.webp 1024w"></figure>
 <p class="align-left">（3）新添加的这个L3-AR2/3对应的router id分别为4.4.4.4和5.5.5.5（1~3已经被前面的L3-SW1/2&amp;L3-AR1占用了）</p>
-<p class="align-left">（4）VRRP设置的时候需要将L3-AR2设置成Master节点，所有优先级设置为120，L3-AR3则不需要设置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/l3-ar1andar2routerid.png" alt="" width="1759" height="363" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1andar2routerid-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1andar2routerid-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1andar2routerid-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar1andar2routerid-xl.webp 1024w"></figure>
+<p class="align-left">（4）VRRP设置的时候需要将L3-AR2设置成Master节点，(即这个端口的优先级设置为120）L3-AR3则不需要设置优先级，但是vrrp virtual-ip必须要两个都配置（还需注意vrid的分组）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/l3-ar2-vrrp-pr-120.png" alt="" width="826" height="374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-pr-120-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-pr-120-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-pr-120-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-pr-120-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/l3-ar2-vrrp-vid.png" alt="" width="822" height="372" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-vid-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-vid-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-vid-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/l3-ar2-vrrp-vid-xl.webp 1024w"></figure>
 <p class="align-left">（5）PC3的网关改成VRRP的虚拟ip，这个直接配在L3-AR2/3的GE0/0/2口就行（PC3的地址我配置的默认是172.16.100.1）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-21-162624-2.png" alt="" width="1544" height="1048" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-162624-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-162624-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-162624-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-21-162624-2-xl.webp 1024w"></figure>
 <p class="align-left">（6）L2-SW3可以不用做任何的设置，直接当成“傻瓜”交换机就行</p>
-<p> </p>
+<p class="align-left">（7）测试是否全网通（我这里使用PC3去Ping pc1&amp;pc2去测试网路连通性）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/pc3pingpc1andpc2.png" alt="" width="1542" height="1051" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xl.webp 1024w"></figure>
 <p class="align-left"> </p>
 <p class="align-left"> </p>
 <h5> 未完待续ing</h5>
