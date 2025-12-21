@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-21T16:36:09+08:00</updated>
+    <updated>2025-12-21T16:54:28+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -55,11 +55,12 @@
 <pre class="language-c line-numbers"><code>[L3-SW1]vlan batch 2 10 20</code></pre>
 <p class="align-left">使用 vlan batch 命令，可以同时配置多条vlan</p>
 <p class="align-left">其次进入对应的vlan，去给他们分配IP地址</p>
-<p class="align-left"><code>*注：</code>在L3-SW1/2上的vlan都不是同一个，需要单独配置</p>
-<p class="align-left">例如（我这里在L3-SW1上配的vlan2就和L3-SW2的不同）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-002523.png" alt="" width="1268" height="281" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-002523-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-002523-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-002523-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-002523-xl.webp 1024w"></figure>
-<p class="align-left">上图为L3-SW1，下图为L3-SW2（此处的细节需注意：看我的vlan10和vlan20的IP地址的最后一位，一个是10.254，另一个是20.253。这个细节要注意！！！）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-003024.png" alt="" width="1253" height="349" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-003024-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-003024-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-003024-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-003024-xl.webp 1024w"></figure>
+<p class="align-left"><code>*注：</code>在L3-SW1/2上的vlan2/10/20都不是同一个，都需要进入对应机器去单独配置</p>
+<p class="align-left">例如（我这里在L3-SW1上配的vlan2就和L3-SW2的不同）<strong>目前只需要关注我标记出来的就行</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/L3-SW1-VLANID.png" alt="" width="827" height="452" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-xl.webp 1024w"></figure>
+<p class="align-left">上图为L3-SW1，下图为L3-SW2（<strong>目前先看标记的就行，其余的不着急配</strong>）</p>
+<p>看细节，这里我的L3-SW1/2的配置的同为vlan10/20的<strong>ip最后一位不同</strong>（此处的ip千万不能相同，否则会出现后期配VRRP的Master时候，会为双Master，不过就算配错，解决办法后面也有，往下看就行，别担心）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/L3-SW2-VLANID.png" alt="" width="838" height="446" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-xl.webp 1024w"></figure>
 <p class="align-left">那么这个IP地址怎么去看呢？很简单，看连接的端口IP就行。例如我这个L3-SW1的vlan2的IP地址，就是来自于上层路由的连接端口的IP</p>
 <p class="align-left"><span style="color: #e03e2d;">Step3：</span>在vlan的信息划分好之后，我们需要进入这个对应的端口，去把刚刚创建的vlan给它加入进来（我这里仅演示了L3-SW1的过程，L3-SW2也是同样的配置方法）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-004012.png" alt="" width="1256" height="542" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-004012-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-004012-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-004012-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-004012-xl.webp 1024w"></figure>
@@ -96,7 +97,7 @@
 <p class="align-left">这里使用PC1去Ping网关验证，看看能否Ping通对应网关（PC1的就是之前设置的192.168.10.254的那个）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-011004.png" alt="" width="1083" height="515" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-011004-xl.webp 1024w"></figure>
 <p class="align-left">可以看到，我这里已经验证成功</p>
-<p class="align-left">这里的PC2所对应的L2-SW2也是同理，我这里就不过多赘述了（唯一需要注意的就是网关别配错，我这里PC2所对应的网关是192.168.20.253，别弄成254了）</p>
+<p class="align-left">这里的PC2所对应的L2-SW2也是同理，我这里就不过多赘述了（唯一需要注意的就是网关别配错，我这里PC2所对应的网关是<strong>192.168.20.250</strong>，别弄成254了）</p>
 <p class="align-left"><span style="color: #e03e2d;">Step5：</span>设置在L3-AR1上配置基础信息以及OSPF路由</p>
 <p class="align-left">以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013328.png" alt="" width="1257" height="346" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xl.webp 1024w"></figure>
