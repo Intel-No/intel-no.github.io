@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-21T16:54:28+08:00</updated>
+    <updated>2025-12-21T20:39:07+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2025-12-12T23:16:59+08:00</updated>
             <summary>
                 <![CDATA[
-                    本次项目实验目标： 环境准备：点我下载拓扑图，密码： 全图总览如下 Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）&hellip;
+                    本次项目实验目标： 环境准备：点我下载拓扑图，密码： Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~） L2-SW1配置如下：&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -33,7 +33,7 @@
 <li>生成树协议STP&amp;MSTP（含测试实验&amp;拓扑扩展）</li>
 </ul>
 <p>环境准备：点我下载拓扑图，密码：</p>
-<p class="align-center"><strong>全图总览如下</strong></p>
+<h4 class="align-center"><strong>全图总览如下</strong></h4>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-012607.png" alt="" width="2381" height="1383" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xl.webp 1024w"></figure>
 <h4 class="align-center">实验一：实现全网互通</h4>
 <p class="align-left"><span style="color: #e03e2d;">Step1：</span>先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理</p>
@@ -59,7 +59,7 @@
 <p class="align-left">例如（我这里在L3-SW1上配的vlan2就和L3-SW2的不同）<strong>目前只需要关注我标记出来的就行</strong></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/L3-SW1-VLANID.png" alt="" width="827" height="452" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW1-VLANID-xl.webp 1024w"></figure>
 <p class="align-left">上图为L3-SW1，下图为L3-SW2（<strong>目前先看标记的就行，其余的不着急配</strong>）</p>
-<p>看细节，这里我的L3-SW1/2的配置的同为vlan10/20的<strong>ip最后一位不同</strong>（此处的ip千万不能相同，否则会出现后期配VRRP的Master时候，会为双Master，不过就算配错，解决办法后面也有，往下看就行，别担心）</p>
+<p>看细节，这里我的L3-SW1/2的配置的同为vlan20的<strong>ip最后一位不同</strong>（此处的ip千万不能相同，否则会出现后期配VRRP的Master时候，会为双Master，不过就算配错，解决办法后面也有，往下看就行，别担心）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/L3-SW2-VLANID.png" alt="" width="838" height="446" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/L3-SW2-VLANID-xl.webp 1024w"></figure>
 <p class="align-left">那么这个IP地址怎么去看呢？很简单，看连接的端口IP就行。例如我这个L3-SW1的vlan2的IP地址，就是来自于上层路由的连接端口的IP</p>
 <p class="align-left"><span style="color: #e03e2d;">Step3：</span>在vlan的信息划分好之后，我们需要进入这个对应的端口，去把刚刚创建的vlan给它加入进来（我这里仅演示了L3-SW1的过程，L3-SW2也是同样的配置方法）</p>
@@ -223,11 +223,11 @@
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-214540.png" alt="" width="1120" height="300" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xl.webp 1024w"></figure>
 <p class="align-left"><code>*常见问题</code>：如果我已经配了不同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-012320.png" alt="" width="1110" height="231" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xl.webp 1024w"></figure>
-<div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
+<div class="align-left" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
 <div class="align-center">上图的这个vlan20理应是Backup，而不是Master（此处为错误示范）</div>
 <div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Xiang-Tong-vlan20De-ipDi-Zhi.png" alt="" width="2388" height="1431" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Xiang-Tong-vlan20De-ipDi-Zhi-xl.webp 1024w"></figure></div>
 <div class="align-left">这个很显然就是L3-SW1或L3-SW2的vlan10/20的IP地址最后一位冲突了，只需要进入对应的vlan，修改vlan的ip就可以解决</div>
-<h5>需要注意的是这里的vlan10/20的ip不能和同网段的ip一样，否则大概率失败</h5>
+<h5>需要注意的是这里的L3-SW1和L3-SW2上的vlan20下的ip不能和同网段的ip一样，否则大概率失败</h5>
 <div class="align-left"> </div>
 <div class="align-left">操作如下（比如我这里就是L3-SW1上的vlan20的ip配错了，不小心配成和L3-SW2一样的ip了）：</div>
 <div class="align-center">
@@ -361,9 +361,39 @@ return
 <p class="align-left">（6）L2-SW3可以不用做任何的设置，直接当成“傻瓜”交换机就行</p>
 <p class="align-left">（7）测试是否全网通（我这里使用PC3去Ping pc1&amp;pc2去测试网路连通性）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/pc3pingpc1andpc2.png" alt="" width="1542" height="1051" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xl.webp 1024w"></figure>
-<p class="align-left"> </p>
-<p class="align-left"> </p>
-<h5> 未完待续ing</h5>
+<p><strong>可以看到能成功相互通讯，那么即代表成功</strong></p>
+<p class="align-left">在掌握了STP的一些基础的概念之后，那么MSTP和STP就很好区分了</p>
+<p class="align-left">其实MSTP就是STP的<strong>升级版</strong>，二者的核心区别在于对 VLAN 的支持能力、收敛效率和资源利用率</p>
+<strong>MSTP 的域概念：</strong>
+<div class="container-Uxvbjy md-box-line-break wrapper-GYqxgQ undefined"><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">MSTP 引入了</span><strong style="font-family: var(--editor-font-family); font-size: inherit;">MST域（MST Region）</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);"> 的概念，同一域内的交换机必须配置相同的</span><strong style="font-family: var(--editor-font-family); font-size: inherit;">域名、修订级别和vlan的实例映射关系</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">，否则会被视为不同的域，按<strong>RSTP</strong>的方式处理（RSTP就是STP的快速版本，而MSTP则是在RSTP基础上扩展了多实例功能，因此 MSTP同时具备<strong>“快速收敛”</strong>和<strong>“多 VLAN 灵活控制”</strong>的优势）</span></div>
+<br>
+<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
+<div class=" old-record-id-MDcrdDbYkoInndxntUYcQQJondc"><strong>步骤一：</strong>首先在四台交换机上配置MSTP的区域（每一台都要输入一遍这个代码，我这里仅在L3-SW1演示）</div>
+</div>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]stp region-configuration
+//进入MSTP域的配置视图
+[L3-SW1-mst-region]region-name huawei
+//设置MSTP域名为 huawei（同域设备域名需一致）
+[L3-SW1-mst-region]instance 1 vlan 10
+//将vlan10映射到生成树实例 1
+[L3-SW1-mst-region]instance 2 vlan 20
+//将vlan20映射到生成树实例 2
+[L3-SW1-mst-region]active region-configuration 
+//激活上述MSTP域配置，使其生效</code></pre>
+<p><strong>核心作用</strong>：让vlan10/20分别按实例 1、2 独立计算生成树，实现不同vlan的流量负载分担</p>
+<p><strong>步骤二：</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">继续在L3-SW1上和L3-SW2上进行根节点的配置，因为在VRRP中配置了vlan10的Master节点为L3-SW1所以，在配置的时候，将生成树的1区域，在SW1上设置为根节点，将2号区域设置为非根节点</span></p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]stp instance 1 root primary
+//设置本交换机为MSTP实例 1 的主根桥（优先级最高）
+[L3-SW1]stp instance 2 root secondary
+//设置本交换机为MSTP实例 2 的备根桥（优先级次高），主根桥故障时它接替成为实例 2 的根桥</code></pre>
+<h5><strong>核心作用：为不同 VLAN 映射的实例指定根桥，实现流量按需转发</strong></h5>
+<p><code>*细节注意：</code>在L3-SW1上是这样配的，一旦到了L3-SW2可就不是这样了（如下所示，要和L3-SW1对称配）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW2]stp instance 1 root secondary
+//设置 1 号区域为非根节点
+[L3-SW2]stp instance 2 root primary
+//设置 2 号区域为根节点</code></pre>
+<h5><strong>之后你会发现，即可实现MSTP的功能</strong></h5>
+<p><strong>本次内容到此结束，感谢您的观看，谢谢ԅ(¯﹃¯ԅ)</strong></p>
 </div>
 </div>
             ]]>
