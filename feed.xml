@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-28T02:30:21+08:00</updated>
+    <updated>2025-12-28T02:35:29+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2025-12-12T23:16:59+08:00</updated>
             <summary>
                 <![CDATA[
-                    本次项目实验目标： 环境准备：点我下载拓扑图，密码： Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~） L2-SW1配置如下：&hellip;
+                    本次项目实验目标： 环境准备：点我下载，密码：dqg6 Step1：先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理 PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~） L2-SW1配置如下：&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -32,7 +32,7 @@
 <li>冗余网关协议（包含聚合链路，VRRP实验）</li>
 <li>生成树协议STP&amp;MSTP（含测试实验&amp;拓扑扩展）</li>
 </ul>
-<p>环境准备：点我下载拓扑图，密码：</p>
+<p>环境准备：<a href="https://wwbte.lanzn.com/b014wyb2zg" target="_blank" rel="noopener noreferrer">点我下载</a>，密码：dqg6</p>
 <h4 class="align-center"><strong>全图总览如下</strong></h4>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-012607.png" alt="" width="2381" height="1383" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xl.webp 1024w"></figure>
 <h4 class="align-center">实验一：实现全网互通</h4>
