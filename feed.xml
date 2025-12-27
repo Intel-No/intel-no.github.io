@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2025-12-26T22:00:40+08:00</updated>
+    <updated>2025-12-28T02:30:21+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -363,13 +363,21 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/pc3pingpc1andpc2.png" alt="" width="1542" height="1051" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc3pingpc1andpc2-xl.webp 1024w"></figure>
 <p><strong>可以看到能成功相互通讯，那么即代表成功</strong></p>
 <p class="align-left">在掌握了STP的一些基础的概念之后，那么MSTP和STP就很好区分了</p>
-<p class="align-left">其实MSTP就是STP的<strong>升级版</strong>，二者的核心区别在于对 VLAN 的支持能力、收敛效率和资源利用率</p>
+<p> </p>
 <strong>MSTP 的域概念：</strong>
 <div class="container-Uxvbjy md-box-line-break wrapper-GYqxgQ undefined"><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">MSTP 引入了</span><strong style="font-family: var(--editor-font-family); font-size: inherit;">MST域（MST Region）</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);"> 的概念，同一域内的交换机必须配置相同的</span><strong style="font-family: var(--editor-font-family); font-size: inherit;">域名、修订级别和vlan的实例映射关系</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">，否则会被视为不同的域，按<strong>RSTP</strong>的方式处理（RSTP就是STP的快速版本，而MSTP则是在RSTP基础上扩展了多实例功能，因此 MSTP同时具备<strong>“快速收敛”</strong>和<strong>“多 VLAN 灵活控制”</strong>的优势）</span></div>
-<br>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class=" old-record-id-MDcrdDbYkoInndxntUYcQQJondc"><strong>步骤一：</strong>首先在四台交换机上配置MSTP的区域（每一台都要输入一遍这个代码，我这里仅在L3-SW1演示）</div>
+<div>
+<p><strong>MSTP的核心作用：为不同 VLAN 映射的实例指定根桥，实现流量按需转发</strong></p>
 </div>
+<div> </div>
+<div><strong>MSTP相关的实验：</strong></div>
+<div> </div>
+<div><strong>步骤一：</strong>先进入L3-SW1和L3-SW2的这俩个交换机，配置状态为MSTP</div>
+<div><span style="text-align: left; color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">首先在四台交换机上配置MSTP的区域（需要四台设备的参数完全一致，我这里仅在L3-SW1演示）</span></div>
+<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-27-215607.png" alt="" width="1292" height="202" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-27-215607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-27-215607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-27-215607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-27-215607-xl.webp 1024w"></figure></div>
+</div>
+<div class="align-left" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
+<p>然后在L3-SW1和L3-SW2上输入以下的指令</p>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]stp region-configuration
 //进入MSTP域的配置视图
 [L3-SW1-mst-region]region-name huawei
@@ -381,18 +389,32 @@ return
 [L3-SW1-mst-region]active region-configuration 
 //激活上述MSTP域配置，使其生效</code></pre>
 <p><strong>核心作用</strong>：让vlan10/20分别按实例 1、2 独立计算生成树，实现不同vlan的流量负载分担</p>
+<p>输入stp region-configuration进入配置界面，使用display this来查看当前配置是否生效，以及复制以下内容，后续有用</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-004530-2.png" alt="" width="1244" height="310" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-004530-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-004530-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-004530-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-004530-2-xl.webp 1024w"></figure>
 <p><strong>步骤二：</strong><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">继续在L3-SW1上和L3-SW2上进行根节点的配置，因为在VRRP中配置了vlan10的Master节点为L3-SW1所以，在配置的时候，将生成树的1区域，在SW1上设置为根节点，将2号区域设置为非根节点</span></p>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]stp instance 1 root primary
 //设置本交换机为MSTP实例 1 的主根桥（优先级最高）
 [L3-SW1]stp instance 2 root secondary
 //设置本交换机为MSTP实例 2 的备根桥（优先级次高），主根桥故障时它接替成为实例 2 的根桥</code></pre>
-<h5><strong>核心作用：为不同 VLAN 映射的实例指定根桥，实现流量按需转发</strong></h5>
+<p>下图为L3-SW1的配置（注意root的顺序，1为主要，2为次要）</p>
+<h5><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-010219.png" alt="" width="802" height="197" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010219-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010219-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010219-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010219-xl.webp 1024w"></figure></h5>
 <p><code>*细节注意：</code>在L3-SW1上是这样配的，一旦到了L3-SW2可就不是这样了（如下所示，要和L3-SW1对称配）</p>
 <pre class="language-cpp line-numbers"><code>[L3-SW2]stp instance 1 root secondary
 //设置 1 号区域为非根节点
 [L3-SW2]stp instance 2 root primary
 //设置 2 号区域为根节点</code></pre>
-<h5>剩余内容更新中ing</h5>
+<p>下图为L3-SW2的配置（注意root的顺序，2为主要，1为次要）</p>
+<h5><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-010503.png" alt="" width="785" height="198" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010503-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010503-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010503-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-010503-xl.webp 1024w"></figure></h5>
+<p><strong>检查配置环节</strong></p>
+<p>（1）使用这个PC1去PingPC3，可以Ping通</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/pc1pingpc3_mstp.png" alt="" width="1540" height="1041" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/pc1pingpc3_mstp-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc1pingpc3_mstp-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc1pingpc3_mstp-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/pc1pingpc3_mstp-xl.webp 1024w"></figure>
+<p>（2）查看L3-SW1的stp设置情况，可以看到各个端口都是打开的状态，意味着L3-S我处于根桥，如下图所示</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-020020-2.png" alt="" width="1287" height="430" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-020020-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-020020-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-020020-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-020020-2-xl.webp 1024w"></figure>
+<p>（3）L2-SW1上，查看一下stp的情况，也是可以发现之前设置，也是可以实现PC1的流量走L3-SW1</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-021559.png" alt="" width="1273" height="252" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-021559-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-021559-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-021559-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-021559-xl.webp 1024w"></figure>
+<p>L3-SW2的配置如下</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-022422.png" alt="" width="1280" height="255" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-xl.webp 1024w"></figure>
+<p>可以看到，这俩个PC都是默认走G0/0/1的上去，而不是GE0/0/2的备用线路</p>
 <p class="align-right"><strong>本次内容到此结束，感谢您的观看，谢谢ԅ(¯﹃¯ԅ)</strong></p>
 </div>
 </div>
