@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-05T23:52:47+08:00</updated>
+    <updated>2026-01-05T23:56:08+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -634,6 +634,7 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-28-022422.png" alt="" width="1280" height="255" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-28-022422-xl.webp 1024w"></figure>
 <p>可以看到，这俩个PC都是默认走G0/0/1的上去，而不是GE0/0/2的备用线路</p>
 <p class="align-right"><strong>本次内容到此结束，感谢您的观看，谢谢ԅ(¯﹃¯ԅ)</strong></p>
+<p class="align-right">此外，Part4 已经更新：<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part4.html">点我跳转</a></p>
 </div>
 </div>
             ]]>
@@ -814,7 +815,7 @@ network 12.0.0.0
 <p class="align-center">那么至此，你已经成功掌握以上的所有内容</p>
 <p class="align-center">感谢您的阅读，您的肯定是我更新的最大动力(/≧▽≦)/</p>
 <p class="align-center">此外，实战分析 Part 3 已经上线，欢迎访问(‾◡◝)</p>
-<p class="align-center"><a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part3.html" target="_blank" rel="noopener noreferrer">点我跳转</a></p>
+<p class="align-center"><a href="https://zeyun.dpdns.org/my_sql_part3.html">点我跳转</a></p>
             ]]>
         </content>
     </entry>
