@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-12T14:29:58+08:00</updated>
+    <updated>2026-01-12T14:47:02+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -37,7 +37,7 @@
 <h5>Q：NAT协议和ACL有啥区别？</h5>
 <p>A：<strong>ACL 规则（访问控制列表）</strong>可以理解为是 “交通信号灯”，负责判断流量能不能过<strong>（允许 / 拒绝某类流量）</strong>比如 “允许 192.168.10.0 网段的设备上网，拒绝 192.168.20.0 网段的设备上网”</p>
 <p><strong>NAT 策略，</strong>可以理解为 “地址翻译机”，负责把流量的 IP 地址换掉<strong>（把内网 IP 转成公网 IP）</strong>比如 “让 192.168.10.0 网段的设备，访问外网时用路由器的公网 IP”，这是 NAT 策略的活</p>
-<p>简单来说，比如网络的时间就像搭乘高铁，NAT可以理解为票据，你没有票据，就不能上高铁，而ACL就类似于你票据的详细信息（比如，你的登车口，你的座位号等等），当之后你有了车票，和座位号，也就能正常出发，上网冲浪了（当然，如果没有ACL也行，因为有的票据可以类似于站票一样，没有固定座位，也能到达目的地）</p>
+<p>简单来说，可以把网络的世界理解成就像搭乘高铁，NAT可以理解为票据，你没有票据，就不能上高铁，而ACL就类似于你票据的详细信息（比如，你的登车口，你的座位号等等），当之后你有了车票，和座位号，也就能正常出发，上网冲浪了（当然，如果没有ACL也行，因为有的票据可以类似于站票一样，没有固定座位，也能到达目的地）</p>
 <h5>基于NAT协议的实验</h5>
 <p>网路拓扑如下：点我下载</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-09-221343.png" alt="" width="2435" height="1411" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-221343-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-221343-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-221343-md.webp 768w ,https://zeyun.dpdns.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-221343-xl.webp 1024w"></figure>
