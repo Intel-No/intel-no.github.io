@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-22T22:55:34+08:00</updated>
+    <updated>2026-01-22T22:59:44+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -406,7 +406,7 @@ return</code></pre>
 <p class="align-left"><span style="color: #e03e2d;">Step2：</span>进入各个设备的对应端口，配置基础信息</p>
 <p class="align-left">先创建几个vlan以便后续的操作（vlan2 ，vlan10，vlan20）</p>
 <ul class="align-center">
-<li class="align-left">vlan2：用于给我三层的交换机配IP</li>
+<li class="align-left">vlan2：用于给三层的交换机配IP</li>
 <li class="align-left">vlan10：用于给PC1以及第二层的交换机配IP用</li>
 <li class="align-left">vlan20：同理，用于给PC2以及对应的第二层的交换机配IP用</li>
 </ul>
@@ -794,7 +794,7 @@ return
         <updated>2025-12-06T16:45:00+08:00</updated>
             <summary>
                 <![CDATA[
-                    本项目基于华为的ENSP模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 ，密码：8hc8 本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）&hellip;
+                    本项目基于华为的ENSP模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 ，密码：8hc8 本项目的拓扑如下图所示（可以看到，图片中划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -814,7 +814,7 @@ return
 </ol>
 </blockquote>
 <p>拓扑下载：<a href="https://wwbte.lanzn.com/b014wwaaja" target="_blank" rel="noopener noreferrer">点我下载</a> ，密码：8hc8</p>
-<p>本项目的拓扑如下图所示（可以看到，我划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
+<p>本项目的拓扑如下图所示（可以看到，图片中划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-015236.png" alt="" width="1924" height="1242" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xl.webp 1024w"></figure>
 <p>开始之前，可以输入sys（等同于system-view，为了方便，以下我将会使用sys这个简化后的指令来操作），进入特权模式（就是[huawei]的这个）输入以下指令，从而关闭烦人的操作日志：</p>
 <pre class="language-c line-numbers"><code>undo info-center enable </code></pre>
@@ -823,7 +823,7 @@ return
 <p>另外，可以输入以下命令给设备命名，方便管理和以防混淆</p>
 <pre class="language-apacheconf line-numbers"><code>sys + 你设备的名称</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162524.png" alt="" width="315" height="33" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xl.webp 1024w"></figure>
-<p>上图为我给我的路由器1，命名为AR1的截图</p>
+<p>上图为我给路由器1，命名为AR1的截图</p>
 <p>此外，退出特权模式（就是[huawei]的这个），进入用户模式下（就是&lt;huuawei&gt;的这个），输入save，再按照提示输入y，可以随时保存（此操作强烈建议经常做，如遇到ensp模拟器死机的时候，重启设备的时候，保存前的信息不会丢）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162855.png" alt="" width="1247" height="207" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xl.webp 1024w"></figure>
 <p><strong>以上的操作非必须，但是建议这样做</strong></p>
