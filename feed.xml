@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-23T21:12:53+08:00</updated>
+    <updated>2026-01-24T00:22:43+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -30,7 +30,7 @@
 <p>结合之前的练习，我总结了以下的拓扑图来练习</p>
 <p>拓扑图下载：点我下载</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-162625.png" alt="" width="2333" height="1323" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-000929.png" alt="" width="2233" height="1348" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-xl.webp 1024w"></figure>
 <h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
 <p>实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-170736.png" alt="" width="1312" height="401" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xl.webp 1024w"></figure>
@@ -46,7 +46,7 @@
 <p>实操步骤如下：</p>
 <p>（1）根据提示的拓扑，完成vlan的划分（这里是vlan10，20，30，40）需要在L3-SW上操作（两台设备都要操作），先进入L3-SW1上创建vlan</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-171629.png" alt="" width="1287" height="352" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xl.webp 1024w"></figure>
-<p>在L3-SW1的代码部分如下（<code>*注意</code>：在L3-SW2也需要配置同样的代码）：</p>
+<p>在L3-SW1的代码部分如下（<code>*注意</code>：在L3-SW2配置vlanif的ip时，不能使用和L3-SW1一模一样的ip，必须同网段，不能同ip）：</p>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]vlan batch 10 20 30 40
 //使用vlan batch同时创建多个vlan
 [L3-SW1]int vlan 10
@@ -61,6 +61,20 @@
 [L3-SW1-Vlanif30]ip add 192.168.63.1 24
 [L3-SW1-Vlanif30]int vlan 40
 [L3-SW1-Vlanif40]ip add 192.168.73.1 24</code></pre>
+<p>在L3-SW2的配置如下（注意ip地址的变动）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]vlan batch 10 20 30 40
+//使用vlan batch同时创建多个vlan
+[L3-SW1]int vlan 10
+[L3-SW1-Vlanif10]ip add 192.168.3.2 24
+//添加ip地址（此地址将作为下层对应vlan下PC的网关ip）
+
+//剩余的vlan20，30，40也是同理，注意ip变成.2了
+[L3-SW1-Vlanif10]int vlan 20
+[L3-SW1-Vlanif20]ip add 192.168.53.2 24
+[L3-SW1-Vlanif20]int vlan 30
+[L3-SW1-Vlanif30]ip add 192.168.63.2 24
+[L3-SW1-Vlanif30]int vlan 40
+[L3-SW1-Vlanif40]ip add 192.168.73.2 24</code></pre>
 <p>提示部分：配置vlan ip的时候，不要进入到错误的vlan下，此外注意自己的网关和这个要对应</p>
 <p>（2）在各层交换机上配置端口模式，放行所有vlan</p>
 <p>（2-1）在L3-SW1和L3-SW2上配置所有的下层接口为Trunk模式，并且配置为放行所有vlan（这里以L3-SW1示例）</p>
@@ -145,9 +159,70 @@
 <p>（1）这里我是用查看stp的命令来去检查L3-SW2的聚合链路是否创建成功</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-210102.png" alt="" width="1091" height="262" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xl.webp 1024w"></figure>
 <p>可以看到，这里的G0/0/22和23已经合成一个Eth-Trunk 23的虚拟接口了，即为成功</p>
-<p>（2）我使用查看聚合链路的指令去看优先级（主/被动端）</p>
+<p>（2）我使用查看刚刚创建的聚合链路指令，看优先级（主/被动端）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ju-He-Lian-Lu-Xiang-Qing.png" alt="" width="1341" height="596" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xl.webp 1024w"></figure>
 <p>提示部分：聚合链路的本质是将交换机的多个端口聚合成一个链路，从而间接地实现增加带宽的效果。在交换机两端配置聚合链路的时候必须确保名字一样（也就是那个0~63的数字）。lacp是聚合链路中的一种模式（交换机自动协商，可设置系统优先级的高或者低）</p>
+<h5>习题四：<strong>在L3-SW1和L3-SW2上配置VRRP，其中设置VLAN10，30的Master节点为L3-SW1，设置VLAN20，40的Master节点为L3-SW2</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在L3-SW1/2上，给已经创建的vlan划分新的虚拟ip（不需要配置掩码）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-222119.png" alt="" width="314" height="150" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xl.webp 1024w"></figure>
+<p>我划分的vlan的虚拟ip如上图所示</p>
+<p>（1-1）进入L3-SW1的操作如下（配置划分的虚拟ip）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-221957.png" alt="" width="899" height="259" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-xl.webp 1024w"></figure>
+<p>L3-SW1的配置命令如下：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int vlan10
+//进入vlan10
+[L3-SW1-Vlanif10]vrrp vrid 10 virtual-ip 192.168.3.254
+//创建vrrp，命名为vrrp 10 ，并配置虚拟ip
+[L3-SW1-Vlanif10]int vlan20
+//进入vlan20
+[L3-SW1-Vlanif20]vrrp vrid 20 virtual-ip 192.168.53.254
+//创建vrrp，命名为vrrp 20 ，并配置虚拟ip
+[L3-SW1-Vlanif20]int vlan30
+//进入vlan30
+[L3-SW1-Vlanif30]vrrp vrid 30 virtual-ip 192.168.63.254
+//创建vrrp，命名为vrrp 30 ，并配置虚拟ip
+[L3-SW1-Vlanif30]int vlan40
+//进入vlan40
+[L3-SW1-Vlanif40]vrrp vrid 40 virtual-ip 192.168.73.254
+//创建vrrp，命名为vrrp 40 ，并配置虚拟ip</code></pre>
+<p>（1-2）L3-SW2的配置命令如下（相同的点在于vrrp的地址和名称和L3-SW1一模一样）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW2]int vlan 10
+//进入vlan10的配置界面
+[L3-SW2-Vlanif10]vrrp vrid 10 virtual-ip 192.168.3.254
+//创建vrrp，命名为vrrp 10 ，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif10]int vlan 20
+//进入vlan20的配置界面
+[L3-SW2-Vlanif20]vrrp vrid 20 virtual-ip 192.168.53.254
+//创建vrrp，命名为vrrp 20，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif20]int vlan 30
+//进入vlan 30的配置界面
+[L3-SW2-Vlanif30]vrrp vrid 30 virtual-ip 192.168.63.254
+//创建vrrp，命名为vrrp 30，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif30]int vlan 40
+//进入vlan40的配置界面
+[L3-SW2-Vlanif40]vrrp vrid 40 virtual-ip 192.168.73.254
+//创建vrrp，命名为vrrp 40，配置与L3-SW1同样的虚拟ip地址</code></pre>
+<p>（2）设置主/次优先级（也成为Master节点）</p>
+<p><strong><code>*核心</code>：优先级越大，则为Master</strong></p>
+<p>（2-1）提高在L3-SW1的vlan10，30的优先级</p>
+<pre class="language-cpp line-numbers"><code>//进入L3-SW1操作
+[L3-SW1]int vlan 10
+//进入需要配置的vlan，这里是vlan10
+[L3-SW1-Vlanif10]vrrp vrid 10 priority 120
+//提高虚拟id的优先级为120
+[L3-SW1-Vlanif10]int vlan 30
+//进入vlan30
+[L3-SW1-Vlanif30]vrrp vrid 30 priority 120 
+//同样提高优先级，在这个L3-SW1上设置为Master</code></pre>
+<p>（2-2）在L3-SW2配置vlan20，40</p>
+<pre class="language-cpp line-numbers"><code>//L3-SW2操作如下
+[L3-SW2]int vlan 20
+[L3-SW2-Vlanif20]vrrp vrid 20 priority 120
+[L3-SW2-Vlanif20]int vlan 40
+[L3-SW2-Vlanif40]vrrp vrid 40 priority 120
+//都是相同操作，只不过换vlan了</code></pre>
+<p>验证部分：</p>
 <p> </p>
             ]]>
         </content>
