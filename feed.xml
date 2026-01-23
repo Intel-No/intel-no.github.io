@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-23T18:27:04+08:00</updated>
+    <updated>2026-01-23T21:12:53+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2026-01-23T16:35:05+08:00</updated>
             <summary>
                 <![CDATA[
-                    网络实战分析综合练习 结合之前的练习，我总结了以下的拓扑图来练习 拓扑图下载：点我下载 防火墙镜像下载：点我下载 习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息&hellip;
+                    网络实战分析综合练习 结合之前的练习，我总结了以下的拓扑图来练习 拓扑图下载：点我下载 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -31,7 +31,7 @@
 <p>拓扑图下载：点我下载</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-162625.png" alt="" width="2333" height="1323" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-162625-xl.webp 1024w"></figure>
-<p><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></p>
+<h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
 <p>实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-170736.png" alt="" width="1312" height="401" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xl.webp 1024w"></figure>
 <p>代码部分如下：</p>
@@ -42,7 +42,7 @@
 [Huawei]undo info-center enable
 //关闭Debug信息 </code></pre>
 <p>提示部分：没啥难度，就是设备多，不要遗漏</p>
-<p><strong>习题二：按照网络配置的要求为各个区域的网络设备和计算机，配置合理的IP地址和网关使其能够内网的通讯，并且按照网络拓扑的要求在交换机上划分对应的VLAN，并且将其对应的物理端口划入到对应的VLAN中</strong></p>
+<h5><strong>习题二：按照网络配置的要求为各个区域的网络设备和计算机，配置合理的IP地址和网关使其能够内网的通讯，并且按照网络拓扑的要求在交换机上划分对应的VLAN，并且将其对应的物理端口划入到对应的VLAN中</strong></h5>
 <p>实操步骤如下：</p>
 <p>（1）根据提示的拓扑，完成vlan的划分（这里是vlan10，20，30，40）需要在L3-SW上操作（两台设备都要操作），先进入L3-SW1上创建vlan</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-171629.png" alt="" width="1287" height="352" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xl.webp 1024w"></figure>
@@ -119,9 +119,35 @@
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-175947.png" alt="" width="1545" height="748" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-xl.webp 1024w"></figure>
 <p>配置好后，当所有设备都可以Ping通网关，即为成功（下图分别为PC1/2/3/4的截图）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-181828.png" alt="" width="2731" height="1278" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-xl.webp 1024w"></figure>
-<p><strong>习题三：在所有二层接口上配置端口模式，使其能够进行正常的网络通讯</strong></p>
-<p>实操步骤如下：进入该拓扑内的其他设备中，配置对应的网段ip（我这里使用框线圈起来的几个区域）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Qu-Yu-Kuang-Xuan.png" alt="" width="2409" height="1406" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Qu-Yu-Kuang-Xuan-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Qu-Yu-Kuang-Xuan-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Qu-Yu-Kuang-Xuan-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Qu-Yu-Kuang-Xuan-xl.webp 1024w"></figure>
+<h5><strong>习题三：在L3-SW1和L3-SW2之间配置聚合链路，并且设置聚合链路的模式的LACP，设置L3-SW1为主动端</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在L3-SW1上配置Eth-Trunk 23的聚合链路，并设置为主动端（优先级高于SW2就行）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int eth-trunk 23
+//创建名叫eth-trunk23的聚合链路
+[L3-SW1-Eth-Trunk23]mode lacp-static
+//设置模式为lacp模式
+[L3-SW1-Eth-Trunk23]q
+//暂时退出eth-trunk23
+[L3-SW1]lacp priority 100
+//配置lacp的系统级的优先级，我这里为主动端，则设置为100，我在L3-SW2会设置成200
+[L3-SW1]int eth-trunk 23
+//再次进入到eth-trunk23
+[L3-SW1-Eth-Trunk23]trunkport GigabitEthernet 0/0/22 to 0/0/23
+将需要聚合的端口划分到这个聚合链路里面
+[L3-SW1-Eth-Trunk23]port link-type trunk
+//设置聚合链路的类型为trunk
+[L3-SW1-Eth-Trunk23]port trunk allow-pass vlan all
+//放行所有vlan</code></pre>
+<p>（2）在L3-SW2上来配置对端的聚合链路（设置L3-SW2的优先级为200）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-205507.png" alt="" width="1242" height="287" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-xl.webp 1024w"></figure>
+<p>（聚合链路的数字是自定义的，我这里以需要加入聚合端口号来命名了，是22端口和23端口的组合，2和3，即为23）只需要确保端口号一样即可</p>
+<p>验证部分：</p>
+<p>（1）这里我是用查看stp的命令来去检查L3-SW2的聚合链路是否创建成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-210102.png" alt="" width="1091" height="262" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xl.webp 1024w"></figure>
+<p>可以看到，这里的G0/0/22和23已经合成一个Eth-Trunk 23的虚拟接口了，即为成功</p>
+<p>（2）我使用查看聚合链路的指令去看优先级（主/被动端）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ju-He-Lian-Lu-Xiang-Qing.png" alt="" width="1341" height="596" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xl.webp 1024w"></figure>
+<p>提示部分：聚合链路的本质是将交换机的多个端口聚合成一个链路，从而间接地实现增加带宽的效果。在交换机两端配置聚合链路的时候必须确保名字一样（也就是那个0~63的数字）。lacp是聚合链路中的一种模式（交换机自动协商，可设置系统优先级的高或者低）</p>
 <p> </p>
             ]]>
         </content>
@@ -515,11 +541,11 @@ return</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-012607.png" alt="" width="2381" height="1383" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-012607-xl.webp 1024w"></figure>
 <h4 class="align-center">实验一：实现全网互通</h4>
 <p class="align-left"><span style="color: #e03e2d;">Step1：</span>先给我们的所有PC机以及各种设备，重命名，配置对应的网路地址和关闭Debug调试（这里我依旧以PC1，L2-SW1，L3-AR1为例）其余设备也是同理</p>
-<p class="align-center">PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）</p>
+<p class="align-left">PC1配置如下：（tips：PC3的网关就是与AR1连接的端口IP哦~）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-12-235926.png" alt="" width="1545" height="1055" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235926-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235926-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235926-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-12-235926-xl.webp 1024w"></figure>
-<p class="align-center">L2-SW1配置如下：</p>
+<p class="align-left">L2-SW1配置如下：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-000347.png" alt="" width="1309" height="468" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000347-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000347-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000347-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000347-xl.webp 1024w"></figure>
-<p class="align-center">L3-AR1配置如下：</p>
+<p class="align-left">L3-AR1配置如下：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-000228.png" alt="" width="1298" height="497" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000228-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000228-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000228-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-000228-xl.webp 1024w"></figure>
 <p class="align-left"><span style="color: #e03e2d;">Step2：</span>进入各个设备的对应端口，配置基础信息</p>
 <p class="align-left">先创建几个vlan以便后续的操作（vlan2 ，vlan10，vlan20）</p>
@@ -528,7 +554,7 @@ return</code></pre>
 <li class="align-left">vlan10：用于给PC1以及第二层的交换机配IP用</li>
 <li class="align-left">vlan20：同理，用于给PC2以及对应的第二层的交换机配IP用</li>
 </ul>
-<p class="align-center">我这里依旧以L3-SW1示例：</p>
+<p class="align-left">我这里依旧以L3-SW1示例：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-001931.png" alt="" width="1280" height="170" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-001931-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-001931-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-001931-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-001931-xl.webp 1024w"></figure>
 <pre class="language-c line-numbers"><code>[L3-SW1]vlan batch 2 10 20</code></pre>
 <p class="align-left">使用 vlan batch 命令，可以同时配置多条vlan</p>
@@ -579,11 +605,11 @@ return</code></pre>
 <p class="align-left"><span style="color: #e03e2d;">Step5：</span>设置在L3-AR1上配置基础信息以及OSPF路由</p>
 <p class="align-left">以下是用于设置各个端口的IP的指令（进入端口配IP就行，没啥难度的）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013328.png" alt="" width="1257" height="346" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013328-xl.webp 1024w"></figure>
-<p class="align-center">在L3-AR1上创建OSPF路由（就是加入临近的网段），如下图所示</p>
+<p class="align-left">在L3-AR1上创建OSPF路由（就是加入临近的网段），如下图所示</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-013705.png" alt="" width="1233" height="194" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-013705-xl.webp 1024w"></figure>
 <p class="align-left">如果OSPF忘记了的朋友，可以去看看我的上一篇文章里面有讲，这里我就不过多赘述了</p>
 <p class="align-left">配置完成后再次回到L3-SW1/2中，我们需要在这<strong>两个设备</strong>中添加OSPF路由，从而实现全网互通</p>
-<p class="align-center">这是我在L3-SW1配置的操作，如下图所示：</p>
+<p class="align-left">这是我在L3-SW1配置的操作，如下图所示：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-014426.png" alt="" width="1257" height="291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-014426-xl.webp 1024w"></figure>
 <p class="align-left">分别对应的是：</p>
 <ul class="align-center" style="list-style-type: circle;">
@@ -596,62 +622,35 @@ return</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-13-015100.png" alt="" width="2466" height="1363" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-13-015100-xl.webp 1024w"></figure>
 <p class="align-center"><strong>至此，恭喜你已经实现基础的全网通</strong></p>
 <h4 class="align-center">实验二：冗余网关协议（聚合链路&amp;VRRP）</h4>
-<p class="align-left">在原有的基础之上，我们将继续操作（<code>*注：</code>以下的Ping实验验证时，可能会存在短时间Ping不通的情况，那是涉及到ENSP模拟器的性能，及这个网络协商的时间差）我会给L3-SW1与L3-SW2之间配聚合链路（这里我会使用<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);"><a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/LACP.html" target="_blank" rel="noopener noreferrer">LACP</a>模式来组聚合链路，</span></p>
+<p class="align-left">在原有的基础之上，我们将继续操作（<code>*注：</code>以下的Ping实验验证时，可能会存在短时间Ping不通的情况，那是涉及到ENSP模拟器的性能，及这个网络协商的时间差）我会给L3-SW1与L3-SW2之间配聚合链路</p>
 <div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class=" old-record-id-DRTQd6vXDocyUYxUmgVc0WqYnDb align-left">并设置L3-SW1为主动端，且设置当前端口中最大的链路活动状态为2个<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">）</span></div>
 <h5>聚合链路配置</h5>
 <p class="align-left">功能概述：是一种将<strong>多个物理链路捆绑成一个逻辑链路</strong>的技术，核心作用是<strong>提升带宽、增加链路冗余</strong></p>
 <div class="align-left"> </div>
 </div>
 <div class="align-center" data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class="old-record-id-DRTQd6vXDocyUYxUmgVc0WqYnDb align-left"><span style="color: #e03e2d;">Step1</span>：首先进入L3-SW1上，创建一个聚合接口为Eth-Trunk2，然后设置模式为lacp模式，并且设置聚合口中最大的活动数为2，最后将物理端口加入到当前聚合口中</div>
+<div class="old-record-id-DRTQd6vXDocyUYxUmgVc0WqYnDb align-left"><span style="color: #e03e2d;">Step1</span>：首先进入L3-SW1上，创建一个聚合接口为Eth-Trunk2，并且设置聚合口中最大的活动数为2，最后将物理端口加入到当前聚合口中</div>
 <div class="align-center"> </div>
-<div class="align-center">下图为我在L3-SW1上的演示：（L3-SW2也是同理）</div>
+<div class="align-left">下图为我在L3-SW1上的演示：（L3-SW2也是同理）</div>
 <div class="align-center"> </div>
 <div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-203418.png" alt="" width="1026" height="190" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-203418-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-203418-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-203418-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-203418-xl.webp 1024w"></figure></div>
 <div class="align-center"> </div>
-<div class="align-center">代码解释如下：</div>
+<div class="align-left">创建聚合链路Eth-Trunk2如下：</div>
 <div class="align-center">
 <pre class="language-cpp line-numbers"><code>[L3-SW1]int Eth-Trunk 2
 //创建名为 Eth-Trunk 2 的隧道
 [L3-SW1-Eth-Trunk2]port link-type trunk
 //设置端口类型为Trunk模式
 [L3-SW1-Eth-Trunk2]port trunk allow-pass vlan 2 to 4094
-//放行所有端口
-[L3-SW1-Eth-Trunk2]mode lacp-static
-//设置类型为lacp模式
-
-//以下Max设置仅在主动端设置（例如这里我将L3-SW1设为主动端）
-[L3-SW1-Eth-Trunk2]max active-linknumber 2
-//设置 Eth-Trunk 2 的链路聚合组的最大活动链路数量为 2
-[L3-SW1-Eth-Trunk2]trunkport GigabitEthernet 0/0/23 to 0/0/24
-//将GigabitEthernet0/0/23 和 0/0/24 这两个物理端口加入当前 Eth-Trunk 聚合组
-//注：以上命令需在 Eth-Trunk 接口视图下执行，比如先执行interface Eth-Trunk 2 进入聚合组 2，再执行这些）</code></pre>
+//放行所有端口</code></pre>
 </div>
-<div class="align-left"><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);"><span style="color: #e03e2d;">Step2</span>：继续在L3-SW2上设置主动端的优先级（默认为32768）我们将主动</span><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">提高其优先级，并配置为100</span></div>
-<div class="align-center"> </div>
-<div class="align-center">L3-SW2的配置如下图所示：</div>
-<div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-204819.png" alt="" width="788" height="132" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-204819-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-204819-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-204819-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-204819-xl.webp 1024w"></figure></div>
-<div class="align-left"> </div>
-<div class="align-left">简单来说就是进入端口，使用<code>lacp priority</code>命令，将L3-SW2的两个端口的优先级为100</div>
-<div class="align-left"> </div>
-<div class="align-left">优先级规则：LACP 端口优先级<strong>数值越小，优先级越高</strong>；在聚合组中，优先级高的端口会优先被选为 “活动链路”（当聚合组的<code>max active-linknumber</code>限制了活动链路数量时，低优先级的端口会成为备用）</div>
-<div class="align-center"> </div>
-<div class="align-center"><code>*注</code>：在L3-SW2千万别忘记了输入应用的指令，如下所示：</div>
+<div class="align-left">在刚刚创建好的Eth-Trunk2链路中加入两个端口，如下所示：</div>
 <div class="align-center">
 <pre class="language-cpp line-numbers"><code>[L3-SW2]int Eth-Trunk 2
 //进入 Eth-Trunk 2 端口
 [L3-SW2-Eth-Trunk2]trunkport GigabitEthernet 0/0/23 to 0/0/24
 //将之前配置的信息应用到 g0/0/23和24口</code></pre>
 </div>
-<div class="align-left">以上这条指令会把 <code>GigabitEthernet0/0/23</code>和 <code>GigabitEthernet0/0/24</code>这两个物理端口，批量加入到刚刚配置的 Eth-Trunk 2 的链路聚合组中</div>
-<div class="align-left"> </div>
-<div class="align-left">可使用我下图中<strong>蓝色高亮</strong>的指令去验证，在L3-SW1/2任意一台设备上</div>
-<div class="align-left">去输入一下（若和我下图示范的一样，那么则为配置正确）</div>
-<div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-210320.png" alt="" width="1257" height="603" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-210320-xl.webp 1024w"></figure></div>
-<div class="align-center"> </div>
-<div class="align-center">成功后，就可以看到这两个端口的状态为UP的了</div>
-<div class="align-center"> </div>
 <div class="align-center"><strong>至此，聚合链路部分就已经成功配置完毕了</strong></div>
 <h5 class="align-center">VRRP配置</h5>
 <p class="align-left">功能概述：它是一种用于<strong>网关冗余备份</strong>的网络协议，核心作用是让多台设备（通常是交换机 / 路由器）共享同一个 “虚拟网关 IP”，避免单点故障导致终端无法上网</p>
@@ -661,10 +660,10 @@ return</code></pre>
 <div class="align-left"> </div>
 <div class=" old-record-id-BFA8dNtpPo2UzYxFQY2czjoNn7d align-left"><span style="color: #e03e2d;">Step2</span>：设置监控上行链路为g0/0/22端口，我将设置 L3-SW1 作为 vlan 10 的 Master 设备（所以需要对vlan 10 的vrrp组设置优先级为 120 ，设置链路抢占时间为 20 秒）</div>
 <div> </div>
-<div>配置如下（我在L3-SW1演示的截图）：</div>
+<div class="align-left">配置如下（我在L3-SW1演示的截图）：</div>
 <div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-213114.png" alt="" width="1133" height="230" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-213114-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-213114-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-213114-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-213114-xl.webp 1024w"></figure></div>
 <div> </div>
-<div class=" old-record-id-BFA8dNtpPo2UzYxFQY2czjoNn7d">逐行代码解释如下：</div>
+<div class=" old-record-id-BFA8dNtpPo2UzYxFQY2czjoNn7d align-left">逐行代码解释如下：</div>
 <div>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]int vlan10
 //进入 vlan10
@@ -697,7 +696,7 @@ return</code></pre>
 //设置vlan20下的虚拟id链路抢占时间为20秒
 [L3-SW2-Vlanif20] vrrp vrid 20 track interface GigabitEthernet0/0/22
 //让vrrp 20的配置应用在L3-SW2的g0/0/22端口</code></pre>
-<p class="align-center"> L3-SW2的配置图片如下：</p>
+<p class="align-left"> L3-SW2的配置图片如下：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-214540.png" alt="" width="1120" height="300" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-214540-xl.webp 1024w"></figure>
 <p class="align-left"><code>*常见问题</code>：如果我已经配了不同的的优先级（也就是输入了在L3-SW1和L3-SW2不同的vrrp vrid 10 priority 120/100）还是显示都为Master，怎么解决？（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-012320.png" alt="" width="1110" height="231" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-012320-xl.webp 1024w"></figure>
@@ -775,20 +774,20 @@ return
 </div>
 </div>
 </div>
-<div class="align-center">配置命令如下（这里我以L3-SW1演示）：</div>
+<div>配置命令如下（这里我以L3-SW1演示）：</div>
 <div class="align-center"><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-19-220218.png" alt="" width="785" height="163" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-19-220218-xl.webp 1024w"></figure></div>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]router id 2.2.2.2
 //修改router id</code></pre>
 <p class="align-left">至于在L3-AR1，L3-SW1与L3-SW2之间的OSPF部分，我已经在前面的部分说过了，这里我就不在过多赘述了（前面配过的可以跳过此步骤，没配的记得配一下）</p>
 <h5 class="align-left align-center">验证环节</h5>
-<p class="align-left align-center">这里我使用wireshark抓包工具向你直观的展示VRRP的“起死回生”环节</p>
+<p>这里我使用wireshark抓包工具向你直观的展示VRRP的“起死回生”环节</p>
 <p class="align-left">我们首先使用PC1去一直Ping PC3（我使用的是ping + ip地址 + ”-t“命令）来保持PC1一直往PC3发送<a href="https://baike.baidu.com/item/ICMP/572452" target="_blank" rel="noopener noreferrer">ICMP</a>的报文</p>
 <p class="align-left">可以看到这里的PC1走的是GE0/0/2口（图中展示了GE0/0/2抓到了来自PC1与PC3之间通讯的ICMP报文，而这个GE0/0/1口则没有，只是普通的VRRP和OSPF的<a href="https://blog.csdn.net/x13262608581/article/details/134025835" target="_blank" rel="noopener noreferrer">多播协议</a>）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Zhua-Bao-GE02Kou-You-Shu-Ju.png" alt="" width="2450" height="1413" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Zhua-Bao-GE02Kou-You-Shu-Ju-xl.webp 1024w"></figure>
 <p class="align-left">接下来，我将这个PC1与PC3通讯的L3-SW2机器给它物理关掉，那么则会发生下图的的情况（由于本人的电脑性能不佳，等待了较长的时间）最终成功等待到了这个L3-SW1的再次通讯</p>
 <p class="align-left">可以看到我在下图的这个GE0/0/1口，成功捕捉到了来自于这个VRRP协议再次拉起的PC1于PC3的ICMP的通讯信息的数据包</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/35/Ping-Mu-Jie-Tu-2025-12-20-014945.png" alt="" width="2400" height="1543" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-md.webp 768w ,https://zeyun.dpdns.org/media/posts/35/responsive/Ping-Mu-Jie-Tu-2025-12-20-014945-xl.webp 1024w"></figure>
-<p class="align-center">从以上的实验可简单说明这个VRRP冗余网关协议的作用</p>
+<p>从以上的实验可简单说明这个VRRP冗余网关协议的作用</p>
 <p class="align-center"><strong>至此，VRRP配置的部分就已经成功配置完毕了</strong></p>
 <h4 class="align-center">实验三：生成树协议STP&amp;MSTP</h4>
 <p class="align-left">在学习这个概念之前，我们需要先简单的了解有关于以下这几个问题的产生原理，才能理解这STP协议和MSTP协议的本质</p>
