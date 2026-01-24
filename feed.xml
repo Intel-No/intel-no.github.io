@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-01-24T00:22:43+08:00</updated>
+    <updated>2026-01-24T15:27:05+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -162,7 +162,59 @@
 <p>（2）我使用查看刚刚创建的聚合链路指令，看优先级（主/被动端）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ju-He-Lian-Lu-Xiang-Qing.png" alt="" width="1341" height="596" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xl.webp 1024w"></figure>
 <p>提示部分：聚合链路的本质是将交换机的多个端口聚合成一个链路，从而间接地实现增加带宽的效果。在交换机两端配置聚合链路的时候必须确保名字一样（也就是那个0~63的数字）。lacp是聚合链路中的一种模式（交换机自动协商，可设置系统优先级的高或者低）</p>
-<h5>习题四：<strong>在L3-SW1和L3-SW2上配置VRRP，其中设置VLAN10，30的Master节点为L3-SW1，设置VLAN20，40的Master节点为L3-SW2</strong></h5>
+<h5><strong>习题四：在内网的L3-SW1-SW4交换机上配置MSTP使其配合VRRP协议实现冗余链路和负载均衡</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）配置L3-SW1上的基础mstp服务</p>
+<pre class="language-cpp line-numbers"><code>//基础配置信息
+[L3-SW1]stp region-configuration
+//开启stp服务
+[L3-SW1-mst-region]region-name huawei
+//给服务起名为huawei（这里的名字不限）
+[L3-SW1-mst-region]instance 1 vlan 10 30
+//将vlan 10 vlan 20 划分到一个区域1里面
+[L3-SW1-mst-region]instance 2 vlan 20 40
+//将vlan 20 vlan 40 划分到是个区域2里面
+[L3-SW1-mst-region]active region-configuration 
+//启动服务
+
+[L3-SW1]stp instance 1 root  primary
+//在L3-SW1里设置区域1为根桥（master）
+[L3-SW1]stp instance 2 root secondary 
+//在L3-SW2库设置区域2为备用（secondary）</code></pre>
+<p>（2）在L3-SW2配置mstp服务（需要注意的是这个根桥的设置需要为和L3-SW1相反的配置）</p>
+<pre class="language-cpp line-numbers"><code>//上面的基础信息配置都是一样的
+//也可以使用这个接下来的dis this指令，来一键配置
+
+//注意：以下内容需要更改
+[L3-SW2]stp instance 2 root primary
+//在L3-SW2里设置区域1为根桥（master）
+[L3-SW2]stp instance 1 root secondary 
+//在L3-SW2里设置区域1为备用（secondary）
+//注意，这里是与L3-SW1上反过来的</code></pre>
+<p>（3）在L3-SW1的基础mstp配置完成后，需要将这个对应的mstp配置的信息宣告给局域网内的其他交换机配置（这里的是L3-SW2,L2-SW3,L2-SW4,L2-SW5,L2-SW6都需要配置）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1-mst-region]dis this 
+#
+stp region-configuration
+ region-name huawei
+ instance 1 vlan 10 30
+ instance 2 vlan 20 40
+ active region-configuration
+#
+return
+//将以上的结果打印出来，后面需要在每一台交换机里执行</code></pre>
+<p>（3）配置边缘端口（在与非交换机与交换机的接口上配置）：</p>
+<p>已知需要配置边缘端口：所有2层交换机上与PC连接的端口，3层交换机上层去连接路由器的端口</p>
+<p>（3-1）在3层交换机上配置边缘路由（L3-SW1和L3-SW2）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int g0/0/24
+//进入3层交换机的与AR的端口
+[L3-SW1-GigabitEthernet0/0/24]stp edged-port enable
+//设置边缘端口</code></pre>
+<p>（3-2）在2层交换机上配置边缘路由（L2-SW3,L2-SW4,L2-SW5,L2-SW6）</p>
+<pre class="language-cpp line-numbers"><code>[L2-SW3]int e0/0/1
+//进入2层交换机的与PC接入的接口
+[L2-SW3-Ethernet0/0/1] stp edged-port enable
+//配置端口配置边缘端口模式</code></pre>
+<h5>习题五：<strong>在L3-SW1和L3-SW2上配置VRRP，其中设置VLAN10，30的Master节点为L3-SW1，设置VLAN20，40的Master节点为L3-SW2</strong></h5>
 <p>实操步骤如下：</p>
 <p>（1）在L3-SW1/2上，给已经创建的vlan划分新的虚拟ip（不需要配置掩码）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-222119.png" alt="" width="314" height="150" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xl.webp 1024w"></figure>
@@ -205,25 +257,29 @@
 //创建vrrp，命名为vrrp 40，配置与L3-SW1同样的虚拟ip地址</code></pre>
 <p>（2）设置主/次优先级（也成为Master节点）</p>
 <p><strong><code>*核心</code>：优先级越大，则为Master</strong></p>
-<p>（2-1）提高在L3-SW1的vlan10，30的优先级</p>
+<p>（2-1）提高在L3-SW1的vlan10，30的优先级（这里我将优先级设置成150）</p>
 <pre class="language-cpp line-numbers"><code>//进入L3-SW1操作
 [L3-SW1]int vlan 10
 //进入需要配置的vlan，这里是vlan10
-[L3-SW1-Vlanif10]vrrp vrid 10 priority 120
-//提高虚拟id的优先级为120
+[L3-SW1-Vlanif10]vrrp vrid 10 priority 150
+//提高虚拟id的优先级为150
 [L3-SW1-Vlanif10]int vlan 30
 //进入vlan30
-[L3-SW1-Vlanif30]vrrp vrid 30 priority 120 
+[L3-SW1-Vlanif30]vrrp vrid 30 priority 150 
 //同样提高优先级，在这个L3-SW1上设置为Master</code></pre>
-<p>（2-2）在L3-SW2配置vlan20，40</p>
+<p>（2-2）在L3-SW2配置vlan20，40的优先级（同样为150的优先级）</p>
 <pre class="language-cpp line-numbers"><code>//L3-SW2操作如下
 [L3-SW2]int vlan 20
-[L3-SW2-Vlanif20]vrrp vrid 20 priority 120
+[L3-SW2-Vlanif20]vrrp vrid 20 priority 150
 [L3-SW2-Vlanif20]int vlan 40
-[L3-SW2-Vlanif40]vrrp vrid 40 priority 120
+[L3-SW2-Vlanif40]vrrp vrid 40 priority 150
 //都是相同操作，只不过换vlan了</code></pre>
-<p>验证部分：</p>
-<p> </p>
+<p>验证部分（vrrp配置情况以及mstp的配置情况）：</p>
+<p>使用<code>dis vrrp brief</code>查看L3-SW1的配置情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-151239.png" alt="" width="1109" height="294" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-xl.webp 1024w"></figure>
+<p>可以看到这里以及配置成功（分配了Master和Backup）</p>
+<p>使用<code>dis stp brief </code>查看L3-SW1的配置情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-151743.png" alt="" width="1105" height="577" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-xl.webp 1024w"></figure>
             ]]>
         </content>
     </entry>
