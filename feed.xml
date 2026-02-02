@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-02-01T00:17:02+08:00</updated>
+    <updated>2026-02-02T23:04:32+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -509,7 +509,43 @@ return
 [L3-SW1-ospf-1-area-0.0.0.0]network 192.168.73.0 0.0.0.255
 //内网的所有网段都需要宣告</code></pre>
 <p>L3-SW2也是一样，这里我就不展示了，配好即可</p>
-<h4 class="align-center">持续更新中</h4>
+<h5><strong>习题九：</strong><strong>在互联网的AR2-AR4区域上配置OSPF路由进程为2，并且在连接FW1和AR2的路由器接口上开启OSPF的加密认证，密码为admin@123</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）配置OSPF 2的步骤如下：</p>
+<p>（1-1）进入AR2配置端口ip地址（这里的AR3，AR4也都是同理，这里我不过多赘述）</p>
+<pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
+//进入与FW1链接的配置接口，配置与FW1对应的网段ip地址
+//FW1我配置的是202.108.100.1/29，所以我在这里配置202.108.100.2/29
+[AR2-GigabitEthernet0/0/0]int g0/0/1
+[AR2-GigabitEthernet0/0/1]ip add 202.3.101.1 29
+[AR2-GigabitEthernet0/0/1]int g0/0/2
+[AR2-GigabitEthernet0/0/2]ip add 202.3.102.1 29
+//配置对应的ip地址，这里我选择是的左侧配置.1，其他的配置.2</code></pre>
+<p>（1-2）进入AR2，配置ospf 2（AR3，AR4都是同理）</p>
+<pre class="language-cpp line-numbers"><code>[AR2]ospf 2
+//宣告区域为ospf 2
+[AR2-ospf-2]area 0
+创建区域0
+[AR2-ospf-2]network 202.3.101.0 0.0.0.7
+//添加涉及到的两个网段的ip地址
+[AR2-ospf-2]network 202.3.102.0 0.0.0.7 
+//需要注意的是这里的网段是以29结尾的，所以这改成0.0.0.7</code></pre>
+<p>提示部分：配ip的时候别配置错误，在配置AR3的这个路由时，需要把G0/0/2口的这个网段也划分到这个ospf2中，但是在这个AR4配置的时候，不需要把这个G0/0/2口划分到ospf2中（后面会配置RIP路由，只需要配置端口ip就行）</p>
+<p>验证部分：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-02-222524.png" alt="" width="1367" height="1291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xl.webp 1024w"></figure>
+<p>这里我使用的是AR4去ping在ospf2中的不同的端口ip，来验证是否联通</p>
+<p>（2）配置FW1与AR2的ospf加密认证</p>
+<p>（2-1）进入需要认证的端口，配置认证信息（以下为添加密码的配置代码）</p>
+<pre class="language-cpp line-numbers"><code>ospf authentication-mode md5 1 cipher + 你的密码</code></pre>
+<p>（2-2）在AR2和FW1对应端口的ospf密码认证配置如下：</p>
+<pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
+[AR2-GigabitEthernet0/0/0]ospf authentication-mode md5 1 cipher admin@123
+
+[FW1]int g1/0/3
+[FW1-GigabitEthernet1/0/3]ospf authentication-mode md5 1 cipher admin@123</code></pre>
+<p>提示部分：由于之前配置了信任区域的缘故，所以这里即使是配置了ospf的端口加密也是无法进行ping的测试的，ping不通是属于正常现象</p>
+<h5>习题十：<strong>在AR4和L3-SW8上开启RIP路由，并且实现互联网区域的OSPF和RIP之间互相引入，实现网络的联通</strong></h5>
+<p> </p>
             ]]>
         </content>
     </entry>
