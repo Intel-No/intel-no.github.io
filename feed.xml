@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-02-24T17:14:56+08:00</updated>
+    <updated>2026-02-27T12:38:28+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -117,7 +117,7 @@
 <p>结合之前的练习，我总结了以下的拓扑图来练习</p>
 <p>拓扑图下载：点我下载</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-000929.png" alt="" width="2233" height="1348" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-000929-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
 <h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
 <p>实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-170736.png" alt="" width="1312" height="401" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xl.webp 1024w"></figure>
@@ -651,6 +651,63 @@ return
 <p>这里我使用PC6，去Ping分别来自AR2的202.3.102.1的这个IP地址，和来自AR3的202.3.103.2的这个IP地址，从而验证这个配置的情况</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-24-171236.png" alt="" width="1530" height="1229" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-xl.webp 1024w"></figure>
 <p>可以看到，可以收到来自于AR2和AR3的回复包，即如上图所示</p>
+<h5><strong>习题十一：设置内网服务器区域的WWW服务器的http服务，实现内网客户端通过域名成功访问到WWW服务，其中设置DNS的解析为www.test.com解析到WWW服务器的IP上</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在FW1的配置</p>
+<p>（1-1）给 FW1 G1/0/2 配置服务器段网关</p>
+<pre class="language-cpp line-numbers"><code>[FW1]system-view
+//进入FW1系统视图
+[FW1]interface GigabitEthernet1/0/2
+//进入G1/0/2接口（DMZ区，已加入dmz zone，无需再加）
+[FW1-GigabitEthernet1/0/2]ip address 10.10.4.254 24
+//配置服务器段网关IP，选10.10.4.254/24（避开所有重叠网段，掩码24满足服务器段需求）
+[FW1-GigabitEthernet1/0/2]quit
+//接口已undo shutdown，无需再操作，退出</code></pre>
+<p>（1-2）将服务器段加入 OSPF，让内网互通</p>
+<pre class="language-cpp line-numbers"><code>[FW1]ospf 1
+//FW1系统视图下
+[FW1-ospf-1]area 0
+//进入area 0
+[FW1-ospf-1-area-0.0.0.0]network 10.10.4.0 0.0.0.255
+//把10.10.4.0/24加入OSPF 0区（反掩码0.0.0.255对应掩码24）
+[FW1-ospf-1-area-0.0.0.0]quit
+[FW1-ospf-1]quit
+[FW1]quit
+&lt;FW1&gt;save
+//保存配置</code></pre>
+<p>操作目的：将<strong>DNS/WWW 服务器段从 10.10.3.0/24 调整为不重叠的网段</strong>（比如<code>10.10.4.0/24</code>，避开 FW1 已有的 10.10.3.0/29、10.20.3.0/29），网关放在 FW1 的 G1/0/2（DMZ 区），同时把该网段加入 OSPF，让内网 L3-SW1/2 能通过 OSPF 学习到路由</p>
+<p>（2）在DNS服务器的配置</p>
+<p>如下图所示，网关设置成上层的连接</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103316.png" alt="" width="1452" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103411.png" alt="" width="1463" height="1012" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-xl.webp 1024w"></figure>
+<p>（3）在WWW服务器上的配置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103547.png" alt="" width="1467" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103616.png" alt="" width="1458" height="1014" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xl.webp 1024w"></figure>
+<p>（4）在防火墙上的配置</p>
+<p>这里我依旧使用图形化界面操作，便于理解</p>
+<p>（4-1）进入防火墙，依次打开如下界面</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120149-2.png" alt="" width="2879" height="1536" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-xl.webp 1024w"></figure>
+<p>（4-2）找到服务这个选项，并添加DNS以及HTTP两个选项（勾选上即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120243.png" alt="" width="1832" height="1400" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-xl.webp 1024w"></figure>
+<p>（4-3）最终完成后的效果如下图所示</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120254.png" alt="" width="1827" height="1402" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-xl.webp 1024w"></figure>
+<p>（5）添加Client客户端</p>
+<p>这里我选择在L3-SW1的G0/0/5口添加（因为这样只需要将这个口划分到vlan10即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-123303.png" alt="" width="668" height="638" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xl.webp 1024w"></figure>
+<p>（5-1）在L3-SW1操作，将G0/0/5划分到vlan10</p>
+<pre class="language-cpp line-numbers"><code>&lt;L3-SW1&gt;system-view 
+//进入特权模式
+[L3-SW1]int g0/0/5
+//进入g0/0/5端口
+[L3-SW1-GigabitEthernet0/0/5]port link-type access
+//设置端口类型为access模式
+[L3-SW1-GigabitEthernet0/0/5]port default vlan 10
+//划分到vlan10</code></pre>
+<p>验证环节：</p>
+<p>（1）使用Client客户端访问10.10.4.3这个IP地址，发现可以正常解析到文件</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120504.png" alt="" width="1462" height="1011" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xl.webp 1024w"></figure>
+<p>（2）使用Cilent客户端访问这个www.test.com这个网址，依旧可以解析到文件</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120439.png" alt="" width="1464" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xl.webp 1024w"></figure>
             ]]>
         </content>
     </entry>
