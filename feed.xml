@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-02-27T12:38:28+08:00</updated>
+    <updated>2026-02-27T21:51:30+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -108,14 +108,14 @@
         <updated>2026-01-23T16:35:05+08:00</updated>
             <summary>
                 <![CDATA[
-                    网络实战分析综合练习 结合之前的练习，我总结了以下的拓扑图来练习 拓扑图下载：点我下载 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
+                    网络实战分析综合练习 结合之前的练习，我总结了以下的拓扑图来练习 拓扑图下载：点我下载（正在制作） 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <h2 class="align-center">网络实战分析综合练习</h2>
 <p>结合之前的练习，我总结了以下的拓扑图来练习</p>
-<p>拓扑图下载：点我下载</p>
+<p>拓扑图下载：点我下载（正在制作）</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
 <h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
@@ -708,6 +708,9 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120504.png" alt="" width="1462" height="1011" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xl.webp 1024w"></figure>
 <p>（2）使用Cilent客户端访问这个www.test.com这个网址，依旧可以解析到文件</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120439.png" alt="" width="1464" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xl.webp 1024w"></figure>
+<h5><strong>习题十二：在防火墙FW1上通过配置NAT实现使其内网实现互联网的访问</strong></h5>
+<p> </p>
+<p> </p>
             ]]>
         </content>
     </entry>
