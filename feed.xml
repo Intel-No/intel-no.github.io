@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-03T00:20:57+08:00</updated>
+    <updated>2026-03-03T00:34:52+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,7 +21,7 @@
         <updated>2026-03-02T22:01:23+08:00</updated>
             <summary>
                 <![CDATA[
-                    在前一章节，我带领大家配置完基础的安装过程，以及换完国内的源等基础的Ubuntu的设置后，接下来我会带领大家实现如下图的美化效果（如下图所示） 如果没看我前一章节的朋友，可以回头看看：点我直达 别担心，本篇文章我会带着从零开始，一步一步地美化这个系统 所需材料来源于Github的大佬们制作的美化包，所以务必请准备好外网环境，如果没有的话，可以使用国内的镜像站（改成bgithub.xyz即可）
+                    在前一章节，我带领大家配置完基础的安装过程，以及换完国内的源等基础的Ubuntu的设置后，接下来我会带领大家实现如下图的美化效果（如下图所示） 如果没看我前一章节的朋友，可以回头看看：点我直达 别担心，本篇文章我会带着从零开始，一步一步地美化这个系统 所需材料来源于Github的大佬们制作的美化包，所以务必请准备好外网环境，如果没有的话，可以使用国内的镜像站（改成bgithub.xyz即可） 剩余内容还在更新中....
                 ]]>
             </summary>
         <content type="html">
@@ -31,6 +31,7 @@
 <p>别担心，本篇文章我会带着从零开始，一步一步地美化这个系统</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/42/ubuntumacosmain.png" alt="" width="1920" height="1080" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/42/responsive/ubuntumacosmain-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/42/responsive/ubuntumacosmain-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/42/responsive/ubuntumacosmain-md.webp 768w ,https://zeyun.dpdns.org/media/posts/42/responsive/ubuntumacosmain-xl.webp 1024w"></figure>
 <p>所需材料来源于Github的大佬们制作的美化包，所以务必请准备好外网环境，如果没有的话，可以使用国内的镜像站（改成bgithub.xyz即可）</p>
+<p class="align-center">剩余内容还在更新中....</p>
             ]]>
         </content>
     </entry>
