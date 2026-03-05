@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-03T00:34:52+08:00</updated>
+    <updated>2026-03-05T09:25:52+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -258,7 +258,59 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-234618.png" alt="" width="2280" height="1405" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-md.webp 768w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-xl.webp 1024w"></figure>
 <p>（4）点击确定下载即可（如果下载速度慢，可以尝试开启"🪄魔法"或者加速器）如果实在是速度很慢（冷门资源，做种数少，那么就会很长时间了）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-235101.png" alt="" width="2879" height="1706" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-md.webp 768w ,https://zeyun.dpdns.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-xl.webp 1024w"></figure>
-<p class="align-center">至此，你已经完全学会这款软件的下载和使用</p>
+<p>标志的含义介绍如下图所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">英文全称</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>D</strong></td>
+<td align="left">DHT</td>
+<td align="left">来自 DHT 网络的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>T</strong></td>
+<td align="left">Tracker</td>
+<td align="left">来自 Tracker 服务器的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>P</strong></td>
+<td align="left">Peer Exchange</td>
+<td align="left">通过 Peer Exchange（PEX）发现的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>X</strong></td>
+<td align="left">Encrypted/uTP</td>
+<td align="left">加密连接 或 使用 uTP 协议</td>
+</tr>
+<tr>
+<td align="left"><strong>U</strong></td>
+<td align="left">Upload Only</td>
+<td align="left">对方只上传，不下载你的数据</td>
+</tr>
+<tr>
+<td align="left"><strong>D</strong></td>
+<td align="left">Download Only</td>
+<td align="left">你只下载，不从对方那里上传数据</td>
+</tr>
+<tr>
+<td align="left"><strong>I</strong></td>
+<td align="left">Incoming</td>
+<td align="left">对方主动连接到你</td>
+</tr>
+<tr>
+<td align="left"><strong>O</strong></td>
+<td align="left">Outgoing</td>
+<td align="left">你主动连接到对方</td>
+</tr>
+</tbody>
+</table>
+<p>至此，你已经完全学会这款软件的下载和使用</p>
 <p>说了这么多，我这里分享一个推荐的BT种子下载软件的使用，祝你使用愉快(●'◡'●)</p>
 <p><strong>好用的网址下载推荐qbittorrent的网站（已收录在“<a href="https://zeyun.dpdns.org/good_web.html" target="_blank" rel="noopener noreferrer">网站推荐</a>”里）</strong></p>
 <p>海盗湾：<a href="https://thepiratebay.asia/" target="_blank" rel="noopener noreferrer">点我直达</a></p>
