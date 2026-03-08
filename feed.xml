@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-05T09:25:52+08:00</updated>
+    <updated>2026-03-08T10:07:05+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -331,13 +331,13 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
         <updated>2026-01-23T16:35:05+08:00</updated>
             <summary>
                 <![CDATA[
-                    网络实战分析综合练习 结合之前的练习，我总结了以下的拓扑图来练习 拓扑图下载：点我下载（正在制作） 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
+                    网络实战分析综合练习 结合之前的练习，我将结合以下的拓扑图来进行讲解（出题人：点我跳转） 拓扑图下载：点我下载（正在制作） 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <h2 class="align-center">网络实战分析综合练习</h2>
-<p>结合之前的练习，我总结了以下的拓扑图来练习</p>
+<p>结合之前的练习，我将结合以下的拓扑图来进行讲解（出题人：<a href="https://www.pigteacher.com/" target="_blank" rel="noopener noreferrer">点我跳转</a>）</p>
 <p>拓扑图下载：点我下载（正在制作）</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
@@ -670,9 +670,9 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FWdmzQu-Yu.png" alt="" width="1490" height="780" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FWdmzQu-Yu-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FWdmzQu-Yu-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FWdmzQu-Yu-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FWdmzQu-Yu-xl.webp 1024w"></figure>
 <h5><strong>全部区域放行ICMP协议</strong></h5>
 <p>（1）依次找到“策略”-&gt;"安全策略"-&gt;"新建安全策略"</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Fang-Xing-Suo-You-icmpDe-Ce-Lue-Xin-Xi.png" alt="" width="2879" height="1701" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Fang-Xing-Suo-You-icmpDe-Ce-Lue-Xin-Xi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Fang-Xing-Suo-You-icmpDe-Ce-Lue-Xin-Xi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Fang-Xing-Suo-You-icmpDe-Ce-Lue-Xin-Xi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Fang-Xing-Suo-You-icmpDe-Ce-Lue-Xin-Xi-xl.webp 1024w"></figure>
-<p>（2）新建后，选择如下图所示即可</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-205142-2.png" alt="" width="1824" height="1395" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-205142-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-205142-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-205142-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-205142-2-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1Ce-Lue-2.png" alt="" width="2879" height="1698" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1Ce-Lue-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Ce-Lue-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Ce-Lue-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Ce-Lue-2-xl.webp 1024w"></figure>
+<p>（2）策略新建后，选择如下图所示即可（由于我这里修改过了，所以选择的是“修改安全策略”，正常选择新建策略，而不是修改原有的策略）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1Fang-Xing-ICMP.png" alt="" width="1831" height="1403" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-xl.webp 1024w"></figure>
 <h5><strong>习题八：在内网中配置OSPF协议，进程为1，使其内网网络联通</strong></h5>
 <p>实操步骤如下：</p>
 <h6>内网网络为：L3-FW1，L3-SW1和L3-SW2，三台设备之间的配置</h6>
@@ -689,7 +689,7 @@ return
 //进入g1/0/1口配置ip
 [FW1-GigabitEthernet1/0/1]ip address 10.20.3.1 29
 //同样地，设置为10.20.3.1的这个ip（注意掩码！！）</code></pre>
-<p>（2）配置FW1上的ospf</p>
+<p>（2）配置FW1上的OSPF 1</p>
 <pre class="language-cpp line-numbers"><code>[FW1]router id 1.1.1.1
 //先配置router id 为1.1.1.1
 [FW1]OSPF 1
@@ -718,7 +718,7 @@ return
 //配置为access模式
 [L3-SW1-GigabitEthernet0/0/24]port def vlan 2
 //把vlan2划分给g0/0/24</code></pre>
-<p>（3-2）ospf配置（内网都要宣告）</p>
+<p>（3-2）OSPF 1 配置（内网都要宣告）</p>
 <pre class="language-cpp line-numbers"><code>[L3-SW1]router id 2.2.2.2
 //先划分router id（按顺时针配置了）
 [L3-SW1]ospf 1
@@ -739,34 +739,38 @@ return
 <pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
 //进入与FW1链接的配置接口，配置与FW1对应的网段ip地址
 //FW1我配置的是202.108.100.1/29，所以我在这里配置202.108.100.2/29
+[AR2-GigabitEthernet0/0/0]ip address 202.108.100.2 29
+//进入其他的接口，配置对应的ip地址
 [AR2-GigabitEthernet0/0/0]int g0/0/1
 [AR2-GigabitEthernet0/0/1]ip add 202.3.101.1 29
 [AR2-GigabitEthernet0/0/1]int g0/0/2
 [AR2-GigabitEthernet0/0/2]ip add 202.3.102.1 29
 //配置对应的ip地址，这里我选择是的左侧配置.1，其他的配置.2</code></pre>
-<p>（1-2）进入AR2，配置ospf 2（AR3，AR4都是同理）</p>
+<p>（1-2）进入AR2，配置OSPF 2（AR3，AR4都是同理）</p>
 <pre class="language-cpp line-numbers"><code>[AR2]ospf 2
 //宣告区域为ospf 2
 [AR2-ospf-2]area 0
-创建区域0
+//创建区域0
 [AR2-ospf-2]network 202.3.101.0 0.0.0.7
-//添加涉及到的两个网段的ip地址
+//添加涉及到的三个网段的ip地址
 [AR2-ospf-2]network 202.3.102.0 0.0.0.7 
+//需注意，这里的与FW1连接的也需要配置
+[AR2-ospf-2]network 202.108.100.0 0.0.0.7 
 //需要注意的是这里的网段是以29结尾的，所以这改成0.0.0.7</code></pre>
-<p>提示部分：配ip的时候别配置错误，在配置AR3的这个路由时，需要把G0/0/2口的这个网段也划分到这个ospf2中，但是在这个AR4配置的时候，不需要把这个G0/0/2口划分到ospf2中（后面会配置RIP路由，只需要配置端口ip就行）</p>
+<p>提示部分：配ip的时候别配置错误，在配置AR3的这个路由时，需要把G0/0/2口的这个网段也划分到这个OSPF 2中，但是在这个AR4配置的时候，则不需要把这个G0/0/2口划分到OSPF 2中（后面会配置RIP路由，目前只需要配置端口ip就行）</p>
 <p>验证部分：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-02-222524.png" alt="" width="1367" height="1291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xl.webp 1024w"></figure>
-<p>这里我使用的是AR4去ping在ospf2中的不同的端口ip，来验证是否联通</p>
-<p>（2）配置FW1与AR2的ospf加密认证</p>
+<p>这里我使用的是AR4去ping在OSPF 2中的不同的端口ip，来验证是否联通</p>
+<p>（2）配置FW1与AR2的OSPF加密认证（加密方式有很多，这里我选择MD5加密方式）</p>
 <p>（2-1）进入需要认证的端口，配置认证信息（以下为添加密码的配置代码）</p>
 <pre class="language-cpp line-numbers"><code>ospf authentication-mode md5 1 cipher + 你的密码</code></pre>
-<p>（2-2）在AR2和FW1对应端口的ospf密码认证配置如下：</p>
+<p>（2-2）在AR2和FW1对应端口，配置OSPF密码认证，详细配置信息如下：</p>
 <pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
 [AR2-GigabitEthernet0/0/0]ospf authentication-mode md5 1 cipher admin@123
 
 [FW1]int g1/0/3
 [FW1-GigabitEthernet1/0/3]ospf authentication-mode md5 1 cipher admin@123</code></pre>
-<p>提示部分：由于之前配置了信任区域的缘故，所以这里即使是配置了ospf的端口加密也是无法进行ping的测试的，ping不通是属于正常现象</p>
+<p>提示部分：由于还没有配置内外网区域的协议相互引入，所以这里ping不通是属于正常现象（通常情况下，这里是外网配置OSPF的加密，内网则不需要）</p>
 <h5>习题十：<strong>在AR4和L3-SW8上开启RIP路由，并且实现互联网区域的OSPF和RIP之间互相引入，实现网络的联通</strong></h5>
 <p>设备划分思路如下：</p>
 <table>
@@ -906,15 +910,12 @@ return
 <p>（3）在WWW服务器上的配置</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103547.png" alt="" width="1467" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xl.webp 1024w"></figure>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103616.png" alt="" width="1458" height="1014" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xl.webp 1024w"></figure>
-<p>（4）在防火墙上的配置</p>
+<p>（4）在防火墙上的配置（放行DNS和HTTP协议）</p>
 <p>这里我依旧使用图形化界面操作，便于理解</p>
-<p>（4-1）进入防火墙，依次打开如下界面</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120149-2.png" alt="" width="2879" height="1536" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120149-2-xl.webp 1024w"></figure>
-<p>（4-2）找到服务这个选项，并添加DNS以及HTTP两个选项（勾选上即可）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120243.png" alt="" width="1832" height="1400" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120243-xl.webp 1024w"></figure>
-<p>（4-3）最终完成后的效果如下图所示</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120254.png" alt="" width="1827" height="1402" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120254-xl.webp 1024w"></figure>
-<p>（5）添加Client客户端</p>
+<p>（4-1）进入防火墙，新建一条策略（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1Fang-Xing-DMZ.png" alt="" width="1822" height="1394" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-xl.webp 1024w"></figure>
+<p>提示部分：这里的DMZ区域（非军事化管理区域），这里通常将<strong>要给外网访问，但又不能直接放进内网服务器</strong>放在这里，因为服务器需要为外网提供服务，但是服务器又属于内网区域，而DMZ区域就是做这个用途的（核心服务器不能放在这里）</p>
+<p>（5）添加内网Client客户端（进行网页访问的验证）</p>
 <p>这里我选择在L3-SW1的G0/0/5口添加（因为这样只需要将这个口划分到vlan10即可）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-123303.png" alt="" width="668" height="638" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xl.webp 1024w"></figure>
 <p>（5-1）在L3-SW1操作，将G0/0/5划分到vlan10</p>
@@ -927,12 +928,44 @@ return
 [L3-SW1-GigabitEthernet0/0/5]port default vlan 10
 //划分到vlan10</code></pre>
 <p>验证环节：</p>
-<p>（1）使用Client客户端访问10.10.4.3这个IP地址，发现可以正常解析到文件</p>
+<p>（1）使用内网Client客户端访问10.10.4.3这个IP地址，发现可以正常解析到文件</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120504.png" alt="" width="1462" height="1011" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xl.webp 1024w"></figure>
-<p>（2）使用Cilent客户端访问这个www.test.com这个网址，依旧可以解析到文件</p>
+<p>（2）使用内网Cilent客户端访问这个www.test.com这个网址，依旧可以解析到文件</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120439.png" alt="" width="1464" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xl.webp 1024w"></figure>
 <h5><strong>习题十二：在防火墙FW1上通过配置NAT实现使其内网实现互联网的访问</strong></h5>
-<p> </p>
+<p>打开防火墙（为了便于演示，我这里依旧使用网页来进行操作）</p>
+<p>步骤一：新建NAT策略</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_NATCe-Lue.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_NATCe-Lue-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_NATCe-Lue-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_NATCe-Lue-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_NATCe-Lue-xl.webp 1024w"></figure>
+<p>配置策略（这里我之前配置过了，所以是修改，正常配置时会显示的是新建）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_Wai-Wang-Zhuan-Hua.png" alt="" width="1334" height="1125" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-xl.webp 1024w"></figure>
+<p>提示部分：出接口地址，默认是下一跳的外网地址（AR2上的配置的IP地址）</p>
+<p>也可以选择新建唯一ip的地址池，也就是配置单独的一个出接口地址（但是那样有些麻烦，所以我们还是选择“出接口地址“这个选项，来的方便）</p>
+<p>提一下：如果要自己配置这个唯一ip的地址池的时候，需要勾选这个”允许端口地址池转化“的这个选项（如下图所示，没单独配地址池则不需要选择和新建）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_jk.png" alt="" width="2879" height="1704" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_jk-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_jk-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_jk-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_jk-xl.webp 1024w"></figure>
+<p>步骤二：选择新建安全策略，并添加以下安全策略</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_TRUST_UNTRUST.png" alt="" width="1829" height="1395" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-xl.webp 1024w"></figure>
+<p>配置缺省路由（就是当路由器<strong>找不到更精确的路由条目</strong>时，<strong>唯一的、最后的出口</strong>）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1pzi.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1pzi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1pzi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1pzi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1pzi-xl.webp 1024w"></figure>
+<p>打开这里的“缺省路由的”这个选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-085207.png" alt="" width="1193" height="783" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-xl.webp 1024w"></figure>
+<p>测试部分：</p>
+<p>现在可以使用内网的PC机器去Ping外网的机器，来验证示范成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-090850.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-xl.webp 1024w"></figure>
+<p>我这里选择是PC1去Ping外网的Cilent1的IP，以及PC6的IP</p>
+<p>可以看到，这里可以Ping通，即为验证配置成功</p>
+<h5><strong>习题十三：在防火墙FW1上配置NAT发布，使其互联网通过访问防火墙的外部端口可以访问到内网WWW服务的80端口</strong></h5>
+<p>步骤一：这里我们再次创建一个安全策略配置（用于外网的机器访问内网的DMZ区域）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_HTTP.png" alt="" width="2879" height="1695" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_HTTP-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_HTTP-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_HTTP-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_HTTP-xl.webp 1024w"></figure>
+<p>添加一条80端口的服务器映射</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_Fu-Wu-Qi-Ying-She.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-xl.webp 1024w"></figure>
+<p>提示部分：黑洞路由（可选），主要目的是将外网的访问其他非指定的内网IP直接丢包</p>
+<p>验证部分：</p>
+<p>可以点击”诊断“按钮，测试是否联通，并启用这个端口映射</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/FW1_ZD.png" alt="" width="2879" height="1699" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/FW1_ZD-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_ZD-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_ZD-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/FW1_ZD-xl.webp 1024w"></figure>
+<p>使用外网的Cilent1机器访问FW1的ip地址（由于没有配置域名绑定，所以使用域名访问不到）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-093004.png" alt="" width="1458" height="1003" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xl.webp 1024w"></figure>
+<p>可以成功，即为配置没问题</p>
+<h5><strong>习题十四：在内网中配置ACL控制，使其VLAN20和VLAN40两个网段不能互相访问</strong></h5>
 <p> </p>
             ]]>
         </content>
