@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-08T13:13:39+08:00</updated>
+    <updated>2026-03-08T13:19:34+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -344,7 +344,7 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
 <li>出口通过防火墙NAT转化连接互联网区域</li>
 <li>同时提供 DNS、WWW 等基础服务</li>
 </ul>
-<p>拓扑图下载：点我下载（正在制作）</p>
+<p>拓扑图下载：<a href="https://wwbte.lanzn.com/b014x43hpe" target="_blank" rel="noopener noreferrer">点我下载</a>        密码：ck4t</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
 <h5>模拟实验环境概述：</h5>
