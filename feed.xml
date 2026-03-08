@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-08T10:07:05+08:00</updated>
+    <updated>2026-03-08T13:13:39+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -331,20 +331,29 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
         <updated>2026-01-23T16:35:05+08:00</updated>
             <summary>
                 <![CDATA[
-                    网络实战分析综合练习 结合之前的练习，我将结合以下的拓扑图来进行讲解（出题人：点我跳转） 拓扑图下载：点我下载（正在制作） 防火墙镜像下载：点我下载 实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）&hellip;
+                    网络实战分析综合练习 本次拓扑涉及点如下： 内部用 OSPF +&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <h2 class="align-center">网络实战分析综合练习</h2>
-<p>结合之前的练习，我将结合以下的拓扑图来进行讲解（出题人：<a href="https://www.pigteacher.com/" target="_blank" rel="noopener noreferrer">点我跳转</a>）</p>
+<div><strong>本次拓扑涉及点如下</strong>：</div>
+<ul>
+<li>内部用 OSPF + VLAN + VRF 做核心交换与隔离</li>
+<li>分部用 RIP 做简化路由</li>
+<li>出口通过防火墙NAT转化连接互联网区域</li>
+<li>同时提供 DNS、WWW 等基础服务</li>
+</ul>
 <p>拓扑图下载：点我下载（正在制作）</p>
 <p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
+<h5>模拟实验环境概述：</h5>
+<p>上图中的橙色区域作为企业内部的核心内网区域（涉及内网的全网通，虚拟vlan，链路聚合，OSPF 1，内网访问服务器等等），防火墙的左侧为企业内网服务器区域（DMZ区域，实现内网的机器访问，并且提供外网的绑定80端口访问），防火墙右侧的粉色区域为模拟运营商的公网区域（需要在相邻的路由上配置端口加密）运营商的网络部分涉及到搭建OSPF 2以及右侧蓝色区域的RIP路由配置，及OSPF 2与RIP之间的相互引入，右上角的区域用于模拟外网（通过运营商连接的公网机器）来访问内网的模拟机器</p>
+<p class="align-center">接下来的所演示的配置信息都将围绕这个模拟的拓扑图展开</p>
 <h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
 <p>实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-170736.png" alt="" width="1312" height="401" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xl.webp 1024w"></figure>
-<p>代码部分如下：</p>
+<p>配置的代码思路部分如下：</p>
 <pre class="language-cpp line-numbers"><code>&lt;Huawei&gt;system-view 
 //切换系统视图
 [Huawei]sysname + 设备名称
@@ -966,7 +975,73 @@ return
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-093004.png" alt="" width="1458" height="1003" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xl.webp 1024w"></figure>
 <p>可以成功，即为配置没问题</p>
 <h5><strong>习题十四：在内网中配置ACL控制，使其VLAN20和VLAN40两个网段不能互相访问</strong></h5>
-<p> </p>
+<p>配置思路如下：</p>
+<ul>
+<li><strong>使用高级 ACL 3000</strong>：需同时匹配<strong>源 IP + 目的 IP</strong>，精准拦截 V20↔V40，不影响其他网段</li>
+<li><strong>应用位置</strong>：选择在<strong>Vlanif20、Vlanif40 接口入方向</strong>设置（也就是流量进入三层网关时拦截，效率最高）</li>
+<li><strong>规则逻辑</strong>：
+<ul>
+<li>拒绝 VLAN20 源 IP 访问 VLAN40 目的 IP</li>
+<li>拒绝 VLAN40 源 IP 访问 VLAN20 目的 IP</li>
+<li>无需额外配置<code>permit any any</code>：华为<strong>接口入方向</strong>应用 ACL 时，仅拦截匹配规则的流量，未匹配的流量默认放行（避免误拦截其他网段）</li>
+</ul>
+</li>
+</ul>
+<p>实操步骤：</p>
+<p>步骤一：在L3-SW1的配置如下</p>
+<pre class="language-bash line-numbers"><code># 1. 为Vlanif20创建ACL 3001（拦截V20→V40）
+[L3-SW1]acl number 3001 name deny1-V20-to-V40
+[L3-SW1-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.53.0 0.0.0.255 destination 192.168.73.0 0.0.0.255
+[L3-SW1-acl-adv-deny-V20-to-V40]quit
+
+# 2. 为Vlanif40创建ACL 3002（拦截V40→V20）
+[L3-SW1]acl number 3002 name deny2-V40-to-V20
+[L3-SW1-acl-adv-deny-V40-to-V20]rule 5 deny ip source 192.168.73.0 0.0.0.255 destination 192.168.53.0 0.0.0.255
+[L3-SW1-acl-adv-deny-V40-to-V20]quit
+
+# 3. 将ACL 3001绑定到Vlanif20入方向
+[L3-SW1]interface Vlanif20
+[L3-SW1-Vlanif20]traffic-filter inbound acl 3001
+[L3-SW1-Vlanif20]quit
+
+# 4. 将ACL 3002绑定到Vlanif40入方向
+[L3-SW1]interface Vlanif40
+[L3-SW1-Vlanif40]traffic-filter inbound acl 3002
+[L3-SW1-Vlanif40]quit
+
+# 验证配置（可选）
+[L3-SW1]dis acl all  # 查看ACL规则
+[L3-SW1]dis cu interface Vlanif20  # 查看Vlanif20配置
+[L3-SW1]dis cu interface Vlanif40  # 查看Vlanif40配置</code></pre>
+<p>步骤二：在L3-SW2的配置如下（和L3-SW1的配置大相径庭）</p>
+<pre class="language-bash line-numbers"><code># 1. 创建ACL 3001（拦截V20→V40）
+[L3-SW2]acl number 3001 name deny1-V20-to-V40
+[L3-SW2-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.53.0 0.0.0.255 destination 192.168.73.0 0.0.0.255
+[L3-SW2-acl-adv-deny-V20-to-V40]quit
+
+# 2. 创建ACL 3002（拦截V40→V20）
+[L3-SW2]acl number 3002 name deny2-V20-to-V40
+[L3-SW2-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.73.0 0.0.0.255 destination 192.168.53.0 0.0.0.255
+[L3-SW2-acl-adv-deny-V20-to-V40]quit
+
+# 3. 绑定ACL到接口
+[L3-SW2]interface Vlanif20
+[L3-SW2-Vlanif20]traffic-filter inbound acl 3001
+[L3-SW2-Vlanif20]quit
+[L3-SW2]interface Vlanif40
+[L3-SW2-Vlanif40]traffic-filter inbound acl 3002
+[L3-SW2-Vlanif40]quit
+
+# 验证配置（可选）
+[L3-SW2]dis acl all</code></pre>
+<p>提示部分：</p>
+<p>在L3-SW1/2配置ACL时候需要注意的点，命名的时候不可以重复（例如我这里的使用deny1-V20-to-V40，deny2-V20-to-V40区分），ACL规则编号也不能重复（例如我这里的使用3001和3002区分）</p>
+<p>验证环节</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-124655.png" alt="" width="2879" height="1705" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-md.webp 768w ,https://zeyun.dpdns.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-xl.webp 1024w"></figure>
+<p>可以看到，我使用PC4去Ping属于vlan20的PC（53网段）全部超时，再次去Ping属于vlan10的PC（3网段）可以成功，那么就证明了前面配置的acl规则配置的没有问题</p>
+<h6 class="align-left">至此，本次的分析到此结束，如果您能完全理解，那么恭喜你，你已经成功掌握最基础的企业级复合网络</h6>
+<h6 class="align-center">感谢您的阅读(*/ω＼*)</h6>
+<p class="align-right">致谢：本文思路来源于<a href="https://www.pigteacher.com/" target="_blank" rel="noopener noreferrer">PigTeacher</a>的课程考题</p>
             ]]>
         </content>
     </entry>
