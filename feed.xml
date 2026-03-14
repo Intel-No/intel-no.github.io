@@ -3,12 +3,205 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.dpdns.org/feed.xml" rel="self" />
     <link href="https://zeyun.dpdns.org" />
-    <updated>2026-03-11T21:59:35+08:00</updated>
+    <updated>2026-03-15T00:17:52+08:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.dpdns.org</id>
 
+    <entry>
+        <title>Kali Linux 抓取 WPA2 握手包并进行字典破解（实验记录）</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.dpdns.org/kali_deciphering_wifi.html"/>
+        <id>https://zeyun.dpdns.org/kali_deciphering_wifi.html</id>
+            <category term="网络工具介绍"/>
+
+        <updated>2026-03-14T21:56:35+08:00</updated>
+            <summary>
+                <![CDATA[
+                    免责声明 本文所有实验均在个人搭建的内网测试环境中进行，仅用于学习网络安全技术原理，请勿在未授权的网络环境中进行测试，否则可能涉及违法行为 设备要求 一台装有kali的机器（推荐使用虚拟机） 一个可以监听的网卡（我使用的是RT3070L无线网卡）&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h4 class="align-center">免责声明</h4>
+<h5 class="align-center">本文所有实验均在个人搭建的内网测试环境中进行，仅用于学习网络安全技术原理，请勿在未授权的网络环境中进行测试，否则可能涉及违法行为</h5>
+<h4>设备要求</h4>
+<ul>
+<li>一台装有kali的机器（推荐使用虚拟机）</li>
+<li>一个可以监听的网卡（我使用的是RT3070L无线网卡）</li>
+</ul>
+<h4>爆破原理解释</h4>
+<p>先通过监听模式抓取 WPA2 网络（方法主要针对 WPA2 网络，对 WPA3 基本无效）在设备连接时产生的握手数据包（Handshake），然后利用密码字典对可能的密码逐个进行计算验证。如果计算结果与握手数据匹配，则说明该密码正确（这种方式属于字典暴力破解，因此破解成功率取决于字典内容和计算能力）</p>
+<h4 data-start="580" data-end="589">破解流程大致如下</h4>
+<ol>
+<li>开启网卡监听模式</li>
+<li>扫描周围 WiFi</li>
+<li>抓取目标 WiFi 的握手包</li>
+<li>使用密码字典进行离线破解</li>
+<li>如果字典中的密码匹配成功，则得到 WiFi 密码</li>
+</ol>
+<h4 data-start="884" data-end="891">另外说明一点</h4>
+<p data-start="893" data-end="917">Kali 自带的密码字典虽然很大，但有两个问题</p>
+<ul>
+<li data-start="893" data-end="917">破解速度会非常慢</li>
+<li data-start="893" data-end="917">里面不一定包含测试 WiFi 的密码</li>
+</ul>
+<p>因此在本次实验中，我使用的是自己编写的密码字典 txt 文件</p>
+<h4>准备工作</h4>
+<h6>Stp1：首先确保在你的网卡连接上虚拟机，并处于监听状态</h6>
+<p>使用以下命令查看</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-220816.png" alt="" width="2137" height="1022" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-xl.webp 1024w"></figure>
+<p>我这里是没有处于监听状态，使用如下命令开启监听</p>
+<p>1.先关闭干扰进程</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng check kill</code></pre>
+<p>2.启动监听模式</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng start wlan0</code></pre>
+<p>3.验证是否成功</p>
+<pre class="language-bash line-numbers"><code>iwconfig</code></pre>
+<p>看到以下的显示，即为正确打开监听模式</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-221908.png" alt="" width="2143" height="467" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-xl.webp 1024w"></figure>
+<p>关闭监听模式（用完记得恢复）</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng stop wlan0mon
+sudo systemctl start NetworkManager</code></pre>
+<h6>Stp2：在桌面新建一个文件夹，用于存放抓到的握手包以及密码字典</h6>
+<p>1.创建文件夹（每个人的文件路径不同，之后的路径也不同，需要注意！）</p>
+<pre class="language-bash line-numbers"><code>mkdir /home/kali/桌面/wifi_test</code></pre>
+<p>2.创建密码字典</p>
+<pre class="language-bash line-numbers"><code>touch /home/kali/桌面/wifi_test/password.txt</code></pre>
+<p>3.编辑你自己的密码字典(确保里面有需要爆破的WiFi密码)</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/password.png" alt="" width="851" height="590" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/password-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/password-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/password-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/password-xl.webp 1024w"></figure>
+<h4>实战开始</h4>
+<h6>Stp1：扫描周围 WiFi</h6>
+<p>使用如下命令扫描附近无线网络</p>
+<pre class="language-bash line-numbers"><code>sudo airodump-ng wlan0mon</code></pre>
+<p>会看到以下情景（下图框选的是本次爆破的 WiFi 名称）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/ceuiwifi.png" alt="" width="2137" height="1021" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/ceuiwifi-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/ceuiwifi-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/ceuiwifi-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/ceuiwifi-xl.webp 1024w"></figure>
+<p>需要记录两个信息：BSSID，ESSID，CH（可以复制到一个你记得住的地方，一会要用）</p>
+<p>记录完成后按，<code>Ctrt + C </code>结束扫描</p>
+<h6>Stp2：开始抓取握手包</h6>
+<p>输入以下命令，开始抓包</p>
+<pre class="language-bash line-numbers"><code>sudo airodump-ng -c 换成你的信道的数字 --bssid 这里替换成你的BSSID -w /home/kali/桌面/wifi_test/handshake wlan0mon</code></pre>
+<p>参数解释：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>指定信道</td>
+</tr>
+<tr>
+<td>--bssid</td>
+<td>目标 WiFi 的 MAC 地址</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>抓包文件保存路径</td>
+</tr>
+</tbody>
+</table>
+<p>如果成功捕获到 WAP 握手包，界面上会出现下图的情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/hex-2.png" alt="" width="2132" height="559" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/hex-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-2-xl.webp 1024w"></figure>
+<p>出现上图的 WAP 的信息后，说明抓包成功</p>
+<p>也可以和我下图一样，在刚刚创建的文件夹里打开终端</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-234238.png" alt="" width="1286" height="962" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-xl.webp 1024w"></figure>
+<h6>原理解释</h6>
+<p data-start="134" data-end="209">当设备连接到 <strong data-start="141" data-end="154">WPA2 WiFi</strong> 时，客户端与路由器之间会进行一次认证过程，这个过程叫做 <strong data-start="183" data-end="208">4-Way Handshake（四次握手）</strong></p>
+<p data-start="211" data-end="225">简单来说，这个过程的作用是：</p>
+<ul>
+<li data-start="229" data-end="249">验证客户端是否知道正确的 WiFi 密码</li>
+<li data-start="252" data-end="265">同时生成通信所需的加密密钥</li>
+</ul>
+<p data-start="267" data-end="276">整个流程大致如下：</p>
+<ol>
+<li data-start="281" data-end="293">路由器向客户端发送随机数</li>
+<li data-start="297" data-end="326">客户端根据 <strong data-start="303" data-end="319">WiFi密码 + 随机数</strong> 计算认证信息</li>
+<li data-start="330" data-end="344">客户端把计算结果发送给路由器</li>
+<li data-start="348" data-end="357">路由器验证是否正确</li>
+</ol>
+<p data-start="359" data-end="383">如果计算结果正确，设备就可以成功连接 WiFi</p>
+<p data-start="385" data-end="430">在这个过程中，会产生一些认证数据包，这些数据包就是 <strong data-start="411" data-end="429">Handshake（握手包）</strong></p>
+<p data-start="457" data-end="466">需要注意的一点是：</p>
+<p data-start="468" data-end="508">握手包 <strong data-start="472" data-end="490">不会直接包含 WiFi 密码</strong>，但它包含了用于验证密码的认证数据</p>
+<p>如果你和我一样，等了很久，都没有出现WPA的相关信息，可以强制设备重新连接来获取</p>
+<h6>强制设备重新连接（如果没抓到包的可以做，之前抓到了，可以跳过此步骤）</h6>
+<p>如果一直抓不到握手包，可以使用 <strong data-start="1866" data-end="1879">deauth 攻击</strong>让设备重新连接</p>
+<p><code>Ctrl + Shift + T </code>新开一个终端，输入以下命令：</p>
+<pre class="language-bash line-numbers"><code>sudo aireplay-ng -0 10 -a 换成你BSSID的地址 wlan0mon</code></pre>
+<p data-start="2017" data-end="2043">执行后，连接 WiFi 的设备会被踢下线并重新连接</p>
+<p data-start="2045" data-end="2065">重新连接时就会产生新的 <strong data-start="2057" data-end="2064">握手包 （也就是下面的这个红色框的 WPA 信息）</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/hex-3.png" alt="" width="2132" height="559" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/hex-3-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-3-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-3-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/hex-3-xl.webp 1024w"></figure>
+<p data-start="2067" data-end="2084">当抓到握手包后，可以在抓包终端按<code> Ctrl + C </code>结束</p>
+<p data-start="2067" data-end="2084">如果以上的步骤还是不行，那就直接使用你的手机，断开并重新连接到这个WiFi（这样做100%成功，因为攻击的目的是让手机被动的下线在重连）</p>
+<h6>参数解释：</h6>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-0</td>
+<td>deauth攻击</td>
+</tr>
+<tr>
+<td>10</td>
+<td>攻击次数</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>目标MAC</td>
+</tr>
+</tbody>
+</table>
+<h6>原理解释</h6>
+<p>在 <code data-start="931" data-end="944">airodump-ng</code> 界面下方会显示 <strong data-start="953" data-end="964">STATION</strong> 列表，这里是已经连接到该 WiFi 的设备 MAC 地址<br data-start="994" data-end="997">在使用 <code data-start="1003" data-end="1016">aireplay-ng</code> 发送 deauth 时，可以把其中一个设备的 MAC 填入 <code data-start="1047" data-end="1051">-c</code> 参数，用于强制该设备断开并重新连接 WiFi，从而触发新的握手包</p>
+<p>此时目录下会生成类似文件（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/wificap.png" alt="" width="1279" height="946" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/wificap-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/wificap-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/wificap-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/wificap-xl.webp 1024w"></figure>
+<h6>stp3:开始字典破解</h6>
+<p>在这里打开终端</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-15-000149.png" alt="" width="1292" height="977" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-xl.webp 1024w"></figure>
+<p>接下来使用 <strong data-start="2175" data-end="2190">aircrack-ng</strong> 进行密码破解，命令如下</p>
+<pre class="language-bash line-numbers"><code>sudo aircrack-ng -w /home/kali/桌面/wifi_test/password.txt -b 此处换成刚刚获取的BSSID handshake-01.cap</code></pre>
+<p>提示：如果你前面的e失败次数较多，那么大概率会有handshake-02.cap这样的包，最终只要选对了正确的包即可</p>
+<h6>参数解释：</h6>
+<table style="width: 100%; height: 133.484px;">
+<thead>
+<tr style="height: 48.5625px;">
+<th style="width: 29.8734%; height: 48.5625px;">参数</th>
+<th style="width: 69.9842%; height: 48.5625px;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 48.5625px;">
+<td style="width: 29.8734%; height: 48.5625px;">-w</td>
+<td style="width: 69.9842%; height: 48.5625px;">密码字典</td>
+</tr>
+<tr style="height: 36.3594px;">
+<td style="width: 29.8734%; height: 36.3594px;">
+<p>-b</p>
+</td>
+<td style="width: 69.9842%; height: 36.3594px;">目标WiFi BSSID</td>
+</tr>
+</tbody>
+</table>
+<p>之后，程序会不断尝试字典中的密码，直至成功</p>
+<p>成功后的画面如下（正真的密码我打马赛克了，所以是文字的形式显示的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/45/mima.png" alt="" width="2135" height="1016" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/45/responsive/mima-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/45/responsive/mima-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/45/responsive/mima-md.webp 768w ,https://zeyun.dpdns.org/media/posts/45/responsive/mima-xl.webp 1024w"></figure>
+<p>由于之前的WiFi密码已经包含在内了，所以我这里的速度会很快</p>
+<p class="align-center">至此，本实验到此结束</p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>安装Burp Suite</title>
         <author>
@@ -16,7 +209,7 @@
         </author>
         <link href="https://zeyun.dpdns.org/install_burpsuite.html"/>
         <id>https://zeyun.dpdns.org/install_burpsuite.html</id>
-            <category term="网络工具"/>
+            <category term="网络工具介绍"/>
 
         <updated>2026-03-11T20:35:30+08:00</updated>
             <summary>
@@ -283,7 +476,7 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
         </author>
         <link href="https://zeyun.dpdns.org/qbittorrent_teaching.html"/>
         <id>https://zeyun.dpdns.org/qbittorrent_teaching.html</id>
-            <category term="网络工具"/>
+            <category term="网络工具介绍"/>
 
         <updated>2026-01-31T23:33:06+08:00</updated>
             <summary>
@@ -1885,185 +2078,6 @@ return
 <p class="align-right">此外，Part4 已经更新：<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part4.html">点我跳转</a></p>
 </div>
 </div>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>网络设备配置实战分析 Part 2</title>
-        <author>
-            <name>云泽</name>
-        </author>
-        <link href="https://zeyun.dpdns.org/network_with_huawei_ensp_part2.html"/>
-        <id>https://zeyun.dpdns.org/network_with_huawei_ensp_part2.html</id>
-            <category term="网络设备配置技术学习笔记"/>
-
-        <updated>2025-12-06T16:45:00+08:00</updated>
-            <summary>
-                <![CDATA[
-                    本项目基于华为的ENSP模拟器实现 我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai 本章的主要讲解的内容如下 拓扑下载：点我下载 ，密码：8hc8 本项目的拓扑如下图所示（可以看到，图片中划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <ul style="list-style-type: square;">
-<li>本项目基于华为的ENSP模拟器实现</li>
-<li>我在这里会更加侧重于实践的步骤，至于部分的理论知识，请参考互联网或者Ai</li>
-</ul>
-<blockquote>
-<p>本章的主要讲解的内容如下</p>
-<ol style="list-style-type: upper-roman;">
-<li>网关的配置</li>
-<li>Rip路由&amp;Rip的对端的简单加密</li>
-<li>DHCP服务</li>
-<li>OSPF路由</li>
-<li>Rip路由与OSPF的结合</li>
-</ol>
-</blockquote>
-<p>拓扑下载：<a href="https://wwbte.lanzn.com/b014wwaaja" target="_blank" rel="noopener noreferrer">点我下载</a> ，密码：8hc8</p>
-<p>本项目的拓扑如下图所示（可以看到，图片中划分了很多的网段，还有很多路由，不用慌，我会一步一步的来）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-015236.png" alt="" width="1924" height="1242" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-015236-xl.webp 1024w"></figure>
-<p>开始之前，可以输入sys（等同于system-view，为了方便，以下我将会使用sys这个简化后的指令来操作），进入特权模式（就是[huawei]的这个）输入以下指令，从而关闭烦人的操作日志：</p>
-<pre class="language-c line-numbers"><code>undo info-center enable </code></pre>
-<p>出现以下提示则关闭成功：</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162219.png" alt="" width="696" height="90" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162219-xl.webp 1024w"></figure>
-<p>另外，可以输入以下命令给设备命名，方便管理和以防混淆</p>
-<pre class="language-apacheconf line-numbers"><code>sys + 你设备的名称</code></pre>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162524.png" alt="" width="315" height="33" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162524-xl.webp 1024w"></figure>
-<p>上图为我给路由器1，命名为AR1的截图</p>
-<p>此外，退出特权模式（就是[huawei]的这个），进入用户模式下（就是&lt;huuawei&gt;的这个），输入save，再按照提示输入y，可以随时保存（此操作强烈建议经常做，如遇到ensp模拟器死机的时候，重启设备的时候，保存前的信息不会丢）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-162855.png" alt="" width="1247" height="207" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-162855-xl.webp 1024w"></figure>
-<p><strong>以上的操作非必须，但是建议这样做</strong></p>
-<h5>I.项目1：给每个网段，配对应的网关</h5>
-<p>核心思路：该网关的IP其实就是上层与他连接的路由的IP</p>
-<p>例如：我需要给PC1配网关的IP，那么我需要先进入上层的AR1与PC1连接的GE0/0/0口配IP，而这个IP就是PC1的网关IP</p>
-<p>代码如下：</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-161832.png" alt="" width="901" height="250" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161832-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161832-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161832-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-161832-xl.webp 1024w"></figure>
-<pre class="language-apacheconf line-numbers"><code>ip address + IP地址 + 子网掩码（255.255.255.0或24都行）</code></pre>
-<p>然后再进入PC1，给他配上网关和对应的IP，记得点击右下角的“应用”才会生效</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-164111.png" alt="" width="1940" height="656" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164111-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164111-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164111-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164111-xl.webp 1024w"></figure>
-<p>去在PC1上Ping自己的网关，可以看到能有结果，即可成功（这一步很关键，很多后续的实验未能成功，很有可能就是卡在了这一步）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-164249.png" alt="" width="1520" height="779" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164249-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164249-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164249-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-164249-xl.webp 1024w"></figure>
-<p>其他的设备也是如此(基本上连接路由器的PC机)都需要配置这个网关的（当然这也仅限于手动配IP的机器，DHCP自动分发IP的则不用在PC上手动配置网关）</p>
-<h5>II.项目2：Rip路由</h5>
-<p>（1）首先先配合拓扑图，给对应的网段配网</p>
-<p>我这里以我截选的这个来去分析</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-170824.png" alt="" width="965" height="142" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-170824-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-170824-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-170824-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-170824-xl.webp 1024w"></figure>
-<p>可以看到，我这里截图的是路由器，俩俩之间的网段的网络配置。需要进入所对应的端口来进行配置</p>
-<p>比如我这里的最左边的这台路由，我就需要进入GE0/0/1口，去配置对应的IP地址，即为12.1.1.1/24（注意：这里的12.1.1.0是网段，不可俩边都配12.1.1.0/24）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-171805.png" alt="" width="874" height="133" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171805-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171805-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171805-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171805-xl.webp 1024w"></figure>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-171819.png" alt="" width="804" height="85" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171819-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171819-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171819-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-171819-xl.webp 1024w"></figure>
-<p>配置完成后，即可尝试着Ping试一下</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-172125.png" alt="" width="1151" height="441" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172125-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172125-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172125-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172125-xl.webp 1024w"></figure>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-172035.png" alt="" width="1123" height="430" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172035-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172035-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172035-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-172035-xl.webp 1024w"></figure>
-<p>可以看到，能够相互通讯，成功！</p>
-<p>以上演示的是AR1和AR2的配置（同样的AR2和AR3，AR3和AR4，AR5和AR6...）也都需要这样的配置</p>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div> </div>
-<div class=" old-record-id-NJ2IdVuK0oCsYDxzCEEcET0wnFf">在三个路由器上启用RIP路由，并且设置版本为2</div>
-<div> </div>
-<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-214715.png" alt="" width="794" height="688" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-214715-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-214715-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-214715-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-214715-xl.webp 1024w"></figure></div>
-<div>
-<p>可以看到，这个AR1的路由涉及了两个网段（192.168.1.0/24和12.1.1.0/24）</p>
-<p>（2）那么就需要创建RIP路由，去关联这两个网段</p>
-<p>例如我们的这个拓扑图，就有12.1.1.0和192.168.1.0的</p>
-<p>语法如下：</p>
-<pre class="language-c line-numbers"><code>rip 1
-//创建一个rip路由
-version 2
-//版本设置为2
-network 192.168.1.0
-network 12.0.0.0
-//宣告网段</code></pre>
-</div>
-</div>
-<p><code>*注</code>：这里RIP版本的原因，使用的是有类别路由协议，它的路由更新报文里不带子网掩码，只能按主类网络来发布路由信息，所以配置时得用12.0.0.0而非12.1.1.0，但效果都一样</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-220741.png" alt="" width="858" height="312" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220741-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220741-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220741-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220741-xl.webp 1024w"></figure>
-<p>可以看到我在两边都添加了rip的网段，并且可以Ping通这个路由器的端口IP</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-220950.png" alt="" width="1070" height="497" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220950-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220950-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220950-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-220950-xl.webp 1024w"></figure>
-<p>同理可得，在AR2，AR3....上也是如此，输入两个相邻的网段的IP，即可</p>
-<p>最终结果，实现全网互通（这里我用的是PC3去Ping的PC1来进行验证）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-221243.png" alt="" width="2225" height="1169" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-221243-xl.webp 1024w"></figure>
-<h5>Rip的对端简单加密：</h5>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-231938.png" alt="" width="611" height="202" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-231938-xl.webp 1024w"></figure>
-<p>这里演示AR2和AR3的GE0/0/2和GE0/0/2口的端口加密</p>
-<p>首先进入AR2的g0/0/2端口，代码示例如下：</p>
-<pre class="language-c line-numbers"><code>[AR2]int g0/0/2  //进入AR4的接口
-[AR2-GigabitEthernet0/0/2]rip authentication-mode simple cipher 123456  
-//配置简单认证，密码123456（密文存储）</code></pre>
-<p>可以看到，这里我添加的密码已经转换成密文</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-232826.png" alt="" width="1197" height="298" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-232826-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-232826-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-232826-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-232826-xl.webp 1024w"></figure>
-<p>看到这，则说明这个AR2的g0/0/2端口已经加密了</p>
-<p>我们来使用PC4去Ping PC1验证一下：</p>
-<p>我设置了AR2的g0/0/2口的这个Rip密码，但是AR3的g0/0/2没设置，现在我用这个PC4pingPC1，并在AR2和AR3的这两个g0/0/2口抓的包</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-233555.png" alt="" width="2879" height="1696" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-233555-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-233555-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-233555-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-233555-xl.webp 1024w"></figure>
-<p>可以看到并没有Ping成功，代表着被Rip的密码给拦截了</p>
-<p>当给AR3的g0/0/2口添加后这个Rip密码后，则可看到来自PC4的成功Ping请求</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-234458.png" alt="" width="1882" height="476" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-234458-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-234458-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-234458-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-234458-xl.webp 1024w"></figure>
-<h5>III.项目3：DHCP拓展模块</h5>
-<p>我们在此基础之上，给PC4创建一个DHCP服务，使得其可以自行获取IP地址</p>
-<p>首先先进入AR4，去配置DHCP服务</p>
-<p>输入以下代码：</p>
-<pre class="language-c line-numbers"><code>[AR4]ip pool pc4pool  //创建地址池，命名为pc4pool
-[AR4-ip-pool-pc4pool]network 192.168.6.0 mask 255.255.255.0  //配置地址池网段
-[AR4-ip-pool-pc4pool]gateway-list 192.168.6.1  //配置网关（即AR4的GE 0/0/1接口IP）</code></pre>
-<p>回到PC4，打开DHCP选项</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-225006.png" alt="" width="1153" height="343" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-225006-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-225006-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-225006-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-225006-xl.webp 1024w"></figure>
-<p>在终端中输入：<code>ipconfig /renew</code>来查看这个更新的信息</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-230419.png" alt="" width="1121" height="471" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230419-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230419-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230419-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230419-xl.webp 1024w"></figure>
-<p>可以看到，已经获取到了IP地址</p>
-<p>尝试Ping一下PC1的IP，当然也可以Ping通</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-06-230630.png" alt="" width="1777" height="1021" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230630-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230630-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230630-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-06-230630-xl.webp 1024w"></figure>
-<p>如果Ping不通，有问题，先尝试Ping一下自己网关，然后就是回头看看这个配RIP路由时候的，是不是两两之间的配置有一边network没配上</p>
-<h5>IV.项目4：OSPF路由</h5>
-<p>在此基础之上，我们现在手动给这个AR2添加上这个拓展模块（此操作会使得AR2断电，一定要先保存！！！）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-000932.png" alt="" width="1240" height="207" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-000932-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-000932-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-000932-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-000932-xl.webp 1024w"></figure>
-<p>先进入用户视图&lt;huawei&gt;（也就是特权模式[huawei]下，输入q即可切换用户视图）</p>
-<p>输入save，保存当前配置，否则会丢失配置</p>
-<p>其次，右击AR2，鼠标点击“设置”，找到下面的“4GEW-T”的拓展模块，放入到这个AR3260里面</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Tian-Jia-4geKou.png" alt="" width="2008" height="1225" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Tian-Jia-4geKou-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Tian-Jia-4geKou-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Tian-Jia-4geKou-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Tian-Jia-4geKou-xl.webp 1024w"></figure>
-<p>随后再次点击”启动设备“，将AR2启动起来</p>
-<p>从左侧拖入两台AR3260和一台PC机，并使用Copper线连接起来</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-001904.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-001904-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-001904-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-001904-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-001904-xl.webp 1024w"></figure>
-<p>给这个新添加的两个网段（AR2和AR5我设置的是45.1.1.0/24网段，AR5和AR6我设置的56.1.1.0/24网段，AR6和PC5我设置的192.168.20.0/24网段）并且在这个我使用颜色框选的这个区域配置OSPF路由，使得在我所框选的区域内，可以实现设备互通</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-003426.png" alt="" width="1694" height="1195" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003426-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003426-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003426-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003426-xl.webp 1024w"></figure>
-<p>配置OSPF的步骤如下：</p>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class=" old-record-id-Uy71dLcOmoXvAOxuxfBc3AgHnBf">（1）首先进行基础配置，在所有终端上关闭Debug信息和对设备进行重新命名（AR5和AR6都都是如此），此处为在AR5上操作的截图</div>
-<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-003143.png" alt="" width="846" height="307" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003143-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003143-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003143-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003143-xl.webp 1024w"></figure></div>
-</div>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div> </div>
-<div class=" old-record-id-AhxIdabIBoPSXQxVpHcc7I3PnLc">（2）对所有的路由器接口进行配置IP，并对终端进行地址的配置（此处仅演示了AR5上的截图）</div>
-<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-003749.png" alt="" width="716" height="72" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003749-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003749-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003749-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-003749-xl.webp 1024w"></figure></div>
-<div> </div>
-<div><code>*注</code>：不要忘记了这个AR2与以下设备连接的GE4/0/0端口也需要配端口IP，这个很重要，千万不能忘记和漏掉（通常情况下，我们习惯将上层设备配xx.xx.xx.1，下层配xx.xx.xx.2）</div>
-<div> </div>
-<div>
-<div data-page-id="B6msdqjeYoAmxTxeIVScaVKBnNg" data-lark-html-role="root" data-docx-has-block-data="false">
-<div class=" old-record-id-ZdM6dTJJhoxCWXxHtPAcb5D8nnf">（3）分别在<strong>AR2,AR5,AR6</strong>上配置OSPF，分别进行创建OSPF中路由器的ID，然后设置OSPF的区域，以及宣告自身的网络（此处演示了AR6的配置过程）</div>
-<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-005322.png" alt="" width="905" height="266" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005322-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005322-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005322-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005322-xl.webp 1024w"></figure></div>
-<div><code>*注</code>：不要忘记了这个AR2与以下设备连接的GE4/0/0端口也需要配OSPF，同上！这个很重要，千万不能忘记和漏掉</div>
-<div> </div>
-</div>
-</div>
-<div>此处的network网段宣告指的是，与这个路由器所关连的网段，这里是AR6关联的上层的56.1.1.0/24和下层的192.168.20.1/24网段，示意图如下：</div>
-<div><figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-005725-2.png" alt="" width="516" height="411" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005725-2-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005725-2-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005725-2-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-005725-2-xl.webp 1024w"></figure></div>
-</div>
-<p>验证配置：（我这里使用PC5和AR6，去PingGE0/0/0口的45.1.1.2，发现可以Ping通，则代表已经实现配置的OSPF的<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">网络全部连通</span><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">）</span></p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-010132.png" alt="" width="2879" height="1698" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010132-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010132-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010132-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010132-xl.webp 1024w"></figure>
-<h5>V.项目5：Rip路由与OSPF的结合</h5>
-<p>如果在此基础之上，直接使用PC5去Ping PC1你会发现这根本Ping不通</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-010817.png" alt="" width="1041" height="467" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010817-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010817-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010817-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-010817-xl.webp 1024w"></figure>
-<p>因为这个刚加入进来的这个OSPF以及它底下的所有设备（AR5,AR6,PC5）都没有与之前配置的Rip联动</p>
-<p>可以输入以下指令，实现Rip与OSPF的互通</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-011337.png" alt="" width="520" height="200" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011337-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011337-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011337-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011337-xl.webp 1024w"></figure>
-<p>其实原理很简单，先进入Rip 1宣告之前创建的OSPF 1，再进入OSPF 1宣告之前创建的Rip 1就行了</p>
-<p>以下是验证OSPF 1的PC5，去Ping跨网段且位于Rip 1的PC1，成功的截图（此外，全网也互通了）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.dpdns.org/media/posts/34/Ping-Mu-Jie-Tu-2025-12-07-011906.png" alt="" width="2356" height="1339" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-xs.webp 320w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-sm.webp 480w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-md.webp 768w ,https://zeyun.dpdns.org/media/posts/34/responsive/Ping-Mu-Jie-Tu-2025-12-07-011906-xl.webp 1024w"></figure>
-<p class="align-center">那么至此，你已经成功掌握以上的所有内容</p>
-<p class="align-center">感谢您的阅读，您的肯定是我更新的最大动力(/≧▽≦)/</p>
-<p class="align-center">此外，实战分析 Part 3 已经上线，欢迎访问(‾◡◝)</p>
-<p class="align-center"><a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part3.html">点我跳转</a></p>
             ]]>
         </content>
     </entry>
