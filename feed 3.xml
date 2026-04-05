@@ -1,0 +1,1938 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <title>云泽の小屋</title>
+    <link href="https://zeyun.org/feed.xml" rel="self" />
+    <link href="https://zeyun.org" />
+    <updated>2026-04-02T17:42:28+09:00</updated>
+    <author>
+        <name>云泽</name>
+    </author>
+    <id>https://zeyun.org</id>
+
+    <entry>
+        <title>使用Linux部署docker服务</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/docker1.html"/>
+        <id>https://zeyun.org/docker1.html</id>
+            <category term="Linux学习笔记"/>
+
+        <updated>2026-03-27T10:22:51+09:00</updated>
+            <summary>
+                <![CDATA[
+                    前言： 在部署docker之前，请确保你的实体机/虚拟机能够科学上网（docker大多数的节点都在国外，国内被墙了，下载不下来） VMware虚拟机使用物理机代理（这里我以虚拟出来用于部署docker的CentOS7虚拟机为例） CentOS7镜像：点我下载 步骤一：Win+R，输入control打开控制面板&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h5>前言：</h5>
+<p>在部署docker之前，请确保你的实体机/虚拟机能够科学上网（docker大多数的节点都在国外，国内被墙了，下载不下来）</p>
+<h5>虚拟机桥接设置：</h5>
+<p>VMware虚拟机使用物理机代理（这里我以虚拟出来用于部署docker的CentOS7虚拟机为例）</p>
+<p>CentOS7镜像：<a href="https://www.ilanzou.com/s/flKIScuf" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>步骤一：Win+R，输入<code>control</code>打开控制面板</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/Ping-Mu-Jie-Tu-2026-04-02-002617.png" alt="" width="799" height="420" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-xl.webp 1024w"></figure>
+<p>步骤二：依次按照下图，找到“高级设置”</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/firewall.png" alt="" width="2256" height="1437" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/firewall-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/firewall-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/firewall-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/firewall-xl.webp 1024w"></figure>
+<p>步骤三：新建一条windows的防火墙策略</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/1.png" alt="" width="2879" height="1701" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/1-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/1-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/1-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/1-xl.webp 1024w"></figure>
+<p>步骤四：选择端口设置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/2.png" alt="" width="1428" height="1078" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/2-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/2-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/2-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/2-xl.webp 1024w"></figure>
+<p>步骤五：选择协议（<code>*注</code>：这里的端口要设置的和clash或者其他的代理工具所提供的端口一致，不能乱填）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/3.png" alt="" width="1428" height="1078" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/3-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/3-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/3-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/3-xl.webp 1024w"></figure>
+<p>步骤六：选择“允许连接”</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/4.png" alt="" width="1428" height="1078" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/4-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/4-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/4-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/4-xl.webp 1024w"></figure>
+<p>步骤七：把所有的网络环境都勾选上</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/5.png" alt="" width="1428" height="1078" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/5-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/5-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/5-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/5-xl.webp 1024w"></figure>
+<p>步骤八：最终取一个自己记得住的名字即可</p>
+<h5>测试连接：</h5>
+<p>打开VMware的设置，将网卡模式设置成NAT</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/Ping-Mu-Jie-Tu-2026-04-02-172517.png" alt="" width="1392" height="1637" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-172517-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-172517-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-172517-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-172517-xl.webp 1024w"></figure>
+<p>CentOS7</p>
+<p> </p>
+<p> </p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>SQL 注入入门 —— 从暴力破解到 Union 注入（实验记录）</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/sql-part1.html"/>
+        <id>https://zeyun.org/sql-part1.html</id>
+            <category term="SQL注入学习笔记"/>
+
+        <updated>2026-03-22T23:07:43+09:00</updated>
+            <summary>
+                <![CDATA[
+                    环境说明 靶场：本地搭建的 Seafaring 旅行社仿真靶机（靶场镜像下载连接：点我下载） 目标：通过&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h5 class="align-left">环境说明</h5>
+<ul>
+<li>靶场：本地搭建的 Seafaring 旅行社仿真靶机（靶场镜像下载连接：<a href="https://www.ilanzou.com/s/8zxM5jOC" target="_blank" rel="noopener noreferrer">点我下载</a>）</li>
+<li>目标：通过 SQL 注入获取数据库中 admin 表的账号密码，从而获取到Flag</li>
+<li>工具：burp suite，浏览器地址栏</li>
+</ul>
+<h4 class="align-center">思路一：直接打开登录界面，使用burp suite自带字典爆破</h4>
+<h6>步骤一：使用burp suite抓取网页请求包</h6>
+<p>（1）打开之前在安装burp suite的这一篇时候安装的这个浏览器插件，来接管浏览器的流量</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Xuan-Ze.png" alt="" width="2140" height="1284" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Xuan-Ze-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Xuan-Ze-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Xuan-Ze-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Xuan-Ze-xl.webp 1024w"></figure>
+<p>（2）在burp suite中依次选择框选界面（并且将Intercept设置为on）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Yi-Ci-Xuan-Ze.png" alt="" width="1974" height="1110" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Yi-Ci-Xuan-Ze-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Yi-Ci-Xuan-Ze-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Yi-Ci-Xuan-Ze-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Yi-Ci-Xuan-Ze-xl.webp 1024w"></figure>
+<p>（3）返回浏览器，输入一些信息，使得burp suite能够拦截到包</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Shu-Ru.png" alt="" width="2102" height="1183" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Shu-Ru-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Shu-Ru-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Shu-Ru-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Shu-Ru-xl.webp 1024w"></figure>
+<p>上图即为抓到包的截图</p>
+<h6>步骤二：选择需要爆破的内容</h6>
+<p>（1）回到burp suite，并选择如下的操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Da-Kai.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Da-Kai-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Da-Kai-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Da-Kai-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Da-Kai-xl.webp 1024w"></figure>
+<p>（2）打开后会看到这个界面（这就是burp suite所拦截的内容）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Ping-Mu-Jie-Tu-2026-03-22-213022.png" alt="" width="2879" height="1705" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-22-213022-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-22-213022-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-22-213022-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-22-213022-xl.webp 1024w"></figure>
+<p>（3）选择需要爆破的内容（给需要爆破的地方加上<code>$</code>符号）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/add.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/add-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/add-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/add-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/add-xl.webp 1024w"></figure>
+<p>（4）选择攻击模式（为了演示的方便，所以我会手动配置用户名字典，并选择自带的密码来爆破）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Ping-Mu-Jie-Tu-2026-03-24-221527.png" alt="" width="2879" height="1699" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-221527-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-221527-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-221527-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-221527-xl.webp 1024w"></figure>
+<p>考虑到我们目前不知道用户名也不知道密码，所以这里我们使用这个模式</p>
+<p>不同的爆破模式解释，如下表</p>
+<table style="border-collapse: collapse; width: 99.8575%; height: 420px;" border="1">
+<tbody>
+<tr style="height: 56.3438px;">
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" style="width: 29.6565%; height: 56.3438px;" scope="col">攻击类型</th>
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" style="width: 34.5276%; height: 56.3438px;" scope="col">说明</th>
+<th class="text-text-100 border-b-0.5 border-border-300/60 py-2 pr-4 align-top font-bold" style="width: 35.817%; height: 56.3438px;" scope="col">适用场景</th>
+</tr>
+<tr style="height: 102.562px;">
+<td style="width: 29.6565%; height: 102.562px;">Sniper (狙击手)</td>
+<td style="width: 34.5276%; height: 102.562px;"> 一个字典，逐个位置替换</td>
+<td style="width: 35.817%; height: 102.562px;"><strong data-path-to-node="5,1,3,0" data-index-in-node="0">探测漏洞</strong>：测单个参数是否有注入或爆破单账号密码</td>
+</tr>
+<tr style="height: 76.6562px;">
+<td style="width: 29.6565%; height: 76.6562px;">Battering ram (攻城槌)</td>
+<td style="width: 34.5276%; height: 76.6562px;">一个字典，同时替换所有位置</td>
+<td style="width: 35.817%; height: 76.6562px;"><strong data-path-to-node="5,2,3,0" data-index-in-node="0">同步填充</strong>：账号和密码必须<strong data-path-to-node="5,2,3,0" data-index-in-node="12">一模一样</strong>时使用</td>
+</tr>
+<tr style="height: 47.359px;">
+<td style="width: 29.6565%; height: 47.359px;">Pitchfork (草叉)</td>
+<td style="width: 34.5276%; height: 47.359px;">多个字典，同步替换</td>
+<td style="width: 35.817%; height: 47.359px;">
+<p> <strong data-path-to-node="5,3,3,0" data-index-in-node="0">定向爆破</strong>：你有已知的“账号:密码”<strong data-path-to-node="5,3,3,0" data-index-in-node="17">成对名单</strong></p>
+</td>
+</tr>
+<tr style="height: 75.5625px;">
+<td style="width: 29.6565%; height: 75.5625px;">Cluster bomb(集束炸弹)</td>
+<td style="width: 34.5276%; height: 75.5625px;">多个字典，全排列组合</td>
+<td style="width: 35.817%; height: 75.5625px;"><strong data-path-to-node="5,4,3,0" data-index-in-node="0">全方位爆破</strong>：完全不知道对应关系，尝试<strong data-path-to-node="5,4,3,0" data-index-in-node="18">所有组合</strong></td>
+</tr>
+</tbody>
+</table>
+<h6 class="align-center"><strong data-path-to-node="8,2,0" data-index-in-node="0">这里我们的判断是账号密码都不知道，先尝试死磕：</strong> 用 <strong data-path-to-node="8,2,0" data-index-in-node="16">Cluster bomb模式</strong></h6>
+<h6>步骤三：添加爆破参数</h6>
+<p>（1）Payload 1（用户名位置）自己添加用户名字典</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Zi-Ji-Tian-Jia-1-2.png" alt="" width="2879" height="1704" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-1-2-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-1-2-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-1-2-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-1-2-xl.webp 1024w"></figure>
+<p><code>*注意：</code>组合数量会随字典增大呈爆炸式增长，所以这里我就仅仅添加几个常见的用户名作为演示</p>
+<p>（2）Payload 2（密码位置）选择默认的Password字典</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Zi-Ji-Tian-Jia-2.png" alt="" width="2879" height="1706" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-2-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-2-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-2-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Zi-Ji-Tian-Jia-2-xl.webp 1024w"></figure>
+<p>（3）点击 Start attack 开始爆破（下图为爆破成功的截图）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Ping-Mu-Jie-Tu-2026-03-24-223544.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-223544-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-223544-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-223544-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-223544-xl.webp 1024w"></figure>
+<p>在 Web 安全测试中，绝大多数请求都会失败，所以<strong data-path-to-node="1" data-index-in-node="25">我们要找的是那个“与众不同”的请求</strong>（通常主要看以下几个方面：Length，Status code，Response received / Error中）</p>
+<p>含义解释：</p>
+<table style="width: 99.5726%; height: 357.248px;" data-path-to-node="3">
+<thead>
+<tr style="height: 48.5625px;">
+<td style="width: 31.9544%; height: 48.5625px;"><strong>指标名称</strong></td>
+<td style="width: 21.398%; height: 48.5625px;"><strong>观察重点</strong></td>
+<td style="width: 46.6476%; height: 48.5625px;"><strong>核心目的 (看它代表什么)</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 102.562px;">
+<td style="width: 31.9544%; height: 102.562px;">Length (长度)</td>
+<td style="width: 21.398%; height: 102.562px;"><span data-path-to-node="3,1,1,0"><strong data-path-to-node="3,1,1,0" data-index-in-node="0">找数值突变</strong></span></td>
+<td style="width: 46.6476%; height: 102.562px;"><span data-path-to-node="3,1,2,0">判断<strong data-path-to-node="3,1,2,0" data-index-in-node="2">页面内容</strong>是否变化：数值不同说明服务器返回了不同的信息（如成功 vs 失败）</span></td>
+</tr>
+<tr style="height: 103.562px;">
+<td style="width: 31.9544%; height: 103.562px;">Status Code (状态码)</td>
+<td style="width: 21.398%; height: 103.562px;"><span data-path-to-node="3,2,1,0"><strong data-path-to-node="3,2,1,0" data-index-in-node="0">找 302 / 200</strong></span></td>
+<td style="width: 46.6476%; height: 103.562px;"><span data-path-to-node="3,2,2,0">判断<strong data-path-to-node="3,2,2,0" data-index-in-node="2">请求状态</strong>：出现 <code data-path-to-node="3,2,2,0" data-index-in-node="10">302</code> 通常代表登录成功并跳转；出现 <code data-path-to-node="3,2,2,0" data-index-in-node="29">403/429</code> 说明你被封 IP 了</span></td>
+</tr>
+<tr style="height: 102.562px;">
+<td style="width: 31.9544%; height: 102.562px;"><span data-path-to-node="3,3,0,0">Response (响应耗时)</span></td>
+<td style="width: 21.398%; height: 102.562px;"><span data-path-to-node="3,3,1,0"><strong data-path-to-node="3,3,1,0" data-index-in-node="0">找异常延迟</strong></span></td>
+<td style="width: 46.6476%; height: 102.562px;"><span data-path-to-node="3,3,2,0">判断<strong data-path-to-node="3,3,2,0" data-index-in-node="2">服务器逻辑</strong>：在盲注或特定防御下，正确的 Payload 可能会让服务器处理时间明显变长</span></td>
+</tr>
+</tbody>
+</table>
+<p>接下来，这里我们选择的是 <strong>Length </strong>选项，也就是不同的行（如下图所示，找最特殊的那一个）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/uibl.png" alt="" width="2879" height="1711" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/uibl-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/uibl-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/uibl-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/uibl-xl.webp 1024w"></figure>
+<p>可是我们这里并没有找到合适的选项（也就说明了这个password字典里并没有我们需要的正确的密码）所以需要尝试另一种思路</p>
+<h4 class="align-center">思路二：主动寻找注入漏洞，使用Union联合查询注入</h4>
+<h5>注入原理简介</h5>
+<p>Union 注入是 SQL 注入中最经典的一种方式。当网站后端直接将用户输入拼接进 SQL 语句时，攻击者可以通过构造 <code>UNION SELECT</code> 语句，将额外的查询结果"拼接"到原有结果中一起返回，从而读取数据库中任意表的内容</p>
+<h5>整体思路</h5>
+<ol>
+<li>寻找注入点</li>
+<li>判断注入类型（字符型 / 整数型）</li>
+<li>确认查询列数（<code>order by</code>）</li>
+<li>使用 Union 联合查询获取数据库信息</li>
+<li>查询目标表的列名</li>
+<li>读取目标数据</li>
+</ol>
+<h6>步骤一：发现注入点</h6>
+<p>靶机首页有一个搜索框，随意输入内容后观察 URL 栏，发现搜索内容通过 <code>id</code> 参数传递</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Cha-Xun.png" alt="" width="2879" height="1614" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Cha-Xun-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Cha-Xun-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Cha-Xun-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Cha-Xun-xl.webp 1024w"></figure>
+<p>在地址栏直接输入 <code>id=1</code>，页面正常返回了数据库中的一条记录，内容如下：</p>
+<pre class="language-sql line-numbers"><code>array(6) { [0]=&gt; string(1) "1" ["id"]=&gt; string(1) "1" [1]=&gt; string(23) "SQL injection can occur" ["news"]=&gt; string(23) "SQL injection can occur" [2]=&gt; string(10) "2019-05-30" ["pub_date"]=&gt; string(10) "2019-05-30" }</code></pre>
+<p>从返回结果可以判断，查询共返回了 3 个字段：<code>id</code>、<code>news</code>、<code>pub_date</code></p>
+<p><code>*注意：</code>注入测试必须直接在浏览器地址栏输入 URL，不要通过搜索框输入，否则内容会被 URL 编码处理，影响注入效果</p>
+<h6>步骤二：判断注入类型</h6>
+<p>在地址栏分别输入以下两条语句，测试是否存在整数型注入</p>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=1+and+1=1</code></pre>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=1+and+1=2</code></pre>
+<p><code>*核心思路</code>：用一个<strong>永真条件</strong>和一个<strong>永假条件</strong>做对比，根据结果不同间接证明我们写的代码被数据库执行了</p>
+<table style="width: 99.5726%; height: 145.688px;">
+<tbody>
+<tr style="height: 48.5625px;">
+<th class="align-left" style="width: 49.3581%; height: 48.5625px;">输入</th>
+<th class="align-left" style="width: 50.6419%; height: 48.5625px;">结果</th>
+</tr>
+<tr style="height: 48.5625px;">
+<td style="width: 49.3581%; height: 48.5625px;">id=1+and+1=1</td>
+<td style="width: 50.6419%; height: 48.5625px;">正常返回数据 ✅</td>
+</tr>
+<tr style="height: 48.5625px;">
+<td style="width: 49.3581%; height: 48.5625px;">id=1+and+1=2</td>
+<td style="width: 50.6419%; height: 48.5625px;">返回 NULL</td>
+</tr>
+</tbody>
+</table>
+<p>两次结果不同，确认为<strong>整数型注入</strong>，不需要单引号（如果你分不清这个注入类型，以及这个基础的地址栏的信息咋判断，<a href="https://zeyun.dpdns.org/sql_basic_knowledge.html">请点击我跳转基础知识补全</a>）</p>
+<h6>步骤三：确认查询列数</h6>
+<p>使用 <code>order by</code> 逐步测试列数，直到返回 NULL：</p>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=1+order+by+1
+192.168.153.139/search.php?id=1+order+by+2
+192.168.153.139/search.php?id=1+order+by+3
+192.168.153.139/search.php?id=1+order+by+4   ← 此处返回 NULL</code></pre>
+<p>结果是，order by 4 返回 NULL，说明查询共有 <strong>3 列</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/order4.png" alt="" width="2877" height="1605" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/order4-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/order4-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/order4-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/order4-xl.webp 1024w"></figure>
+<h6>步骤四：查询当前数据库所有表名</h6>
+<p>列数确认后，使用 <code>UNION SELECT</code> 联合查询，从 MySQL 系统表 <code>information_schema.tables</code> 中读取当前数据库的所有表名：</p>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=-1+union+select+1,group_concat(table_name),3+from+information_schema.tables+where+table_schema=database()</code></pre>
+<table style="width: 97.8632%;">
+<tbody>
+<tr>
+<th class="align-center" style="width: 21.1288%;">步骤</th>
+<th class="align-center" style="width: 18.8133%;">目的</th>
+<th class="align-center" style="width: 60.0579%;">关键语句</th>
+</tr>
+<tr>
+<td class="align-center" style="width: 21.1288%;">查所有表名</td>
+<td class="align-center" style="width: 18.8133%;">找目标表</td>
+<td class="align-center" style="width: 60.0579%;"><code>union select ... from information_schema.tables</code></td>
+</tr>
+</tbody>
+</table>
+<p>参数解释：</p>
+<table style="width: 98.1481%; height: 242.812px;">
+<tbody>
+<tr style="height: 48.5625px;">
+<th class="align-center" style="width: 38.8017%; height: 48.5625px;">参数</th>
+<th class="align-center" style="width: 61.1983%; height: 48.5625px;">作用</th>
+</tr>
+<tr style="height: 48.5625px;">
+<td class="align-center" style="width: 38.8017%; height: 48.5625px;">id=-1</td>
+<td class="align-center" style="width: 61.1983%; height: 48.5625px;">让原查询不返回结果，只显示 union 注入的内容</td>
+</tr>
+<tr style="height: 48.5625px;">
+<td class="align-center" style="width: 38.8017%; height: 48.5625px;">group_concat(table_name)</td>
+<td class="align-center" style="width: 61.1983%; height: 48.5625px;">将所有表名合并为一行显示</td>
+</tr>
+<tr style="height: 48.5625px;">
+<td class="align-center" style="width: 38.8017%; height: 48.5625px;">information_schema.tables</td>
+<td class="align-center" style="width: 61.1983%; height: 48.5625px;">MySQL 系统表，存储所有表的信息</td>
+</tr>
+<tr style="height: 48.5625px;">
+<td class="align-center" style="width: 38.8017%; height: 48.5625px;">table_schema=database()</td>
+<td class="align-center" style="width: 61.1983%; height: 48.5625px;">限定在当前数据库中查询</td>
+</tr>
+</tbody>
+</table>
+<p>查询后如下显示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/table.png" alt="" width="2879" height="1611" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/table-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/table-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/table-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/table-xl.webp 1024w"></figure>
+<p>返回结果：<strong>admin, news</strong><br>当前数据库共有两张表，其中<code>admin</code>表就存放了我们需要的账号和密码</p>
+<h6>步骤五：查询 admin 表的列名</h6>
+<p>从 <code>information_schema.columns</code> 中读取 admin 表的所有字段名：</p>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=-1+union+select+1,group_concat(column_name),3+from+information_schema.columns+where+table_name='admin'</code></pre>
+<table style="width: 98.2906%; height: 125.125px;">
+<tbody>
+<tr style="height: 48.5625px;">
+<th class="align-center" style="width: 17.5617%; height: 48.5625px;">步骤</th>
+<th class="align-center" style="width: 20.4602%; height: 48.5625px;">目的</th>
+<th class="align-center" style="width: 61.9781%; height: 48.5625px;">关键语句</th>
+</tr>
+<tr style="height: 76.5625px;">
+<td class="align-center" style="width: 17.5617%; height: 76.5625px;"> 查列名</td>
+<td class="align-center" style="width: 20.4602%; height: 76.5625px;">找目标字段</td>
+<td class="align-center" style="width: 61.9781%; height: 76.5625px;"><code>union select ... from information_schema.columns</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/table2.png" alt="" width="2879" height="1614" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/table2-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/table2-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/table2-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/table2-xl.webp 1024w"></figure>
+<p>返回结果：<strong>user_id, user_name, user_pass</strong>（我们需要的数据也就在如此）</p>
+<h6>步骤六：读取 admin 表中的账号密码</h6>
+<p>已知列名为 <code>user_name</code> 和 <code>user_pass</code>，所以这里我们直接查询：</p>
+<pre class="language-sql line-numbers"><code>192.168.153.139/search.php?id=-1+union+select+1,group_concat(user_name,0x3a,user_pass),3+from+admin</code></pre>
+<table style="width: 97.8632%;">
+<tbody>
+<tr>
+<th class="align-center" style="width: 19.8288%;">步骤</th>
+<th class="align-center" style="width: 26.5335%;">目的</th>
+<th class="align-center" style="width: 53.7803%;">关键语句</th>
+</tr>
+<tr>
+<td class="align-center" style="width: 19.8288%;">读取数据</td>
+<td class="align-center" style="width: 26.5335%;">获取账号密码</td>
+<td class="align-center" style="width: 53.7803%;"><code>union select ... from admin</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/table3.png" alt="" width="2869" height="1610" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/table3-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/table3-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/table3-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/table3-xl.webp 1024w"></figure>
+<p>返回结果：<strong>admin:admin@123</strong> 🎉<br>使用该账号密码成功登录后台</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/47/Ping-Mu-Jie-Tu-2026-03-24-233620.png" alt="" width="2879" height="1605" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-233620-xs.webp 320w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-233620-sm.webp 480w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-233620-md.webp 768w ,https://zeyun.org/media/posts/47/responsive/Ping-Mu-Jie-Tu-2026-03-24-233620-xl.webp 1024w"></figure>
+<p>Flag也成功找到了</p>
+<h6 class="align-center">实验总结</h6>
+<p>这次实验完整走了一遍 Union 注入的流程，最大的收获是理解了为什么要用 <code>id=-1</code>以及为什么列数必须对齐，加上<code>information_schema</code> 这个系统库在注入中的核心作用</p>
+<p>另外就是操作上要注意：一定要直接在地址栏输入 URL，不能通过页面的搜索框，否则特殊字符会被编码成HTML显示的字符，注入语句就失效了</p>
+<p class="align-center">至此，本实验到此结束</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>Kali Linux 抓取 WPA2 握手包并进行字典破解（实验记录）</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/kali_deciphering_wifi.html"/>
+        <id>https://zeyun.org/kali_deciphering_wifi.html</id>
+            <category term="网络工具介绍"/>
+
+        <updated>2026-03-14T22:56:35+09:00</updated>
+            <summary>
+                <![CDATA[
+                    免责声明 本文所有实验均在个人搭建的内网测试环境中进行，仅用于学习网络安全技术原理，请勿在未授权的网络环境中进行测试，否则可能涉及违法行为 设备要求 一台装有kali的机器（推荐使用虚拟机） 一个可以监听的网卡（我使用的是RT3070L无线网卡）&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h4 class="align-center">免责声明</h4>
+<h5 class="align-center">本文所有实验均在个人搭建的内网测试环境中进行，仅用于学习网络安全技术原理，请勿在未授权的网络环境中进行测试，否则可能涉及违法行为</h5>
+<h4>设备要求</h4>
+<ul>
+<li>一台装有kali的机器（推荐使用虚拟机）</li>
+<li>一个可以监听的网卡（我使用的是RT3070L无线网卡）</li>
+</ul>
+<h4>爆破原理解释</h4>
+<p>先通过监听模式抓取 WPA2 网络（方法主要针对 WPA2 网络，对 WPA3 基本无效）在设备连接时产生的握手数据包（Handshake），然后利用密码字典对可能的密码逐个进行计算验证。如果计算结果与握手数据匹配，则说明该密码正确（这种方式属于字典暴力破解，因此破解成功率取决于字典内容和计算能力）</p>
+<h4 data-start="580" data-end="589">破解流程大致如下</h4>
+<ol>
+<li>开启网卡监听模式</li>
+<li>扫描周围 WiFi</li>
+<li>抓取目标 WiFi 的握手包</li>
+<li>使用密码字典进行离线破解</li>
+<li>如果字典中的密码匹配成功，则得到 WiFi 密码</li>
+</ol>
+<h4 data-start="884" data-end="891">另外说明一点</h4>
+<p data-start="893" data-end="917">Kali 自带的密码字典虽然很大，但有两个问题</p>
+<ul>
+<li data-start="893" data-end="917">破解速度会非常慢</li>
+<li data-start="893" data-end="917">里面不一定包含测试 WiFi 的密码</li>
+</ul>
+<p>因此在本次实验中，我使用的是自己编写的密码字典 txt 文件</p>
+<h4>准备工作</h4>
+<h6>Stp1：首先确保在你的网卡连接上虚拟机，并处于监听状态</h6>
+<p>使用以下命令查看</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-220816.png" alt="" width="2137" height="1022" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-220816-xl.webp 1024w"></figure>
+<p>我这里是没有处于监听状态，使用如下命令开启监听</p>
+<p>1.先关闭干扰进程</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng check kill</code></pre>
+<p>2.启动监听模式</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng start wlan0</code></pre>
+<p>3.验证是否成功</p>
+<pre class="language-bash line-numbers"><code>iwconfig</code></pre>
+<p>看到以下的显示，即为正确打开监听模式</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-221908.png" alt="" width="2143" height="467" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-221908-xl.webp 1024w"></figure>
+<p>关闭监听模式（用完记得恢复）</p>
+<pre class="language-bash line-numbers"><code>sudo airmon-ng stop wlan0mon
+sudo systemctl start NetworkManager</code></pre>
+<h6>Stp2：在桌面新建一个文件夹，用于存放抓到的握手包以及密码字典</h6>
+<p>1.创建文件夹（每个人的文件路径不同，之后的路径也不同，需要注意！）</p>
+<pre class="language-bash line-numbers"><code>mkdir /home/kali/桌面/wifi_test</code></pre>
+<p>2.创建密码字典</p>
+<pre class="language-bash line-numbers"><code>touch /home/kali/桌面/wifi_test/password.txt</code></pre>
+<p>3.编辑你自己的密码字典(确保里面有需要爆破的WiFi密码)</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/password.png" alt="" width="851" height="590" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/password-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/password-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/password-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/password-xl.webp 1024w"></figure>
+<h4>实战开始</h4>
+<h6>Stp1：扫描周围 WiFi</h6>
+<p>使用如下命令扫描附近无线网络</p>
+<pre class="language-bash line-numbers"><code>sudo airodump-ng wlan0mon</code></pre>
+<p>会看到以下情景（下图框选的是本次爆破的 WiFi 名称）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/ceuiwifi.png" alt="" width="2137" height="1021" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/ceuiwifi-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/ceuiwifi-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/ceuiwifi-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/ceuiwifi-xl.webp 1024w"></figure>
+<p>需要记录两个信息：BSSID，ESSID，CH（可以复制到一个你记得住的地方，一会要用）</p>
+<p>记录完成后按，<code>Ctrt + C </code>结束扫描</p>
+<h6>Stp2：开始抓取握手包</h6>
+<p>输入以下命令，开始抓包</p>
+<pre class="language-bash line-numbers"><code>sudo airodump-ng -c 换成你的信道的数字 --bssid 这里替换成你的BSSID -w /home/kali/桌面/wifi_test/handshake wlan0mon</code></pre>
+<p>参数解释：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c</td>
+<td>指定信道</td>
+</tr>
+<tr>
+<td>--bssid</td>
+<td>目标 WiFi 的 MAC 地址</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>抓包文件保存路径</td>
+</tr>
+</tbody>
+</table>
+<p>如果成功捕获到 WAP 握手包，界面上会出现下图的情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/hex-2.png" alt="" width="2132" height="559" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/hex-2-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/hex-2-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/hex-2-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/hex-2-xl.webp 1024w"></figure>
+<p>出现上图的 WAP 的信息后，说明抓包成功</p>
+<p>也可以和我下图一样，在刚刚创建的文件夹里打开终端</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-14-234238.png" alt="" width="1286" height="962" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-14-234238-xl.webp 1024w"></figure>
+<h6>原理解释</h6>
+<p data-start="134" data-end="209">当设备连接到 <strong data-start="141" data-end="154">WPA2 WiFi</strong> 时，客户端与路由器之间会进行一次认证过程，这个过程叫做 <strong data-start="183" data-end="208">4-Way Handshake（四次握手）</strong></p>
+<p data-start="211" data-end="225">简单来说，这个过程的作用是：</p>
+<ul>
+<li data-start="229" data-end="249">验证客户端是否知道正确的 WiFi 密码</li>
+<li data-start="252" data-end="265">同时生成通信所需的加密密钥</li>
+</ul>
+<p data-start="267" data-end="276">整个流程大致如下：</p>
+<ol>
+<li data-start="281" data-end="293">路由器向客户端发送随机数</li>
+<li data-start="297" data-end="326">客户端根据 <strong data-start="303" data-end="319">WiFi密码 + 随机数</strong> 计算认证信息</li>
+<li data-start="330" data-end="344">客户端把计算结果发送给路由器</li>
+<li data-start="348" data-end="357">路由器验证是否正确</li>
+</ol>
+<p data-start="359" data-end="383">如果计算结果正确，设备就可以成功连接 WiFi</p>
+<p data-start="385" data-end="430">在这个过程中，会产生一些认证数据包，这些数据包就是 <strong data-start="411" data-end="429">Handshake（握手包）</strong></p>
+<p data-start="457" data-end="466">需要注意的一点是：</p>
+<p data-start="468" data-end="508">握手包 <strong data-start="472" data-end="490">不会直接包含 WiFi 密码</strong>，但它包含了用于验证密码的认证数据</p>
+<p>如果你和我一样，等了很久，都没有出现WPA的相关信息，可以强制设备重新连接来获取</p>
+<h6>强制设备重新连接（如果没抓到包的可以做，之前抓到了，可以跳过此步骤）</h6>
+<p>如果一直抓不到握手包，可以使用 <strong data-start="1866" data-end="1879">deauth 攻击</strong>让设备重新连接</p>
+<p><code>Ctrl + Shift + T </code>新开一个终端，输入以下命令：</p>
+<pre class="language-bash line-numbers"><code>sudo aireplay-ng -0 10 -a 换成你BSSID的地址 wlan0mon</code></pre>
+<p data-start="2017" data-end="2043">执行后，连接 WiFi 的设备会被踢下线并重新连接</p>
+<p data-start="2045" data-end="2065">重新连接时就会产生新的 <strong data-start="2057" data-end="2064">握手包 （也就是下面的这个红色框的 WPA 信息）</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/hex-3.png" alt="" width="2132" height="559" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/hex-3-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/hex-3-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/hex-3-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/hex-3-xl.webp 1024w"></figure>
+<p data-start="2067" data-end="2084">当抓到握手包后，可以在抓包终端按<code> Ctrl + C </code>结束</p>
+<p data-start="2067" data-end="2084">如果以上的步骤还是不行，那就直接使用你的手机，断开并重新连接到这个WiFi（这样做100%成功，因为攻击的目的是让手机被动的下线在重连）</p>
+<h6>参数解释：</h6>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-0</td>
+<td>deauth攻击</td>
+</tr>
+<tr>
+<td>10</td>
+<td>攻击次数</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>目标MAC</td>
+</tr>
+</tbody>
+</table>
+<h6>原理解释</h6>
+<p>在 <code data-start="931" data-end="944">airodump-ng</code> 界面下方会显示 <strong data-start="953" data-end="964">STATION</strong> 列表，这里是已经连接到该 WiFi 的设备 MAC 地址<br data-start="994" data-end="997">在使用 <code data-start="1003" data-end="1016">aireplay-ng</code> 发送 deauth 时，可以把其中一个设备的 MAC 填入 <code data-start="1047" data-end="1051">-c</code> 参数，用于强制该设备断开并重新连接 WiFi，从而触发新的握手包</p>
+<p>此时目录下会生成类似文件（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/wificap.png" alt="" width="1279" height="946" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/wificap-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/wificap-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/wificap-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/wificap-xl.webp 1024w"></figure>
+<h6>stp3:开始字典破解</h6>
+<p>在这里打开终端</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/Ping-Mu-Jie-Tu-2026-03-15-000149.png" alt="" width="1292" height="977" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/Ping-Mu-Jie-Tu-2026-03-15-000149-xl.webp 1024w"></figure>
+<p>接下来使用 <strong data-start="2175" data-end="2190">aircrack-ng</strong> 进行密码破解，命令如下</p>
+<pre class="language-bash line-numbers"><code>sudo aircrack-ng -w /home/kali/桌面/wifi_test/password.txt -b 此处换成刚刚获取的BSSID handshake-01.cap</code></pre>
+<p>提示：如果你前面的e失败次数较多，那么大概率会有handshake-02.cap这样的包，最终只要选对了正确的包即可</p>
+<h6>参数解释：</h6>
+<table style="width: 100%; height: 133.484px;">
+<thead>
+<tr style="height: 48.5625px;">
+<th style="width: 29.8734%; height: 48.5625px;">参数</th>
+<th style="width: 69.9842%; height: 48.5625px;">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 48.5625px;">
+<td style="width: 29.8734%; height: 48.5625px;">-w</td>
+<td style="width: 69.9842%; height: 48.5625px;">密码字典</td>
+</tr>
+<tr style="height: 36.3594px;">
+<td style="width: 29.8734%; height: 36.3594px;">
+<p>-b</p>
+</td>
+<td style="width: 69.9842%; height: 36.3594px;">目标WiFi BSSID</td>
+</tr>
+</tbody>
+</table>
+<p>之后，程序会不断尝试字典中的密码，直至成功</p>
+<p>成功后的画面如下（正真的密码我打马赛克了，所以是文字的形式显示的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/45/mima.png" alt="" width="2135" height="1016" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/45/responsive/mima-xs.webp 320w ,https://zeyun.org/media/posts/45/responsive/mima-sm.webp 480w ,https://zeyun.org/media/posts/45/responsive/mima-md.webp 768w ,https://zeyun.org/media/posts/45/responsive/mima-xl.webp 1024w"></figure>
+<p>由于之前的WiFi密码已经包含在内了，所以我这里的速度会很快</p>
+<p class="align-center">至此，本实验到此结束</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>安装Burp Suite</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/install_burpsuite.html"/>
+        <id>https://zeyun.org/install_burpsuite.html</id>
+            <category term="网络工具介绍"/>
+
+        <updated>2026-03-11T21:35:30+09:00</updated>
+            <summary>
+                <![CDATA[
+                    在Windows上安装 文件下载：点我下载 文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示） 点击继续（选择文件位置，这里我建议可以更换一个自己记得住的路径）&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2>在Windows上安装</h2>
+<p>文件下载：<a href="https://www.ilanzou.com/s/cSrM8off" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<h5>步骤一：下载来自我上传的文件（你会得到步骤二的图片中的几个文件）</h5>
+<p>文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示）</p>
+<h5>步骤二：双击此文件，安装Java坏境</h5>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/bpjava-2.png" alt="" width="1389" height="399" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/bpjava-2-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-xl.webp 1024w"></figure>
+<h5>步骤三：开始安装</h5>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-170853.png" alt="" width="987" height="746" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-xl.webp 1024w"></figure>
+<p>点击继续（选择文件位置，这里我建议可以更换一个自己记得住的路径）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-170953.png" alt="" width="1001" height="759" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170953-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170953-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170953-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170953-xl.webp 1024w"></figure>
+<p>完成安装（这里点击关闭即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-171049.png" alt="" width="1001" height="759" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-171049-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-171049-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-171049-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-171049-xl.webp 1024w"></figure>
+<h5>步骤四：配置坏境变量</h5>
+<p>依次打开：设置，系统，系统信息，高级系统设置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/javaDe-Huan-Jing-Bian-Liang.png" alt="" width="2879" height="1700" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/javaDe-Huan-Jing-Bian-Liang-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/javaDe-Huan-Jing-Bian-Liang-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/javaDe-Huan-Jing-Bian-Liang-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/javaDe-Huan-Jing-Bian-Liang-xl.webp 1024w"></figure>
+<p>选择环境变量选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Pi-Jing-Bian-Liang-1.png" alt="" width="956" height="1094" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Pi-Jing-Bian-Liang-1-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Pi-Jing-Bian-Liang-1-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Pi-Jing-Bian-Liang-1-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Pi-Jing-Bian-Liang-1-xl.webp 1024w"></figure>
+<p>依次选择下面图片中的选项</p>
+<p><code><strong>*注意：</strong></code>这里的变量名，建议固定为<strong> <code>JAVA_HOME</code></strong>（不是必须，但强烈推荐，可以为后续省去很多不必要的麻烦）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/javaBian-Liang-Pei-Zhi.png" alt="" width="2880" height="1704" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/javaBian-Liang-Pei-Zhi-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/javaBian-Liang-Pei-Zhi-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/javaBian-Liang-Pei-Zhi-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/javaBian-Liang-Pei-Zhi-xl.webp 1024w"></figure>
+<p>最后全部选择“确定”选项</p>
+<h5>步骤五：配置用户环境变量</h5>
+<p>按照如下步骤来就行，不要跳步（如果你前面的名称和我一样，那就按照我图片的步骤来即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Huan-Jing-Bian-Liang-2.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Huan-Jing-Bian-Liang-2-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Huan-Jing-Bian-Liang-2-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Huan-Jing-Bian-Liang-2-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Huan-Jing-Bian-Liang-2-xl.webp 1024w"></figure>
+<h5>步骤六：将这个环境变量移动至顶部</h5>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/javaWei-Zhi.png" alt="" width="2879" height="1707" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/javaWei-Zhi-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/javaWei-Zhi-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/javaWei-Zhi-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/javaWei-Zhi-xl.webp 1024w"></figure>
+<p>不出意外的话，你配置完，在终端中输入</p>
+<pre class="language-bash line-numbers"><code>javac</code></pre>
+<p>因该能在显示这个界面</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-195757.png" alt="" width="2350" height="1225" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-195757-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-195757-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-195757-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-195757-xl.webp 1024w"></figure>
+<p>至此，坏境变量部分即为配置成功</p>
+<h5>步骤七：开始安装Burp suite</h5>
+<p>右击这个burploader.jar文件，打开方式选择<code>Java(TM)Platform SE binary</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Po-Jie.png" alt="" width="1468" height="1013" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Po-Jie-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Po-Jie-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Po-Jie-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Po-Jie-xl.webp 1024w"></figure>
+<p>在弹出的窗口中把这两个勾打上，并点击<code>Run</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Da-Gou.png" alt="" width="1578" height="989" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Da-Gou-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Da-Gou-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Da-Gou-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Da-Gou-xl.webp 1024w"></figure>
+<p>如果不出意外，你会自动打开burp suit的界面（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-200735.png" alt="" width="996" height="861" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-200735-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-200735-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-200735-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-200735-xl.webp 1024w"></figure>
+<p>还有种情况（那就是和我一样，没打开，没反应）</p>
+<p>那就和我一样，手动再次双击这个burploader.jar文件，打开这个界面，也是同样的效果（要保持这个之前的页面不要关，要有两个窗口）</p>
+<p>将左侧的文本复制，粘贴到右侧，随后点击<code>NEXT</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/ctalcv.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/ctalcv-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/ctalcv-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/ctalcv-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/ctalcv-xl.webp 1024w"></figure>
+<p>继续按照以下步骤操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/then.png" alt="" width="2879" height="1701" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/then-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/then-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/then-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/then-xl.webp 1024w"></figure>
+<p>粘贴完成之后，再次点击<code>NEXT</code>，即可看到激活成功（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-211046.png" alt="" width="996" height="861" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-211046-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-211046-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-211046-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-211046-xl.webp 1024w"></figure>
+<p>点击<code>Finish</code>结束即可</p>
+<h5>步骤八：下载证书</h5>
+<p>按照下图的步骤配置即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/proxyzdal.png" alt="" width="2879" height="1706" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/proxyzdal-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/proxyzdal-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/proxyzdal-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/proxyzdal-xl.webp 1024w"></figure>
+<p>选择下图的框选区域</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/select1.png" alt="" width="996" height="861" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/select1-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/select1-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/select1-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/select1-xl.webp 1024w"></figure>
+<p>命名要求必须为<code>.der</code>结尾</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/selext.png" alt="" width="1578" height="1189" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/selext-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/selext-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/selext-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/selext-xl.webp 1024w"></figure>
+<p>点击保存即可（下图是我的路径，可供参考）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-212640.png" alt="" width="996" height="861" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212640-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212640-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212640-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212640-xl.webp 1024w"></figure>
+<h5>步骤九：配置证书</h5>
+<p>打开浏览器，搜索<code>证书</code>（这里我以最普遍的Edge浏览器来示范，其他的浏览器也是同理）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-212903.png" alt="" width="2879" height="1618" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212903-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212903-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212903-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-212903-xl.webp 1024w"></figure>
+<p>打开这个依次打开如下的选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Zheng-Shu-1.png" alt="" width="2879" height="1614" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Zheng-Shu-1-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-1-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-1-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-1-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Zheng-Shu-2.png" alt="" width="2879" height="1619" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Zheng-Shu-2-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-2-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-2-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-2-xl.webp 1024w"></figure>
+<p>选自刚刚保存的证书路径，找到证书</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Zheng-Shu-3.png" alt="" width="2850" height="1622" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Zheng-Shu-3-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-3-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-3-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Zheng-Shu-3-xl.webp 1024w"></figure>
+<p>中间证书配置也是如此（和上面的步骤一致，我就不再演示了）</p>
+<p>配置好后如下图所示</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-214139.png" alt="" width="2879" height="1626" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-214139-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-214139-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-214139-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-214139-xl.webp 1024w"></figure>
+<h5>步骤十：安装浏览器拓展</h5>
+<p>安装浏览器拓展： <code>proxy switchyomega</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Tuo-Zhan.png" alt="" width="2879" height="1615" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Tuo-Zhan-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Tuo-Zhan-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Tuo-Zhan-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Tuo-Zhan-xl.webp 1024w"></figure>
+<p>点击右上角的“拼图”，打开拓展（可以固定到这里，方便开关）</p>
+<p>按照下图步骤配置插件</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/omg.png" alt="" width="2879" height="1612" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/omg-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/omg-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/omg-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/omg-xl.webp 1024w"></figure>
+<p>继续按照下图，来进行配置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/omg2.png" alt="" width="2845" height="1523" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/omg2-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/omg2-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/omg2-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/omg2-xl.webp 1024w"></figure>
+<p>最后选择左下角的“应用选项”，保存即可</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>美化Ubuntu</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/beautify_about_ubuntu.html"/>
+        <id>https://zeyun.org/beautify_about_ubuntu.html</id>
+            <category term="Linux学习笔记"/>
+
+        <updated>2026-03-02T23:01:23+09:00</updated>
+            <summary>
+                <![CDATA[
+                    在前一章节，我带领大家配置完基础的安装过程，以及换完国内的源等基础的Ubuntu的设置后，接下来我会带领大家实现如下图的美化效果（如下图所示） 如果没看我前一章节的朋友，可以回头看看：点我直达 别担心，本篇文章我会带着从零开始，一步一步地美化这个系统 所需材料来源于Github的大佬们制作的美化包，所以务必请准备好外网环境，如果没有的话，可以使用国内的镜像站（改成bgithub.xyz即可） 剩余内容还在更新中....
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>在前一章节，我带领大家配置完基础的安装过程，以及换完国内的源等基础的Ubuntu的设置后，接下来我会带领大家实现如下图的美化效果（如下图所示）</p>
+<p>如果没看我前一章节的朋友，可以回头看看：点我直达</p>
+<p>别担心，本篇文章我会带着从零开始，一步一步地美化这个系统</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/42/ubuntumacosmain.png" alt="" width="1920" height="1080" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/42/responsive/ubuntumacosmain-xs.webp 320w ,https://zeyun.org/media/posts/42/responsive/ubuntumacosmain-sm.webp 480w ,https://zeyun.org/media/posts/42/responsive/ubuntumacosmain-md.webp 768w ,https://zeyun.org/media/posts/42/responsive/ubuntumacosmain-xl.webp 1024w"></figure>
+<p>所需材料来源于Github的大佬们制作的美化包，所以务必请准备好外网环境，如果没有的话，可以使用国内的镜像站（改成bgithub.xyz即可）</p>
+<p class="align-center">剩余内容还在更新中....</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>从零开始安装Ubuntu操作系统</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/install_ubuntu.html"/>
+        <id>https://zeyun.org/install_ubuntu.html</id>
+            <category term="Linux学习笔记"/>
+
+        <updated>2026-03-02T22:40:48+09:00</updated>
+            <summary>
+                <![CDATA[
+                    下载Ubuntu 打开Ubuntu官网，找到24.04.4 LTS，点击下载（这里为了便于操作，我们下载的是带有桌面环境的版本） Ubuntu官网：点我直达 步骤一：选择Try&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h4>下载Ubuntu</h4>
+<p>打开Ubuntu官网，找到24.04.4 LTS，点击下载（这里为了便于操作，我们下载的是带有桌面环境的版本）</p>
+<p>Ubuntu官网：<a href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener noreferrer">点我直达</a></p>
+<h4>安装Ubuntu</h4>
+<ul>
+<li><strong>安装过程我们保持全程不联网安装，后续安装好系统，换完国内源之后再联网</strong></li>
+<li><strong>如果我在这里没有提到的步骤，那么默认选择默认的选项，不需要改动</strong></li>
+<li><strong>我这里为了方便截图所以使用虚拟机展示，实体机安装也是同理，只不过多了一步制作启动盘的步骤而已，其他都是一样的</strong></li>
+</ul>
+<p>步骤一：选择Try or install Ubuntu，回车</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-215552.png" alt="" width="1023" height="658" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-215552-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-215552-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-215552-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-215552-xl.webp 1024w"></figure>
+<p>步骤二：选择安装语言，为了避免后续切换以及不必要的麻烦，这里强烈建议选择English，待之后我们在换回中文</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-220605.png" alt="" width="1274" height="799" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220605-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220605-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220605-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220605-xl.webp 1024w"></figure>
+<p>接下来的选择键盘布局的部分也是选择English（US）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-220934.png" alt="" width="1270" height="794" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220934-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220934-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220934-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-220934-xl.webp 1024w"></figure>
+<p>*注意：这里网络选择这一块，我们选择<span style="text-decoration: underline;">无网络安装</span></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/An-Zhuang-ubWu-wifi.png" alt="" width="1278" height="795" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/An-Zhuang-ubWu-wifi-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/An-Zhuang-ubWu-wifi-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/An-Zhuang-ubWu-wifi-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/An-Zhuang-ubWu-wifi-xl.webp 1024w"></figure>
+<p>如果在这一步联网，无论是WIFI还是网线，只要是国内的网络环境，都会导致后续的下载部分因为没提前换国内的源，一直下载系统文件的时候卡死</p>
+<p>步骤三：接下来的选择Install Ubuntu，而不是Try Ubuntu</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-221641.png" alt="" width="1278" height="800" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221641-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221641-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221641-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221641-xl.webp 1024w"></figure>
+<p>这一步的时候，只选择第一个（通常来说，如果前期没有网络，那么这个第二个选项因该是灰色）如果你的第二个可以选择，那么说明你的电脑大概率是插着网线的，需要点击右上角的那个网线图标，关掉网线连接</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-221944.png" alt="" width="1277" height="798" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221944-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221944-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221944-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-221944-xl.webp 1024w"></figure>
+<p>在这之后，下一个选项时，根据你自己的实际情况来选择（我这里安装一整块硬盘，所以我选择第一个）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/select2.png" alt="" width="1274" height="800" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/select2-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/select2-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/select2-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/select2-xl.webp 1024w"></figure>
+<p>步骤四：接下来就是创建用户（自己记得住就行）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-223303.png" alt="" width="1277" height="798" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223303-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223303-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223303-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223303-xl.webp 1024w"></figure>
+<p>步骤五：时区选择上海</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-223421.png" alt="" width="1278" height="800" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223421-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223421-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223421-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223421-xl.webp 1024w"></figure>
+<p>步骤六：最后再次确认一下自己的配置，点击Install（由于我这里时虚拟机进行示范的，所以就直接点击install了）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-223509.png" alt="" width="1274" height="794" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223509-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223509-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223509-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223509-xl.webp 1024w"></figure>
+<p>再然后的话，点击Restart，重启即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-223753.png" alt="" width="1275" height="797" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223753-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223753-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223753-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-223753-xl.webp 1024w"></figure>
+<p>至此，整个安装过程就结束了（实体机安装的朋友，记得等重启之后在进行拔掉启动U盘的操作）</p>
+<h4>换国内源（这里我推荐aliyun的源，速度快，其他的也是同理）</h4>
+<p>安装好系统之后就可以联网了，在自带的FireFox浏览器里打开我的网站的网址，跟着教程复制命令即可</p>
+<p>点击桌面，右击鼠标，选择“在此处打开终端”</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-224249.png" alt="" width="2368" height="1478" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-224249-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-224249-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-224249-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-224249-xl.webp 1024w"></figure>
+<p><code>*Tips</code>：Linux系统里的粘贴不同于windows，可以选择Ctrl+Shift+V或者右击选择“Paste”粘贴（复制是Ctrl+Shift+C，不是Ctrl+C）当然，这个加Shift的逻辑也只适用于终端界面，而非全部（在浏览器或者其他地方复制/粘贴的时候，依然是Ctrl+C/V）</p>
+<p>1.备份原文件（必做，防出错）</p>
+<pre class="language-bash line-numbers"><code>sudo cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.bak</code></pre>
+<p>2.编辑源文件</p>
+<pre class="language-bash line-numbers"><code>sudo nano /etc/apt/sources.list.d/ubuntu.sources</code></pre>
+<p>3. 替换成阿里云源（光标移动至最后一行，开始依次删除，直至清空，并粘贴下面内容）</p>
+<pre class="language-bash line-numbers"><code>Types: deb
+URIs: https://mirrors.aliyun.com/ubuntu/
+Suites: noble noble-updates noble-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: https://mirrors.aliyun.com/ubuntu/
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
+<p>4.依次按下键盘的Ctrl+O（保存），回车（确定文件名），Ctrl+X（退出）</p>
+<p>5.保存关闭，刷新源</p>
+<pre class="language-bash line-numbers"><code>sudo apt update</code></pre>
+<p>如果不出意外，的现在输入完上面的指令，因该会跑一小会时间的代码，而不是卡住</p>
+<p>按下键盘的“上键“，再次重复输入这条sudo apt update，和我这个一样就对了</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-230105.png" alt="" width="1305" height="376" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-230105-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-230105-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-230105-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-230105-xl.webp 1024w"></figure>
+<p>6.升级这些包</p>
+<pre class="language-bash line-numbers"><code>sudo apt upgrade</code></pre>
+<p>一路按下回车，或者按提示输入Y即可</p>
+<h4>更换语言</h4>
+<p>按下左下角的Ubuntu徽标，打开设置（如果有弹窗更新的选项，就点击Install即可）</p>
+<p>选择最底下的System选项，并按照图片步骤操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Yu-Yan.png" alt="" width="2367" height="1473" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Yu-Yan-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-xl.webp 1024w"></figure>
+<p>再次将这个界面的”中文“选项，拖拽到第一个，并点击”Apply System-Wide“</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-231923.png" alt="" width="2368" height="1475" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-231923-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-231923-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-231923-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-231923-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-232126.png" alt="" width="2362" height="1478" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-232126-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-232126-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-232126-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-232126-xl.webp 1024w"></figure>
+<p>旁边的选项也可以选择一下，记得都点击Apply System-Wide</p>
+<p>在之后把下面的Formats改成”中文“，之后会弹出一个”Log out“的选项，选择退出重新登陆即可</p>
+<p><code>*注意：</code>重新登陆完成之后会出现这个弹窗，千万要点击保留旧的名称（之前不选择改中文的原因也就在这）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Yu-Yan-Bian-Dong.png" alt="" width="2363" height="1477" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Yu-Yan-Bian-Dong-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-Bian-Dong-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-Bian-Dong-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Yu-Yan-Bian-Dong-xl.webp 1024w"></figure>
+<h4>使用中文的输入法</h4>
+<p>1：安装雾凇拼音（IBus 版）</p>
+<pre class="language-bash line-numbers"><code>sudo apt install ibus-rime -y</code></pre>
+<p>这里 ibus-rime 就是雾凇拼音的官方包，安装完成后需要重启 IBus 框架</p>
+<p>2：重启 IBus 框架（让雾凇拼音生效）</p>
+<pre class="language-bash line-numbers"><code>ibus restart</code></pre>
+<p>执行后，桌面右上角的输入法图标（通常是键盘或英文图标）会闪烁一下，代表重启完成</p>
+<p>3.打开设置，键盘，输入源，选择汉语</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-234047.png" alt="" width="2360" height="1478" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234047-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234047-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234047-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234047-xl.webp 1024w"></figure>
+<p>选择中文（智能拼音），添加</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-234431.png" alt="" width="2364" height="1474" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234431-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234431-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234431-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234431-xl.webp 1024w"></figure>
+<p>添加后点击3个点，打开首选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-234627.png" alt="" width="2363" height="1467" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234627-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234627-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234627-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-234627-xl.webp 1024w"></figure>
+<p>可根据自己的喜好来调整即可</p>
+<h4>安装一些好用的软件</h4>
+<h5>1.Fish</h5>
+<p>Q：Fish是什么</p>
+<p>A：比 Ubuntu 默认终端（bash）更好用、更智能的升级版终端</p>
+<p>可以按下”Tab按键“补全命令的终端，强烈建议新手安装，超好用</p>
+<p><strong>先搞懂核心概念</strong></p>
+<ul>
+<li><strong>bash</strong>：Ubuntu 默认的终端解释器（就像手机默认输入法），功能够用但偏老旧，新手用起来容易踩坑。</li>
+<li><strong>fish</strong>：全称 <code>Friendly Interactive Shell</code>（友好的交互式 Shell），是专门为提升终端使用体验设计的替代品，核心优势就是「易用、智能、直观」</li>
+</ul>
+<p>安装命令</p>
+<pre class="language-bash line-numbers"><code>sudo apt install fish -y</code></pre>
+<p>安装完成后在终端里输入fish即可启动</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-02-235147.png" alt="" width="1501" height="1234" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-235147-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-235147-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-235147-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-02-235147-xl.webp 1024w"></figure>
+<p>设置为默认终端（以后打开终端不用输入fish，自动就是）</p>
+<pre class="language-bash line-numbers"><code>chsh -s /usr/bin/fish</code></pre>
+<h5><strong>2.Fastfetch + lolcat（好玩的小软件，展示系统配置小工具）</strong></h5>
+<p>Fastfetch：展示系统配置的软件（通常用这个）</p>
+<p>lolcat：使得这个软件的结果输出时候为彩色界面（与Fastfetch搭配使用效果更佳哦！）</p>
+<p><code>*注意：</code>Ubuntu 24.04 默认源里没有 fastfetch，所以直接 apt install 会提示 “无法定位”。我们需要先添加官方 PPA 源，再安装</p>
+<p>步骤一：添加 fastfetch 官方 PPA</p>
+<pre class="language-bash line-numbers"><code>sudo add-apt-repository ppa:zhangsongcui3371/fastfetch</code></pre>
+<p>提示时按 <strong>Enter</strong> 确认添加</p>
+<p>步骤二：更新软件源列表</p>
+<pre class="language-bash line-numbers"><code>sudo apt update</code></pre>
+<p>步骤三：安装 fastfetch</p>
+<pre class="language-bash line-numbers"><code>sudo apt install fastfetch -y</code></pre>
+<p>步骤四：安装lolcat</p>
+<pre class="language-bash line-numbers"><code>sudo apt install lolcat -y</code></pre>
+<p>使用fastfetch搭配lolcat产生的炫酷效果</p>
+<p>输入以下命令打开fastfetch的炫酷界面</p>
+<pre class="language-bash line-numbers"><code>fastfetch | lolcat</code></pre>
+<p>成果展示！！（锵锵！🎉🎉🎉）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/41/Ping-Mu-Jie-Tu-2026-03-03-000953.png" alt="" width="2367" height="1477" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-03-000953-xs.webp 320w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-03-000953-sm.webp 480w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-03-000953-md.webp 768w ,https://zeyun.org/media/posts/41/responsive/Ping-Mu-Jie-Tu-2026-03-03-000953-xl.webp 1024w"></figure>
+<p>这里我时虚拟机操作的哈，所以才这样</p>
+<p class="align-center">不过至此，你已经成功安装Ubuntu系统，并且完成了基础的配置</p>
+<p class="align-center">下一期我来给大家介绍如何美化这个Ubuntu系统</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>做种？分享？种子链？—— qbittorrent使用教程</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/qbittorrent_teaching.html"/>
+        <id>https://zeyun.org/qbittorrent_teaching.html</id>
+            <category term="网络工具介绍"/>
+
+        <updated>2026-02-01T00:33:06+09:00</updated>
+            <summary>
+                <![CDATA[
+                    软件下载：点我下载 密码：414a 软件介绍：基于 BitTorrent 协议的&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p><strong>软件下载：</strong><a href="https://wwbte.lanzn.com/b014x1es3g" target="_blank" rel="noopener noreferrer">点我下载</a>    <strong>密码：</strong>414a</p>
+<p><strong>软件介绍：</strong>基于 BitTorrent 协议的 P2P（点对点）文件下载工具，该软件是一款开源，免费且无广告的 BitTorrent 客户端，旨在为用户提供安全、高效的文件下载和分享体验的优秀软件</p>
+<p><strong>软件功能：</strong>用来下载他人提供的种子链接，以及自己"做种"，为他人提供下载（尤其是文件不限速，隐私性极高，比国内的网盘好用多了，你的电脑就是服务端，没有审核）</p>
+<p><strong>什么是"做种"：</strong>做种就是当你下载完一个文件后，继续保持软件运行，把你已有的文件片段上传给其他正在下载这个文件的人</p>
+<ul>
+<li>你就像一个"种子节点"，为后来的用户提供下载源，所以这个行为叫”做种“</li>
+<li>这是 BT 协议的核心精神：<strong>人人为我，我为人人</strong></li>
+</ul>
+<p>（不过为了保持"开源分享精神"，可以在软件里设置分享的阈值，具体的设置及原理，在该文章中我也会提到）</p>
+<p><strong>软件原理：</strong>简单理解成，把你要的文件被拆成了很多小块，软件帮你找到一堆也在下载这个文件的人，你从他们手里分别拿不同的小块，同时也把自己已经拿到的小块传给别人，最后拼出完整的文件（这样一来，人越多，你拿到小块的速度就越快，而且不用全都从一个地方慢慢等）</p>
+<p class="align-center"><strong>至此，在这里感谢互联网里每一位无私的"做种人"</strong></p>
+<p><strong>软件使用教程：</strong></p>
+<p>软件功能介绍，打开这个软件后，你会看见左侧的几个按键的功能依次是</p>
+<p>左侧第一个（蓝色胶囊的样式，是添加来自于他人分享的BT种子链接）</p>
+<p>左侧第二个（蓝色加号的样式，是用于他人分享的.torrent的文件）</p>
+<p>左侧第三个（红色垃圾桶样式，是用于删除当前选中的下载任务）</p>
+<p>左侧第四个（绿色表示演示，启动任务）</p>
+<p>右侧第二个（黄色标识，暂停任务）</p>
+<p>右侧第一个（打开设置按钮）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-223136.png" alt="" width="631" height="166" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-223136-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-223136-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-223136-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-223136-xl.webp 1024w"></figure>
+<p><strong>软件优化教程：</strong></p>
+<p>（1）找到下载路径这一栏，选择合适的下载路径（我这里windows做了分盘，所以我选择D盘的一个文件夹）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/qbXia-Zai-Lu-Jing.png" alt="" width="1540" height="1221" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/qbXia-Zai-Lu-Jing-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/qbXia-Zai-Lu-Jing-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/qbXia-Zai-Lu-Jing-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/qbXia-Zai-Lu-Jing-xl.webp 1024w"></figure>
+<p>（2）填写trucker地址，提高下载速度（必要操作，否则会下载很慢）</p>
+<p>我们通常来说会进入设置界面，填写一个自动获得trucker的地址，以此来增快下载速度</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/qbTian-Jia-Wang-Zhi.png" alt="" width="1544" height="1219" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/qbTian-Jia-Wang-Zhi-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/qbTian-Jia-Wang-Zhi-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/qbTian-Jia-Wang-Zhi-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/qbTian-Jia-Wang-Zhi-xl.webp 1024w"></figure>
+<p>在这个BitTorrent设置里的这一栏，添加图片里面的这个网址，可直接复制括号里的内容（https://ngosang.github.io/trackerslist/trackers_best.txt）</p>
+<p>简单来说，Tracker就像是BT下载里的 “信息中转站”，它负责帮你找到正在下载同一文件的其他用户（也就是"Peer"）</p>
+<p>（3）分享设置（给自己做种设置限制）</p>
+<p>打开这个界面，设置和我图片里一样即可</p>
+<ul>
+<li> </li>
+</ul>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/qbZuo-Zhong-Xian-Zhi.png" alt="" width="1542" height="1221" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-xl.webp 1024w"></figure>
+<p>图片内的含义解释：</p>
+<p><strong>1.当分享率达到 1.0</strong></p>
+<ul>
+<li>分享率 = 你上传的总流量 ÷ 你下载的总流量</li>
+<li>1.0 代表你上传的流量和下载的流量一样多，相当于 “你拿了别人多少，就还给别人多少”</li>
+<li>达到这个数值后，软件就会停止做种</li>
+</ul>
+<p><strong>2.达到总做种时间时 1440 分钟</strong></p>
+<ul>
+<li>1440 分钟 = 24 小时</li>
+<li>意思是从你下载完成开始，无论分享率是否达标，只要做种满 24 小时，软件就会自动停止做种</li>
+</ul>
+<p>我的建议是：只需要在你想下载文件的时候再打开软件，下载完成后按你的设置自动停止做种，然后直接退出就好。长期挂着做种会增加上行流量，虽然正常使用不会被封PCDN，但没必要给自己增加风险</p>
+<p>下图是在任务栏的"隐藏图标"这一栏中的退出选项（如果直接叉掉这个软件不会直接退出的）需要和下图一样，在这里选择退出的按钮</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-232247.png" alt="" width="770" height="480" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-232247-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-232247-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-232247-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-232247-xl.webp 1024w"></figure>
+<p>如果你家里有7*24h运行着的NAS，那么我是强烈建议你开着的（如果你连NAS都不知道，仅仅是偶尔下载一两次的他人分享的链接，那没有必要一直开着）</p>
+<p>毕竟，独乐乐不如众乐乐(&gt;ω&lt; )</p>
+<p><strong>使用示例：</strong></p>
+<p>这里我用我下载的这个windows11 23H2 系统镜像（也是我本人正在使用的windows11版本，很推荐的一个版本）的这个下载链接，来示例这个软件的使用（这个系统镜像下载网站我也收录在了我的博客内的“网站推荐”页面内）</p>
+<p>（1）寻找下载链接（这里我在这个Hello Windows这个网站里找到了我需要下载的BT链接）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/hellowindowsqbXia-Zai.png" alt="" width="2808" height="1514" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/hellowindowsqbXia-Zai-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/hellowindowsqbXia-Zai-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/hellowindowsqbXia-Zai-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/hellowindowsqbXia-Zai-xl.webp 1024w"></figure>
+<p>（2）打开qbittorrent软件，选择这个链接下载的选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-234514.png" alt="" width="2879" height="1700" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234514-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234514-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234514-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234514-xl.webp 1024w"></figure>
+<p>（3）查看下载的信息是否与你的需求一致</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-234618.png" alt="" width="2280" height="1405" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-234618-xl.webp 1024w"></figure>
+<p>（4）点击确定下载即可（如果下载速度慢，可以尝试开启"🪄魔法"或者加速器）如果实在是速度很慢（冷门资源，做种数少，那么就会很长时间了）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-235101.png" alt="" width="2879" height="1706" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-235101-xl.webp 1024w"></figure>
+<p>标志的含义介绍如下图所示：</p>
+<table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">英文全称</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>D</strong></td>
+<td align="left">DHT</td>
+<td align="left">来自 DHT 网络的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>T</strong></td>
+<td align="left">Tracker</td>
+<td align="left">来自 Tracker 服务器的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>P</strong></td>
+<td align="left">Peer Exchange</td>
+<td align="left">通过 Peer Exchange（PEX）发现的连接</td>
+</tr>
+<tr>
+<td align="left"><strong>X</strong></td>
+<td align="left">Encrypted/uTP</td>
+<td align="left">加密连接 或 使用 uTP 协议</td>
+</tr>
+<tr>
+<td align="left"><strong>U</strong></td>
+<td align="left">Upload Only</td>
+<td align="left">对方只上传，不下载你的数据</td>
+</tr>
+<tr>
+<td align="left"><strong>D</strong></td>
+<td align="left">Download Only</td>
+<td align="left">你只下载，不从对方那里上传数据</td>
+</tr>
+<tr>
+<td align="left"><strong>I</strong></td>
+<td align="left">Incoming</td>
+<td align="left">对方主动连接到你</td>
+</tr>
+<tr>
+<td align="left"><strong>O</strong></td>
+<td align="left">Outgoing</td>
+<td align="left">你主动连接到对方</td>
+</tr>
+</tbody>
+</table>
+<p>至此，你已经完全学会这款软件的下载和使用</p>
+<p>说了这么多，我这里分享一个推荐的BT种子下载软件的使用，祝你使用愉快(●'◡'●)</p>
+<p><strong>好用的网址下载推荐qbittorrent的网站（已收录在“<a href="https://zeyun.org/good_web.html" target="_blank" rel="noopener noreferrer">网站推荐</a>”里）</strong></p>
+<p>海盗湾：<a href="https://thepiratebay.asia/" target="_blank" rel="noopener noreferrer">点我直达</a></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/Ping-Mu-Jie-Tu-2026-01-31-230254.png" alt="" width="2819" height="1608" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-230254-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-230254-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-230254-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/Ping-Mu-Jie-Tu-2026-01-31-230254-xl.webp 1024w"></figure>
+<p>这里我以"GTA"关键词来搜索，可以看到有提供超多的文件种子下载链接</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>网络设备配置实战分析 Part 6</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/network_with_huawei_ensp_part6.html"/>
+        <id>https://zeyun.org/network_with_huawei_ensp_part6.html</id>
+            <category term="网络设备配置技术学习笔记"/>
+
+        <updated>2026-01-23T17:35:05+09:00</updated>
+            <summary>
+                <![CDATA[
+                    网络实战分析综合练习 本次拓扑涉及点如下： 内部用 OSPF +&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <h2 class="align-center">网络实战分析综合练习</h2>
+<div><strong>本次拓扑涉及点如下</strong>：</div>
+<ul>
+<li>内部用 OSPF + VLAN + VRF 做核心交换与隔离</li>
+<li>分部用 RIP 做简化路由</li>
+<li>出口通过防火墙NAT转化连接互联网区域</li>
+<li>同时提供 DNS、WWW 等基础服务</li>
+</ul>
+<p>拓扑图下载：<a href="https://wwbte.lanzn.com/b014x43hpe" target="_blank" rel="noopener noreferrer">点我下载</a>        密码：ck4t</p>
+<p>防火墙镜像下载：<a href="https://www.ilanzou.com/s/KdUn3eSj" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120627.png" alt="" width="2179" height="1331" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120627-xl.webp 1024w"></figure>
+<h5>模拟实验环境概述：</h5>
+<p>上图中的橙色区域作为企业内部的核心内网区域（涉及内网的全网通，虚拟vlan，链路聚合，OSPF 1，内网访问服务器等等），防火墙的左侧为企业内网服务器区域（DMZ区域，实现内网的机器访问，并且提供外网的绑定80端口访问），防火墙右侧的粉色区域为模拟运营商的公网区域（需要在相邻的路由上配置端口加密）运营商的网络部分涉及到搭建OSPF 2以及右侧蓝色区域的RIP路由配置，及OSPF 2与RIP之间的相互引入，右上角的区域用于模拟外网（通过运营商连接的公网机器）来访问内网的模拟机器</p>
+<p class="align-center">接下来的所演示的配置信息都将围绕这个模拟的拓扑图展开</p>
+<h5><strong>习题一：按照拓扑要求对所有网络设备进行重新的命名，为了方便查看和配置关闭所有设备的信息中心功能，停止记录设备的日志和Debug信息</strong></h5>
+<p>实操步骤：需要在每一台终端设备中操作（PC，Cilent，Server除外）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-170736.png" alt="" width="1312" height="401" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-170736-xl.webp 1024w"></figure>
+<p>配置的代码思路部分如下：</p>
+<pre class="language-cpp line-numbers"><code>&lt;Huawei&gt;system-view 
+//切换系统视图
+[Huawei]sysname + 设备名称
+//改名
+[Huawei]undo info-center enable
+//关闭Debug信息 </code></pre>
+<p>提示部分：没啥难度，就是设备多，不要遗漏</p>
+<h5><strong>习题二：按照网络配置的要求为各个区域的网络设备和计算机，配置合理的IP地址和网关使其能够内网的通讯，并且按照网络拓扑的要求在交换机上划分对应的VLAN，并且将其对应的物理端口划入到对应的VLAN中</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）根据提示的拓扑，完成vlan的划分（这里是vlan10，20，30，40）需要在L3-SW上操作（两台设备都要操作），先进入L3-SW1上创建vlan</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-171629.png" alt="" width="1287" height="352" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-171629-xl.webp 1024w"></figure>
+<p>在L3-SW1的代码部分如下（<code>*注意</code>：在L3-SW2配置vlanif的ip时，不能使用和L3-SW1一模一样的ip，必须同网段，不能同ip）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]vlan batch 10 20 30 40
+//使用vlan batch同时创建多个vlan
+[L3-SW1]int vlan 10
+//进入vlanif10，注意是”vlanif“而不是”vlan10“
+[L3-SW1-Vlanif10]ip add 192.168.3.1 24
+//添加ip地址（此地址将作为下层对应vlan下PC的网关ip）
+
+//剩余的vlan20，30，40也是同理（我这里就不过多解释）
+[L3-SW1-Vlanif10]int vlan 20
+[L3-SW1-Vlanif20]ip add 192.168.53.1 24
+[L3-SW1-Vlanif20]int vlan 30
+[L3-SW1-Vlanif30]ip add 192.168.63.1 24
+[L3-SW1-Vlanif30]int vlan 40
+[L3-SW1-Vlanif40]ip add 192.168.73.1 24</code></pre>
+<p>在L3-SW2的配置如下（注意ip地址的变动）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]vlan batch 10 20 30 40
+//使用vlan batch同时创建多个vlan
+[L3-SW1]int vlan 10
+[L3-SW1-Vlanif10]ip add 192.168.3.2 24
+//添加ip地址（此地址将作为下层对应vlan下PC的网关ip）
+
+//剩余的vlan20，30，40也是同理，注意ip变成.2了
+[L3-SW1-Vlanif10]int vlan 20
+[L3-SW1-Vlanif20]ip add 192.168.53.2 24
+[L3-SW1-Vlanif20]int vlan 30
+[L3-SW1-Vlanif30]ip add 192.168.63.2 24
+[L3-SW1-Vlanif30]int vlan 40
+[L3-SW1-Vlanif40]ip add 192.168.73.2 24</code></pre>
+<p>提示部分：配置vlan ip的时候，不要进入到错误的vlan下，此外注意自己的网关和这个要对应</p>
+<p>（2）在各层交换机上配置端口模式，放行所有vlan</p>
+<p>（2-1）在L3-SW1和L3-SW2上配置所有的下层接口为Trunk模式，并且配置为放行所有vlan（这里以L3-SW1示例）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-173525.png" alt="" width="1244" height="427" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-173525-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-173525-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-173525-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-173525-xl.webp 1024w"></figure>
+<p>L3-SW1的代码部分如下（<code>*注意</code>：L3-SW2也要进行相同配置）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int g0/0/1
+//进入g0/0/1口
+[L3-SW1-GigabitEthernet0/0/1]port link-type trunk
+//配置端口类型为Trunk模式
+[L3-SW1-GigabitEthernet0/0/1]port trunk allow-pass vlan all
+//放行所有vlan
+//剩下的g0/0/2，3，4都是同理
+[L3-SW1-GigabitEthernet0/0/1]int g0/0/2
+[L3-SW1-GigabitEthernet0/0/2]port link-type trunk
+[L3-SW1-GigabitEthernet0/0/2]port trunk allow-pass vlan all
+[L3-SW1-GigabitEthernet0/0/2]int g0/0/3
+[L3-SW1-GigabitEthernet0/0/3]port link-type trunk
+[L3-SW1-GigabitEthernet0/0/3]port trunk allow-pass vlan all
+[L3-SW1-GigabitEthernet0/0/3]int g0/0/4
+[L3-SW1-GigabitEthernet0/0/4]port link-type trunk
+[L3-SW1-GigabitEthernet0/0/4]port trunk allow-pass vlan all</code></pre>
+<p>提示部分：L3-SW1和SW2都需要放行vlan，且在L2-SW3/4/5/6的连接PC的Eth0/0/1接口，需要配置为<code>Access模式</code>，并划分归属到对应vlan内。其余的设备之间连接的设置为<code>Trunk模式</code></p>
+<p>（2-2）在L2-SW3/4/5/6上配置与上下层接口对应的模式（我这里依旧以L2-SW3来示例）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-174545.png" alt="" width="1245" height="447" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-174545-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-174545-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-174545-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-174545-xl.webp 1024w"></figure>
+<p>在L2-SW3的代码部分（L2-SW4/5/6可能稍有不一样，但是思路一样的）：</p>
+<pre class="language-cpp line-numbers"><code>[L2-SW3]int g0/0/2
+//进入上层g0/0/2口
+[L2-SW3-GigabitEthernet0/0/2]port link-type trunk
+//配置与其上层一样的接口模式（这里为trunk模式）
+[L2-SW3-GigabitEthernet0/0/2]port trunk allow-pass vlan all
+//放行所有vlan
+//下面的g0/0/2口也是同理
+[L2-SW3-GigabitEthernet0/0/2]int g0/0/1
+[L2-SW3-GigabitEthernet0/0/1]port link-type trunk
+[L2-SW3-GigabitEthernet0/0/1]port trunk allow-pass vlan all
+
+[L2-SW3-GigabitEthernet0/0/1]int e0/0/1
+//进入下层e0/0/1接口
+[L2-SW3-Ethernet0/0/1]port link-type access
+//配置接口模式为access模式
+[L2-SW3-Ethernet0/0/1]q
+//暂时退出这个接口的配置界面
+[L2-SW3]vlan 10
+//创建vlan10
+[L2-SW3-vlan10]q
+//退出vlan10
+[L2-SW3]int e0/0/1
+//在次进入下层的e0/0/1接口
+[L2-SW3-Ethernet0/0/1]port default vlan 10
+//划分到属于vlan10</code></pre>
+<p>提示部分：L2-SW3/4/5/6会涉及到层的交会，与上层LS-SW的接口需要设置为Trunk模式（并放行所有vlan），与下层涉及到的接口需要配置成Access模式，并且划分到对应vlan内（如果此交换机没有配置vlan，则需要先创建对应vlan。也可以像我一样，配到了这个部分再退出创建vlan，也是一样的效果）<code>*注意</code>：2层交换机创建的vlan不需要配置ip地址</p>
+<p>验证部分（这里我在PC1来进行操作，其他的PC设备也是一样的操作）：</p>
+<p>（1）在PC1输入对应的ip地址信息（我这里给PC的ip地址是192.168.3.2/24）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-175639.png" alt="" width="1550" height="1057" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175639-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175639-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175639-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175639-xl.webp 1024w"></figure>
+<p>（2）使用PC1去给上层配有vlan10的L3-SW1发送ICMP请求（也就是使用PC1去Ping自己的网关验证是否正确）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-175947.png" alt="" width="1545" height="748" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-175947-xl.webp 1024w"></figure>
+<p>配置好后，当所有设备都可以Ping通网关，即为成功（下图分别为PC1/2/3/4的截图）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-181828.png" alt="" width="2731" height="1278" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-181828-xl.webp 1024w"></figure>
+<h5><strong>习题三：在L3-SW1和L3-SW2之间配置聚合链路，并且设置聚合链路的模式的LACP，设置L3-SW1为主动端</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在L3-SW1上配置Eth-Trunk 23的聚合链路，并设置为主动端（优先级高于SW2就行）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int eth-trunk 23
+//创建名叫eth-trunk23的聚合链路
+[L3-SW1-Eth-Trunk23]mode lacp-static
+//设置模式为lacp模式
+[L3-SW1-Eth-Trunk23]q
+//暂时退出eth-trunk23
+[L3-SW1]lacp priority 100
+//配置lacp的系统级的优先级，我这里为主动端，则设置为100，我在L3-SW2会设置成200
+[L3-SW1]int eth-trunk 23
+//再次进入到eth-trunk23
+[L3-SW1-Eth-Trunk23]trunkport GigabitEthernet 0/0/22 to 0/0/23
+将需要聚合的端口划分到这个聚合链路里面
+[L3-SW1-Eth-Trunk23]port link-type trunk
+//设置聚合链路的类型为trunk
+[L3-SW1-Eth-Trunk23]port trunk allow-pass vlan all
+//放行所有vlan</code></pre>
+<p>（2）在L3-SW2上来配置对端的聚合链路（设置L3-SW2的优先级为200）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-205507.png" alt="" width="1242" height="287" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-205507-xl.webp 1024w"></figure>
+<p>（聚合链路的数字是自定义的，我这里以需要加入聚合端口号来命名了，是22端口和23端口的组合，2和3，即为23）只需要确保端口号一样即可</p>
+<p>验证部分：</p>
+<p>（1）这里我是用查看stp的命令来去检查L3-SW2的聚合链路是否创建成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-210102.png" alt="" width="1091" height="262" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-210102-xl.webp 1024w"></figure>
+<p>可以看到，这里的G0/0/22和23已经合成一个Eth-Trunk 23的虚拟接口了，即为成功</p>
+<p>（2）我使用查看刚刚创建的聚合链路指令，看优先级（主/被动端）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ju-He-Lian-Lu-Xiang-Qing.png" alt="" width="1341" height="596" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ju-He-Lian-Lu-Xiang-Qing-xl.webp 1024w"></figure>
+<p>提示部分：聚合链路的本质是将交换机的多个端口聚合成一个链路，从而间接地实现增加带宽的效果。在交换机两端配置聚合链路的时候必须确保名字一样（也就是那个0~63的数字）。lacp是聚合链路中的一种模式（交换机自动协商，可设置系统优先级的高或者低）</p>
+<h5><strong>习题四：在内网的L3-SW1-SW4交换机上配置MSTP使其配合VRRP协议实现冗余链路和负载均衡</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）配置L3-SW1上的基础mstp服务</p>
+<pre class="language-cpp line-numbers"><code>//基础配置信息
+[L3-SW1]stp region-configuration
+//开启stp服务
+[L3-SW1-mst-region]region-name huawei
+//给服务起名为huawei（这里的名字不限）
+[L3-SW1-mst-region]instance 1 vlan 10 30
+//将vlan 10 vlan 20 划分到一个区域1里面
+[L3-SW1-mst-region]instance 2 vlan 20 40
+//将vlan 20 vlan 40 划分到是个区域2里面
+[L3-SW1-mst-region]active region-configuration 
+//启动服务
+
+[L3-SW1]stp instance 1 root  primary
+//在L3-SW1里设置区域1为根桥（master）
+[L3-SW1]stp instance 2 root secondary 
+//在L3-SW2库设置区域2为备用（secondary）</code></pre>
+<p>（2）在L3-SW2配置mstp服务（需要注意的是这个根桥的设置需要为和L3-SW1相反的配置）</p>
+<pre class="language-cpp line-numbers"><code>//上面的基础信息配置都是一样的
+//也可以使用这个接下来的dis this指令，来一键配置
+
+//注意：以下内容需要更改
+[L3-SW2]stp instance 2 root primary
+//在L3-SW2里设置区域1为根桥（master）
+[L3-SW2]stp instance 1 root secondary 
+//在L3-SW2里设置区域1为备用（secondary）
+//注意，这里是与L3-SW1上反过来的</code></pre>
+<p>（3）在L3-SW1的基础mstp配置完成后，需要将这个对应的mstp配置的信息宣告给局域网内的其他交换机配置（这里的是L3-SW2,L2-SW3,L2-SW4,L2-SW5,L2-SW6都需要配置）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1-mst-region]dis this 
+#
+stp region-configuration
+ region-name huawei
+ instance 1 vlan 10 30
+ instance 2 vlan 20 40
+ active region-configuration
+#
+return
+//将以上的结果打印出来，后面需要在每一台交换机里执行</code></pre>
+<p>（3）配置边缘端口（在与非交换机与交换机的接口上配置）：</p>
+<p>已知需要配置边缘端口：所有2层交换机上与PC连接的端口，3层交换机上层去连接路由器的端口</p>
+<p>（3-1）在3层交换机上配置边缘路由（L3-SW1和L3-SW2）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int g0/0/24
+//进入3层交换机的与AR的端口
+[L3-SW1-GigabitEthernet0/0/24]stp edged-port enable
+//设置边缘端口</code></pre>
+<p>（3-2）在2层交换机上配置边缘路由（L2-SW3,L2-SW4,L2-SW5,L2-SW6）</p>
+<pre class="language-cpp line-numbers"><code>[L2-SW3]int e0/0/1
+//进入2层交换机的与PC接入的接口
+[L2-SW3-Ethernet0/0/1] stp edged-port enable
+//配置端口配置边缘端口模式</code></pre>
+<h5>习题五：<strong>在L3-SW1和L3-SW2上配置VRRP，其中设置VLAN10，30的Master节点为L3-SW1，设置VLAN20，40的Master节点为L3-SW2</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在L3-SW1/2上，给已经创建的vlan划分新的虚拟ip（不需要配置掩码）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-222119.png" alt="" width="314" height="150" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-222119-xl.webp 1024w"></figure>
+<p>我划分的vlan的虚拟ip如上图所示</p>
+<p>（1-1）进入L3-SW1的操作如下（配置划分的虚拟ip）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-23-221957.png" alt="" width="899" height="259" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-23-221957-xl.webp 1024w"></figure>
+<p>L3-SW1的配置命令如下：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]int vlan10
+//进入vlan10
+[L3-SW1-Vlanif10]vrrp vrid 10 virtual-ip 192.168.3.254
+//创建vrrp，命名为vrrp 10 ，并配置虚拟ip
+[L3-SW1-Vlanif10]int vlan20
+//进入vlan20
+[L3-SW1-Vlanif20]vrrp vrid 20 virtual-ip 192.168.53.254
+//创建vrrp，命名为vrrp 20 ，并配置虚拟ip
+[L3-SW1-Vlanif20]int vlan30
+//进入vlan30
+[L3-SW1-Vlanif30]vrrp vrid 30 virtual-ip 192.168.63.254
+//创建vrrp，命名为vrrp 30 ，并配置虚拟ip
+[L3-SW1-Vlanif30]int vlan40
+//进入vlan40
+[L3-SW1-Vlanif40]vrrp vrid 40 virtual-ip 192.168.73.254
+//创建vrrp，命名为vrrp 40 ，并配置虚拟ip</code></pre>
+<p>（1-2）L3-SW2的配置命令如下（相同的点在于vrrp的地址和名称和L3-SW1一模一样）：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW2]int vlan 10
+//进入vlan10的配置界面
+[L3-SW2-Vlanif10]vrrp vrid 10 virtual-ip 192.168.3.254
+//创建vrrp，命名为vrrp 10 ，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif10]int vlan 20
+//进入vlan20的配置界面
+[L3-SW2-Vlanif20]vrrp vrid 20 virtual-ip 192.168.53.254
+//创建vrrp，命名为vrrp 20，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif20]int vlan 30
+//进入vlan 30的配置界面
+[L3-SW2-Vlanif30]vrrp vrid 30 virtual-ip 192.168.63.254
+//创建vrrp，命名为vrrp 30，配置与L3-SW1同样的虚拟ip地址
+[L3-SW2-Vlanif30]int vlan 40
+//进入vlan40的配置界面
+[L3-SW2-Vlanif40]vrrp vrid 40 virtual-ip 192.168.73.254
+//创建vrrp，命名为vrrp 40，配置与L3-SW1同样的虚拟ip地址</code></pre>
+<p>（2）设置主/次优先级（也成为Master节点）</p>
+<p><strong><code>*核心</code>：优先级越大，则为Master</strong></p>
+<p>（2-1）提高在L3-SW1的vlan10，30的优先级（这里我将优先级设置成150）</p>
+<pre class="language-cpp line-numbers"><code>//进入L3-SW1操作
+[L3-SW1]int vlan 10
+//进入需要配置的vlan，这里是vlan10
+[L3-SW1-Vlanif10]vrrp vrid 10 priority 150
+//提高虚拟id的优先级为150
+[L3-SW1-Vlanif10]int vlan 30
+//进入vlan30
+[L3-SW1-Vlanif30]vrrp vrid 30 priority 150 
+//同样提高优先级，在这个L3-SW1上设置为Master</code></pre>
+<p>（2-2）在L3-SW2配置vlan20，40的优先级（同样为150的优先级）</p>
+<pre class="language-cpp line-numbers"><code>//L3-SW2操作如下
+[L3-SW2]int vlan 20
+[L3-SW2-Vlanif20]vrrp vrid 20 priority 150
+[L3-SW2-Vlanif20]int vlan 40
+[L3-SW2-Vlanif40]vrrp vrid 40 priority 150
+//都是相同操作，只不过换vlan了</code></pre>
+<p>验证部分（vrrp配置情况以及mstp的配置情况）：</p>
+<p>使用<code>dis vrrp brief</code>查看L3-SW1的配置情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-151239.png" alt="" width="1109" height="294" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151239-xl.webp 1024w"></figure>
+<p>可以看到这里以及配置成功（分配了Master和Backup）</p>
+<p>也可以使用<code>dis stp brief </code>查看L3-SW1的配置情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-24-151743.png" alt="" width="1105" height="577" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-24-151743-xl.webp 1024w"></figure>
+<h5><strong>习题六：设置VLAN50的地址方式为DHCP获取，并且在L3-SW8上为VLAN50配置DHCP服务（其中DNS设置为内网的DNS服务器的地址），使其能够正常获取IP地址</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1-1）在L2-SW10上配置基础的端口模式转发流量，在L3-SW10上配置vlan50</p>
+<pre class="language-cpp line-numbers"><code>//进入L2-SW10配置的操作如下：
+[L2-SW10]vlan 50
+//创建vlan50
+[L2-SW10-Vlanif50]q
+//这里直接退出即可不需要配置信息
+[L2-SW10]int g0/0/2
+//进入这个与PC连接的端口
+[L2-SW10-GigabitEthernet0/0/2]port link-type access
+//配置端口为access模式
+[L2-SW10-GigabitEthernet0/0/2]port default vlan 50
+//并划分到vlan 50（2层交换机的vlan50不用配ip）
+[L2-SW10-GigabitEthernet0/0/2]int g0/0/1
+//进入到上层接口配置
+[L2-SW10-GigabitEthernet0/0/2]port link-type trunk
+//改成trunk口
+[L2-SW10-GigabitEthernet0/0/2]int g0/0/1port trunk allow-pass vlan all
+//放行所有vlan
+
+//进入L3-SW8的配置如下：
+[L3-SW8]int g0/0/2
+//进入g0/0/2口
+[L3-SW8-GigabitEthernet0/0/2]port link-type trunk
+//改成trunk口
+[L3-SW8-GigabitEthernet0/0/2]port trunk allow-pass vlan all
+//放行所有vlan</code></pre>
+<p>（1-2）继续在这个3层交换机上配置ip地址池划分&amp;dns设置</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW8]ip pool pc5pool
+//创建地址池，命名为pc5pool
+[L3-SW8-ip-pool-pc5pool]network 172.16.3.0 mask 255.255.255.0
+//设置地址池范围为172.16.30.0网段的内容，掩码为/24即为255.255.255.0
+[L3-SW8-ip-pool-pc5pool]gateway-list 172.16.3.1
+//设置网关，及与PC5连接的哪个接口ip（这里我用vlan50的那个ip了）
+[L3-SW8-ip-pool-pc5pool]dns-list 10.10.3.2
+//根据题目要求，配置内网dns服务器的ip
+</code></pre>
+<p>（2）在PC及上选择“DHCP”，自动获取ip地址</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-194827.png" alt="" width="1534" height="1048" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-194827-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-194827-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-194827-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-194827-xl.webp 1024w"></figure>
+<p>（3）验证一下：（可以获取到ip地址，即为成功）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-195025.png" alt="" width="1134" height="356" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195025-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195025-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195025-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195025-xl.webp 1024w"></figure>
+<h5><strong>习题七：设置FW1连接内网的区域为Trust，连接外网的区域为Untrust，连接服务器区域的为DMZ。并且为了测试全部区域放行ICMP协议</strong></h5>
+<p>实操步骤如下：</p>
+<p>为了便于操作，我们防火墙的地方将使用图形化界面操作</p>
+<h6><strong>防火墙基础连接配置</strong></h6>
+<p>（1）从左侧拖入并启动Cloud模块，打开这个界面</p>
+<p>（1-1）先选择这个界面的UDP选项，再点击“增加”按钮</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-195710.png" alt="" width="1546" height="1055" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195710-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195710-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195710-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195710-xl.webp 1024w"></figure>
+<p>（1-2）其次选择这个界面的VMnet8这个网卡，选择好后，点击“增加”按钮</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-195505.png" alt="" width="1548" height="1043" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195505-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195505-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195505-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-195505-xl.webp 1024w"></figure>
+<p>（2-1）再次选择UDP网卡，在下方的“端口映射类型设置中”选择入端口编号为1，出端口编号为2（这个图是我截图截错了，地址不对，正确的是192.168.153.1的这个）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-200211.png" alt="" width="1550" height="1052" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200211-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200211-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200211-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200211-xl.webp 1024w"></figure>
+<p>（2-2）再次选择VMnet8网卡，在下方的“端口映射类型设置中”选择如入口编号为2，出端口编号为1（这里出入端口编号，一定要是和上面的这个UTP反着来的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-203247.png" alt="" width="1549" height="1050" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-203247-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-203247-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-203247-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-203247-xl.webp 1024w"></figure>
+<p>如上图所示配置即可</p>
+<h6><strong>配置防火墙远程访问</strong></h6>
+<p>（3-1）使用这个Copper线，连接这个Cloud和防火墙</p>
+<p>（3-2）输入密码，并按照提示，进入防火墙</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-200941.png" alt="" width="1289" height="665" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200941-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200941-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200941-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-200941-xl.webp 1024w"></figure>
+<p>（3-3）进入防火墙，配置这个与这个Cloud连接的这个端口ip为同网段ip，并放行连接协议<code>service-manage all permit </code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-202200.png" alt="" width="1000" height="171" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202200-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202200-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202200-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202200-xl.webp 1024w"></figure>
+<p><code>*注意</code>：一定要在这个防火墙的g0/0/0口配置（因为这个g0/0/0口是管理口，只有连接这个口了，才能远程连接）</p>
+<p>（3-4）在自己的电脑浏览器中输入这个刚刚设置的ip地址，即可（我这里设置的是192.168.153.153）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Fang-Wen-Fang-Huo-Qiang.png" alt="" width="2879" height="1698" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Fang-Wen-Fang-Huo-Qiang-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Fang-Wen-Fang-Huo-Qiang-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Fang-Wen-Fang-Huo-Qiang-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Fang-Wen-Fang-Huo-Qiang-xl.webp 1024w"></figure>
+<p>（3-5）之后即可访问到这个图像化界面的后台界面（再次输入密码登录即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-01-26-202754.png" alt="" width="2879" height="1694" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202754-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202754-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202754-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-01-26-202754-xl.webp 1024w"></figure>
+<p>登陆后一直点“取消”即可，随后按照下图的数字顺序来即可打开区域配置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/fwPei-Zhi-An-Quan-Lie-Biao.png" alt="" width="2879" height="1652" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/fwPei-Zhi-An-Quan-Lie-Biao-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/fwPei-Zhi-An-Quan-Lie-Biao-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/fwPei-Zhi-An-Quan-Lie-Biao-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/fwPei-Zhi-An-Quan-Lie-Biao-xl.webp 1024w"></figure>
+<h6>配置内网的区域为Trust（信任区域）</h6>
+<p>（1）选取对应的端口为Trust（g1/0/0，g1/0/1）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FWtrustQu-Yu.png" alt="" width="1496" height="786" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FWtrustQu-Yu-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FWtrustQu-Yu-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FWtrustQu-Yu-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FWtrustQu-Yu-xl.webp 1024w"></figure>
+<h6>连接外网的区域为Untrust（非信任区域）</h6>
+<p>（1）选取对应的端口为Untrust（g1/0/3）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FWuntrustQu-Yu.png" alt="" width="1489" height="779" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FWuntrustQu-Yu-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FWuntrustQu-Yu-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FWuntrustQu-Yu-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FWuntrustQu-Yu-xl.webp 1024w"></figure>
+<h6>连接服务器区域的为DMZ（非军事化区域：让外网能访问这些服务器，同时隔离它们与内网，防止服务器被攻破后波及内网核心数据）</h6>
+<p>（1）选取对应的端口为DMZ（g1/0/2）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FWdmzQu-Yu.png" alt="" width="1490" height="780" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FWdmzQu-Yu-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FWdmzQu-Yu-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FWdmzQu-Yu-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FWdmzQu-Yu-xl.webp 1024w"></figure>
+<h5><strong>全部区域放行ICMP协议</strong></h5>
+<p>（1）依次找到“策略”-&gt;"安全策略"-&gt;"新建安全策略"</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1Ce-Lue-2.png" alt="" width="2879" height="1698" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1Ce-Lue-2-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1Ce-Lue-2-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1Ce-Lue-2-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1Ce-Lue-2-xl.webp 1024w"></figure>
+<p>（2）策略新建后，选择如下图所示即可（由于我这里修改过了，所以选择的是“修改安全策略”，正常选择新建策略，而不是修改原有的策略）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1Fang-Xing-ICMP.png" alt="" width="1831" height="1403" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-ICMP-xl.webp 1024w"></figure>
+<h5><strong>习题八：在内网中配置OSPF协议，进程为1，使其内网网络联通</strong></h5>
+<p>实操步骤如下：</p>
+<h6>内网网络为：L3-FW1，L3-SW1和L3-SW2，三台设备之间的配置</h6>
+<p>（1）配置端口FW1的名字以及端口ip</p>
+<pre class="language-cpp line-numbers"><code>&lt;USG6000V1&gt;sys
+//和路由器一样的配置，都是system view（简写sys）
+[USG6000V1]sysname FW1
+//改名为FW1
+[FW1]int g1/0/0
+//进入g1/0/0口，配置ip
+[FW1-GigabitEthernet1/0/0]ip address 10.10.3.1 29
+//习惯于把上层设备设置为10.10.3.1的这个ip（这里的掩码非标准掩码，需注意！）
+[FW1-GigabitEthernet1/0/0]int g1/0/1
+//进入g1/0/1口配置ip
+[FW1-GigabitEthernet1/0/1]ip address 10.20.3.1 29
+//同样地，设置为10.20.3.1的这个ip（注意掩码！！）</code></pre>
+<p>（2）配置FW1上的OSPF 1</p>
+<pre class="language-cpp line-numbers"><code>[FW1]router id 1.1.1.1
+//先配置router id 为1.1.1.1
+[FW1]OSPF 1
+//宣告ospf 1
+[FW1-ospf-1]area 0
+//区域为area 0
+[FW1-ospf-1-area-0.0.0.0]network 10.10.3.0 0.0.0.7
+//宣告10.10.3.0的网段（注意，这里是非标准掩码）
+[FW1-ospf-1-area-0.0.0.0]network 10.20.3.0 0.0.0.7
+//宣告10.20.3.0的网段（注意，这里是非标准掩码）
+[FW1-ospf-1-area-0.0.0.0]quit
+//这里在退出系统视图的时候，不能直接使用q，而必须使用全拼
+</code></pre>
+<p>（3）在L3-SW1上的配置（L3-SW2也是同理）</p>
+<p>（3-1）端口信息配置（创建vlan2，配ip地址给g0/0/24口）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]vlan 2
+//创建vlan 2用于配置ip
+[L3-SW1-vlan2]q
+[L3-SW1]int vlan 2
+[L3-SW1-Vlanif2]ip address 10.10.3.2 29
+//添加g0/0/24端口所需要的ip地址
+[L3-SW1-Vlanif2]q
+[L3-SW1]int g0/0/24
+//进图g0/0/24端口
+[L3-SW1-GigabitEthernet0/0/24]port link-type access
+//配置为access模式
+[L3-SW1-GigabitEthernet0/0/24]port def vlan 2
+//把vlan2划分给g0/0/24</code></pre>
+<p>（3-2）OSPF 1 配置（内网都要宣告）</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW1]router id 2.2.2.2
+//先划分router id（按顺时针配置了）
+[L3-SW1]ospf 1
+//宣告区域为ospf 1
+[L3-SW1-ospf-1]area 0
+//配置区域为area 0
+[L3-SW1-ospf-1-area-0.0.0.0]network 10.10.3.0 0.0.0.7
+[L3-SW1-ospf-1-area-0.0.0.0]network 192.168.3.0 0.0.0.255
+[L3-SW1-ospf-1-area-0.0.0.0]network 192.168.53.0 0.0.0.255
+[L3-SW1-ospf-1-area-0.0.0.0]network 192.168.63.0 0.0.0.255
+[L3-SW1-ospf-1-area-0.0.0.0]network 192.168.73.0 0.0.0.255
+//内网的所有网段都需要宣告</code></pre>
+<p>L3-SW2也是一样，这里我就不展示了，配好即可</p>
+<h5><strong>习题九：</strong><strong>在互联网的AR2-AR4区域上配置OSPF路由进程为2，并且在连接FW1和AR2的路由器接口上开启OSPF的加密认证，密码为admin@123</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）配置OSPF 2的步骤如下：</p>
+<p>（1-1）进入AR2配置端口ip地址（这里的AR3，AR4也都是同理，这里我不过多赘述）</p>
+<pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
+//进入与FW1链接的配置接口，配置与FW1对应的网段ip地址
+//FW1我配置的是202.108.100.1/29，所以我在这里配置202.108.100.2/29
+[AR2-GigabitEthernet0/0/0]ip address 202.108.100.2 29
+//进入其他的接口，配置对应的ip地址
+[AR2-GigabitEthernet0/0/0]int g0/0/1
+[AR2-GigabitEthernet0/0/1]ip add 202.3.101.1 29
+[AR2-GigabitEthernet0/0/1]int g0/0/2
+[AR2-GigabitEthernet0/0/2]ip add 202.3.102.1 29
+//配置对应的ip地址，这里我选择是的左侧配置.1，其他的配置.2</code></pre>
+<p>（1-2）进入AR2，配置OSPF 2（AR3，AR4都是同理）</p>
+<pre class="language-cpp line-numbers"><code>[AR2]ospf 2
+//宣告区域为ospf 2
+[AR2-ospf-2]area 0
+//创建区域0
+[AR2-ospf-2]network 202.3.101.0 0.0.0.7
+//添加涉及到的三个网段的ip地址
+[AR2-ospf-2]network 202.3.102.0 0.0.0.7 
+//需注意，这里的与FW1连接的也需要配置
+[AR2-ospf-2]network 202.108.100.0 0.0.0.7 
+//需要注意的是这里的网段是以29结尾的，所以这改成0.0.0.7</code></pre>
+<p>提示部分：配ip的时候别配置错误，在配置AR3的这个路由时，需要把G0/0/2口的这个网段也划分到这个OSPF 2中，但是在这个AR4配置的时候，则不需要把这个G0/0/2口划分到OSPF 2中（后面会配置RIP路由，目前只需要配置端口ip就行）</p>
+<p>验证部分：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-02-222524.png" alt="" width="1367" height="1291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-02-222524-xl.webp 1024w"></figure>
+<p>这里我使用的是AR4去ping在OSPF 2中的不同的端口ip，来验证是否联通</p>
+<p>（2）配置FW1与AR2的OSPF加密认证（加密方式有很多，这里我选择MD5加密方式）</p>
+<p>（2-1）进入需要认证的端口，配置认证信息（以下为添加密码的配置代码）</p>
+<pre class="language-cpp line-numbers"><code>ospf authentication-mode md5 1 cipher + 你的密码</code></pre>
+<p>（2-2）在AR2和FW1对应端口，配置OSPF密码认证，详细配置信息如下：</p>
+<pre class="language-cpp line-numbers"><code>[AR2]int g0/0/0
+[AR2-GigabitEthernet0/0/0]ospf authentication-mode md5 1 cipher admin@123
+
+[FW1]int g1/0/3
+[FW1-GigabitEthernet1/0/3]ospf authentication-mode md5 1 cipher admin@123</code></pre>
+<p>提示部分：由于还没有配置内外网区域的协议相互引入，所以这里ping不通是属于正常现象（通常情况下，这里是外网配置OSPF的加密，内网则不需要）</p>
+<h5>习题十：<strong>在AR4和L3-SW8上开启RIP路由，并且实现互联网区域的OSPF和RIP之间互相引入，实现网络的联通</strong></h5>
+<p>设备划分思路如下：</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>运行的路由协议</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AR2/AR3</td>
+<td>只运行 OSPF 2</td>
+<td>只和 OSPF 域内的设备（AR4）交换路由</td>
+</tr>
+<tr>
+<td>AR4</td>
+<td>同时运行 OSPF 2 + RIP 1</td>
+<td>一边连 OSPF 域（AR2/AR3），一边连 RIP 域（L3-SW8）</td>
+</tr>
+<tr>
+<td>L3-SW8</td>
+<td>只运行 RIP 1</td>
+<td>只和 RIP 域内的设备（AR4）交换路由</td>
+</tr>
+</tbody>
+</table>
+<p>实操步骤如下：</p>
+<p>（1-1）配置L3-SW8的IP配置，及vlan2划分IP的基础操作</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW8]vlan batch 2 50 60
+//创建vlan 2 用于给L3-SW8的端口配置ip
+[L3-SW8]int vlan 2
+[L3-SW8-Vlanif2]ip add 204.108.100.2 24
+//进入vlan2配置ip地址
+[L3-SW8]int g0/0/1
+[L3-SW8-GigabitEthernet0/0/1]port link-type acc
+[L3-SW8-GigabitEthernet0/0/1]port default vlan 2
+//把vlan2划分到g0/0/1口，即为配置好ip
+</code></pre>
+<p>（1-2）验证环节</p>
+<p>使用已经配置好的去ping AR4的端口IP，发现可以ping成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-04-155821.png" alt="" width="1153" height="400" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-155821-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-155821-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-155821-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-155821-xl.webp 1024w"></figure>
+<p>（2）划分vlan50，60的配置</p>
+<p>vlan50的划分如下：</p>
+<pre class="language-cpp line-numbers"><code>[L3-SW8]int vlan 50
+//进入vlan50
+[L3-SW8-Vlanif50]ip address 172.16.3.1 24
+//添加ip地址
+[L3-SW8]int g0/0/2
+//进入g0/0/2，配置对应的端口模式
+[L3-SW8-GigabitEthernet0/0/2]port link-type trunk
+[L3-SW8-GigabitEthernet0/0/2]port trunk allow-pass vlan all
+
+//进入L2-SW10的对应端口配置端口模式
+[L2-SW10]int g0/0/1
+[L2-SW10-GigabitEthernet0/0/1]port link-type trunk
+[L2-SW10-GigabitEthernet0/0/1]port trunk allow-pass vlan all
+
+[L2-SW10]vlan 50
+[L2-SW10-vlan50]q
+//宣告vlan50，不需要配置ip
+[L2-SW10]int g0/0/2
+//进入到与下层pc上连接的端口，配置端口模式为access模式
+[L2-SW10-GigabitEthernet0/0/2]port link-type access
+[L2-SW10-GigabitEthernet0/0/2]port default vlan 50</code></pre>
+<p>vlan60也是同理，这里我就不再进行概述了（需要注意的是vlan60的配置的时候，下层PC的接口是Eth0/0/1，而非是G0/0/1）</p>
+<p>验证环节：</p>
+<p>使用对应的PC去ping它们自己的网关，发现可以ping通</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-04-162030.png" alt="" width="2101" height="692" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-162030-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-162030-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-162030-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-04-162030-xl.webp 1024w"></figure>
+<p>（3）RIP路由部分</p>
+<p>核心思路：在AR4和L3-SW8上创建Rip路由，并且在AR4上的这个OSPF2中相互引入</p>
+<p>（3-1）在AR4上的操作</p>
+<pre class="language-cpp line-numbers"><code>AR4]rip 1
+//创建Rip1
+[AR4-rip-1]version 2
+//版本设置为2
+[AR4-rip-1]network 204.108.100.0
+//将这个与LS-SW8连接的这个端口绑定到Rip路由中
+</code></pre>
+<p>（3-2）在L3-SW8上的操作</p>
+<pre class="language-cpp line-numbers"><code>L3-SW8]rip 1
+//同样创建Rip1
+[L3-SW8-rip-1]version 2
+//设置版本为2
+[L3-SW8-rip-1]network 172.16.0.0
+[L3-SW8-rip-1]network 204.108.100.0
+//添加这个两个IP地址
+//分别为之前划分vlan的主网地址（包含了172.16.3.0和172.16.53.0的这个两个网段）
+//还用与AR4连接的这个网段的地址</code></pre>
+<p>提示部分：这里的这个Rip路由在创建的时候，Rip的<code>network</code>命令要求<strong>只写主类网络的网络号</strong>，不能写子网段（比如 172.16.3.0 是子网，172.16.0.0 才是主类）</p>
+<p>（4）Rip路由和OSPF的相互引入</p>
+<p>核心思路：只需在AR4上操作就行，不需要再L3-SW8上配置OSPF和Rip的引入</p>
+<p>可以简单理解成，只有AR4有两个协议（OSPF 2和RIP），而这个L3-SW8只有一个Rip协议，所以不需要配置相互引入的这个操作</p>
+<p>实操步骤如下：</p>
+<pre class="language-cpp line-numbers"><code>[AR4]ospf 2
+//进入AR4的OSPF 2
+[AR4-ospf-2]import-route rip 1
+//宣告Rip 1的路由
+[AR4]rip 1
+//进入Rip 1
+[AR4-rip-1]import-route ospf 2
+//宣告OSPF 2的路由</code></pre>
+<p>验证环节：</p>
+<p>这里我使用PC6，去Ping分别来自AR2的202.3.102.1的这个IP地址，和来自AR3的202.3.103.2的这个IP地址，从而验证这个配置的情况</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-24-171236.png" alt="" width="1530" height="1229" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-24-171236-xl.webp 1024w"></figure>
+<p>可以看到，可以收到来自于AR2和AR3的回复包，即如上图所示</p>
+<h5><strong>习题十一：设置内网服务器区域的WWW服务器的http服务，实现内网客户端通过域名成功访问到WWW服务，其中设置DNS的解析为www.test.com解析到WWW服务器的IP上</strong></h5>
+<p>实操步骤如下：</p>
+<p>（1）在FW1的配置</p>
+<p>（1-1）给 FW1 G1/0/2 配置服务器段网关</p>
+<pre class="language-cpp line-numbers"><code>[FW1]system-view
+//进入FW1系统视图
+[FW1]interface GigabitEthernet1/0/2
+//进入G1/0/2接口（DMZ区，已加入dmz zone，无需再加）
+[FW1-GigabitEthernet1/0/2]ip address 10.10.4.254 24
+//配置服务器段网关IP，选10.10.4.254/24（避开所有重叠网段，掩码24满足服务器段需求）
+[FW1-GigabitEthernet1/0/2]quit
+//接口已undo shutdown，无需再操作，退出</code></pre>
+<p>（1-2）将服务器段加入 OSPF，让内网互通</p>
+<pre class="language-cpp line-numbers"><code>[FW1]ospf 1
+//FW1系统视图下
+[FW1-ospf-1]area 0
+//进入area 0
+[FW1-ospf-1-area-0.0.0.0]network 10.10.4.0 0.0.0.255
+//把10.10.4.0/24加入OSPF 0区（反掩码0.0.0.255对应掩码24）
+[FW1-ospf-1-area-0.0.0.0]quit
+[FW1-ospf-1]quit
+[FW1]quit
+&lt;FW1&gt;save
+//保存配置</code></pre>
+<p>操作目的：将<strong>DNS/WWW 服务器段从 10.10.3.0/24 调整为不重叠的网段</strong>（比如<code>10.10.4.0/24</code>，避开 FW1 已有的 10.10.3.0/29、10.20.3.0/29），网关放在 FW1 的 G1/0/2（DMZ 区），同时把该网段加入 OSPF，让内网 L3-SW1/2 能通过 OSPF 学习到路由</p>
+<p>（2）在DNS服务器的配置</p>
+<p>如下图所示，网关设置成上层的连接</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103316.png" alt="" width="1452" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103316-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103411.png" alt="" width="1463" height="1012" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103411-xl.webp 1024w"></figure>
+<p>（3）在WWW服务器上的配置</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103547.png" alt="" width="1467" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103547-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-103616.png" alt="" width="1458" height="1014" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-103616-xl.webp 1024w"></figure>
+<p>（4）在防火墙上的配置（放行DNS和HTTP协议）</p>
+<p>这里我依旧使用图形化界面操作，便于理解</p>
+<p>（4-1）进入防火墙，新建一条策略（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1Fang-Xing-DMZ.png" alt="" width="1822" height="1394" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1Fang-Xing-DMZ-xl.webp 1024w"></figure>
+<p>提示部分：这里的DMZ区域（非军事化管理区域），这里通常将<strong>要给外网访问，但又不能直接放进内网服务器</strong>放在这里，因为服务器需要为外网提供服务，但是服务器又属于内网区域，而DMZ区域就是做这个用途的（核心服务器不能放在这里）</p>
+<p>（5）添加内网Client客户端（进行网页访问的验证）</p>
+<p>这里我选择在L3-SW1的G0/0/5口添加（因为这样只需要将这个口划分到vlan10即可）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-123303.png" alt="" width="668" height="638" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-123303-xl.webp 1024w"></figure>
+<p>（5-1）在L3-SW1操作，将G0/0/5划分到vlan10</p>
+<pre class="language-cpp line-numbers"><code>&lt;L3-SW1&gt;system-view 
+//进入特权模式
+[L3-SW1]int g0/0/5
+//进入g0/0/5端口
+[L3-SW1-GigabitEthernet0/0/5]port link-type access
+//设置端口类型为access模式
+[L3-SW1-GigabitEthernet0/0/5]port default vlan 10
+//划分到vlan10</code></pre>
+<p>验证环节：</p>
+<p>（1）使用内网Client客户端访问10.10.4.3这个IP地址，发现可以正常解析到文件</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120504.png" alt="" width="1462" height="1011" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120504-xl.webp 1024w"></figure>
+<p>（2）使用内网Cilent客户端访问这个www.test.com这个网址，依旧可以解析到文件</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-02-27-120439.png" alt="" width="1464" height="1009" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-02-27-120439-xl.webp 1024w"></figure>
+<h5><strong>习题十二：在防火墙FW1上通过配置NAT实现使其内网实现互联网的访问</strong></h5>
+<p>打开防火墙（为了便于演示，我这里依旧使用网页来进行操作）</p>
+<p>步骤一：新建NAT策略</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_NATCe-Lue.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_NATCe-Lue-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_NATCe-Lue-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_NATCe-Lue-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_NATCe-Lue-xl.webp 1024w"></figure>
+<p>配置策略（这里我之前配置过了，所以是修改，正常配置时会显示的是新建）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_Wai-Wang-Zhuan-Hua.png" alt="" width="1334" height="1125" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_Wai-Wang-Zhuan-Hua-xl.webp 1024w"></figure>
+<p>提示部分：出接口地址，默认是下一跳的外网地址（AR2上的配置的IP地址）</p>
+<p>也可以选择新建唯一ip的地址池，也就是配置单独的一个出接口地址（但是那样有些麻烦，所以我们还是选择“出接口地址“这个选项，来的方便）</p>
+<p>提一下：如果要自己配置这个唯一ip的地址池的时候，需要勾选这个”允许端口地址池转化“的这个选项（如下图所示，没单独配地址池则不需要选择和新建）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_jk.png" alt="" width="2879" height="1704" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_jk-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_jk-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_jk-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_jk-xl.webp 1024w"></figure>
+<p>步骤二：选择新建安全策略，并添加以下安全策略</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_TRUST_UNTRUST.png" alt="" width="1829" height="1395" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_TRUST_UNTRUST-xl.webp 1024w"></figure>
+<p>配置缺省路由（就是当路由器<strong>找不到更精确的路由条目</strong>时，<strong>唯一的、最后的出口</strong>）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1pzi.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1pzi-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1pzi-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1pzi-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1pzi-xl.webp 1024w"></figure>
+<p>打开这里的“缺省路由的”这个选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-085207.png" alt="" width="1193" height="783" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-085207-xl.webp 1024w"></figure>
+<p>测试部分：</p>
+<p>现在可以使用内网的PC机器去Ping外网的机器，来验证示范成功</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-090850.png" alt="" width="2879" height="1702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-090850-xl.webp 1024w"></figure>
+<p>我这里选择是PC1去Ping外网的Cilent1的IP，以及PC6的IP</p>
+<p>可以看到，这里可以Ping通，即为验证配置成功</p>
+<h5><strong>习题十三：在防火墙FW1上配置NAT发布，使其互联网通过访问防火墙的外部端口可以访问到内网WWW服务的80端口</strong></h5>
+<p>步骤一：这里我们再次创建一个安全策略配置（用于外网的机器访问内网的DMZ区域）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_HTTP.png" alt="" width="2879" height="1695" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_HTTP-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_HTTP-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_HTTP-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_HTTP-xl.webp 1024w"></figure>
+<p>添加一条80端口的服务器映射</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_Fu-Wu-Qi-Ying-She.png" alt="" width="2879" height="1703" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_Fu-Wu-Qi-Ying-She-xl.webp 1024w"></figure>
+<p>提示部分：黑洞路由（可选），主要目的是将外网的访问其他非指定的内网IP直接丢包</p>
+<p>验证部分：</p>
+<p>可以点击”诊断“按钮，测试是否联通，并启用这个端口映射</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/FW1_ZD.png" alt="" width="2879" height="1699" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/FW1_ZD-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/FW1_ZD-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/FW1_ZD-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/FW1_ZD-xl.webp 1024w"></figure>
+<p>使用外网的Cilent1机器访问FW1的ip地址（由于没有配置域名绑定，所以使用域名访问不到）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-093004.png" alt="" width="1458" height="1003" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-093004-xl.webp 1024w"></figure>
+<p>可以成功，即为配置没问题</p>
+<h5><strong>习题十四：在内网中配置ACL控制，使其VLAN20和VLAN40两个网段不能互相访问</strong></h5>
+<p>配置思路如下：</p>
+<ul>
+<li><strong>使用高级 ACL 3000</strong>：需同时匹配<strong>源 IP + 目的 IP</strong>，精准拦截 V20↔V40，不影响其他网段</li>
+<li><strong>应用位置</strong>：选择在<strong>Vlanif20、Vlanif40 接口入方向</strong>设置（也就是流量进入三层网关时拦截，效率最高）</li>
+<li><strong>规则逻辑</strong>：
+<ul>
+<li>拒绝 VLAN20 源 IP 访问 VLAN40 目的 IP</li>
+<li>拒绝 VLAN40 源 IP 访问 VLAN20 目的 IP</li>
+<li>无需额外配置<code>permit any any</code>：华为<strong>接口入方向</strong>应用 ACL 时，仅拦截匹配规则的流量，未匹配的流量默认放行（避免误拦截其他网段）</li>
+</ul>
+</li>
+</ul>
+<p>实操步骤：</p>
+<p>步骤一：在L3-SW1的配置如下</p>
+<pre class="language-bash line-numbers"><code># 1. 为Vlanif20创建ACL 3001（拦截V20→V40）
+[L3-SW1]acl number 3001 name deny1-V20-to-V40
+[L3-SW1-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.53.0 0.0.0.255 destination 192.168.73.0 0.0.0.255
+[L3-SW1-acl-adv-deny-V20-to-V40]quit
+
+# 2. 为Vlanif40创建ACL 3002（拦截V40→V20）
+[L3-SW1]acl number 3002 name deny2-V40-to-V20
+[L3-SW1-acl-adv-deny-V40-to-V20]rule 5 deny ip source 192.168.73.0 0.0.0.255 destination 192.168.53.0 0.0.0.255
+[L3-SW1-acl-adv-deny-V40-to-V20]quit
+
+# 3. 将ACL 3001绑定到Vlanif20入方向
+[L3-SW1]interface Vlanif20
+[L3-SW1-Vlanif20]traffic-filter inbound acl 3001
+[L3-SW1-Vlanif20]quit
+
+# 4. 将ACL 3002绑定到Vlanif40入方向
+[L3-SW1]interface Vlanif40
+[L3-SW1-Vlanif40]traffic-filter inbound acl 3002
+[L3-SW1-Vlanif40]quit
+
+# 验证配置（可选）
+[L3-SW1]dis acl all  # 查看ACL规则
+[L3-SW1]dis cu interface Vlanif20  # 查看Vlanif20配置
+[L3-SW1]dis cu interface Vlanif40  # 查看Vlanif40配置</code></pre>
+<p>步骤二：在L3-SW2的配置如下（和L3-SW1的配置大相径庭）</p>
+<pre class="language-bash line-numbers"><code># 1. 创建ACL 3001（拦截V20→V40）
+[L3-SW2]acl number 3001 name deny1-V20-to-V40
+[L3-SW2-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.53.0 0.0.0.255 destination 192.168.73.0 0.0.0.255
+[L3-SW2-acl-adv-deny-V20-to-V40]quit
+
+# 2. 创建ACL 3002（拦截V40→V20）
+[L3-SW2]acl number 3002 name deny2-V20-to-V40
+[L3-SW2-acl-adv-deny-V20-to-V40]rule 5 deny ip source 192.168.73.0 0.0.0.255 destination 192.168.53.0 0.0.0.255
+[L3-SW2-acl-adv-deny-V20-to-V40]quit
+
+# 3. 绑定ACL到接口
+[L3-SW2]interface Vlanif20
+[L3-SW2-Vlanif20]traffic-filter inbound acl 3001
+[L3-SW2-Vlanif20]quit
+[L3-SW2]interface Vlanif40
+[L3-SW2-Vlanif40]traffic-filter inbound acl 3002
+[L3-SW2-Vlanif40]quit
+
+# 验证配置（可选）
+[L3-SW2]dis acl all</code></pre>
+<p>提示部分：</p>
+<p>在L3-SW1/2配置ACL时候需要注意的点，命名的时候不可以重复（例如我这里的使用deny1-V20-to-V40，deny2-V20-to-V40区分），ACL规则编号也不能重复（例如我这里的使用3001和3002区分）</p>
+<p>验证环节</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/39/Ping-Mu-Jie-Tu-2026-03-08-124655.png" alt="" width="2879" height="1705" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-xs.webp 320w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-sm.webp 480w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-md.webp 768w ,https://zeyun.org/media/posts/39/responsive/Ping-Mu-Jie-Tu-2026-03-08-124655-xl.webp 1024w"></figure>
+<p>可以看到，我使用PC4去Ping属于vlan20的PC（53网段）全部超时，再次去Ping属于vlan10的PC（3网段）可以成功，那么就证明了前面配置的acl规则配置的没有问题</p>
+<h6 class="align-left">至此，本次的分析到此结束，如果您能完全理解，那么恭喜你，你已经成功掌握最基础的企业级复合网络</h6>
+<h6 class="align-center">感谢您的阅读(*/ω＼*)</h6>
+<p class="align-right">致谢：本文思路来源于<a href="https://www.pigteacher.com/" target="_blank" rel="noopener noreferrer">PigTeacher</a>的课程考题</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>网络设备配置实战分析 Part 5</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/network_with_huawei_ensp_part5.html"/>
+        <id>https://zeyun.org/network_with_huawei_ensp_part5.html</id>
+            <category term="网络设备配置技术学习笔记"/>
+
+        <updated>2026-01-09T18:55:03+09:00</updated>
+            <summary>
+                <![CDATA[
+                    本章内容如下 i：什么是NAT协议？ ii：有关NAT协议的小实验 A：NAT 策略是防火墙&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <blockquote>
+<p><strong>本章内容如下</strong></p>
+<p><strong>i：</strong>什么是NAT协议？</p>
+<p><strong>ii：</strong>有关NAT协议的小实验</p>
+</blockquote>
+<h5>Q：什么是NAT协议？</h5>
+<p>A：NAT 策略是<strong>防火墙 / 路由器上用来控制 “哪些流量需要做地址转换” 的规则</strong>，简单说就是 “指定哪些设备、访问哪些目标时，要把内网 IP 换成公网 IP”</p>
+<h5>Q：NAT协议和ACL有啥区别？</h5>
+<p>A：<strong>ACL 规则（访问控制列表）</strong>可以理解为是 “交通信号灯”，负责判断流量能不能过<strong>（允许 / 拒绝某类流量）</strong>比如 “允许 192.168.10.X 网段的设备上网，拒绝 192.168.20.X 网段的设备上网”</p>
+<p><strong>NAT 策略，</strong>可以理解为 “地址翻译机”，负责把流量的 IP 地址换掉<strong>（把内网 IP 转成公网 IP）</strong>比如 “让 192.168.10.X 网段的设备，访问外网时用路由器的公网 IP”，这是 NAT 策略的活</p>
+<p>简单来说，可以把网络的世界理解成就像搭乘高铁，NAT可以理解为票据，你没有票据，就不能上高铁，而ACL就类似于你票据的详细信息（比如，你的登车口，你的座位号等等），当之后你有了车票，和座位号，也就能正常出发，上网冲浪了（当然，如果没有ACL也行，因为有的票据可以类似于站票一样，没有固定座位，也能到达目的地）</p>
+<h4 class="align-center">基于NAT协议的实验</h4>
+<p>网路拓扑如下：<a href="https://wwbte.lanzn.com/b014wzqvij" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>密码：7v6z</p>
+<p>拓扑概述：以下为拓扑全貌，主要实现商业和工程区可以访问外部服务器，但是内部的橙色的网络部分不能被外部访问到，而且还要配置NAT转换，仅仅为来自互联网的机器能访问到企业内部的WWW服务器的访问（对外网仅开放vlan10和20的网段的终端设备，不开放vlan10和20的服务器和其他的10网段的内容，但是开放10的WWW服务器）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-13-000441.png" alt="" width="2425" height="1417" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-13-000441-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-13-000441-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-13-000441-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-13-000441-xl.webp 1024w"></figure>
+<p class="align-center"><strong>题目一：使用NAT服务，实现企业区域能连接到互联网区域的网络设备</strong></p>
+<h5><strong>步骤一：</strong>配置基础的设备IP信息</h5>
+<p>以下为AR4与AR2路由器的设置（这里配置202.108.100网段是用于模拟公网IP）</p>
+<pre class="language-cpp line-numbers"><code>//以下为AR2配置IP的过程
+[AR2]int g0/0/0
+[AR2-GigabitEthernet0/0/0]ip address 202.108.100.2 24
+
+//以下为AR4的配置IP部分
+[AR4]int g4/0/0
+[AR4-GigabitEthernet4/0/0]ip address 202.108.100.1 24</code></pre>
+<p>测试连通性：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-09-230446.png" alt="" width="1246" height="436" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-230446-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-230446-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-230446-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-230446-xl.webp 1024w"></figure>
+<p>没问题之后，配置AR2管辖下的设备IP信息（需注意，这里不同的端口会涉及到不同的网段设备，G0/0/0是108网段，而G0/0/1是109网段的）</p>
+<pre class="language-cpp line-numbers"><code>//进入AR2的G0/0/0口，配置108网段IP地址
+[AR2]int g0/0/0
+[AR2-GigabitEthernet0/0/0]ip add 202.108.100.2 24
+
+//继续进入这个G0/0/1口，配置109段的IP地址
+[AR2]int g0/0/1
+[AR2-GigabitEthernet0/0/1]ip add 202.109.100.1 24</code></pre>
+<p>可以使用109网段内的设备，去Ping 202.109.100.1（也就是刚刚配的AR2的IP）的这个IP即可验证（可以看到我这里Ping了4次，能成功）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-222029.png" alt="" width="1452" height="1003" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-222029-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-222029-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-222029-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-222029-xl.webp 1024w"></figure>
+<h5>步骤二：配置Server2的www服务（如下图所示，正常启动即可）</h5>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-09-231412.png" alt="" width="1468" height="976" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-231412-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-231412-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-231412-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-09-231412-xl.webp 1024w"></figure>
+<h5>步骤三：在AR4配置IP地址NAT转发（默认路由）</h5>
+<pre class="language-cpp line-numbers"><code>//进入OSPF 1
+[AR4]ospf 1
+//配置动态路由协议，让路由器把自己的 “默认路由”，通过动态路由协议 “告诉” 其他邻居路由器
+[AR4-ospf-1]default-route-advertise
+
+//使用dis this查看效果
+[AR4-ospf-1]dis this 
+[V200R003C00]
+#
+ospf 1 
+ default-route-advertise
+ area 0.0.0.0 
+  network 10.0.0.0 0.0.0.255 
+  network 10.1.1.0 0.0.0.255 
+  network 10.2.2.0 0.0.0.255 
+#
+return
+//可以看到，已经配置成功</code></pre>
+<p>使用<code>dis ip routing-table protocol ospf</code>命令验证下层设备的实际应用情况</p>
+<p>在下层的这个三层交换机上查看这个配置情况（这里我以L3-SW7为例，L3-SW8也是同理）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-220457-2.png" alt="" width="1305" height="886" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-220457-2-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-220457-2-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-220457-2-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-220457-2-xl.webp 1024w"></figure>
+<p>在上图中的红色框选区域，可以看到，这里已经配置好了默认路由，且下一跳的地址为10.0.0.1（如上图的蓝色区域所示）</p>
+<h5>步骤四：继续在这个AR4配置NAT转发的规则</h5>
+<pre class="language-cpp line-numbers"><code>//创建NAT2000的这个ACL规则
+[AR4]acl name nat 2000
+//创建规则，rule5和rule10允许192.168.10/20的两个网段的网络通过
+[AR4-acl-basic-nat]rule 5 permit source 192.168.10.0 0.0.0.255//此处为允许10网段通过的部分
+[AR4-acl-basic-nat]rule 10 permit source 192.168.20.0 0.0.0.255//此处为允许20网段通过的部分
+//查看配置情况
+[AR4-acl-basic-nat]dis this 
+[V200R003C00]
+#
+acl name nat 2000  
+ rule 5 permit source 192.168.10.0 0.0.0.255 
+ rule 10 permit source 192.168.20.0 0.0.0.255 
+#
+return
+//可以看到这里的两条规则，则表示已经配置成功了
+
+//进入g4/0/0
+[AR4-acl-basic-nat]int g4/0/0
+//将这个信息配置应用在g4/0/0口上
+[AR4-GigabitEthernet4/0/0]nat outbound 2000
+
+//使用dis this命令查看配置信息
+[AR4-GigabitEthernet4/0/0]dis this
+[V200R003C00]
+#
+interface GigabitEthernet4/0/0
+ ip address 202.108.100.1 255.255.255.0 
+ nat outbound 2000
+#
+return
+//可以看到，已经生效了</code></pre>
+<p><strong>测试AR2与AR4的连通性</strong></p>
+<p>下图可以看到，这个AR2去Ping来自对端IP以及对端路由器的所有IP是可以Ping通的（202.108.100.2为路由器的对端IP，而202.109.100.2为109段的网络设备）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ce-Shi-Mo-Ren-Lu-You-Qing-Kuang.png" alt="" width="1303" height="880" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ce-Shi-Mo-Ren-Lu-You-Qing-Kuang-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ce-Shi-Mo-Ren-Lu-You-Qing-Kuang-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ce-Shi-Mo-Ren-Lu-You-Qing-Kuang-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ce-Shi-Mo-Ren-Lu-You-Qing-Kuang-xl.webp 1024w"></figure>
+<p><strong>验证一：</strong>再次使用这个来自于vlan20的PC7去Ping202.109.100.3的这个服务器（只要是109网段下的任何一台设备都行，我这里为了对比，所以选择的是服务器）发现可以Ping通</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-230728.png" alt="" width="1559" height="1058" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-230728-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-230728-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-230728-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-230728-xl.webp 1024w"></figure>
+<p><strong>验证二：</strong>使用来自109网段（互联网）的PC去Ping企业内部服务器（IP为10.2.2.3）和PC5（IP为10.2.2.2）就不能Ping通</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-233419.png" alt="" width="1537" height="1046" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233419-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233419-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233419-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233419-xl.webp 1024w"></figure>
+<p><strong>验证三：</strong>使用外网的客户端（Cilent3），访问内网服务器（Server1，IP为10.2.2.3）发现目前还并不能访问</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-233717.png" alt="" width="1450" height="999" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233717-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233717-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233717-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-233717-xl.webp 1024w"></figure>
+<p>Q：奇怪，是我错了吗？为啥能Ping通除了公司内网以外的主机，而不能访问所以的服务器以及内网的主机？？？</p>
+<p>A：并没有错，公司内网在先前划分ACL的时候并没有将这个公司内外网的网段加入其中，所以访问不了，是正常的。至于服务器访问层面，只不过还没配<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit; font-weight: var(--font-weight-normal);">NAT Server策略，将这个服务器映射到公网中，所以在没有配之前，是不会有响应的</span></p>
+<h5>步骤三：<span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit;">此时继续创建一个NAT Server策略，</span><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit;">将内网10.2.2.3的www服务映射到AR4中G4/0/0的8080端口上</span></h5>
+<pre class="language-cpp line-numbers"><code>//进入G4/0/0端口
+[AR4]int g4/0/0
+//配置NAT转发
+[AR4-GigabitEthernet4/0/0]nat server protocol tcp global current-interface 8080 inside 10.2.2.3 www
+//以下为含义解释
+//nat server：启用NAT服务（端口映射服务）
+//protocol tcp：将这个协议指定为TCP
+//global current-interface 8080：外网使用G4/0/0的配置的IP，并开放8080的端口
+//inside 10.2.2.3 www：内网的IP是10.2.2.3，服务为WWW（端口为80）</code></pre>
+<p><strong>验证：</strong>使用来自109网段（互联网的客户机）去访问边界IP，发现可以成功访问内网服务器</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/38/Ping-Mu-Jie-Tu-2026-01-12-235758.png" alt="" width="1460" height="1008" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-235758-xs.webp 320w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-235758-sm.webp 480w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-235758-md.webp 768w ,https://zeyun.org/media/posts/38/responsive/Ping-Mu-Jie-Tu-2026-01-12-235758-xl.webp 1024w"></figure>
+<p class="align-center"><strong>至此，本实验全部结束</strong></p>
+<p class="align-center"><strong>那么本章内容到此结束，感谢您的阅读，我们下一期见 (o_ O)ﾉ</strong></p>
+<p class="align-center"><strong>综合练习 Part 6已经更新：<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part6.html">点我跳转</a></strong></p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>网络设备配置实战分析 Part 4</title>
+        <author>
+            <name>云泽</name>
+        </author>
+        <link href="https://zeyun.org/network_with_huawei_ensp_part4.html"/>
+        <id>https://zeyun.org/network_with_huawei_ensp_part4.html</id>
+            <category term="网络设备配置技术学习笔记"/>
+
+        <updated>2026-01-04T22:29:17+09:00</updated>
+            <summary>
+                <![CDATA[
+                    本章内容如下 （1）简单介绍ACL （2）ACL 2000-2999（基本 /&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <blockquote>
+<h4>本章内容如下</h4>
+<p>（1）简单介绍ACL<br>（2）ACL 2000-2999（基本 / 标准）的配置实验<br>（3）ACL 3000-3999（高级 / 扩展）的配置实验</p>
+</blockquote>
+<h5><strong>Q：什么是ACL？</strong></h5>
+<p><strong>A: </strong>ACL 是 “访问控制列表（Access Control List）” 的缩写，是网络设备（如路由器、交换机）上的一种<strong>安全技术规则</strong>集合，用来对经过设备的数据包进行 “允许 / 拒绝” 的权限判断，从而实现流量过滤、访问控制等功能</p>
+<h5><strong>Q：ACL的应用有哪些？</strong></h5>
+<p><strong>A：</strong></p>
+<ol class="auto-hide-last-sibling-br">
+<li>过滤网络流量：比如拒绝特定 IP 的数据包通过设备</li>
+<li>控制资源访问：限制某些主机访问服务器、特定服务（如 HTTP）</li>
+<li>配合其他技术：比如和 NAT、QoS 结合，实现更精细的网络管理</li>
+<li>提升网络安全：阻挡非法访问、减少网络攻击风险</li>
+</ol>
+<p class="align-center"><strong>粗略的来说，ACL的核心功能是实现数据的过滤操作</strong></p>
+<h5>ACL的实验&amp;配置过程（包含ACL2000和ACL3000）</h5>
+<p>让我们继续沿用之前的<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part3.html" target="_blank" rel="noopener noreferrer">网络设备配置实战分析Part3</a>配置拓扑的基础之上，来稍微简化一些去讲解ACL部分的内容（当然，为了更好的实现ACL的理解和实验，我会将配置好基础环境的拓扑提供给大家下载）</p>
+<p>拓扑：<a href="https://wwbte.lanzn.com/b014wz3opg" target="_blank" rel="noopener noreferrer">点我下载</a>，密码：hb93</p>
+<p>拓扑图如下所示：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-04-215253.png" alt="" width="2379" height="1412" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-04-215253-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-04-215253-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-04-215253-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-04-215253-xl.webp 1024w"></figure>
+<p><strong>拓扑介绍：</strong>三层路由及三层交换机上配置OSPF（路由id：R4为0.0.0.0，SW7为1.1.1.1，SW8为2.2.2.2），在SW7和SW8配置聚合链路，并将SW7设置为根桥（SW5为傻瓜交换机，不做任何配置，这里仅作为集线器使用），此外在这个和Part3一样的拓扑之上，添加Server端和Client端，用于测试ACL的HTTP访问的拦截效果</p>
+<p>由于这个拓扑本人已经在<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part3.html" target="_blank" rel="noopener noreferrer">网络设备安全配置实战分析 Part3</a>做过详细的讲解，那么这里我会提供已经配置好以上基础（指的是OSPF，链路聚合，vlan划分等等）配置的拓扑，涉及到ACL相关的内容，我才会在以下实验中提及</p>
+<pre class="language-cpp line-numbers"><code>常见的命令如下：
+[huawei]dis acl all
+//查看所有acl（必须要在全局模式下）
+[huawei]undo acl all
+//删除所有acl（部分acl需要进入端口，使用dis this 查看acl相关的命令，
+//再去输入undo + 这个acl命令即可）
+[huawei]acl + 端口号
+//配置acl
+[huawei]dis acl
+//查看当前acl
+[huawei]undo acl name deny10-3
+//若有改名/编号的需求，需要彻底删除这个acl配置，再重新覆盖（我这里以deny10-3为例）
+[huawei]acl number 3000 name deny10-3
+[huawei]acl name deny10-3 3000
+//这两个都行的，只需要正常加上编号即可
+</code></pre>
+<p><strong>实验一：使得10和20网段的所有机器都能访问Server服务器端提供的Http服务</strong></p>
+<p>题目解构：理论上给这个不同网段的IP，那么该网段下的机器就可以实现访问（因为华为的ENSP不支持在PC机上直接操作，所有这里我配置在独立的Client客户机上来测试Http服务）</p>
+<p><strong>步骤一：</strong>给服务器的Http选项打开</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Qi-Dong-httpFu-Wu-Qi.png" alt="" width="1995" height="1016" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Qi-Dong-httpFu-Wu-Qi-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Qi-Dong-httpFu-Wu-Qi-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Qi-Dong-httpFu-Wu-Qi-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Qi-Dong-httpFu-Wu-Qi-xl.webp 1024w"></figure>
+<p>之后点击“启动”即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-214324.png" alt="" width="1458" height="1010" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214324-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214324-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214324-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214324-xl.webp 1024w"></figure>
+<p><strong>步骤二：</strong>配置Client客户机IP</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/CilentHuan-ip.png" alt="" width="1457" height="1113" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/CilentHuan-ip-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/CilentHuan-ip-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/CilentHuan-ip-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/CilentHuan-ip-xl.webp 1024w"></figure>
+<p><strong>验证实验：</strong></p>
+<p>可以看到，在点击获取后会得到一个网页的下载信息（这里和我图中一样的就是正常的），之后点击取消就行，测试能否连通的，该文件不需要保存</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-214804.png" alt="" width="1458" height="1119" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214804-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214804-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214804-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-214804-xl.webp 1024w"></figure>
+<p><strong>实验二：使得左侧的10网段不能访问Http服务，20网段可以实现访问</strong></p>
+<p>题目解构：在R4的G0/0/2口配置对应的出站丢弃有关于Http访问的包的ACL即可</p>
+<p><strong>步骤一：</strong>安装以下的代码步骤来配置ACL 2000（这里我取别名”deny-10“）</p>
+<pre class="language-cpp line-numbers"><code>&lt;AR4&gt;sys
+//进入特权模式
+[AR4]acl name deny-10 2000
+//配置acl，我这里给我的这个acl命名为“deny-10”（名字可有可无，但后面一定要加上2000）
+[AR4-acl-basic-deny-10]rule 5 deny ip source 192.168.10.0 0.0.0.255
+//配置acl 2000，我这里写的是拒绝来自ip为192.168.10.0的任何网络设备（语法如上所示）
+[AR4-acl-basic-deny-10]int g0/0/2
+//输入int命令，进入g0/0/2口
+[AR4-GigabitEthernet0/0/2]traffic-filter outbound  acl 2000
+//使用“traffic-filter”命令，应用出站规则（outbound）为之前定的acl 2000
+[AR4-GigabitEthernet0/0/2]dis this
+//使用dis this查看是否成功
+
+//输出以下则为成功，可以看到这个“deny-10”以及成功应用到了g0/0/2口了
+[V200R003C00]
+#
+interface GigabitEthernet0/0/2
+ ip address 10.2.2.1 255.255.255.0 
+ traffic-filter outbound acl name deny-10
+#
+return</code></pre>
+<p><strong>步骤二：</strong>再次使用来自于这个10网段的设备取连接Http服务器</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-221209.png" alt="" width="1461" height="1117" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221209-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221209-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221209-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221209-xl.webp 1024w"></figure>
+<p>可以看到，这里我们已经不能访问Http服务器了（包括处于10网段的PC6也不能访问服务器，但是处于20网段的PC7就可以正常访问）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-221420.png" alt="" width="2402" height="1418" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221420-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221420-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221420-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-221420-xl.webp 1024w"></figure>
+<p><strong>实验三：使得仅192.168.10.3这个IP，不能访问20网段的内容，其余可以访问</strong></p>
+<p>题目解构：需要在SW7的G0/0/2口，SW8的G0/0/1口，配置来自于10网段的这个指定的IP的拒绝ACL即可（为保证聚合链路的畅通，不在SW7/8的G0/0/23&amp;24端口做acl）</p>
+<p>这里不同于ACL 2000，我们需要用到更精细化的ACL 3000，来实现阻止精确的IP访问</p>
+<p>在这个实验开始之前可以看到，这里的PC6和PC7都是可以正常访问的（这里我使用IP为192.168.10.3的客户端，去Ping来自于20网段的机器，是可以ing通的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-224331.png" alt="" width="1447" height="1106" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-224331-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-224331-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-224331-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-224331-xl.webp 1024w"></figure>
+<p><strong>步骤一：</strong>在SW7的G0/0/2口设置ACL 3000 ，精确阻止来自192.168.10.3的IP流量（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/10to20_2.png" alt="" width="2239" height="1390" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/10to20_2-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/10to20_2-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/10to20_2-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/10to20_2-xl.webp 1024w"></figure>
+<p><strong>代码如下：</strong></p>
+<pre class="language-cpp line-numbers"><code>&lt;SW7&gt;system-view 
+//进入系统视图
+[SW7]acl name deny10-3
+//命名为”deny10-3“
+[SW7-acl-adv-deny10-3]rule 5 deny ip source 192.168.10.3 0.0.0.255 destination 192.168.20.0 0.0.0.255
+//配置为拒绝192.168.10.3这个ip访问目标为192.168.20.0的网段
+[SW7-acl-adv-deny10-3]rule 10 permit ip source any destination any 
+//允许其他的流量经过
+[SW7-acl-adv-deny10-3]int g0/0/2
+//进入g0/0/2端口
+[SW7-GigabitEthernet0/0/2]traffic-filter outbound acl 3999
+//应用这个规则（名字和编号都可以）
+
+//使用dis this看一下，可以看到，这里已经为”deny10-3“了（我忘记加这个3000，默认就最后了）
+[SW7-GigabitEthernet0/0/2]dis this 
+#
+interface GigabitEthernet0/0/2
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+ traffic-filter outbound acl name deny10-3
+#
+return</code></pre>
+<p><strong>步骤二：</strong>在SW8上去阻止192.168.10.3的流量（如下图所示）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/10to20_1.png" alt="" width="2275" height="1384" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/10to20_1-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/10to20_1-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/10to20_1-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/10to20_1-xl.webp 1024w"></figure>
+<p><strong>代码如下：</strong></p>
+<pre class="language-cpp line-numbers"><code>&lt;SW8&gt;system-view 
+//进入系统视图
+[SW8]acl name deny10-3 3000
+//配置”deny10-3“，3000的规则
+[SW8-acl-adv-deny10-3]rule 5 deny ip source 192.168.10.3 0.0.0.255 destination 192.168.20.0 0.0.0.255
+//拒绝192.168.10.3，至目标的192.168.20.0网段
+[SW8-acl-adv-deny10-3]rule 10 permit ip source any destination any 
+//放行其他的端口
+[SW8-acl-adv-deny10-3]int g0/0/1
+//进入g0/0/1的端口
+[SW8-GigabitEthernet0/0/1]traffic-filter outbound acl 3000
+//应用acl 3000规则
+
+//使用dis this查看，可以看到这个已经生效了
+[SW8-GigabitEthernet0/0/1]dis this 
+#
+interface GigabitEthernet0/0/1
+ port link-type trunk
+ port trunk allow-pass vlan 2 to 4094
+ traffic-filter outbound acl name deny10-3
+#
+return</code></pre>
+<p><strong>验证成果：</strong></p>
+<p>可以看到已经成功了，这个IP为192.168.10.3的客户机已经Ping不通192.168.20.0网段的主机了</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/37/Ping-Mu-Jie-Tu-2026-01-05-233235.png" alt="" width="1456" height="1113" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-233235-xs.webp 320w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-233235-sm.webp 480w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-233235-md.webp 768w ,https://zeyun.org/media/posts/37/responsive/Ping-Mu-Jie-Tu-2026-01-05-233235-xl.webp 1024w"></figure>
+<p class="align-center">至此，本章内所有有关于ACL的实验已经完成</p>
+<p class="align-center">感谢您的观看 (´▽`ʃ♡ƪ)</p>
+<p class="align-center">此外</p>
+<p class="align-center">Part 5 NAT协议篇已更新，<a href="https://zeyun.dpdns.org/network_with_huawei_ensp_part5.html">点我跳转</a></p>
+            ]]>
+        </content>
+    </entry>
+</feed>
