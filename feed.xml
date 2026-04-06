@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-06T15:07:47+09:00</updated>
+    <updated>2026-04-06T15:12:50+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -181,8 +181,9 @@ vi ~/.docker/config.json</code></pre>
 <h4 dir="auto">Docker镜像部署</h4>
 <p dir="auto">访问docker hub，寻找我们需要的镜像</p>
 <p dir="auto">docker hub：<a href="https://hub.docker.com/" target="_blank" rel="noopener noreferrer">点我前往</a></p>
-<p dir="auto"> </p>
 <p dir="auto">这里我会使用这个<code>pikachu</code>网络安全靶场，作为从零开始部署整个靶场的全流程（包含每一步的详细原理）从而带你认识docker的部署于使用</p>
+<h6 class="align-center" dir="auto">具体的流程图如下</h6>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/mermaid-diagram.png" alt="" width="1466" height="5465" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/mermaid-diagram-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/mermaid-diagram-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/mermaid-diagram-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/mermaid-diagram-xl.webp 1024w"></figure>
 <h6 dir="auto">第一步：寻宝（Docker Hub 搜索与选择）</h6>
 <p>这里我找到了我需要的靶场，并且和它对应的部署链接</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/La-Qu-pikachu.png" alt="" width="2803" height="1497" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/La-Qu-pikachu-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/La-Qu-pikachu-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/La-Qu-pikachu-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/La-Qu-pikachu-xl.webp 1024w"></figure>
