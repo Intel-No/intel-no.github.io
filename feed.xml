@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-12T02:10:16+09:00</updated>
+    <updated>2026-04-12T02:35:34+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -1099,9 +1099,6 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg</code></pre>
 <p>简单来说，Tracker就像是BT下载里的 “信息中转站”，它负责帮你找到正在下载同一文件的其他用户（也就是"Peer"）</p>
 <p>（3）分享设置（给自己做种设置限制）</p>
 <p>打开这个界面，设置和我图片里一样即可</p>
-<ul>
-<li> </li>
-</ul>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/40/qbZuo-Zhong-Xian-Zhi.png" alt="" width="1542" height="1221" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-xs.webp 320w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-sm.webp 480w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-md.webp 768w ,https://zeyun.org/media/posts/40/responsive/qbZuo-Zhong-Xian-Zhi-xl.webp 1024w"></figure>
 <p>图片内的含义解释：</p>
 <p><strong>1.当分享率达到 1.0</strong></p>
