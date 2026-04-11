@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-12T02:07:51+09:00</updated>
+    <updated>2026-04-12T02:10:16+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -803,7 +803,7 @@ sudo systemctl start NetworkManager</code></pre>
         <content type="html">
             <![CDATA[
                 <h2>在Windows上安装</h2>
-<p>文件下载：<a href="https://www.ilanzou.com/s/cSrM8off" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>文件下载：<a href="https://ivostation.dpdns.org:8443/s/cc919522a12149a0aa" target="_blank" rel="noopener noreferrer">点我下载</a></p>
 <h5>步骤一：下载来自我上传的文件（你会得到步骤二的图片中的几个文件）</h5>
 <p>文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示）</p>
 <h5>步骤二：双击此文件，安装Java坏境</h5>
