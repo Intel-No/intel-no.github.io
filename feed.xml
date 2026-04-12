@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-12T02:35:34+09:00</updated>
+    <updated>2026-04-12T16:36:37+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -36,9 +36,10 @@
 <p data-start="197" data-end="206"><strong data-start="197" data-end="206">环境说明：</strong></p>
 <ul data-start="207" data-end="241">
 <li data-section-id="1dydldu" data-start="207" data-end="223">虚拟化软件：VMware Workstation Pro 25H2</li>
-<li data-section-id="28u4he" data-start="224" data-end="241">系统镜像：CentOS 7</li>
+<li data-section-id="28u4he" data-start="224" data-end="241">系统镜像：CentOS-7x86_64-Minimal-2009</li>
 </ul>
-<p>CentOS7镜像：<a href="https://pan-yz.cldisk.com/v2/external/resourceDetail.html?appid=1D734FA7-035A-4DEC-AA1C-DD63331D9267&amp;nonce=557161100&amp;timestamp=1775926805515&amp;showAppBar=true&amp;puid=305794623&amp;autoPreview=true&amp;objectId=b8bbab41ebbcb75ec2f8b69b08afe54a&amp;signature=6bcc793e13be0b90beb8503f1e6360cf" target="_blank" rel="noopener noreferrer">点我下载</a></p>
+<p>CentOS7镜像：<a href="https://pan-yz.cldisk.com/v2/external/resourceDetail.html?appid=1D734FA7-035A-4DEC-AA1C-DD63331D9267&amp;nonce=557161100&amp;timestamp=1775926805515&amp;showAppBar=true&amp;puid=305794623&amp;autoPreview=true&amp;objectId=b8bbab41ebbcb75ec2f8b69b08afe54a&amp;signature=6bcc793e13be0b90beb8503f1e6360cf" title="下载地址1" rel="nofollow">下载地址1</a>（NAS分享链接）<a class="link-info" href="https://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-2009.torrent" title="下载地址2" rel="nofollow">下载地址2</a>（种子链接）</p>
+<p>如果第一个链接挂了，请使用第二个下载链接（种子使用教程：<a class="link-info" href="https://zeyun.org/qbittorrent_teaching.html" title="点我前往" rel="nofollow">点我前往</a>）</p>
 <h4>添加windows防火墙规则</h4>
 <h6>步骤一：Win+R，输入<code>control</code>打开控制面板</h6>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/Ping-Mu-Jie-Tu-2026-04-02-002617.png" alt="" width="799" height="420" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-02-002617-xl.webp 1024w"></figure>
