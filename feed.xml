@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-17T00:12:27+09:00</updated>
+    <updated>2026-04-17T00:31:44+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -798,7 +798,7 @@ sudo systemctl start NetworkManager</code></pre>
         <updated>2026-03-11T21:35:30+09:00</updated>
             <summary>
                 <![CDATA[
-                    在Windows上安装 文件下载：点我下载（NAS分享链接） 文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示） *注意：这里的变量名，建议固定为&hellip;
+                    在Windows上安装 文件下载：点我下载（NAS分享链接） 文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示） 必要下载文件：除了old文件夹里面的不用下载，其他的4个文件都需要下载，缺一不可&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -807,7 +807,9 @@ sudo systemctl start NetworkManager</code></pre>
 <p>文件下载：<a href="https://ivostation.dpdns.org:8443/s/cc919522a12149a0aa" target="_blank" rel="noopener noreferrer">点我下载</a>（NAS分享链接）</p>
 <h5>步骤一：下载来自我上传的文件（你会得到步骤二的图片中的几个文件）</h5>
 <p>文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示）</p>
+<p>必要下载文件：除了old文件夹里面的不用下载，其他的4个文件都需要下载，缺一不可</p>
 <h5>步骤二：双击此文件，安装Java坏境</h5>
+<h6>因为我提供的这个burp suite的版本较新，所以这个需要高版本的Java</h6>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/bpjava-2.png" alt="" width="1389" height="399" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/bpjava-2-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/bpjava-2-xl.webp 1024w"></figure>
 <h5>步骤三：开始安装</h5>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/43/Ping-Mu-Jie-Tu-2026-03-11-170853.png" alt="" width="987" height="746" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-xs.webp 320w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-sm.webp 480w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-md.webp 768w ,https://zeyun.org/media/posts/43/responsive/Ping-Mu-Jie-Tu-2026-03-11-170853-xl.webp 1024w"></figure>
