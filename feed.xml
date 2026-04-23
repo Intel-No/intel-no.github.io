@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-17T00:31:44+09:00</updated>
+    <updated>2026-04-23T22:44:03+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -123,15 +123,28 @@ sudo systemctl enable docker</code></pre>
 <h6 dir="auto">步骤一：创建或编辑 Docker 的配置文件</h6>
 <pre class="language-bash line-numbers"><code>sudo mkdir -p /etc/docker
 sudo vi /etc/docker/daemon.json</code></pre>
-<h6 dir="auto">步骤二：在文件中粘贴以下内容（推荐几个目前较稳定的加速器）</h6>
-<pre class="language-bash line-numbers"><code>{
-  "registry-mirrors": [
-    "https://docker.xuanyuan.me",
-    "https://docker.1ms.run",
-    "https://docker.m.daocloud.io",
-    "https://hub.rat.dev"
-  ]
-}</code></pre>
+<h6 dir="auto">步骤二：在文件中粘贴以下内容（推荐如下的国内镜像站）</h6>
+<pre class="language-json line-numbers"><code>{
+    "registry-mirrors": [
+        "https://docker.1panel.live",
+        "https://hub.rat.dev/",
+        "https://docker.chenby.cn",
+        "https://docker.kubesre.xyz",
+        "https://huecker.io",
+        "https://dockerhub.timeweb.cloud",
+        "https://dockerproxy.com",
+        "https://docker.anyhub.us.kg",
+        "https://dockerhub.icu",
+        "https://docker.aws19527.cn",
+        "https://registry.dockermirror.com",
+        "https://hub-mirror.c.163.com",
+        "https://mirror.baidubce.com",
+        "https://ccr.ccs.tencentyun.com",
+        "https://docker.m.daocloud.io",
+        "https://docker.mirrors.ustc.edu.cn"
+    ]
+}
+</code></pre>
 <h6 dir="auto">步骤三：保存后，重启 Docker 服务使配置生效：</h6>
 <pre class="language-bash line-numbers"><code>sudo systemctl daemon-reload
 sudo systemctl restart docker</code></pre>
