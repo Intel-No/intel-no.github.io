@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-04-23T22:44:03+09:00</updated>
+    <updated>2026-04-23T22:52:26+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -119,7 +119,7 @@ sudo systemctl enable docker</code></pre>
 <p>输入 <code data-path-to-node="16" data-index-in-node="3">docker version</code>，看到 Client 和 Server 信息即表示安装成功（如下图所示）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/Ping-Mu-Jie-Tu-2026-04-06-012858.png" alt="" width="1001" height="871" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-06-012858-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-06-012858-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-06-012858-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-06-012858-xl.webp 1024w"></figure>
 <h4 dir="auto">虚拟机Docker的代理的设置</h4>
-<h5>使用国内镜像站的配置</h5>
+<h5>方法一：使用国内镜像站的配置</h5>
 <h6 dir="auto">步骤一：创建或编辑 Docker 的配置文件</h6>
 <pre class="language-bash line-numbers"><code>sudo mkdir -p /etc/docker
 sudo vi /etc/docker/daemon.json</code></pre>
@@ -148,10 +148,14 @@ sudo vi /etc/docker/daemon.json</code></pre>
 <h6 dir="auto">步骤三：保存后，重启 Docker 服务使配置生效：</h6>
 <pre class="language-bash line-numbers"><code>sudo systemctl daemon-reload
 sudo systemctl restart docker</code></pre>
-<h6 dir="auto">验证国内镜像是否生效</h6>
+<h6 dir="auto">步骤四：验证国内镜像是否生效</h6>
 <pre class="language-bash line-numbers"><code>docker info | grep -A 10 "Registry Mirrors"</code></pre>
-<h6>使用刚刚配置的本地代理</h6>
-<p dir="auto">这里需要配置两处</p>
+<p>输出结果如下图所示即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/49/Ping-Mu-Jie-Tu-2026-04-23-224631.png" alt="" width="1000" height="435" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-23-224631-xs.webp 320w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-23-224631-sm.webp 480w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-23-224631-md.webp 768w ,https://zeyun.org/media/posts/49/responsive/Ping-Mu-Jie-Tu-2026-04-23-224631-xl.webp 1024w"></figure>
+<h6>至此，国内镜像方法配置结束</h6>
+<h5>方法二：使用刚刚配置的本地代理</h5>
+<p>如果你没有代理工具，可使用国内镜像站的即可</p>
+<p dir="auto">使用代理的时候，这里需要配置两处</p>
 <ul>
 <li dir="auto">第一处：解决“Docker 能不能下载镜像”的问题</li>
 <li dir="auto">第二处：解决“容器里面能不能上网”的问题</li>
@@ -187,7 +191,8 @@ vi ~/.docker/config.json</code></pre>
 <p dir="auto">这个配置会让新启动的容器自动继承代理环境变量</p>
 <h6 dir="auto">临时测试代理（不想永久配置时）</h6>
 <p dir="auto">直接在命令前加环境变量</p>
-<pre class="language-bash line-numbers"><code>HTTP_PROXY=http://127.0.0.1:7890 HTTPS_PROXY=http://127.0.0.1:7890</code></pre>
+<pre class="language-bash line-numbers"><code>HTTP_PROXY=http://127.0.0.1:7890
+HTTPS_PROXY=http://127.0.0.1:7890</code></pre>
 <p dir="auto">配置完后，试一下拉取镜像：</p>
 <pre class="language-bash line-numbers"><code>docker pull hello-world</code></pre>
 <p>可以看到，我这里可以成功拉取镜像（这里仅仅做测试，就不运行了）</p>
