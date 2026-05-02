@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-02T21:57:01+09:00</updated>
+    <updated>2026-05-02T22:36:30+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -21,13 +21,13 @@
         <updated>2026-05-02T20:58:22+09:00</updated>
             <summary>
                 <![CDATA[
-                    买了云服务器，第一件事不是装软件，而是把安全基础打好 很多人拿到服务器就直接开始装宝塔、建网站，结果没多久就被扫描爆破（轻则跑满带宽，重则数据全丢）本文整理了一套适用于 Ubuntu Server 的安全加固流程，按步骤做完基本能挡住绝大多数自动化攻击。&hellip;
+                    买了云服务器，第一件事不是装软件，而是把安全基础打好 很多人拿到服务器就直接开始装宝塔、建网站，结果没多久就被扫描爆破（轻则跑满带宽，重则数据全丢）本文整理了一套适用于 Ubuntu Server 的安全加固流程，按步骤做完基本能挡住绝大多数自动化攻击&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">买了云服务器，第一件事不是装软件，而是<strong>把安全基础打好</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">很多人拿到服务器就直接开始装宝塔、建网站，结果没多久就被扫描爆破（轻则跑满带宽，重则数据全丢）本文整理了一套适用于 Ubuntu Server 的安全加固流程，按步骤做完基本能挡住绝大多数自动化攻击。</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">很多人拿到服务器就直接开始装宝塔、建网站，结果没多久就被扫描爆破（轻则跑满带宽，重则数据全丢）本文整理了一套适用于 Ubuntu Server 的安全加固流程，按步骤做完基本能挡住绝大多数自动化攻击</p>
 <p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"><strong>实验环境：</strong> Ubuntu Server 22.04.5 LTS（推荐版本，兼容性最好）</p>
 <pre class="language-bash line-numbers"><code>Ubuntu 的版本命名
 ├── 按"有没有图形界面"分
