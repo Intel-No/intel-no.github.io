@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-02T17:44:27+09:00</updated>
+    <updated>2026-05-02T17:57:53+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -32,7 +32,7 @@
 <li>使用ImmortalWrt 24.10.5 作为内网网关（使用家庭路由器下发的固定IP）</li>
 <li>家庭内网 WiFi 网段是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">192.168.31.0/24</code></li>
 <li>虚拟机内网网段是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">10.10.10.0/24</code></li>
-<li>目标是在家庭网段也能直接通过VPN拨号进内网虚拟机</li>
+<li>目标是在家庭网段直接通过VPN拨号进内网虚拟机</li>
 </ul>
 <h4>实现思路：</h4>
 <pre class="language-bash line-numbers"><code>笔记本 (10.10.20.2)
