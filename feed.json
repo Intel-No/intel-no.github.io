@@ -14,8 +14,8 @@
             "id": "https://zeyun.org/what_is_gfw.html",
             "url": "https://zeyun.org/what_is_gfw.html",
             "title": "内网模拟&quot;长城防火墙&quot;",
-            "summary": "由于众所不一定周知的原因，在国内，你正常是无法直接打开Google，Youtube，Gmail等一系列的服务的..... 这一切的起因，那是因为在我们与国际互联网直接有一堵看不见的“墙” 这一堵墙行内人叫做“长城防火墙”，简称 GFW Q：那么这个所谓的&hellip;",
-            "content_html": "<p>由于众所不一定周知的原因，在国内，你正常是无法直接打开Google，Youtube，Gmail等一系列的服务的.....</p>\n<p>这一切的起因，那是因为在我们与国际互联网直接有一堵看不见的“墙”</p>\n<p>这一堵墙行内人叫做“长城防火墙”，简称 GFW</p>\n<p>Q：那么这个所谓的 GFW 到底是什么东西？</p>\n<p>A：它不是一堵真正意义上的\"墙\"，而是一套<strong>检测+阻断</strong>系统，部署在运营商骨干网出口</p>\n<p dir=\"auto\">主要工作原理如下</p>\n<ul>\n<li><strong>深度包检测（DPI）</strong>：检查数据包的内容，包括域名（DNS）,HTTP 头，甚至部分加密流量的特征（如 TLS SNI）</li>\n<li><strong>DNS 污染</strong>：当你查询被屏蔽的网站域名时，GFW 会抢先返回假的 IP 地址，导致连接失败</li>\n<li><strong>TCP 重置攻击</strong>：检测到敏感关键词后，快速伪造“连接重置”包，让双方以为对方挂断了连接</li>\n<li><strong>IP 封锁</strong>：直接把某些境外服务器的 IP 加入黑洞路由，让流量“石沉大海”</li>\n<li><strong>主动探测</strong>：对可疑的翻墙流量（如 VPN、Shadowsocks 等）进行主动探测并封锁</li>\n</ul>\n<h2 class=\"align-center\">剩余内容正在更新中</h2>\n<p class=\"align-center\"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>\n<p> </p>\n<p> </p>\n<p> </p>",
+            "summary": "免责声明 本文所有实验均在本人本地 PVE 虚拟化环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程。读者请自行承担全部风险 由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开&hellip;",
+            "content_html": "<h4 class=\"align-center\" dir=\"auto\">免责声明</h4>\n<p dir=\"auto\"><strong> 本文所有实验均在本人本地 PVE 虚拟化环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程。读者请自行承担全部风险</strong></p>\n<p dir=\"auto\">由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开 Google、YouTube、Gmail 等一系列国际服务的……</p>\n<p dir=\"auto\">这一切的根源，就是在我们和真实互联网之间，横着一堵看不见却又无处不在的「墙」</p>\n<p dir=\"auto\">这堵墙在行内人嘴里有个响亮的名字——<strong>长城防火墙</strong>（简称 <strong>GFW</strong>）</p>\n<p dir=\"auto\"><strong>Q：那么这个所谓的「GFW」到底是什么东西？</strong></p>\n<p dir=\"auto\"><strong>A：</strong> 它其实并不是一堵实体意义上的「墙」，而是一套<strong>智能检测 + 主动阻断</strong>的系统，部署在各大运营商的骨干网出口</p>\n<p dir=\"auto\">它主要靠以下几种手段「工作」：</p>\n<ul dir=\"auto\">\n<li><strong>深度包检测（DPI）</strong>：不仅看域名（DNS）、HTTP 头，连 TLS SNI，部分加密流量的特征都敢硬抠</li>\n<li><strong>DNS 污染</strong>：你一查被墙域名，它就抢答一堆假 IP，让你直接连不上</li>\n<li><strong>TCP 重置攻击</strong>：发现敏感关键词，瞬间伪造 RST 包，让双方以为对方主动断开连接</li>\n<li><strong>IP 封锁</strong>：直接把境外服务器 IP 扔进黑洞路由，流量石沉大海</li>\n<li><strong>主动探测</strong>：对可疑的 VPN、Shadowsocks、VLESS 等协议进行主动探测并封杀</li>\n</ul>\n<p dir=\"auto\"><strong>Q：那「翻墙」到底是个什么原理？</strong></p>\n<p dir=\"auto\"><strong>A：</strong> 直白点说，就是把你的流量<strong>加密 + 伪装 + 境外中转</strong>，让 GFW 看不懂、拦不住（ 简单理解就是：<strong>翻墙 = 让 GFW 觉得你在访问一个「正常」的国际网站，而不是在翻墙</strong>）</p>\n<p dir=\"auto\">为了让你彻底看懂 GFW 到底是怎么发现你，又是怎么拦截你的，我这次直接在内网搭了一整套模拟环境，用虚拟机把「中国用户正常上网」的全流程复现出来</p>\n<p dir=\"auto\">整个实验环境基于<strong>PVE</strong>虚拟环境搭建（拓扑图如下）（除必要用于模拟 VPS 的Ubuntu 需要拉取 SUI 面板外，其余所有环节都在纯内网完成，不涉及任何真实公网流量）</p>\n<figure class=\"post__image\"><img  src=\"https://zeyun.org/media/posts/58/mermaid-diagram.svg\" alt=\"\"></figure>（图片正在制作中ing）<figure class=\"post__image\"><img loading=\"lazy\"  src=\"https://zeyun.org/media/posts/58/mermaid-diagram-2.svg\" alt=\"\"></figure>\n<h2 class=\"align-center\">剩余内容正在更新中</h2>\n<p class=\"align-center\"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>\n<p> </p>\n<p> </p>\n<p> </p>",
             "author": {
                 "name": "云泽"
             },
@@ -24,7 +24,7 @@
                    "Linux学习笔记"
             ],
             "date_published": "2026-05-06T22:13:44+09:00",
-            "date_modified": "2026-05-06T23:12:37+09:00"
+            "date_modified": "2026-05-09T01:19:01+09:00"
         },
         {
             "id": "https://zeyun.org/security_enhancement_of-cloud_servers.html",
