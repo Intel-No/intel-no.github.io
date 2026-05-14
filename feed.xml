@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-09T01:19:01+09:00</updated>
+    <updated>2026-05-14T17:06:16+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -1163,13 +1163,13 @@ sudo systemctl start NetworkManager</code></pre>
         <updated>2026-03-11T21:35:30+09:00</updated>
             <summary>
                 <![CDATA[
-                    在Windows上安装 文件下载：点我下载（NAS分享链接） 文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示） 必要下载文件：除了old文件夹里面的不用下载，其他的4个文件都需要下载，缺一不可&hellip;
+                    在Windows上安装 文件下载：点我下载（NAS分享链接，若无法下载，请联系作者：zeyun4699@gmail.com） 文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示） 必要下载文件：除了old文件夹里面的不用下载，其他的4个文件都需要下载，缺一不可&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <h2>在Windows上安装</h2>
-<p>文件下载：<a href="https://ivostation.dpdns.org:8443/s/cc919522a12149a0aa" target="_blank" rel="noopener noreferrer">点我下载</a>（NAS分享链接）</p>
+<p>文件下载：<a href="飞牛分享【Burp Suite】，点击链接下载文件，在App打开可转存到NAS：https://ivostation.dpdns.org:8443/s/7b5eb1aaa9f04dbabf" target="_blank" rel="noopener noreferrer">点我下载</a>（NAS分享链接，若无法下载，请联系作者：zeyun4699@gmail.com）</p>
 <h5>步骤一：下载来自我上传的文件（你会得到步骤二的图片中的几个文件）</h5>
 <p>文件说明：old文件夹中含老版本的burp suite（为windows7老系统准备的），正常按照我下面的说明，win10/11的安装最新版的即可（这里我使用window11来进行演示）</p>
 <p>必要下载文件：除了old文件夹里面的不用下载，其他的4个文件都需要下载，缺一不可</p>
