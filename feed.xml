@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-17T23:36:18+09:00</updated>
+    <updated>2026-05-18T00:53:54+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -63,6 +63,7 @@
 &gt; 转义为 &amp;gt;
 " 转义为 &amp;quot;
 ' 转义为 &amp;#x27;</code></pre>
+<p>这种方式我们会在第三关（level3）遇到</p>
 <h4 data-path-to-node="23">第二关（level2）</h4>
 <p data-path-to-node="23">我们进入第二关之后，继续沿用第一关的alert弹窗命令，查看有无效果</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level2.png" alt="" width="2879" height="1616" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level2-xl.webp 1024w"></figure>
@@ -102,13 +103,90 @@
 </div>
 <p data-path-to-node="23">最终页面就变成了：</p>
 <pre class="language-html line-numbers"><code>&lt;input value=""&gt;&lt;script&gt;alert(1)&lt;/script&gt;"&gt;</code></pre>
-<p>最终在Html里执行的源代码如下：</p>
+<p>最终在HTML里执行的源代码如下：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level2-2.png" alt="" width="2879" height="1607" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level2-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level2-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level2-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level2-2-xl.webp 1024w"></figure>
 <p data-path-to-node="23">所以我们在搜索框输入：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-17-232632.png" alt="" width="2879" height="1611" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232632-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232632-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232632-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232632-xl.webp 1024w"></figure>
 <p data-path-to-node="23">即可触发弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-17-232749.png" alt="" width="1907" height="408" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232749-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232749-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232749-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-232749-xl.webp 1024w"></figure>
-<p data-path-to-node="23"> </p>
+<h4 data-path-to-node="23">第三关（level3）</h4>
+<p>继续尝试沿用第二关的闭合思路，输入<code>"&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code>，发现这一关行不通，按下<code>Ctrl+U</code>，查看实际的网页源码</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level3-2.png" alt="" width="1992" height="827" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level3-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level3-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level3-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level3-2-xl.webp 1024w"></figure>
+<p>浏览器看到：</p>
+<pre class="language-html line-numbers"><code>&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;</code></pre>
+<p>不会把它当成真正的 <code data-start="577" data-end="587">&lt;script&gt;</code> 标签，而是把它当成普通文字显示出来</p>
+<p data-start="946" data-end="965">并且它过滤了 <code data-start="953" data-end="956">&lt;</code>、<code data-start="957" data-end="960">&gt;</code>、<code data-start="961" data-end="964">"</code></p>
+<p data-start="967" data-end="991">所以我们不能继续用 <code data-start="976" data-end="986">&lt;script&gt;</code> 标签了</p>
+<p>这一关的新思路是：</p>
+<pre class="language-bash line-numbers"><code>既然不能新建 &lt;script&gt; 标签
+那就利用已有的 input 标签，给它添加一个事件属性
+比如：
+onclick="alert(1)"</code></pre>
+<p>意思是：当用户点击这个<code> input </code>输入框时，执行 <code>alert(1)</code></p>
+<p>得知了这个原理，那我们尝试下面这个 payload（这里有一个细节，需要注意上图的源码，这里是单引号闭合的，所以这里也需要输入单引号）</p>
+<pre class="language-html line-numbers"><code>' onclick='alert(1)</code></pre>
+<p>我们输入后，服务器会拼接变成：</p>
+<pre class="language-haml line-numbers"><code>&lt;input name="keyword" value='' onclick='alert(1)'&gt;</code></pre>
+<p>将这个<code>onclick</code>的想法输入到搜索框，点击后即可弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-17-235926.png" alt="" width="2051" height="457" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-235926-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-235926-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-235926-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-235926-xl.webp 1024w"></figure>
+<p>Tips：提交后，<strong data-start="2856" data-end="2869">记得点击输入框触发</strong></p>
+<h4 data-path-to-node="23">第四关（level4）</h4>
+<p>我们继续沿用之前第二关（level2）的想法，发现输入<code>"&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code>之后并没有成功，这说明本关过滤了尖括号，因此不能通过新建 &lt;script&gt; 标签执行 JavaScript</p>
+<p>依旧Ctrl+U查看源码，发现以下几点</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level4.png" alt="" width="2208" height="867" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level4-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level4-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level4-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level4-xl.webp 1024w"></figure>
+<p>但是，我们发现<code>"</code>没有被删掉，而这就是第四关（level4）的突破口</p>
+<p>我们可以尝试将第三关（level3）的这个 payload 进行加工（将单引号变成双引号）</p>
+<pre class="language-bash line-numbers"><code>" onclick="alert(1)</code></pre>
+<p>提交后，源代码会变成：</p>
+<pre class="language-html line-numbers"><code>&lt;input name=keyword value="" onclick="alert(1)"&gt;</code></pre>
+<p>此时 onclick 成为 input 标签的事件属性，点击输入框即可触发 JavaScript，完成 XSS</p>
+<h4>第五关（level5）</h4>
+<p>初步尝试沿用第二和第三关的想法，发现行不通（原因如下图的文字说明）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level5.png" alt="" width="2866" height="846" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level5-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level5-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level5-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level5-xl.webp 1024w"></figure>
+<p>那我们换一种方式，用 <code data-start="1192" data-end="1205">javascript:</code> 链接</p>
+<pre class="language-html line-numbers"><code>&lt;a href="javascript:alert(1)"&gt;点我&lt;/a&gt;</code></pre>
+<p>思路很简单，创建一个超链接，当点击这个链接时，执行 javascript: 后面的代码</p>
+<p>所以 payload 可以写成：</p>
+<pre class="language-html line-numbers"><code>"&gt;&lt;a href="javascript:alert(1)"&gt;点我&lt;/a&gt;</code></pre>
+<p>为什么这个 payload 可以绕过？</p>
+<p>原始结构是：</p>
+<pre class="language-html line-numbers"><code>&lt;input name=keyword value="你的输入"&gt;</code></pre>
+<p>我们加上制作的超链接之后，代码拼接后变成：</p>
+<pre class="language-html line-numbers"><code>&lt;input name=keyword value=""&gt;
+&lt;a href=javascript:alert(1)&gt;点我&lt;/a&gt;
+"&gt;</code></pre>
+<p>拆开看是这样的：</p>
+<pre class="language-markdown line-numbers"><code>" 
+关闭 value 属性
+
+&gt;
+关闭 input 标签
+
+&lt;a href=javascript:alert(1)&gt;点我&lt;/a&gt;
+创建一个超链接，点击后执行 JavaScript</code></pre>
+<p data-start="1514" data-end="1558">提交之后页面上会出现一个“点我”的链接<br data-start="1534" data-end="1537">你需要<strong data-start="1540" data-end="1550">点击这个链接</strong>，才会触发弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level5-1.png" alt="" width="2879" height="1609" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level5-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level5-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level5-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level5-1-xl.webp 1024w"></figure>
+<p>点击后，即可成功跳转</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-003634.png" alt="" width="1921" height="419" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-003634-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-003634-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-003634-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-003634-xl.webp 1024w"></figure>
+<h4>第六关（level6）</h4>
+<p>尝试使用第五关的思维，我们输入<code>"&gt;&lt;a href=javascript:alert(1)&gt;点我&lt;/a&gt;</code>，但是Ctrl+U查看源码后，却发现它返回的结果确是<code>"&gt;&lt;a hr_ef=javascript:alert(1)&gt;点我&lt;/a&gt;</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-004137.png" alt="" width="2024" height="881" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-004137-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-004137-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-004137-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-004137-xl.webp 1024w"></figure>
+<p>从源码的这张图可以判断出（也就是它在过滤关键词 <code data-start="280" data-end="286">href</code>）：</p>
+<pre class="language-markdown line-numbers"><code>&lt; 没有被删
+&gt; 没有被删
+a 标签没有被删
+javascript: 没有被删
+alert(1) 没有被删
+href 被改成了 hr_ef</code></pre>
+<p>结合这些，我们发现既然它过滤的是小写的，它会不会只过滤小写 href？</p>
+<p>所以我们把<code>"&gt;&lt;a href=javascript:alert(1)&gt;点我&lt;/a&gt;</code>的小写<code>href</code>替换成全大写的<code>HREF</code>，再带入试试</p>
+<pre class="language-html line-numbers"><code>"&gt;&lt;a HREF=javascript:alert(1)&gt;点我&lt;/a&gt;</code></pre>
+<p>惊奇的发现居然出现了我们制作的超链接</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level6.png" alt="" width="2879" height="1616" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level6-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level6-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level6-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level6-xl.webp 1024w"></figure>
+<p>点击超链接之后，即可成功弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-005208.png" alt="" width="1929" height="821" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-xl.webp 1024w"></figure>
+<h2 class="align-center">剩余内容正在更新中</h2>
+<p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
         </content>
     </entry>
