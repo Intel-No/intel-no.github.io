@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-18T23:16:50+09:00</updated>
+    <updated>2026-05-19T00:47:09+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -239,7 +239,43 @@ href 被改成了 hr_ef</code></pre>
 <p>最后也是成功触发弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-231420.png" alt="" width="1864" height="843" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-xl.webp 1024w"></figure>
 <h4>第十一关（level11）</h4>
-<p> </p>
+<p>这一关我们发现还是依旧啥也没有，所以我们还是<code>Ctrl+U</code>打开网页源代码看看</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11.png" alt="" width="2289" height="873" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-xl.webp 1024w"></figure>
+<p data-start="501" data-end="528">所以这里我们看到的不是普通 URL 参数控制，而是：</p>
+<pre class="language-markdown line-numbers"><code>请求头 Referer → 后端读取 → 输出到 hidden input 的 value 里</code></pre>
+<p data-start="501" data-end="528">这就是本关的考点</p>
+<p data-start="501" data-end="528">那 Payload 应该怎么构造？</p>
+<p data-start="501" data-end="528">现在注入点是：</p>
+<pre class="language-html line-numbers"><code>&lt;input name="t_ref" value="你的 Referer" type="hidden"&gt;</code></pre>
+<p data-start="501" data-end="528">所以我们仍然可以用双引号逃逸：</p>
+<pre class="language-html line-numbers"><code>" type="text" onclick="alert(1)</code></pre>
+<p data-start="501" data-end="528">最终希望它变成：</p>
+<pre class="language-html line-numbers"><code>&lt;input name="t_ref" value="" type="text" onclick="alert(1)" type="hidden"&gt;</code></pre>
+<p data-start="501" data-end="528">意思是：</p>
+<pre class="language-markdown line-numbers"><code>" 
+闭合 value 属性
+
+type="text"
+把 hidden 输入框改成普通输入框
+
+onclick="alert(1)
+添加点击事件
+
+后面原本的 "
+帮我们闭合 onclick 属性</code></pre>
+<p data-start="501" data-end="528">然后页面上会出现一个输入框，点击它就弹窗</p>
+<p data-start="501" data-end="528">所以我们的 Playload 就是：</p>
+<pre class="language-http line-numbers"><code>Referer: " type="text" onclick="alert(1)</code></pre>
+<p data-start="501" data-end="528">接下来会需要用到Burp Suite的截包工具（如果你没有Burp Suite，那么还请前往这篇链接进行安装，<a href="https://zeyun.org/install_burpsuite.html" target="_blank" rel="noopener noreferrer">点我前往安装Burp Suite文章</a>）</p>
+<p data-start="501" data-end="528">接下来我们使用 Burp Suite 进行截包，并使用 Burp Suite 的浏览器进行操作（这样会更直观）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-1-2.png" alt="" width="2068" height="1220" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-1-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-xl.webp 1024w"></figure>
+<p data-start="501" data-end="528">在新打开的浏览器中，输入你第11关的靶场网址（你的IP地址会和我的不一样，注意区分）</p>
+<pre class="language-html line-numbers"><code>http://192.168.153.141:8088/level11.php?keyword=good%20job!</code></pre>
+<p data-start="501" data-end="528">按照下图的步骤，在HTTP请求头里添加 <code data-start="269" data-end="278">Referer</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-2-2.png" alt="" width="2811" height="1374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-2-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-xl.webp 1024w"></figure>
+<p data-start="501" data-end="528">随后点击“Forward”放行这个数据包</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-003649.png" alt="" width="2855" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xl.webp 1024w"></figure>
+<p data-start="501" data-end="528">即可触发弹窗</p>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
@@ -940,7 +976,7 @@ HTTPS_PROXY=http://127.0.0.1:7890</code></pre>
         </content>
     </entry>
     <entry>
-        <title>SQL 注入入门 —— 从暴力破解到 Union 注入（实验记录）</title>
+        <title>SQL 注入入门：从暴力破解到 Union 注入（实验记录）</title>
         <author>
             <name>云泽</name>
         </author>
