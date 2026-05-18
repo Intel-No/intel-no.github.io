@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-19T00:47:09+09:00</updated>
+    <updated>2026-05-19T01:06:26+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -139,7 +139,7 @@ onclick="alert(1)"</code></pre>
 <p>依旧Ctrl+U查看源码，发现以下几点</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level4.png" alt="" width="2208" height="867" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level4-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level4-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level4-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level4-xl.webp 1024w"></figure>
 <p>但是，我们发现<code>"</code>没有被删掉，而这就是第四关（level4）的突破口</p>
-<p>我们可以尝试将第三关（level3）的这个 payload 进行加工（将单引号变成双引号）</p>
+<p>我们可以尝试将第三关（level3）的这个 Payload 进行加工（将单引号变成双引号）</p>
 <pre class="language-bash line-numbers"><code>" onclick="alert(1)</code></pre>
 <p>提交后，源代码会变成：</p>
 <pre class="language-html line-numbers"><code>&lt;input name=keyword value="" onclick="alert(1)"&gt;</code></pre>
@@ -152,7 +152,7 @@ onclick="alert(1)"</code></pre>
 <p>思路很简单，创建一个超链接，当点击这个链接时，执行 javascript: 后面的代码</p>
 <p>所以 payload 可以写成：</p>
 <pre class="language-html line-numbers"><code>"&gt;&lt;a href="javascript:alert(1)"&gt;点我&lt;/a&gt;</code></pre>
-<p>为什么这个 payload 可以绕过？</p>
+<p>为什么这个 Payload 可以绕过？</p>
 <p>原始结构是：</p>
 <pre class="language-html line-numbers"><code>&lt;input name=keyword value="你的输入"&gt;</code></pre>
 <p>我们加上制作的超链接之后，代码拼接后变成：</p>
@@ -264,7 +264,7 @@ onclick="alert(1)
 后面原本的 "
 帮我们闭合 onclick 属性</code></pre>
 <p data-start="501" data-end="528">然后页面上会出现一个输入框，点击它就弹窗</p>
-<p data-start="501" data-end="528">所以我们的 Playload 就是：</p>
+<p data-start="501" data-end="528">所以我们的 Payload 就是：</p>
 <pre class="language-http line-numbers"><code>Referer: " type="text" onclick="alert(1)</code></pre>
 <p data-start="501" data-end="528">接下来会需要用到Burp Suite的截包工具（如果你没有Burp Suite，那么还请前往这篇链接进行安装，<a href="https://zeyun.org/install_burpsuite.html" target="_blank" rel="noopener noreferrer">点我前往安装Burp Suite文章</a>）</p>
 <p data-start="501" data-end="528">接下来我们使用 Burp Suite 进行截包，并使用 Burp Suite 的浏览器进行操作（这样会更直观）</p>
@@ -273,9 +273,40 @@ onclick="alert(1)
 <pre class="language-html line-numbers"><code>http://192.168.153.141:8088/level11.php?keyword=good%20job!</code></pre>
 <p data-start="501" data-end="528">按照下图的步骤，在HTTP请求头里添加 <code data-start="269" data-end="278">Referer</code></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-2-2.png" alt="" width="2811" height="1374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-2-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-xl.webp 1024w"></figure>
-<p data-start="501" data-end="528">随后点击“Forward”放行这个数据包</p>
+<p data-start="501" data-end="528">随后点击“Forward”放行这个数据包，即可出现搜索框，点击即可弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-003649.png" alt="" width="2855" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xl.webp 1024w"></figure>
 <p data-start="501" data-end="528">即可触发弹窗</p>
+<h4 data-start="501" data-end="528">第十二关（level12）</h4>
+<p>有了上一关的经验，这次我们依旧查看源码，看看网页端写了什么</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level12.png" alt="" width="2359" height="897" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level12-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level12-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level12-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level12-xl.webp 1024w"></figure>
+<p>源码里出现了：</p>
+<pre class="language-html line-numbers"><code>&lt;input name="t_ua" value="浏览器UA内容" type="hidden"&gt;</code></pre>
+<p>这说明后端做了类似这样的事情：</p>
+<pre class="language-markdown line-numbers"><code>读取 HTTP 请求头里的 User-Agent
+↓
+输出到 hidden input 的 value 属性中</code></pre>
+<p>所以第 12 关的注入点不是 URL 参数，而是：<code>User-Agent: </code>这里</p>
+<p>那么就很简单了 Payload 就和第 11 关一样，里面，所以还是用双引号闭合</p>
+<pre class="language-html line-numbers"><code>目标是把原来的：
+&lt;input name="t_ua" value="你的User-Agent" type="hidden"&gt;
+变成：
+&lt;input name="t_ua" value="" type="text" onclick="alert(1)" type="hidden"&gt;</code></pre>
+<p>这样原本隐藏的输入框会变成普通文本框，点击它就触发 <code data-start="966" data-end="975">onclick</code></p>
+<p>操作步骤还是和第11关一样，这里我就使用文字来进行简单概述一下</p>
+<pre class="language-markdown line-numbers"><code>1. Burp → Proxy → Intercept
+2. 打开 Intercept on
+3. 浏览器刷新：
+   http://192.168.153.141:8088/level12.php
+4. Burp 拦截请求
+5. 找到 User-Agent 这一行
+6. 把它改成：
+   User-Agent: " type="text" onclick="alert(1)
+7. 点 Forward
+8. 回到浏览器，页面应该出现一个小输入框
+9. 点击输入框，触发弹窗</code></pre>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level12-1.png" alt="" width="2636" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level12-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level12-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level12-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level12-1-xl.webp 1024w"></figure>
+<p>最后点击“Forward”放行这个数据包，即可出现搜索框，点击即可触发弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-010433.png" alt="" width="1316" height="967" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-xl.webp 1024w"></figure>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
