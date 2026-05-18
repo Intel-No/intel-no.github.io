@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-19T01:06:26+09:00</updated>
+    <updated>2026-05-19T01:14:20+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -57,7 +57,7 @@
 <p data-path-to-node="23">然后测试它会不会把 HTML 当成标签解析，我们输入&lt;h1&gt;aaa&lt;/h1&gt;</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level1-3.png" alt="" width="2879" height="1612" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level1-3-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level1-3-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level1-3-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level1-3-xl.webp 1024w"></figure>
 <p data-path-to-node="23">说明 &lt;h1&gt; 被浏览器当成 HTML 标签解析了，这很关键</p>
-<p data-path-to-node="23">然后再尝试最基础的 XSS payload</p>
+<p data-path-to-node="23">然后再尝试最基础的 XSS Payload</p>
 <p data-path-to-node="23">第一关大概率没有过滤，所以可以直接在name后面试：</p>
 <pre class="language-html line-numbers"><code>name=&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
 <p data-path-to-node="23">发现页面成功弹窗，即为解题成功</p>
@@ -67,7 +67,7 @@
 &gt; 转义为 &amp;gt;
 " 转义为 &amp;quot;
 ' 转义为 &amp;#x27;</code></pre>
-<p>这种方式我们会在第三关（level3）遇到</p>
+<p>这种防御方式我们会在第三关（level3）进行绕过</p>
 <h4 data-path-to-node="23">第二关（level2）</h4>
 <p data-path-to-node="23">我们进入第二关之后，继续沿用第一关的alert弹窗命令，查看有无效果</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level2.png" alt="" width="2879" height="1616" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level2-xl.webp 1024w"></figure>
@@ -150,7 +150,7 @@ onclick="alert(1)"</code></pre>
 <p>那我们换一种方式，用 <code data-start="1192" data-end="1205">javascript:</code> 链接</p>
 <pre class="language-html line-numbers"><code>&lt;a href="javascript:alert(1)"&gt;点我&lt;/a&gt;</code></pre>
 <p>思路很简单，创建一个超链接，当点击这个链接时，执行 javascript: 后面的代码</p>
-<p>所以 payload 可以写成：</p>
+<p>所以 Payload 可以写成：</p>
 <pre class="language-html line-numbers"><code>"&gt;&lt;a href="javascript:alert(1)"&gt;点我&lt;/a&gt;</code></pre>
 <p>为什么这个 Payload 可以绕过？</p>
 <p>原始结构是：</p>
@@ -190,9 +190,9 @@ href 被改成了 hr_ef</code></pre>
 <p>点击超链接之后，即可成功弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-005208.png" alt="" width="1929" height="821" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-005208-xl.webp 1024w"></figure>
 <h4>第七关（level7）</h4>
-<p>我们尝试重复使用第六关的步骤，发现并没有弹出链接，所以我们Crtl+U，查看源码后发现</p>
+<p>我们尝试重复使用第六关的步骤，发现并没有弹出链接，所以我们<code>Crtl+U</code>，查看源码后发现图片里的情况</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level7.png" alt="" width="2086" height="823" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level7-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level7-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level7-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level7-xl.webp 1024w"></figure>
-<p>也就是说，它看到危险关键词就直接删</p>
+<p>也就是说，它看到危险关键词就直接删除</p>
 <p>既然它会删除：<code>href</code>，<code>script</code>等关键词，那么我尝试双写试试</p>
 <p>那我们可以故意把关键词“套娃”写进去，让它删掉中间那一段以后，剩下的刚好又拼成正确关键词</p>
 <p>输入以下内容：</p>
@@ -202,8 +202,8 @@ href 被改成了 hr_ef</code></pre>
 <h4>第八关（level8）</h4>
 <p>我们看到这里有一个搜索框，那么第一时间想到的肯定是输入<code>javascript:alert(1)</code>看看结果怎么样，点击“添加友情链接”后，发现跳转到了一个错误的URL</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level8.png" alt="" width="2297" height="807" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level8-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level8-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level8-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level8-xl.webp 1024w"></figure>
-<p>查看源码后发现，出现了关键词过滤改写，而且这里是不需要再闭合 input 标签，也不需要重新插入一个 a 标签，而是应该直接控制 href 的值，所以我们尝试使用特殊值，看看能不能绕过</p>
-<p>在 HTML 里，浏览器会解析 HTML 实体编码，那尝将期中一个字母转成HTML编码再带入试试（这里我是用的是burp suite自带的转码工具进行转码的）</p>
+<p>查看源码后发现，出现了关键词过滤改写，而且这里是不需要再闭合<code> input </code>标签，也不需要重新插入一个<code> a </code>标签，而是应该直接控制<code> href </code>的值，所以我们尝试使用特殊值，看看能不能绕过</p>
+<p>在 HTML 里，浏览器会解析 HTML 实体编码，那尝将期中一个字母转成HTML编码再带入试试（这里我是用的是burp suite自带的转码工具进行转码）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-221354.png" alt="" width="1636" height="810" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-221354-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-221354-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-221354-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-221354-xl.webp 1024w"></figure>
 <p>将这个字母<code>s</code>转码后的结果（&amp;#x73;）带入到我们之前尝试的语句中可得</p>
 <pre class="language-html line-numbers"><code>java&amp;#x73;cript:alert(1)</code></pre>
@@ -214,28 +214,28 @@ href 被改成了 hr_ef</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level9-3.png" alt="" width="2003" height="825" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level9-3-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level9-3-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level9-3-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level9-3-xl.webp 1024w"></figure>
 <p>先做一个非常简单的测试，在输入框输入：</p>
 <pre class="language-http line-numbers"><code>http://test.com</code></pre>
-<p>查看源码后，发现，带有http的可以被执行</p>
+<p>查看源码后，发现，带有http的语句可以被执行</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level9-1.png" alt="" width="1761" height="816" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level9-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level9-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level9-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level9-1-xl.webp 1024w"></figure>
-<p>那就说明，这里的要求输入里必须包含<code> http://</code></p>
-<p>那么我们就可以想到，构造既能执行 JavaScript，又能通过合法性判断的 payload</p>
+<p>那就说明，这里的要求输入里必须包含<code>http://</code></p>
+<p>那么我们就可以想到，构造既能执行 JavaScript，又能通过合法性判断的 Payload</p>
 <pre class="language-json line-numbers"><code>java&amp;#x73;cript:alert(1)//http://test.com</code></pre>
 <p>最终成功弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-224612.png" alt="" width="1923" height="438" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-224612-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-224612-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-224612-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-224612-xl.webp 1024w"></figure>
 <p><code>*注</code>：这里我一开始尝试使用普通的<code>javascript:alert(1)</code>，发现还是有关键词匹配的，会将<code>script</code>替换成<code>scr_ipt</code>，所以这里还是要用转码后的格式</p>
 <h4>第十关（level10）</h4>
-<p>打开这一关发现啥也没有，查看源码可发现，有3个属性为hidden的隐藏value</p>
+<p>打开这一关发现啥也没有，查看源码可发现，有3个属性为 hidden 的隐藏 value</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level10.png" alt="" width="1536" height="908" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level10-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level10-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level10-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level10-xl.webp 1024w"></figure>
 <p>虽然页面上没有输入框，但我们可以手动输入参数，判断后端是否会接收 URL 参数</p>
 <p>（这一步不是为了攻击，而是为了确认，隐藏 input 的 value 值是否来自 URL 参数）</p>
 <pre class="language-html line-numbers"><code>&amp;t_link=aaa
 &amp;t_history=bbb
 &amp;t_sort=ccc</code></pre>
-<p>将以上内容拼接到网站链接后，再次查看源码，可发现有一个value接受了我们输入的参数</p>
+<p>将以上内容拼接到网站链接后，再次查看源码，可发现有一个 value 接受了我们输入的参数</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level10-1.png" alt="" width="1848" height="904" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level10-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level10-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level10-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level10-1-xl.webp 1024w"></figure>
 <p data-start="1260" data-end="1286">因为它是 hidden，所以我们点不到它，也看不到它</p>
 <p data-start="1288" data-end="1309">但是我们可以通过注入，把它变成普通文本框（要注意这里的palyload需要拼接在我们之前发现的<code>&amp;t_sort=</code>后，因为只有这一个才能传入参数）</p>
 <pre class="language-html line-numbers"><code>&amp;t_sort=" type="text" onclick="alert(1)</code></pre>
-<p data-start="1288" data-end="1309">这样原本隐藏的输入框就可能变成一个可点击的文本框。你点击它，就触发 <code data-start="1547" data-end="1556">onclick</code></p>
+<p data-start="1288" data-end="1309">这样原本隐藏的输入框就可能变成一个可点击的文本框，你点击它，就触发 <code data-start="1547" data-end="1556">onclick</code></p>
 <p>最后也是成功触发弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-18-231420.png" alt="" width="1864" height="843" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-18-231420-xl.webp 1024w"></figure>
 <h4>第十一关（level11）</h4>
@@ -243,7 +243,6 @@ href 被改成了 hr_ef</code></pre>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11.png" alt="" width="2289" height="873" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-xl.webp 1024w"></figure>
 <p data-start="501" data-end="528">所以这里我们看到的不是普通 URL 参数控制，而是：</p>
 <pre class="language-markdown line-numbers"><code>请求头 Referer → 后端读取 → 输出到 hidden input 的 value 里</code></pre>
-<p data-start="501" data-end="528">这就是本关的考点</p>
 <p data-start="501" data-end="528">那 Payload 应该怎么构造？</p>
 <p data-start="501" data-end="528">现在注入点是：</p>
 <pre class="language-html line-numbers"><code>&lt;input name="t_ref" value="你的 Referer" type="hidden"&gt;</code></pre>
@@ -269,13 +268,12 @@ onclick="alert(1)
 <p data-start="501" data-end="528">接下来会需要用到Burp Suite的截包工具（如果你没有Burp Suite，那么还请前往这篇链接进行安装，<a href="https://zeyun.org/install_burpsuite.html" target="_blank" rel="noopener noreferrer">点我前往安装Burp Suite文章</a>）</p>
 <p data-start="501" data-end="528">接下来我们使用 Burp Suite 进行截包，并使用 Burp Suite 的浏览器进行操作（这样会更直观）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-1-2.png" alt="" width="2068" height="1220" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-1-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-xl.webp 1024w"></figure>
-<p data-start="501" data-end="528">在新打开的浏览器中，输入你第11关的靶场网址（你的IP地址会和我的不一样，注意区分）</p>
+<p data-start="501" data-end="528">在新打开的浏览器中，输入你第11关（level11）的靶场网址（你的IP地址会和我的不一样，注意区分）</p>
 <pre class="language-html line-numbers"><code>http://192.168.153.141:8088/level11.php?keyword=good%20job!</code></pre>
 <p data-start="501" data-end="528">按照下图的步骤，在HTTP请求头里添加 <code data-start="269" data-end="278">Referer</code></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-2-2.png" alt="" width="2811" height="1374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-2-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-xl.webp 1024w"></figure>
 <p data-start="501" data-end="528">随后点击“Forward”放行这个数据包，即可出现搜索框，点击即可弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-003649.png" alt="" width="2855" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xl.webp 1024w"></figure>
-<p data-start="501" data-end="528">即可触发弹窗</p>
 <h4 data-start="501" data-end="528">第十二关（level12）</h4>
 <p>有了上一关的经验，这次我们依旧查看源码，看看网页端写了什么</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level12.png" alt="" width="2359" height="897" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level12-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level12-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level12-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level12-xl.webp 1024w"></figure>
