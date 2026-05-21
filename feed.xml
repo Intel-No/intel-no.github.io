@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-21T15:50:40+09:00</updated>
+    <updated>2026-05-22T01:18:24+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -29,7 +29,7 @@
             <![CDATA[
                 <p data-path-to-node="22">在搞定了之前的网络拓扑和虚拟化实验室之后，近期我把视线转向了 Web 前端安全领域。作为应用层安全中绕不开的大山，XSS（Cross-Site Scripting，跨站脚本攻击）一直是我想要深入系统学习的板块</p>
 <p data-path-to-node="23">为了不再纸上谈兵，我在本地的虚拟机环境里搭建了经典的 <code data-path-to-node="23" data-index-in-node="27">xss-labs</code> 漏洞靶场。XSS 的本质其实很简单，总结起来就是一句话：<strong data-path-to-node="23" data-index-in-node="64">“服务端未对用户输入进行严格过滤，导致恶意数据在前端被浏览器误当作代码执行”</strong></p>
-<p data-path-to-node="23">这里我依旧使用虚拟机+docker的方式去部署靶场，具体流程简单概括如下：</p>
+<p data-path-to-node="23">这里我依旧使用<strong>虚拟机+docker</strong>的方式去部署靶场，具体流程简单概括如下：</p>
 <p data-path-to-node="23">如果你不会部署基础的docker环境，那么请参考我的这篇博客：<a href="https://blog.csdn.net/zeyun4699/article/details/159887155" target="_blank" rel="noopener noreferrer">虚拟机+docker部署靶场</a></p>
 <p data-path-to-node="23">（这里我用的镜像是下图的utrzhegu/xsslabs靶场）：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-17-223253.png" alt="" width="1853" height="997" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-223253-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-223253-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-223253-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-17-223253-xl.webp 1024w"></figure>
@@ -230,9 +230,9 @@ href 被改成了 hr_ef</code></pre>
 <pre class="language-html line-numbers"><code>&amp;t_link=aaa
 &amp;t_history=bbb
 &amp;t_sort=ccc</code></pre>
-<p>将以上内容拼接到网站链接后，再次查看源码，可发现有一个 value 接受了我们输入的参数</p>
+<p>将以上内容拼接到网站链接后，再次查看源码，可发现有一个<code> value </code>接受了我们输入的测试参数ccc</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level10-1.png" alt="" width="1848" height="904" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level10-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level10-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level10-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level10-1-xl.webp 1024w"></figure>
-<p data-start="1260" data-end="1286">因为它是 hidden，所以我们点不到它，也看不到它</p>
+<p data-start="1260" data-end="1286">因为它是<code> hidden</code>，所以我们点不到它，也看不到它</p>
 <p data-start="1288" data-end="1309">但是我们可以通过注入，把它变成普通文本框（要注意这里的palyload需要拼接在我们之前发现的<code>&amp;t_sort=</code>后，因为只有这一个才能传入参数）</p>
 <pre class="language-html line-numbers"><code>&amp;t_sort=" type="text" onclick="alert(1)</code></pre>
 <p data-start="1288" data-end="1309">这样原本隐藏的输入框就可能变成一个可点击的文本框，你点击它，就触发 <code data-start="1547" data-end="1556">onclick</code></p>
@@ -267,11 +267,11 @@ onclick="alert(1)
 <pre class="language-http line-numbers"><code>Referer: " type="text" onclick="alert(1)</code></pre>
 <p data-start="501" data-end="528">接下来会需要用到Burp Suite的截包工具（如果你没有Burp Suite，那么还请前往这篇链接进行安装，<a href="https://zeyun.org/install_burpsuite.html" target="_blank" rel="noopener noreferrer">点我前往安装Burp Suite文章</a>）</p>
 <p data-start="501" data-end="528">接下来我们使用 Burp Suite 进行截包，并使用 Burp Suite 的浏览器进行操作（这样会更直观）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-1-2.png" alt="" width="2068" height="1220" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-1-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-1-2-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-1.png" alt="" width="2068" height="1220" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-1-xl.webp 1024w"></figure>
 <p data-start="501" data-end="528">在新打开的浏览器中，输入你第11关（level11）的靶场网址（你的IP地址会和我的不一样，注意区分）</p>
 <pre class="language-html line-numbers"><code>http://192.168.153.141:8088/level11.php?keyword=good%20job!</code></pre>
 <p data-start="501" data-end="528">按照下图的步骤，在HTTP请求头里添加 <code data-start="269" data-end="278">Referer</code></p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-2-2.png" alt="" width="2811" height="1374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-2-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-2-2-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level11-2.png" alt="" width="2811" height="1374" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level11-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level11-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level11-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level11-2-xl.webp 1024w"></figure>
 <p data-start="501" data-end="528">随后点击“Forward”放行这个数据包，即可出现搜索框，点击即可弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-003649.png" alt="" width="2855" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-003649-xl.webp 1024w"></figure>
 <h4 data-start="501" data-end="528">第十二关（level12）</h4>
@@ -305,6 +305,252 @@ onclick="alert(1)
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level12-1.png" alt="" width="2636" height="1377" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level12-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level12-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level12-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level12-1-xl.webp 1024w"></figure>
 <p>最后点击“Forward”放行这个数据包，即可出现搜索框，点击即可触发弹窗</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-19-010433.png" alt="" width="1316" height="967" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-19-010433-xl.webp 1024w"></figure>
+<h4>第十三关（level13）</h4>
+<p>这次打开页面，发现有一行报错，翻译成中文是</p>
+<pre class="language-markdown line-numbers"><code>警告 ：无法修改标头信息 - 标头已由（输出始于 /var/www/html/level13.php:1）发送，位于 /var/www/html/level13.php 第 16 行</code></pre>
+<p>根据前几关的思路，我们发现这似乎已经形成了一个规律：</p>
+<pre class="language-markdown line-numbers"><code>level10:
+t_link / t_history / t_sort
+↓
+隐藏字段
+↓
+通过 URL 参数控制
+
+level11:
+t_ref
+↓
+ref 很像 Referer
+↓
+实际来自 Referer 请求头
+
+level12:
+t_ua
+↓
+ua 是 User-Agent 的常见缩写
+↓
+实际来自 User-Agent 请求头</code></pre>
+<p>那这里的第十二关，我们通过<code>Crtl+U</code>查看源码可发现一个名叫<code>t_cook</code>的参数</p>
+<p>这是一个强线索，但是需要实验来进行验证</p>
+<p>我们首先先使用第十关（level10）的思想，我们直接在浏览器的地址栏输入以下内容</p>
+<pre class="language-http line-numbers"><code>http://192.168.153.141:8088/level13.php?t_cook=aaa</code></pre>
+<p>但是再次查看源码后发现并没有传入参数，那么也就说明它大概率不是从<code> URL GET </code>参数来的</p>
+<p>然后再测试 Cookie，这时用 Burp 拦截请求，在请求头里加：</p>
+<pre class="language-http line-numbers"><code>Cookie: user=aaa</code></pre>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level13-1.png" alt="" width="2861" height="1368" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level13-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level13-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level13-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level13-1-xl.webp 1024w"></figure>
+<p>经过上述的步骤，这里也是成功验证了<code>t_cook</code>就是<code>cookie</code></p>
+<p>在已经确认<code data-start="2034" data-end="2052">Cookie: user=aaa</code>能控制<code data-start="2057" data-end="2065">t_cook</code>，再把 Cookie 改成：</p>
+<pre class="language-http line-numbers"><code>Cookie: user=" type="text" onclick="alert(1)</code></pre>
+<p>在点击我们构造的 Payload 点击事件后，即可成功触发XSS弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-224545.png" alt="" width="1388" height="967" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224545-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224545-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224545-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224545-xl.webp 1024w"></figure>
+<h4>第十四关（level14）</h4>
+<p>在这一关，我们发现这里的网页源码中访问了一个网站（但截至当前时间节点，该网站似乎已经关站了，所以无奈之下，只能跳过）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-224919.png" alt="" width="2444" height="1407" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224919-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224919-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224919-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-224919-xl.webp 1024w"></figure>
+<p>结合早期前辈的访问记录，这里我简单说一下这一关的原理和步骤</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-225803.png" alt="" width="1516" height="913" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-225803-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-225803-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-225803-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-225803-xl.webp 1024w"></figure>
+<p>你可以把它理解成：<strong data-start="99" data-end="159">图片表面是一张正常图片，但图片的“属性信息”里可以写文字；如果网站把这些文字直接输出到网页，就可能触发 XSS</strong></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-230040.png" alt="" width="1478" height="1083" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-230040-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-230040-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-230040-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-230040-xl.webp 1024w"></figure>
+<p>也就是说，不是你在地址栏里写 payload，而是把 payload 写进图片的属性里（如上图所示）</p>
+<p>这些信息就叫图片元数据，常见类型包括：</p>
+<pre class="language-markdown line-numbers"><code>EXIF
+IPTC
+XMP</code></pre>
+<p>比如图片属性里可能有：</p>
+<pre class="language-markdown line-numbers"><code>标题：xxx
+作者：xxx
+备注：xxx
+版权：xxx</code></pre>
+<p>比如图片属性里可能有：</p>
+<pre class="language-markdown line-numbers"><code>标题：xxx
+作者：xxx
+备注：xxx
+版权：xxx</code></pre>
+<p data-start="570" data-end="582">如果我们把这些字段改成：</p>
+<div class="relative w-full mt-4 mb-1">
+<div class="">
+<div class="relative" data-custom-highlighting-behavior="boundary">
+<div class="h-full min-h-0 min-w-0">
+<div class="h-full min-h-0 min-w-0">
+<div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl">
+<div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback">
+<div class="pointer-events-none absolute inset-x-4 top-12 bottom-4">
+<div class="pointer-events-none sticky z-40 shrink-0 z-1!">
+<div>
+<pre class="language-html line-numbers"><code>"&gt;&lt;img src=x onerror=alert(1)&gt;</code></pre>
+</div>
+<div>那么这个 payload 就被藏进图片里面了</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>下图红色箭头指向的这些破图标很关键，它说明：</p>
+<pre class="language-markdown line-numbers"><code>EXIF 字段里的 &lt;img src=x ...&gt; 被浏览器当成了真正的 img 标签解析</code></pre>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level14-6.png" alt="" width="1366" height="613" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level14-6-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level14-6-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level14-6-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level14-6-xl.webp 1024w"></figure>
+<p>但现在出现了破图标，说明浏览器真的创建了<code data-start="1243" data-end="1250">&lt;img&gt;</code>元素</p>
+<p>然后因为 <code data-start="1261" data-end="1268">src=x</code> 加载失败，就会触发：</p>
+<pre class="language-html line-numbers"><code>onerror=alert(1)</code></pre>
+<p>也就是下图的弹窗</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level14-5.png" alt="" width="1366" height="610" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level14-5-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level14-5-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level14-5-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level14-5-xl.webp 1024w"></figure>
+<p>以上图片出处为：<a href="https://xz.aliyun.com/news/1147#toc-12" target="_blank" rel="noopener noreferrer">先知社区</a></p>
+<h5>那这个漏洞是怎么产生的？</h5>
+<p data-start="675" data-end="708">假设有一个图片信息查看网站，它会读取图片元数据，然后显示到网页上</p>
+<p data-start="710" data-end="722">正常情况它应该这样显示：</p>
+<pre class="language-html line-numbers"><code>&lt;td&gt;&amp;quot;&amp;gt;&amp;lt;img src=x onerror=alert(1)&amp;gt;&lt;/td&gt;</code></pre>
+<p data-start="791" data-end="807">这样浏览器只会把它当成普通文字</p>
+<p data-start="809" data-end="822">但如果网站偷懒，直接输出：</p>
+<pre class="language-html line-numbers"><code>&lt;td&gt;"&gt;&lt;img src=x onerror=alert(1)&gt;&lt;/td&gt;</code></pre>
+<p data-start="877" data-end="898">浏览器就会真的解析 <code data-start="887" data-end="894">&lt;img&gt;</code> 标签</p>
+<p data-start="900" data-end="903">因为：</p>
+<pre class="language-html line-numbers"><code>&lt;img src=x onerror=alert(1)&gt;</code></pre>
+<p data-start="900" data-end="903">里面的 <code data-start="951" data-end="958">src=x</code> 是一个不存在的图片地址，所以图片加载失败，触发 <code data-start="983" data-end="992">onerror</code>，然后执行：</p>
+<pre class="language-html line-numbers"><code>alert(1)</code></pre>
+<p data-start="900" data-end="903">这就是 EXIF XSS 的本质</p>
+<h4>第十五关（level15）</h4>
+<p>查看源码后发现，这儿有个陌生的东西<code>ng-include</code></p>
+<p>这里需要补充一个概念：<code data-start="275" data-end="287">ng-include</code> 是什么？</p>
+<p>可以先简单理解成：</p>
+<pre class="language-markdown line-numbers"><code>ng-include = 把另一个页面的内容加载进当前页面</code></pre>
+<p>比如 Angular 里可以写：</p>
+<pre class="language-html line-numbers"><code>&lt;span ng-include="'test.html'"&gt;&lt;/span&gt;</code></pre>
+<p>意思是：把<code>test.html</code>的内容加载到这里</p>
+<p data-start="686" data-end="721">可是现在页面没有输入框，也没有明显参数，所以不要急着打 payload</p>
+<p data-start="723" data-end="728">先看源码：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level15.png" alt="" width="1028" height="661" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level15-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level15-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level15-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level15-xl.webp 1024w"></figure>
+<p>它是不是在等我们通过<code>URL</code>参数给<code>ng-include</code>传一个页面地址？</p>
+<p>常见参数名可能是<code>src</code></p>
+<p>所以我们试试在后面拼接：</p>
+<pre class="language-php line-numbers"><code>src='level1.php'
+#注意这里有单引号，因为 ng-include 后面接的是 Angular 表达式，不是普通字符串
+#这里的 'level1.php' 就是一个字符串，Angular 知道你要加载这个页面</code></pre>
+<p>发现居然下面拼接出来了第一关的页面</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-232855.png" alt="" width="2212" height="1588" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-232855-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-232855-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-232855-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-232855-xl.webp 1024w"></figure>
+<p data-section-id="1oy48zb" data-start="1540" data-end="1555">然后再构造 XSS</p>
+<p data-start="1557" data-end="1602">既然它可以加载别的页面，那我们可以加载前面已经知道有 XSS 的页面</p>
+<p data-start="1557" data-end="1602">比如 level1的漏洞是：</p>
+<pre class="language-html line-numbers"><code>level1.php?name=alert弹窗语句</code></pre>
+<p>但是我们并不能直接把第一关的<code><span class="ͼ13">&lt;script&gt;</span><span class="ͼ11">alert</span>(<span class="ͼy">1</span>)<span class="ͼ13">&lt;/script&gt;</span></code>拿来直接使用</p>
+<p data-start="1406" data-end="1473">因为 level15 是通过 AngularJS 的 <code data-start="1433" data-end="1445">ng-include</code> 把 level1 的返回内容“动态插入”到当前页面里</p>
+<p data-start="1475" data-end="1523">动态插入 HTML 时，浏览器/Angular 往往不会执行里面的 <code data-start="1509" data-end="1519">&lt;script&gt;</code> 标签</p>
+<p data-start="1475" data-end="1523">结合之前的第十四关（level14），我们可以使用</p>
+<pre class="language-html line-numbers"><code>&lt;img src=x onerror=alert(1)&gt;</code></pre>
+<p>所以第 15 关可以使用以下的代码：</p>
+<pre class="language-http line-numbers"><code>level15.php?src='level1.php?name=&lt;img src=x onerror=alert(1)&gt;'</code></pre>
+<p>输入后，即可成功触发弹窗：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-21-234122.png" alt="" width="2143" height="1125" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-234122-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-234122-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-234122-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-21-234122-xl.webp 1024w"></figure>
+<p>需要注意，这里不能和文件包含漏洞弄混淆，区别如下：</p>
+<pre class="language-markdown line-numbers"><code>从思路上，它像文件包含；
+从漏洞类型上，它更准确地叫 AngularJS ng-include 导致的前端 XSS</code></pre>
+<h4>第十六关（level16）</h4>
+<p>首先还是依旧<code>Ctrl+U</code>查看源码</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level16.png" alt="" width="1218" height="702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level16-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level16-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level16-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level16-xl.webp 1024w"></figure>
+<p>这个位置其实很像我们在第 1 关测试的：</p>
+<pre class="language-html line-numbers"><code>&lt;h2&gt;test&lt;/h2&gt;</code></pre>
+<p>所以第一反应应该是：</p>
+<pre class="language-html line-numbers"><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></pre>
+<p>但是第 16 关肯定不会这么简单。它会过滤一些东西</p>
+<p>再看源码，发现它变成了奇怪的东西，我们的<code>&lt;script&gt;</code>标签变成了<code>&amp;nbsp;</code></p>
+<p>既然<code>&lt;script&gt;</code>标签不行，那么我们尝试前一关的：</p>
+<pre class="language-html line-numbers"><code>&lt;img src=x onerror=alert(1)&gt;</code></pre>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level16-1.png" alt="" width="1617" height="700" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level16-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level16-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level16-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level16-1-xl.webp 1024w"></figure>
+<p>但是输入之后，依旧是失败的</p>
+<p>查看源码后发现：<strong data-start="10" data-end="66">第 16 关没有把 <code data-start="22" data-end="25">&lt;</code>、<code data-start="26" data-end="29">&gt;</code>、<code data-start="30" data-end="39">onerror</code> 删除，但它把普通空格替换成了 <code data-start="55" data-end="63">&amp;nbsp;</code></strong></p>
+<p>目前可以推断：</p>
+<pre class="language-markdown line-numbers"><code>&lt; 没有被过滤
+&gt; 没有被过滤
+img 没有被过滤
+src 没有被过滤
+onerror 没有被过滤
+alert 没有被过滤
+
+但是普通空格被替换成了 &amp;nbsp;</code></pre>
+<p>空格可以用回车来代替绕过，回车的url编码是<code>%0a</code>，&lt;&gt;的url编码是，再配合上之前的<code>&lt;img&gt;</code>标签</p>
+<pre class="language-html line-numbers"><code>&lt;img
+src=x
+onerror=alert(1)&gt;</code></pre>
+<p>将此内容进行URL转码</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-22-000948.png" alt="" width="2864" height="1376" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000948-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000948-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000948-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000948-xl.webp 1024w"></figure>
+<p>最终可得以下URL编码（有点长）：</p>
+<pre class="language-php line-numbers"><code>%3c%69%6d%67%0a%73%72%63%3d%78%0a%6f%6e%65%72%72%6f%72%3d%61%6c%65%72%74%28%31%29%3e</code></pre>
+<p>输入后，即为成功：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-22-000308.png" alt="" width="1932" height="1075" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000308-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000308-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000308-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-000308-xl.webp 1024w"></figure>
+<h4>第十七关（level17）</h4>
+<p>打开后发现我们这个浏览器貌似不支持Flash插件，所以我们需要安装一个Flash补丁（纯净版本的，无广告，BTW，安装好后，需要依赖Flash插件的4399，7K7K等网页小游戏也能游玩了）</p>
+<p>下载链接：<a href="https://wwbte.lanzn.com/b014xa3ktc" target="_blank" rel="noopener noreferrer">点我前往下载</a>    密码：gsh3</p>
+<p>（1）下载好了之后，按照以下步骤完成安装</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash.png" alt="" width="1409" height="700" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-xl.webp 1024w"></figure>
+<p>（2）下图三个勾保持全选，并点击<code>NEXT</code></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-1.png" alt="" width="1414" height="696" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-1-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-1-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-1-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-1-xl.webp 1024w"></figure>
+<p>（3）下图的含义我都标注出来了（我不希望创建快捷方式，所以我值选择第一个）</p>
+<p>第一个你也可以选择不打勾（这个独立安装指的是能直接打开本地SWF小游戏用的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-2.png" alt="" width="1405" height="702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-2-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-2-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-2-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-2-xl.webp 1024w"></figure>
+<p>（4）这里直接按照下图，选择NEXT</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-3.png" alt="" width="1416" height="701" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-3-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-3-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-3-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-3-xl.webp 1024w"></figure>
+<p>（5）再然后点击INSTALL，等待进度条跑完即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-4.png" alt="" width="1407" height="694" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-4-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-4-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-4-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-4-xl.webp 1024w"></figure>
+<p>（6）最后安装好后，点击<code>QUIT</code>退出</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-5.png" alt="" width="1409" height="702" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-5-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-5-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-5-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-5-xl.webp 1024w"></figure>
+<p>配置Edge浏览器（这里用Edge示例，其他浏览器也一样）</p>
+<p>（1）打开浏览器的“设置”，搜索“Internet Explorer”选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-6.png" alt="" width="2074" height="1291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-6-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-6-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-6-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-6-xl.webp 1024w"></figure>
+<p>按照上图进行操作</p>
+<p>（2）按照下图的图片文字来操作</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/flash-7.png" alt="" width="2077" height="1271" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/flash-7-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/flash-7-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/flash-7-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/flash-7-xl.webp 1024w"></figure>
+<p>（3）刷新原网页，即可出现</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-22-005023.png" alt="" width="2065" height="1275" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-005023-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-005023-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-005023-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-005023-xl.webp 1024w"></figure>
+<p>查看源码后，不难发现</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/level17.png" alt="" width="2515" height="852" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/level17-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/level17-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/level17-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/level17-xl.webp 1024w"></figure>
+<p><code data-start="0" data-end="9">&lt;embed&gt;</code> 你可以先把它理解成：</p>
+<pre class="language-html line-numbers"><code>&lt;embed src="要加载的资源地址"&gt;</code></pre>
+<p>它是 HTML 里用来<strong data-start="69" data-end="79">嵌入外部资源</strong>的标签。以前常见用途是嵌入 Flash、PDF、音频、视频之类的内容</p>
+<pre class="language-html line-numbers"><code>&lt;embed src="xsf01.swf" width="100%" height="100%"&gt;</code></pre>
+<p>意思就是：</p>
+<pre class="language-markdown line-numbers"><code>在当前网页里嵌入 xsf01.swf 这个 Flash 文件</code></pre>
+<p><code data-start="373" data-end="378">a=b</code> 有什么用？它的作用是让你发现：</p>
+<pre class="language-markdown line-numbers"><code>arg01 和 arg02 被拼进了 embed 的 src 属性里</code></pre>
+<p>我们当前的 URL 是：</p>
+<pre class="language-http line-numbers"><code>level17.php?arg01=a&amp;arg02=b</code></pre>
+<p>源码里变成：</p>
+<pre class="language-html line-numbers"><code>&lt;embed src=xsf01.swf?a=b width=100% heigth=100%&gt;</code></pre>
+<p>这说明：</p>
+<pre class="language-markdown line-numbers"><code>arg01 的值 a
+arg02 的值 b
+
+被拼成了：
+
+xsf01.swf?a=b</code></pre>
+<p>也就是：</p>
+<pre class="language-markdown line-numbers"><code>xsf01.swf?arg01的值=arg02的值</code></pre>
+<p>所以 <code data-start="736" data-end="741">a=b</code> 本身不是漏洞，它是一个<strong data-start="753" data-end="759">线索</strong></p>
+<p>因为我们知道了：</p>
+<pre class="language-markdown line-numbers"><code>arg02 的值会出现在 HTML 标签的 src 属性里</code></pre>
+<p>而且源码中 <code data-start="838" data-end="843">src</code> 没有引号：</p>
+<pre class="language-html line-numbers"><code>&lt;embed src=xsf01.swf?a=b width=100% heigth=100%&gt;</code></pre>
+<p>如果属性没有引号，浏览器遇到空格就会认为这个属性结束了</p>
+<p>比如正常是：</p>
+<pre class="language-http line-numbers"><code>src=xsf01.swf?a=b</code></pre>
+<p>如果我们让 <code data-start="988" data-end="995">arg02</code> 变成：</p>
+<pre class="language-html line-numbers"><code>b onmouseover=alert(1)</code></pre>
+<p>那么页面就会变成：</p>
+<pre class="language-html line-numbers"><code>&lt;embed src=xsf01.swf?a=b onmouseover=alert(1) width=100% heigth=100%&gt;</code></pre>
+<p>这时候：</p>
+<pre class="language-html line-numbers"><code>src=xsf01.swf?a=b</code></pre>
+<p data-start="1168" data-end="1172">就结束了</p>
+<p data-start="1174" data-end="1178">后面的：</p>
+<pre class="language-html line-numbers"><code>onmouseover=alert(1)</code></pre>
+<p data-start="1214" data-end="1226">变成了一个新的事件属性。</p>
+<p data-start="1228" data-end="1258">鼠标移动到这个嵌入区域上时，就会执行 <code data-start="1247" data-end="1257">alert(1)</code></p>
+<p>所以最终的payload如下：</p>
+<pre class="language-http line-numbers"><code>http://192.168.153.141:8088/level17.php?arg01=a&amp;arg02=b%20onmouseover=alert(1)</code></pre>
+<p>其中：<code>%20 </code>= 空格</p>
+<p>一句话总结：</p>
+<p>embed 是嵌入外部资源的标签；a=b 的作用是暴露 arg01 和 arg02 被拼进了 embed 的 src 属性里。真正的漏洞点是 src 属性没有加引号，导致可以用空格逃出属性并添加事件</p>
+<p>最后由于浏览器的内置保护，导致不能执行恶意代码，但是最终是能成功的</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/59/Ping-Mu-Jie-Tu-2026-05-22-011251.png" alt="" width="2073" height="1360" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-011251-xs.webp 320w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-011251-sm.webp 480w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-011251-md.webp 768w ,https://zeyun.org/media/posts/59/responsive/Ping-Mu-Jie-Tu-2026-05-22-011251-xl.webp 1024w"></figure>
+<p>可能作者也考虑到了这一点，所以我们点击前往下一关的按钮即可</p>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
