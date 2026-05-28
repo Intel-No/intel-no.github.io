@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-28T11:44:21+09:00</updated>
+    <updated>2026-05-28T12:37:25+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -40,7 +40,7 @@
 <li data-section-id="o5l9n6" data-start="366" data-end="387">三台机器使用 chrony 校准时间。</li>
 <li data-section-id="hrilra" data-start="388" data-end="410">最终通过主机名互相 <code data-start="400" data-end="406">ping</code> 成功</li>
 </ul>
-<h4>1. 设置三台机器的主机名</h4>
+<h3>1. 设置三台机器的主机名</h3>
 <h5 data-section-id="1rij272" data-start="468" data-end="487">1.1 在 Master 上执行</h5>
 <p data-start="489" data-end="512">【10.210.10.10 - Master】</p>
 <pre class="language-bash line-numbers"><code>hostnamectl set-hostname db-master
@@ -55,8 +55,8 @@ hostnamectl</code></pre>
 <p>预期关键输出：</p>
 <pre class="language-bash line-numbers"><code>Static hostname: db-slave1</code></pre>
 <p>另一台的服务器也是如此，我这里就不进行演示了（就是把上面的内容改成db-slave2）</p>
-<h4>2. 配置三台机器的 <code data-start="1017" data-end="1029">/etc/hosts</code></h4>
-<h2 data-section-id="8ir6s8" data-start="1031" data-end="1038">修改目的</h2>
+<h3>2. 配置三台机器的 <code data-start="1017" data-end="1029">/etc/hosts</code></h3>
+<h5 data-section-id="8ir6s8" data-start="1031" data-end="1038">修改目的</h5>
 <p data-start="1040" data-end="1096"><code data-start="1040" data-end="1052">/etc/hosts</code> 用于在没有内网 DNS 服务器的情况下，手动建立“主机名 → IP 地址”的对应关系</p>
 <p data-start="1098" data-end="1102">完成后：</p>
 <ul data-start="1104" data-end="1205">
@@ -65,7 +65,7 @@ hostnamectl</code></pre>
 <li data-section-id="1cp61h6" data-start="1172" data-end="1205"><code data-start="1174" data-end="1185">db-slave2</code> 会解析到 <code data-start="1191" data-end="1205">10.210.10.20</code></li>
 </ul>
 <p data-start="1207" data-end="1228">三台机器都必须写入完全相同的三条映射关系</p>
-<h2 data-section-id="1cmath9" data-start="1235" data-end="1254">2.1 在 Master 上执行</h2>
+<h5 data-section-id="1cmath9" data-start="1235" data-end="1254">2.1 在 Master 上执行</h5>
 <p data-start="1256" data-end="1279">【10.210.10.10 - Master】</p>
 <pre class="language-bash line-numbers"><code>cp -a /etc/hosts /etc/hosts.bak.stage1
 
@@ -74,7 +74,7 @@ grep -qE '^10\.210\.10\.15[[:space:]]+db-slave1([[:space:]]|$)' /etc/hosts || ec
 grep -qE '^10\.210\.10\.20[[:space:]]+db-slave2([[:space:]]|$)' /etc/hosts || echo '10.210.10.20 db-slave2' &gt;&gt; /etc/hosts
 
 cat /etc/hosts</code></pre>
-<h2 data-section-id="gmvxum" data-start="1721" data-end="1740">2.2 在 Slave1 上执行</h2>
+<h5 data-section-id="gmvxum" data-start="1721" data-end="1740">2.2 在 Slave1 上执行</h5>
 <p data-start="1742" data-end="1765">【10.210.10.15 - Slave1】</p>
 <pre class="language-bash line-numbers"><code>cp -a /etc/hosts /etc/hosts.bak.stage1
 
@@ -83,7 +83,7 @@ grep -qE '^10\.210\.10\.15[[:space:]]+db-slave1([[:space:]]|$)' /etc/hosts || ec
 grep -qE '^10\.210\.10\.20[[:space:]]+db-slave2([[:space:]]|$)' /etc/hosts || echo '10.210.10.20 db-slave2' &gt;&gt; /etc/hosts
 
 cat /etc/hosts</code></pre>
-<h2 data-section-id="1o1hnuk" data-start="2207" data-end="2226">2.3 在 Slave2 上执行</h2>
+<h5 data-section-id="1o1hnuk" data-start="2207" data-end="2226">2.3 在 Slave2 上执行</h5>
 <p data-start="2228" data-end="2251">【10.210.10.20 - Slave2】</p>
 <pre class="language-bash line-numbers"><code>cp -a /etc/hosts /etc/hosts.bak.stage1
 
@@ -92,18 +92,61 @@ grep -qE '^10\.210\.10\.15[[:space:]]+db-slave1([[:space:]]|$)' /etc/hosts || ec
 grep -qE '^10\.210\.10\.20[[:space:]]+db-slave2([[:space:]]|$)' /etc/hosts || echo '10.210.10.20 db-slave2' &gt;&gt; /etc/hosts
 
 cat /etc/hosts</code></pre>
-<h2 data-section-id="1k06gu7" data-start="2693" data-end="2707">2.4 验证主机名解析</h2>
-<p data-start="2709" data-end="2723">三台机器上分别执行下面命令。</p>
-<p data-start="2725" data-end="2748">【10.210.10.10 - Master】</p>
-<pre class="language-bash line-numbers"><code>getent hosts db-master db-slave1 db-slave2</code></pre>
-<p>【10.210.10.15 - Slave1】</p>
-<pre class="language-bash line-numbers"><code>getent hosts db-master db-slave1 db-slave2</code></pre>
-<p>【10.210.10.20 - Slave2】</p>
+<h5 data-section-id="1k06gu7" data-start="2693" data-end="2707">2.4 验证主机名解析</h5>
+<p data-start="2709" data-end="2723">三台机器上分别执行下面命令</p>
 <pre class="language-bash line-numbers"><code>getent hosts db-master db-slave1 db-slave2</code></pre>
 <p>三台机器都应看到类似结果：</p>
 <pre class="language-bash line-numbers"><code>10.210.10.10 db-master
 10.210.10.15 db-slave1
 10.210.10.20 db-slave2</code></pre>
+<p>如果有显示ipv6相关信息，那么请输入以下命令，禁用ipv6</p>
+<pre class="language-bash line-numbers"><code>echo "net.ipv6.conf.all.disable_ipv6 = 1" &gt;&gt; /etc/sysctl.conf
+echo "net.ipv6.conf.default.disable_ipv6 = 1" &gt;&gt; /etc/sysctl.conf
+sysctl -p</code></pre>
+<h3>3. 关闭 SELinux</h3>
+<h5 data-start="3117" data-end="3124" data-section-id="8ir6s8">修改目的</h5>
+<p data-start="3126" data-end="3199">按你的实验要求，当前主从复制演示环境中将 SELinux 关闭，以避免后续 MariaDB 配置、网络监听或代理服务实验阶段受到额外安全策略影响</p>
+<p data-start="3201" data-end="3261">说明：在生产环境中，更规范的做法通常是保留 SELinux 并配置对应策略；本项目作为内网实验环境，按你的方案执行关闭</p>
+<ul data-start="3263" data-end="3338">
+<li data-start="3263" data-end="3297" data-section-id="1eva9iq"><code data-start="3265" data-end="3279">setenforce 0</code>：让当前运行状态立即进入非强制模式</li>
+<li data-start="3298" data-end="3338" data-section-id="1morewr">修改 <code data-start="3303" data-end="3324">/etc/selinux/config</code>：保证系统重启后仍保持关闭</li>
+</ul>
+<h5 data-start="3345" data-end="3364" data-section-id="u5udng">3.1 在三台机器上分别执行</h5>
+<pre class="language-bash line-numbers"><code>getenforce
+
+if [ "$(getenforce)" = "Enforcing" ]; then
+    setenforce 0
+fi
+
+cp -a /etc/selinux/config /etc/selinux/config.bak.stage1
+sed -ri 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+
+getenforce
+grep '^SELINUX=' /etc/selinux/config</code></pre>
+<p>当前系统尚未重启时，预期输出可能是：</p>
+<pre class="language-bash line-numbers"><code>Permissive
+SELINUX=disabled</code></pre>
+<p>含义是：当前已经不拦截，重启后会彻底显示为 <code data-start="3731" data-end="3741">Disabled</code></p>
+<h3>4. 安装并配置 firewalld，开放 3306 端口</h3>
+<h5>4.1 在三台机器安装 firewalld</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>yum install -y firewalld</code></pre>
+<h5>4.2 启动 firewalld 并设置开机自启</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>systemctl enable --now firewalld
+systemctl is-enabled firewalld
+systemctl is-active firewalld</code></pre>
+<h5>4.3 开放 MariaDB 的 3306/TCP 端口</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>firewall-cmd --permanent --add-port=3306/tcp
+firewall-cmd --reload
+firewall-cmd --query-port=3306/tcp
+firewall-cmd --list-ports</code></pre>
+<p>预期每台机器都至少看到：</p>
+<pre class="language-bash line-numbers"><code>yes
+3306/tcp</code></pre>
+<p> </p>
+<p> </p>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
