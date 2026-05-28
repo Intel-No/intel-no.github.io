@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-28T12:37:25+09:00</updated>
+    <updated>2026-05-28T12:39:40+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -128,6 +128,11 @@ grep '^SELINUX=' /etc/selinux/config</code></pre>
 SELINUX=disabled</code></pre>
 <p>含义是：当前已经不拦截，重启后会彻底显示为 <code data-start="3731" data-end="3741">Disabled</code></p>
 <h3>4. 安装并配置 firewalld，开放 3306 端口</h3>
+<p>CentOS 7 官方镜像源已经在2024年停止维护，<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">mirrorlist.centos.org</code> 域名已经失效，需要切换到阿里云的归档镜像</p>
+<pre class="language-bash line-numbers"><code>sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Base.repo
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=https://mirrors.aliyun.com|g' /etc/yum.repos.d/CentOS-Base.repo
+yum clean all
+yum makecache</code></pre>
 <h5>4.1 在三台机器安装 firewalld</h5>
 <p>依次在三台机器执行</p>
 <pre class="language-bash line-numbers"><code>yum install -y firewalld</code></pre>
