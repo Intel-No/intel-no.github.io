@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-28T12:39:40+09:00</updated>
+    <updated>2026-05-28T12:46:48+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -150,8 +150,35 @@ firewall-cmd --list-ports</code></pre>
 <p>预期每台机器都至少看到：</p>
 <pre class="language-bash line-numbers"><code>yes
 3306/tcp</code></pre>
-<p> </p>
-<p> </p>
+<h3 data-start="6027" data-end="6051" data-section-id="195y6li">5. 安装并启动 chrony 时间同步服务</h3>
+<h5 data-start="6053" data-end="6060" data-section-id="8ir6s8">修改目的</h5>
+<p data-start="6062" data-end="6119">主从复制依赖日志事件顺序和故障排查时间线。三台数据库服务器时间一致，能够避免日志时间混乱，也便于后续定位复制延迟</p>
+<p data-start="6121" data-end="6215">CentOS/RHEL 7 中，<code data-start="6137" data-end="6145">chrony</code> 是标准的 NTP 时间同步实现，服务名称为 <code data-start="6168" data-end="6177">chronyd</code></p>
+<p data-start="6217" data-end="6287">这里暂时不修改 <code data-start="6225" data-end="6243">/etc/chrony.conf</code>，先使用默认可用时间源完成同步；如果你的网络无法访问默认时间源，再根据实际结果调整配置</p>
+<h5>5.1 安装 chrony</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>yum install -y chrony</code></pre>
+<h5>5.2 启动 chronyd 并设置开机自启</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>systemctl enable --now chronyd
+systemctl is-enabled chronyd
+systemctl is-active chronyd
+chronyc makestep</code></pre>
+<p>三台机器的服务状态都应为：</p>
+<pre class="language-bash line-numbers"><code>enabled
+active</code></pre>
+<h5>5.3 验证时间同步状态</h5>
+<p>依次在三台机器执行</p>
+<pre class="language-bash line-numbers"><code>date -u
+timedatectl
+chronyc tracking
+chronyc sources -v</code></pre>
+<p>重点观察：</p>
+<pre class="language-bash line-numbers"><code>System clock synchronized: yes
+NTP enabled: yes</code></pre>
+<p>以及 <code data-start="7396" data-end="7414">chronyc tracking</code> 中不要长期显示：</p>
+<pre class="language-bash line-numbers"><code>Leap status     : Not synchronised</code></pre>
+<p><code data-start="7473" data-end="7493">chronyc sources -v</code> 中通常会有一行时间源前面显示 <code data-start="7509" data-end="7513">^*</code>，表示当前选中的同步源</p>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
