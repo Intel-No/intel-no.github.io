@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-05-28T12:46:48+09:00</updated>
+    <updated>2026-05-28T12:53:11+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -179,6 +179,25 @@ NTP enabled: yes</code></pre>
 <p>以及 <code data-start="7396" data-end="7414">chronyc tracking</code> 中不要长期显示：</p>
 <pre class="language-bash line-numbers"><code>Leap status     : Not synchronised</code></pre>
 <p><code data-start="7473" data-end="7493">chronyc sources -v</code> 中通常会有一行时间源前面显示 <code data-start="7509" data-end="7513">^*</code>，表示当前选中的同步源</p>
+<h3 data-start="7532" data-end="7552" data-section-id="so80zc">6. 重启三台机器，确认永久配置生效</h3>
+<p data-start="7554" data-end="7618">由于你要求 SELinux <strong data-start="7568" data-end="7576">永久关闭</strong>，必须通过一次重启验证 <code data-start="7588" data-end="7609">/etc/selinux/config</code> 的配置确实生效</p>
+<p data-start="7620" data-end="7650">建议按顺序逐台重启，确认能重新 SSH 登录后再重启下一台</p>
+<h5 data-start="7620" data-end="7650">先重启 Master，然后再依次重启Slave1，Slave2</h5>
+<p>命令如下：</p>
+<pre class="language-bash line-numbers"><code>reboot</code></pre>
+<p>重新 SSH 连接 Master 后执行：</p>
+<pre class="language-bash line-numbers"><code>hostname
+getenforce
+systemctl is-active firewalld
+systemctl is-active chronyd
+firewall-cmd --query-port=3306/tcp</code></pre>
+<p data-start="7620" data-end="7650">预期结果：</p>
+<pre class="language-basic line-numbers"><code>db-master
+Disabled
+active
+active
+yes</code></pre>
+<p>所有机器重启完成之后，再进行最终的验证</p>
 <h2 class="align-center">剩余内容正在更新中</h2>
 <p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
             ]]>
