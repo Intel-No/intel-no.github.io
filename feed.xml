@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-06-04T10:22:51+09:00</updated>
+    <updated>2026-06-04T12:07:45+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -65,8 +65,8 @@
 <li dir="auto">数量：3台（1 Master + 2 Slave）</li>
 <li dir="auto">网络模式：桥接</li>
 </ul>
-<p>我的内网拓扑图如下（其实层还有防火墙的配置，这里我并没有标记出来而已）：</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/69/Xiang-Mu-Tuo-Bu.png" alt="" width="1491" height="1055" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/69/responsive/Xiang-Mu-Tuo-Bu-xs.webp 320w ,https://zeyun.org/media/posts/69/responsive/Xiang-Mu-Tuo-Bu-sm.webp 480w ,https://zeyun.org/media/posts/69/responsive/Xiang-Mu-Tuo-Bu-md.webp 768w ,https://zeyun.org/media/posts/69/responsive/Xiang-Mu-Tuo-Bu-xl.webp 1024w"></figure>
+<p>当前章节的内网拓扑图如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/69/Jian-Zhong-Wen-Tu-Pian.png" alt="" width="1536" height="1024" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/69/responsive/Jian-Zhong-Wen-Tu-Pian-xs.webp 320w ,https://zeyun.org/media/posts/69/responsive/Jian-Zhong-Wen-Tu-Pian-sm.webp 480w ,https://zeyun.org/media/posts/69/responsive/Jian-Zhong-Wen-Tu-Pian-md.webp 768w ,https://zeyun.org/media/posts/69/responsive/Jian-Zhong-Wen-Tu-Pian-xl.webp 1024w"></figure>
 <h5>阶段 1：系统环境准备</h5>
 <p data-start="273" data-end="279">本阶段目标：</p>
 <ul data-start="281" data-end="410">
@@ -225,7 +225,7 @@ chronyc makestep</code></pre>
 systemctl enable chronyd</code></pre>
 <h5 data-start="4129" data-end="4180">5.3 验证时间同步状态</h5>
 <p data-start="3897" data-end="3910">通过执行 <code data-path-to-node="36,0" data-index-in-node="12">chronyc tracking</code> 可以看到，两台 Slave 节点的 <code data-path-to-node="36,0" data-index-in-node="47">Reference ID</code> 已经完美指向了主节点的十六进制 IP，且系统绝对误差（System time）控制在了 <strong data-path-to-node="36,0" data-index-in-node="104">1~5 微秒（百万分之一秒）</strong>。在这个精度下，接下来的数据库主从复制可以做到万无一失</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/69/Ping-Mu-Jie-Tu-2026-06-04-094111.png" alt="" width="2879" height="1700" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-094111-xs.webp 320w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-094111-sm.webp 480w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-094111-md.webp 768w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-094111-xl.webp 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/69/Ping-Mu-Jie-Tu-2026-06-04-102935.png" alt="" width="2879" height="1699" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-102935-xs.webp 320w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-102935-sm.webp 480w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-102935-md.webp 768w ,https://zeyun.org/media/posts/69/responsive/Ping-Mu-Jie-Tu-2026-06-04-102935-xl.webp 1024w"></figure>
 <p data-start="4129" data-end="4180">至此，三台服务器已经完成内网统一授时</p>
 <p data-start="4129" data-end="4180">在虚拟机内网环境中，两台从节点与主节点的误差<strong data-path-to-node="17" data-index-in-node="39">仅在 1~2 微秒之间</strong>。对于数据库的主从复制来说，这种级别的误差<strong data-path-to-node="17" data-index-in-node="71">几乎等同于 0</strong>，完全可以忽略不计</p>
 <h3 data-start="7532" data-end="7552" data-section-id="so80zc">6. 重启三台机器，确认永久配置生效</h3>
