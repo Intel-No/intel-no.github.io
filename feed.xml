@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-06-04T12:07:45+09:00</updated>
+    <updated>2026-06-04T15:21:00+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -22,12 +22,45 @@
         <updated>2026-05-28T14:35:27+09:00</updated>
             <summary>
                 <![CDATA[
-                    在完成三台 CentOS 7 虚拟机的主机名，网络解析，时间同步与基础防火墙配置之后，接下来需要正式安装数据库服务（如果没安装，点我查看基础篇章）
+                    在完成三台 CentOS 7 虚拟机的主机名，网络解析，时间同步与基础防火墙配置之后，接下来需要正式安装数据库服务（如果没安装，点我查看基础篇章） 数据库的选择如下：&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>在完成三台 CentOS 7 虚拟机的主机名，网络解析，时间同步与基础防火墙配置之后，接下来需要正式安装数据库服务（如果没安装，<a href="https://zeyun.org/server_cluster_series_1.html" target="_blank" rel="noopener noreferrer">点我查看基础篇章</a>）</p>
+<p>数据库的选择如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/70/Shu-Ju-Ku-Xuan-Ze.png" alt="" width="1536" height="1024" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/70/responsive/Shu-Ju-Ku-Xuan-Ze-xs.webp 320w ,https://zeyun.org/media/posts/70/responsive/Shu-Ju-Ku-Xuan-Ze-sm.webp 480w ,https://zeyun.org/media/posts/70/responsive/Shu-Ju-Ku-Xuan-Ze-md.webp 768w ,https://zeyun.org/media/posts/70/responsive/Shu-Ju-Ku-Xuan-Ze-xl.webp 1024w"></figure>
+<p>整体的网络拓扑如下：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/70/ChatGPT-Image-2026Nian-6Yue-4Ri-13_00_00.png" alt="" width="1024" height="1536" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/70/responsive/ChatGPT-Image-2026Nian-6Yue-4Ri-13_00_00-xs.webp 320w ,https://zeyun.org/media/posts/70/responsive/ChatGPT-Image-2026Nian-6Yue-4Ri-13_00_00-sm.webp 480w ,https://zeyun.org/media/posts/70/responsive/ChatGPT-Image-2026Nian-6Yue-4Ri-13_00_00-md.webp 768w ,https://zeyun.org/media/posts/70/responsive/ChatGPT-Image-2026Nian-6Yue-4Ri-13_00_00-xl.webp 1024w"></figure>
+<h4 data-section-id="hc5x5g" data-start="56" data-end="100">检查三台机器是否已有 MariaDB / MySQL 残留</h4>
+<p data-start="102" data-end="150">修改目的：<br data-start="107" data-end="110">先确认系统里有没有旧版本数据库，避免后面安装 MariaDB 10.5 时冲突</p>
+<p>首先先检查是否有数据库残留（在三台机器都执行）</p>
+<pre class="language-bash line-numbers"><code> rpm -qa | grep -E "mariadb|mysql|MariaDB"</code></pre>
+<p>如果什么都不输出，说明很干净，可以继续</p>
+<p>如果输出类似：</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/70/Ping-Mu-Jie-Tu-2026-06-04-150548.png" alt="" width="560" height="128" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/70/responsive/Ping-Mu-Jie-Tu-2026-06-04-150548-xs.webp 320w ,https://zeyun.org/media/posts/70/responsive/Ping-Mu-Jie-Tu-2026-06-04-150548-sm.webp 480w ,https://zeyun.org/media/posts/70/responsive/Ping-Mu-Jie-Tu-2026-06-04-150548-md.webp 768w ,https://zeyun.org/media/posts/70/responsive/Ping-Mu-Jie-Tu-2026-06-04-150548-xl.webp 1024w"></figure>
+<p>那么就先卸载旧版 MariaDB</p>
+<pre class="language-bash line-numbers"><code>systemctl stop mariadb 2&gt;/dev/null
+yum remove -y mariadb-server mariadb</code></pre>
+<p>然后再检查一次<code>rpm -qa | grep -E "mariadb|mysql|MariaDB"</code></p>
+<p>如果只剩类似这些：</p>
+<pre class="language-bash line-numbers"><code>mariadb-libs-5.5.68-1.el7.x86_64
+php-mysqlnd-5.4.16-48.el7.x86_64</code></pre>
+<p><code data-start="462" data-end="476">mariadb-libs</code> 和 <code data-start="479" data-end="492">php-mysqlnd</code> 可以先保留，这个是 CentOS 7 系统常见依赖，先留着就行。等安装 MariaDB 10.5 时，yum 会自动处理依赖关系</p>
+<h4>三台机器写入 MariaDB 10.5 官方 yum 源</h4>
+<p>现在三台都执行下面这段</p>
+<pre class="language-bash line-numbers"><code>cat &gt; /etc/yum.repos.d/MariaDB.repo &lt;&lt;'EOF'
+[mariadb]
+name=MariaDB 10.5 Repository
+baseurl=http://yum.mariadb.org/10.5/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+enabled=1
+EOF</code></pre>
+<p>然后三台都检查：</p>
+<pre class="language-bash line-numbers"><code>cat /etc/yum.repos.d/MariaDB.repo</code></pre>
+<p> </p>
+<p> </p>
             ]]>
         </content>
     </entry>
@@ -44,20 +77,20 @@
         <updated>2026-05-28T11:26:40+09:00</updated>
             <summary>
                 <![CDATA[
-                    为了更好地模拟企业内网真实生产环境，我计划搭建一套高可用主从复制数据库集群，用于后续的内网渗透、数据库安全、以及高可用架构学习实践 本系列共计划包含以下文章（当前为基础环境搭建）： - 第一篇：基础环境准备与虚拟机搭建（本文） -&hellip;
+                    为了更好地模拟企业内网真实生产环境，我计划搭建一套高可用主从复制数据库集群，用于后续的内网渗透、数据库安全、以及高可用架构学习实践 本系列共计划包含以下文章（当前为基础环境搭建 ）： - 第一篇：基础环境准备与虚拟机搭建（本文）&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p dir="auto">为了更好地模拟企业内网真实生产环境，我计划搭建一套<code>高可用主从复制数据库集群</code>，用于后续的内网渗透、数据库安全、以及高可用架构学习实践</p>
-<p dir="auto">本系列共计划包含以下文章（当前为<span style="color: #f2f2f5;"><strong>基础环境搭建</strong></span>）：</p>
+<p dir="auto">本系列共计划包含以下文章（当前为<code>基础环境搭建 </code>）：</p>
 <p dir="auto">- 第一篇：基础环境准备与虚拟机搭建（本文）</p>
 <p dir="auto">- 第二篇：MySQL主从复制 + 高可用集群部署</p>
 <p dir="auto">本篇主要完成三台虚拟机的创建、基础系统配置等工作，真正的主从集群搭建将放在下一篇文章进行：<a href="https://zeyun.org/server_cluster_series_2.html" target="_blank" rel="noopener noreferrer">点我前往 数据库主从复制 + 高可用集群部署</a> 那篇文章</p>
 <h5 dir="auto">实验环境说明</h5>
 <p dir="auto">虚拟化平台：</p>
 <ul>
-<li dir="auto">VMware® Workstation Pro 25H2</li>
+<li dir="auto">VMware Workstation Pro 25H2</li>
 </ul>
 <p dir="auto">虚拟机规划：</p>
 <ul>
