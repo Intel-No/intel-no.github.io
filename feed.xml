@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-06-04T16:00:18+09:00</updated>
+    <updated>2026-06-12T01:04:53+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -59,7 +59,8 @@ enabled=1
 EOF</code></pre>
 <p>然后三台都检查：</p>
 <pre class="language-bash line-numbers"><code>cat /etc/yum.repos.d/MariaDB.repo</code></pre>
-<p> </p>
+<h2 class="align-center">剩余内容正在更新中</h2>
+<p class="align-center"><strong>Ciallo～(∠・ω&lt; )⌒☆</strong></p>
 <p> </p>
             ]]>
         </content>
