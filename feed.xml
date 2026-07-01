@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-06-30T21:30:11+09:00</updated>
+    <updated>2026-07-01T18:14:17+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -41,11 +41,78 @@
 <li class="font-claude-response-body whitespace-normal break-words pl-2" data-sourcepos="22:1-22:56;596-651">这台网关上跑 GFW 的模拟程序，它就拥有了和真实 GFW 一样的"上帝视角"——看得见每一个想出国的包</li>
 </ul>
 <p class="font-claude-response-body break-words whitespace-normal" data-sourcepos="24:1-24:36;653-688">只要流量绕不开这台网关，审查就成立了。这是整个实验能跑起来的物理前提</p>
-<p data-sourcepos="24:1-24:36;653-688">实验设计的想法如下（由于我的物理机性能资源有限，所以我所演示的Web访问的机器是同一台，使用不通网段作为区分）：</p>
+<p data-sourcepos="24:1-24:36;653-688">实验设计的想法如下（由于我的物理机性能资源有限，所以我所演示的Web访问的机器是同一台CentOS7，使用不通网段作为境内外的区分）：</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/71/gfw_lab_clean_topology.png" alt="" width="2720" height="2400" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/71/responsive/gfw_lab_clean_topology-xs.webp 320w ,https://zeyun.org/media/posts/71/responsive/gfw_lab_clean_topology-sm.webp 480w ,https://zeyun.org/media/posts/71/responsive/gfw_lab_clean_topology-md.webp 768w ,https://zeyun.org/media/posts/71/responsive/gfw_lab_clean_topology-xl.webp 1024w"></figure>
 <p data-sourcepos="24:1-24:36;653-688">注：上图的OpenWRT的网段仅仅作为该实验的内网模拟的VPS拉取面板的网络用途（必要需求）不涉及内网的网络通讯</p>
-<p data-sourcepos="24:1-24:36;653-688"> </p>
-<p data-sourcepos="24:1-24:36;653-688"> </p>
+<h4 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold" data-sourcepos="12:1-12:13;355-367">二，网络规划：两个网段与三个网桥</h4>
+<p>为了保证实验环境与物理的环境隔离，我在PVE上起了新的10网段，作为专有的实验网段，并通过WireGuard拨号进入该网段（具体教程请参考我博客里的这一篇文章：<a href="https://zeyun.org/use_wireguard_home_to_home.html" target="_blank" rel="noopener noreferrer">使用 WireGuard 实现家庭网络跨网段访问</a>）</p>
+<h6>网段说明：</h6>
+<ul>
+<li>192.168.31.0 物理网段</li>
+<li>10.10.10.0 模拟墙内用户网段（windows7所在网段，<span class="_animating_6ta1u_10" data-newtext-seq="2">模拟"中国大</span><span class="_animating_6ta1u_10" data-newtext-seq="39">陆内网"</span>）</li>
+<li>10.10.20.0 用于WireGuard通讯的网段（仅用于通讯，不参与本次实验）</li>
+<li>10.10.40.0 用于模拟境外网络的网段（内网VPS，模拟"国际互联网"）</li>
+</ul>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/71/Ping-Mu-Jie-Tu-2026-07-01-170817.png" alt="" width="1920" height="535" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-170817-xs.webp 320w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-170817-sm.webp 480w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-170817-md.webp 768w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-170817-xl.webp 1024w"></figure>
+<p>我的网卡绑定IP如上图所示</p>
+<table class="min-w-full border-collapse text-sm leading-[1.7] whitespace-normal" style="width: 100.855%; height: 355.375px;">
+<thead class="text-left">
+<tr style="height: 48.5625px;">
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold align-center" style="width: 22.3479%; height: 48.5625px;" scope="col">机器名称</th>
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold align-center" style="width: 18.3876%; height: 48.5625px;" scope="col">扮演角色</th>
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold align-center" style="width: 25.3154%; height: 48.5625px;" scope="col">网卡/网桥</th>
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold align-center" style="width: 33.8076%; height: 48.5625px;" scope="col">IP/网段</th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 48.5625px;">
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 22.3479%; height: 48.5625px;">Win7</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 18.3876%; height: 48.5625px;">墙内用户</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 25.3154%; height: 48.5625px;">net0→vmbr1</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 33.8076%; height: 48.5625px;">10.10.10.155(网关254)</td>
+</tr>
+<tr style="height: 75.5625px;">
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 22.3479%; height: 75.5625px;">Debian-GFW</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 18.3876%; height: 75.5625px;">审查网关(GFW)</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 25.3154%; height: 75.5625px;">ens18→vmbr1 / ens19→vmbr3</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 33.8076%; height: 75.5625px;">.10.254 / .40.1</td>
+</tr>
+<tr style="height: 75.5625px;">
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 22.3479%; height: 75.5625px;">CentOS7-Web</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 18.3876%; height: 75.5625px;">双角色站点</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 25.3154%; height: 75.5625px;">eth0→vmbr1 / eth1→vmbr3</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 33.8076%; height: 75.5625px;">.10.99 / .40.99</td>
+</tr>
+<tr style="height: 48.5625px;">
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 22.3479%; height: 48.5625px;">Ubuntu-VPS</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 18.3876%; height: 48.5625px;">境外VPS</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 25.3154%; height: 48.5625px;">net0→vmbr3</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 33.8076%; height: 48.5625px;">.40.100</td>
+</tr>
+<tr style="height: 58.5625px;">
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 22.3479%; height: 58.5625px;">OpenWRT</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 18.3876%; height: 58.5625px;">真实网出口</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 25.3154%; height: 58.5625px;">eth0→vmbr0 / eth1→vmbr1</td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top align-center" style="width: 33.8076%; height: 58.5625px;">31.11 / .10.1</td>
+</tr>
+</tbody>
+</table>
+<h4 data-sourcepos="24:1-24:36;653-688">三，关键配置：网关路由与转发</h4>
+<p class="font-claude-response-body break-words whitespace-normal">此部分的剩余内容正在更新中</p>
+<p class="font-claude-response-body break-words whitespace-normal">Ciallo～(∠・ω&lt; )⌒☆</p>
+<h4>四，验证:墙内能访问什么、不能访问什么</h4>
+<p><code>*提示</code>：该网页不是真实的网页，需要同款静态网页的可以点击此处下载</p>
+<p>下载链接：<a href="https://wwbte.lanzn.com/b014xczdqb" target="_blank" rel="noopener noreferrer">点我下载</a>    密码：caht</p>
+<h5>验证部分</h5>
+<p>这里我去使用win7访问对应的域名（未连接VPS的情况）</p>
+<p>发现这里打开的是我模拟出来的不同的页面</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/71/Ping-Mu-Jie-Tu-2026-07-01-174511.png" alt="" width="1773" height="1192" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-174511-xs.webp 320w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-174511-sm.webp 480w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-174511-md.webp 768w ,https://zeyun.org/media/posts/71/responsive/Ping-Mu-Jie-Tu-2026-07-01-174511-xl.webp 1024w"></figure>
+<p>查看路由后，显示的也是对应的内网IP，而非公网真实的IP</p>
+<h4 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">写在最后</h4>
+<p class="font-claude-response-body break-words whitespace-normal">这一篇我们只做了一件事——<strong>把地基搭好</strong></p>
+<p>两个隔离的网段、一台卡在中间的审查网关、一条验证过的出境路径，GFW 模拟实验的地基就此完成</p>
+<p class="font-claude-response-body break-words whitespace-normal">这一篇里，那个让谷歌打不开的"DNS 污染"，其实还没讲清楚它到底是怎么配的</p>
+<p>别急——下一篇 <strong>《Part 2:DNS 污染》</strong>,我们就来拆开这第一道审查手段:明明流量还没出墙,为什么谷歌就已经打不开了？而百度却安然无恙？</p>
             ]]>
         </content>
     </entry>
@@ -636,7 +703,7 @@ xsf01.swf?a=b</code></pre>
 <figure class="post__image"><img  src="https://zeyun.org/media/posts/58/Wang-Luo-Zong-Lan.png" alt="" width="1415" height="915" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-xs.webp 320w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-sm.webp 480w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-md.webp 768w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-xl.webp 1024w"></figure><figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/58/mermaid-diagram.svg" alt=""></figure>
 <h6 class="align-left"><strong>具体实验内容已更新</strong></h6>
 <ul>
-<li>Part 1:基础环境搭建                                    点我直达</li>
+<li>Part 1:基础环境搭建                                    <a href="https://zeyun.org/gfw-lab-01-environment.html" target="_blank" rel="noopener noreferrer">点我直达</a></li>
 <li>Part 2:场景A — 模拟DNS污染部分              点我直达</li>
 <li>Part 3:场景B — DPI识别与阻断                   点我直达</li>
 <li>Part 4:场景C — 协议对抗与穿透                  点我直达</li>
