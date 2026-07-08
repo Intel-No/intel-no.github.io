@@ -3,37 +3,32 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-07-02T22:45:55+09:00</updated>
+    <updated>2026-07-08T10:36:03+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.org</id>
 
     <entry>
-        <title>内网模拟&quot;长城防火墙&quot;（基础环境搭建）</title>
+        <title>使用Shadowrocket去除AD</title>
         <author>
             <name>云泽</name>
         </author>
-        <link href="https://zeyun.org/gfw-lab-01-environment.html"/>
-        <id>https://zeyun.org/gfw-lab-01-environment.html</id>
-            <category term="内网模拟GFW实验系列"/>
+        <link href="https://zeyun.org/shi-yong-shadowrocketqu-chu-ad.html"/>
+        <id>https://zeyun.org/shi-yong-shadowrocketqu-chu-ad.html</id>
 
-        <updated>2026-06-30T15:42:16+09:00</updated>
+        <updated>2026-07-08T10:36:03+09:00</updated>
             <summary>
                 <![CDATA[
-                    免责声明 本文所有实验均在本人本地 PVE 虚拟内网化环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程，读者请自行承担全部风险 *提示：本实验涉及到的百度/谷歌页面均不是真实的网页，需要同款静态网页的可以点击此处下载&hellip;
+                    众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫Shadowrocket 可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？ 分享配置文件链接：点我下载 密码：8vxh
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <h5 class="align-center"><strong>免责声明</strong></h5>
-<p>本文所有实验均在本人本地 PVE 虚拟内网化环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程，读者请自行承担全部风险</p>
-<p><code>*提示</code>：本实验涉及到的百度/谷歌页面均不是真实的网页，需要同款静态网页的可以点击此处下载</p>
-<p>下载链接：<a href="https://wwbte.lanzn.com/b014xczdqb" target="_blank" rel="noopener noreferrer">点我下载</a>    密码：caht</p>
-<p dir="auto">为了让你彻底看懂 GFW 到底是怎么发现你，又是怎么拦截你的，我这次直接在内网搭了一整套模拟环境，用虚拟机把「中国用户正常上网」的全流程复现出来</p>
-<p dir="auto">整个实验环境基于<strong>PVE</strong>虚拟环境搭建（大致的拓扑图如下）（除必要用于模拟 VPS 的Ubuntu 需要拉取 SUI 面板外，其余所有环节都在纯内网完成，不涉及任何真实公网流量）</p>
-<figure class="post__image"><img loading="lazy"  src="file:///D:/iCloud/iCloudDrive/Publii/yun-ze-noxiao-wu/input/media/posts/58/Wang-Luo-Zong-Lan.png" alt="" width="1415" height="915" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="file:///D:/iCloud/iCloudDrive/Publii/yun-ze-noxiao-wu/input/media/posts/58/responsive/Wang-Luo-Zong-Lan-xs.webp 320w ,file:///D:/iCloud/iCloudDrive/Publii/yun-ze-noxiao-wu/input/media/posts/58/responsive/Wang-Luo-Zong-Lan-sm.webp 480w ,file:///D:/iCloud/iCloudDrive/Publii/yun-ze-noxiao-wu/input/media/posts/58/responsive/Wang-Luo-Zong-Lan-md.webp 768w ,file:///D:/iCloud/iCloudDrive/Publii/yun-ze-noxiao-wu/input/media/posts/58/responsive/Wang-Luo-Zong-Lan-xl.webp 1024w"></figure>
-<h1 class="align-center" dir="auto">剩余内容更新中</h1>
+                <p>众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫<a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer">Shadowrocket</a></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/Ping-Mu-Jie-Tu-2026-07-08-101926.png" alt="" width="2793" height="1508" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xl.webp 1024w"></figure>
+<p>可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？</p>
+<p>分享配置文件链接：<a href="https://wwbte.lanzn.com/b014xcyt1g" target="_blank" rel="noopener noreferrer">点我下载</a>  密码：8vxh</p>
             ]]>
         </content>
     </entry>
@@ -585,7 +580,7 @@ xsf01.swf?a=b</code></pre>
         </content>
     </entry>
     <entry>
-        <title>内网模拟&quot;长城防火墙&quot;(总览)</title>
+        <title>内网模拟&quot;长城防火墙&quot;</title>
         <author>
             <name>云泽</name>
         </author>
@@ -597,14 +592,12 @@ xsf01.swf?a=b</code></pre>
         <updated>2026-05-06T22:13:44+09:00</updated>
             <summary>
                 <![CDATA[
-                    免责声明 本文提及到的实验均在本人本地 PVE 虚拟化内网环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程。读者请自行承担全部风险 由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开&hellip;
+                    由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开 Google、YouTube、Gmail 等一系列国际服务的…… 这一切的根源，就是在我们和真实互联网之间，横着一堵看不见却又无处不在的「墙」 这堵墙在行内人嘴里有个响亮的名字——长城防火墙（简称&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <h4 class="align-center" dir="auto">免责声明</h4>
-<p dir="auto"><strong> 本文提及到的实验均在本人本地 PVE 虚拟化内网环境中进行，仅用于个人学习理解「长城防火墙」（GFW）的工作原理和技术细节。请勿在任何生产环境、未授权网络或真实运营商链路上进行类似操作，否则可能触及法律法规。本文内容仅代表个人学习笔记，不构成任何技术指导、部署建议或翻墙教程。读者请自行承担全部风险</strong></p>
-<p dir="auto">由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开 Google、YouTube、Gmail 等一系列国际服务的……</p>
+                <p dir="auto">由于众所不一定周知的原因，在国内正常网络环情况下，你是无法直接打开 Google、YouTube、Gmail 等一系列国际服务的……</p>
 <p dir="auto">这一切的根源，就是在我们和真实互联网之间，横着一堵看不见却又无处不在的「墙」</p>
 <p dir="auto">这堵墙在行内人嘴里有个响亮的名字——<strong>长城防火墙</strong>（简称 <strong>GFW</strong>）</p>
 <p dir="auto"><strong>Q：那么这个所谓的「GFW」到底是什么东西？</strong></p>
@@ -620,14 +613,6 @@ xsf01.swf?a=b</code></pre>
 <p dir="auto"><strong>Q：那「翻墙」到底是个什么原理？</strong></p>
 <p dir="auto"><strong>A：</strong> 直白点说，就是把你的流量<strong>加密 + 伪装 + 境外中转</strong>，让 GFW 看不懂、拦不住（ 简单理解就是：<strong>翻墙 = 让 GFW 觉得你在访问一个「正常」的国际网站，而不是在翻墙</strong>）</p>
 <figure class="post__image"><img  src="https://zeyun.org/media/posts/58/Wang-Luo-Zong-Lan.png" alt="" width="1415" height="915" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-xs.webp 320w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-sm.webp 480w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-md.webp 768w ,https://zeyun.org/media/posts/58/responsive/Wang-Luo-Zong-Lan-xl.webp 1024w"></figure><figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/58/mermaid-diagram.svg" alt=""></figure>
-<h5 class="align-left"><strong>具体实验内容已更新（可点击下方链接自行跳转）</strong></h5>
-<ul>
-<li>Part 1:基础环境搭建                                    <a href="https://zeyun.org/gfw-lab-01-environment.html" target="_blank" rel="noopener noreferrer">点我直达</a></li>
-<li>Part 2:场景A — 模拟DNS污染部分              点我直达</li>
-<li>Part 3:场景B — DPI识别与阻断                   点我直达</li>
-<li>Part 4:场景C — 协议对抗与穿透                  点我直达</li>
-</ul>
-<p>而本次实验的意义，则是好围绕着这条演化线的三个关键节点上进行模拟的</p>
 <table class="min-w-full border-collapse text-sm leading-[1.7] whitespace-normal" style="width: 100%; height: 194.25px;">
 <thead class="text-left">
 <tr style="height: 48.5625px;">
@@ -722,7 +707,7 @@ xsf01.swf?a=b</code></pre>
 </ul>
 <h5>10.主动探测</h5>
 <p class="font-claude-response-body break-words whitespace-normal">研究者是怎么<strong>证实 </strong>GFW 在主动探测的?</p>
-<p class="font-claude-response-body break-words whitespace-normal">方法很巧：GFW 架一个只有自己知道的 Shadowsocks 服务器，不告诉任何人 IP。结果没多久，就有<strong>来自中国的陌生 IP 主动来连这个服务器，</strong>发各种畸形探测包。既然除了自己没人知道这个 IP，那这些探测只可能来自"看到了流量、记下 IP、来复查"的 GFW。这是"主动探测"从猜测变成实锤的经典研究（此处具体的细节引用的USENIX 的 <em>Examining How the Great Firewall Discovers Hidden Circumvention Servers在2015年发布的相关论文</em>）</p>
+<p class="font-claude-response-body break-words whitespace-normal">方法很巧：GFW 架一个只有自己知道的 Shadowsocks 服务器，不告诉任何人 IP。结果没多久，就有<strong>来自中国的陌生 IP 主动来连这个服务器，</strong>发各种畸形探测包。既然除了自己没人知道这个 IP，那这些探测只可能来自"看到了流量、记下 IP、来复查"的 GFW。这是"主动探测"从猜测变成实锤的经典研究</p>
 <h5>11.加密 DNS(DoH / DoT)—— 对抗 DNS 污染的手段</h5>
 <p class="font-claude-response-body break-words whitespace-normal">既然 DNS 污染的根源是"DNS 查询是明文,GFW 能看能改"，那对策就是<strong>把 DNS 查询也加密：</strong></p>
 <ul class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-disc flex flex-col gap-1 pl-8 mb-3">
@@ -778,8 +763,8 @@ Reality:偷真站门面    → 被动/主动探测都正常,当前最难识别</
 </ol>
 <p>下面我总结了一个目前比较常见的协议图，可供参考</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/58/Ping-Mu-Jie-Tu-2026-07-02-223130.png" alt="" width="1671" height="630" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/58/responsive/Ping-Mu-Jie-Tu-2026-07-02-223130-xs.webp 320w ,https://zeyun.org/media/posts/58/responsive/Ping-Mu-Jie-Tu-2026-07-02-223130-sm.webp 480w ,https://zeyun.org/media/posts/58/responsive/Ping-Mu-Jie-Tu-2026-07-02-223130-md.webp 768w ,https://zeyun.org/media/posts/58/responsive/Ping-Mu-Jie-Tu-2026-07-02-223130-xl.webp 1024w"></figure>
-<p><strong>免责与说明</strong><br>本表是为帮助理解"翻墙协议演化"而做的<strong>教学性归纳</strong>，服务于本系列实验的技术讨论，不构成任何使用建议，抗审查技术处于持续对抗中，未来实际情况可能与此不同，阅读时请结合协议官方文档与最新研究判断</p>
-<h6 class="align-center">相信看完这些，你会对于GFW有一个清晰的理解</h6>
+<p class="align-center"><strong>免责与说明</strong><br>本表格是为帮助理解"翻墙协议演化"而做的<strong>教学性归纳</strong>，服务于本篇文章的技术讨论，不构成任何使用建议，抗审查技术处于持续对抗中，未来实际情况可能与此不同，阅读时请结合协议官方文档与最新研究判断</p>
+<h6 class="align-center">相信看完这些，你会对于 GFW 有一个清晰的理解</h6>
             ]]>
         </content>
     </entry>
