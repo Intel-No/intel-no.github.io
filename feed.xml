@@ -3,31 +3,99 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-07-08T10:36:03+09:00</updated>
+    <updated>2026-07-08T11:07:01+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.org</id>
 
     <entry>
-        <title>使用Shadowrocket去除AD</title>
+        <title>使用 Shadowrocket 去除应用内置广告</title>
         <author>
             <name>云泽</name>
         </author>
-        <link href="https://zeyun.org/shi-yong-shadowrocketqu-chu-ad.html"/>
-        <id>https://zeyun.org/shi-yong-shadowrocketqu-chu-ad.html</id>
+        <link href="https://zeyun.org/shadowrocket_no_ad.html"/>
+        <id>https://zeyun.org/shadowrocket_no_ad.html</id>
+            <category term="网络工具介绍"/>
 
         <updated>2026-07-08T10:36:03+09:00</updated>
             <summary>
                 <![CDATA[
-                    众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫Shadowrocket 可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？ 分享配置文件链接：点我下载 密码：8vxh
+                    众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫Shadowrocket （虽然这是一个付费的软件，但是这是我认为在iOS最值得购买的软件之一） 当然如果你想要白嫖，这里我准备了几个共享这款软件的网站，你可以点击前往（需要记住的是，里面的任何让你付费的东西，都不要去点击，谨防上当受骗！） *提示：共享的Apple&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 <p>众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫<a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer">Shadowrocket</a></p>
+<p>（虽然这是一个付费的软件，但是这是我认为在iOS最值得购买的软件之一）</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/Ping-Mu-Jie-Tu-2026-07-08-101926.png" alt="" width="2793" height="1508" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xl.webp 1024w"></figure>
-<p>可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？</p>
+<p>当然如果你想要白嫖，这里我准备了几个共享这款软件的网站，你可以点击前往（需要记住的是，里面的任何让你付费的东西，都不要去点击，谨防上当受骗！）</p>
+<ul>
+<li>资源站点1：<a href="https://ccbaohe.com/appleID/" target="_blank" rel="noopener noreferrer">点我前往</a></li>
+<li>资源站点2：<a href="https://id.ruyie.de/" target="_blank" rel="noopener noreferrer">点我前往</a></li>
+</ul>
+<p><code>*提示</code>：共享的Apple ID千万不要在这【设置】里面登录，也不要给这不属于你的ID充钱（我最推荐的方法还是自己注册一个外区的Apple ID）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/appleID.jpg" alt="" width="600" height="713" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/appleID-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/appleID-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/appleID-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/appleID-xl.webp 1024w"></figure>
+<p>上图是一个共享ID使用的教程，自己可以跟着做（已经更新iOS26系统的，需要在【设置】的App Store软件的选项中退出和登录Apple ID）</p>
+<h5>可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？</h5>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">我们平时把 </span><span class="_animating_6ta1u_10" data-newtext-seq="6">Shadowrocket </span><span class="_animating_6ta1u_10" data-newtext-seq="19">当成一个"科学上网"的工具，</span><span class="_animating_6ta1u_10" data-newtext-seq="19">导入机场订阅、点一下连接，仅此而已。但它</span><span class="_animating_6ta1u_10" data-newtext-seq="54">的本体其实是一台运</span><span class="_animating_6ta1u_10" data-newtext-seq="63">行在你 </span><span class="_animating_6ta1u_10" data-newtext-seq="67">iPhone / </span><span class="_animating_6ta1u_10" data-newtext-seq="76">iPad </span><span class="_animating_6ta1u_10" data-newtext-seq="81">上的</span><strong><span class="_animating_6ta1u_10" data-newtext-seq="83">本地流量处理引擎</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="83">（这款软件能做的事情和玩法，超乎你的想象）</span></p>
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="83">所有出入设</span><span class="_animating_6ta1u_10" data-newtext-seq="101">备的网络请</span><span class="_animating_6ta1u_10" data-newtext-seq="106">求都要先经过它</span><span class="_animating_6ta1u_10" data-newtext-seq="113">，这意味着它不仅</span><span class="_animating_6ta1u_10" data-newtext-seq="121">能决定"这条</span><span class="_animating_6ta1u_10" data-newtext-seq="127">流量走代理还是直</span><span class="_animating_6ta1u_10" data-newtext-seq="135">连"，还能决定</span><span class="_animating_6ta1u_10" data-newtext-seq="142">"这条流量要</span><span class="_animating_6ta1u_10" data-newtext-seq="148">不要被改写、要</span><span class="_animating_6ta1u_10" data-newtext-seq="155">不要被拦截、</span><span class="_animating_6ta1u_10" data-newtext-seq="161">响应内容要</span><span class="_animating_6ta1u_10" data-newtext-seq="166">不要被清洗"</span></p>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><strong><span class="_animating_6ta1u_10" data-newtext-seq="0">去广告</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="3">，用的就是</span><span class="_animating_6ta1u_10" data-newtext-seq="8">后面这套能力</span></p>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">这篇文章</span><span class="_animating_6ta1u_10" data-newtext-seq="4">会分两条线并</span><span class="_animating_6ta1u_10" data-newtext-seq="10">行：</span></p>
+<ol>
+<li class="font-claude-response-body break-words whitespace-normal"><strong><span class="_animating_6ta1u_10" data-newtext-seq="14">一条讲原理：</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="14">为什么一个</span><span class="_animating_6ta1u_10" data-newtext-seq="28">代理软件能去掉 </span><span class="_animating_6ta1u_10" data-newtext-seq="36">YouTube 和 </span><span class="_animating_6ta1u_10" data-newtext-seq="46">Spotify </span><span class="_animating_6ta1u_10" data-newtext-seq="54">的内置广告，它到底对你的流量做了什么；</span></li>
+<li class="font-claude-response-body break-words whitespace-normal"><strong><span class="_animating_6ta1u_10" data-newtext-seq="75">一条讲操作：</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="75">在一台干</span><span class="_animating_6ta1u_10" data-newtext-seq="88">净的iOS设备上，一步步复现整个过程</span><span class="_animating_6ta1u_10" data-newtext-seq="91">（这里我演示的设备是搭载了iPadOS </span><span class="_animating_6ta1u_10" data-newtext-seq="103">18.5，并且仅仅导入了机场订阅和基础的 </span><span class="_animating_6ta1u_10" data-newtext-seq="118">VPN，其余未配置的干净环境）</span></li>
+</ol>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<h5 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold"><span class="_animating_6ta1u_10" data-newtext-seq="3">一、先想清楚：广告是怎么进来的</span></h5>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">你有没有想过，在我们打开的软件中</span><span class="_animating_6ta1u_10" data-newtext-seq="7">：</span><strong><span class="_animating_6ta1u_10" data-newtext-seq="17">广告到底藏在哪？</span></strong></p>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">很多人以为去广告就是</span><span class="_animating_6ta1u_10" data-newtext-seq="10">"把广告服务器的</span><span class="_animating_6ta1u_10" data-newtext-seq="18">域名封掉"。对于早期那种"</span><span class="_animating_6ta1u_10" data-newtext-seq="31">广告单独从 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">ads.xxx.com</code></span> <span class="_animating_6ta1u_10" data-newtext-seq="51">拉取"的场景，这确实有效（但 </span><span class="_animating_6ta1u_10" data-newtext-seq="66">YouTube 和 </span><span class="_animating_6ta1u_10" data-newtext-seq="76">Spotify 这样的商业公司</span><span class="_animating_6ta1u_10" data-newtext-seq="84">早就不这么干了，他们的技术也在升级）</span></p>
+</div>
+<div class="_chunkWrapper_6ta1u_30">
+<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">以 </span><span class="_animating_6ta1u_10" data-newtext-seq="2">YouTube </span><span class="_animating_6ta1u_10" data-newtext-seq="10">为例，它的视频信息、推荐列表、播放器配置，全都通过一个核心接口返</span><span class="_animating_6ta1u_10" data-newtext-seq="42">回：</span></p>
+</div>
+<pre class="language-http line-numbers"><code>https://youtubei.googleapis.com/youtubei/v1/player
+https://youtubei.googleapis.com/youtubei/v1/browse
+https://youtubei.googleapis.com/youtubei/v1/next</code></pre>
+<p class="font-claude-response-body break-words whitespace-normal"><strong>广告数据和正片数据，走的是同一个域名、同一个接口、同一个响应。</strong> 广告以 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adPlacements</code>、<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">playerAds</code>、<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adSlots</code> 这样的字段，混在返回给 App 的那一大坨 JSON 里</p>
+<p class="font-claude-response-body break-words whitespace-normal">这就直接堵死了"封域名"这条路：你一封 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code>，广告是没了，但视频也打不开了——因为它们是同一个东西</p>
+<p class="font-claude-response-body break-words whitespace-normal">所以真正的思路必须换成：<strong>放行这个域名，但在流量经过 Shadowrocket 时把它拆开，从响应里精准地删掉广告字段，再把清理干净的内容交给 App</strong></p>
+<p class="font-claude-response-body break-words whitespace-normal">而"拆开"这个动作，就是整篇文章的技术核心——因为这些流量是 <strong>HTTPS 加密</strong>的</p>
+<h4 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">二、原理：为什么需要"解密"，MITM 是怎么做到的</h4>
+<h5 class="text-text-100 mt-2 -mb-1 text-base font-bold">2.1 HTTPS 把门锁上了</h5>
+<p class="font-claude-response-body break-words whitespace-normal">现代 App 的流量几乎全走 HTTPS，也就是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">HTTP over TLS</code>。TLS 的作用是加密：数据从 App 出来时就被加密成密文，一直到服务器才解开</p>
+<p>中间任何节点——包括你的路由器、你的运营商、以及此刻的 Shadowrocket——看到的都只是密文</p>
+<p class="font-claude-response-body break-words whitespace-normal">这就是矛盾所在：<strong>Shadowrocket 想删掉响应里的广告字段，但它看到的是一团加密后的乱码，根本读不到里面的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adPlacements</code></strong></p>
+<p class="font-claude-response-body break-words whitespace-normal">要动内容，必须先解密，而解密，就要用到 MITM</p>
+<h5 class="text-text-100 mt-2 -mb-1 text-base font-bold">2.2 MITM：站在通信双方中间</h5>
+<p class="font-claude-response-body break-words whitespace-normal">MITM 是 <strong>Man-In-The-Middle（中间人）</strong> 的缩写，名字听起来像黑客攻击，其本质手法也确实和攻击一样</p>
+<p>在通信双方中间插入一个能读写流量的节点，区别只在于：真正的攻击是攻击者<strong>背着你</strong>做的；而这里是<strong>你自己</strong>在<strong>你自己</strong>的设备上主动授权 Shadowrocket 去做（手法相同，性质相反）</p>
+<p class="font-claude-response-body break-words whitespace-normal">要理解它怎么绕过 TLS，得先明白 TLS 是靠什么防住中间人的——<strong>数字证书</strong></p>
+<p class="font-claude-response-body break-words whitespace-normal">TLS 握手时，服务器要证明"我真的是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtube.com</code>"，它出示一张数字证书，这张证书由一个受信任的 CA（Certificate Authority，证书颁发机构）**签名担保。你的设备里内置了一份"受信任 CA 名单"，只有名单上的 CA 签发的证书才被认可。正常情况下，任何中间人都伪造不出一张能通过验证的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtube.com</code> 证书，因为它没有可信 CA 的签名——TLS 的防线就在这里</p>
+<p class="font-claude-response-body break-words whitespace-normal">Shadowrocket 的破法是：<strong>让它自己变成你设备认可的一个 CA</strong></p>
+<p class="font-claude-response-body break-words whitespace-normal">具体分三步（这也正是你安装时被要求"装一个描述文件并信任"的原因）：</p>
+<ol class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal flex flex-col gap-1 pl-8 mb-3">
+<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>安装并信任 Shadowrocket 的根证书。</strong> 你手动装上它自带的 CA 证书，并在 iPad/iPhone 的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">设置 → 通用 → VPN与设备管理 / 关于本机 → 证书信任设置</code> 里打开"完全信任"（这一步等于往你设备的可信 CA 名单里，塞进了 Shadowrocket 这个成员）</li>
+<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>对 App 一侧：现场伪造证书，</strong> 当 App 要连 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code> 时，流量先进 Shadowrocket，Shadowrocket <strong>冒充服务器</strong>，用自己的根证书<strong>当场签发</strong>一张 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code> 的证书发给 App（因为它的根证书已被你信任，App 验证通过，握手成功——App 以为自己连上了真正的 YouTube）</li>
+<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>对服务器一侧：正常连接，</strong> 与此同时，Shadowrocket <strong>冒充客户端</strong>，和真正的 YouTube 服务器建立第二条正常的 TLS 连接</li>
+</ol>
+<p>于是形成两段独立的加密链路，中间那一段是明文：</p>
+<pre class="language-markdown line-numbers"><code>App  ⇄(TLS-A: Shadowrocket伪造的证书)⇄  Shadowrocket  ⇄(TLS-B: 真实证书)⇄  YouTube服务器
+                                              ▲
+                                    在这里，流量是解密后的明文，
+                                    可以读取、可以改写</code></pre>
+<p>站在中间这个点上，Shadowrocket 就能读到完整的响应 JSON，把广告字段删掉，再重新加密发回给 App。<strong>这就是"中间人"三个字的字面含义</strong></p>
+<p>2.3 HTTP/2 又是什么，为什么配置里要开 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">h2 = true</code></p>
 <p>分享配置文件链接：<a href="https://wwbte.lanzn.com/b014xcyt1g" target="_blank" rel="noopener noreferrer">点我下载</a>  密码：8vxh</p>
             ]]>
         </content>
