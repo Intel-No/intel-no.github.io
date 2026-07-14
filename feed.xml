@@ -3,7 +3,7 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-07-15T06:53:27+09:00</updated>
+    <updated>2026-07-15T07:04:52+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
@@ -63,9 +63,11 @@
 <p>stp4：按下键盘的<code>q</code>，退出查看</p>
 <p>执行以下命令，进行安装</p>
 <pre class="language-bash line-numbers"><code>bash install.sh</code></pre>
-<p>会自动拉取一长串内容</p>
+<p>会自动拉取一长串脚本里的内容</p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053446.png" alt="" width="2449" height="782" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-xl.webp 1024w"></figure>
+<p>耐心等待进度条跑完</p>
 <h4 class="align-center">第二部分：开始按照脚本部署Hermes</h4>
+<h6 class="align-center">如果中途出现意外打断脚本的情况（例如不小心或者出现卡死，按下了ctrl+c）可查看本部分的末尾，自行恢复</h6>
 <p>stp1：这里一步骤输入y，安装<strong><span class="_animating_6ta1u_10" data-newtext-seq="4">Playwright</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="4">（一个浏览器自动</span><span class="_animating_6ta1u_10" data-newtext-seq="30">化工具库），用来给 Hermes </span><span class="_animating_6ta1u_10" data-newtext-seq="47">的"浏览器工具"（browser tools）功能提供支持</span></p>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053724.png" alt="" width="1072" height="1000" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-xl.webp 1024w"></figure>
 <p>stp2：按向下键，选择<code>Full setup</code>选项</p>
@@ -148,6 +150,43 @@
 <h4 class="align-center">第三部分：最终确认配置</h4>
 <figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064125.png" alt="" width="1153" height="1315" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-xl.webp 1024w"></figure>
 <p>这会自动把网关配置为我们在最开始提到的后台服务（如 Systemd 用户服务），让它能够一直在后台稳定守候、处理消息，即使你关掉终端也不会断线</p>
+<p class="align-center"><code>*温馨提示</code>：如果Ctrl+C 打断了配置怎么办</p>
+<p>或者后续脚本遇到了任何意外所导致的退出，那么请你先输入以下的命令</p>
+<pre class="language-bash line-numbers"><code>source ~/.bashrc</code></pre>
+<p class="font-claude-response-body break-words whitespace-normal"><strong>可以再次按照当前进度，输入对应的恢复方式</strong>：</p>
+<div class="overflow-x-auto w-full px-2 mb-6">
+<table class="min-w-full border-collapse text-sm leading-[1.7] whitespace-normal">
+<thead class="text-left">
+<tr>
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold" scope="col">命令</th>
+<th class="text-text-100 border-b-0.5 border-[hsl(var(--border-300)/0.6)] py-2 pr-4 align-top font-bold" scope="col">只重配这一部分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">hermes setup</code></td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">完整向导（全部重来）</td>
+</tr>
+<tr>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">hermes setup tools</code></td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">只配工具</td>
+</tr>
+<tr>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">hermes setup model</code></td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">只配模型/provider</td>
+</tr>
+<tr>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">hermes setup gateway</code></td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">只配消息平台</td>
+</tr>
+<tr>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">hermes setup terminal</code></td>
+<td class="border-b-0.5 border-[hsl(var(--border-300)/0.3)] py-2 pr-4 align-top">只配 terminal backend</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h6 class="align-center">可自行根据上述的表格来进行自己恢复对应的进度</h6>
 <h4 class="align-center">聊天部分</h4>
 <p>再次在 Telegram 里搜索刚刚创建的机器人名字，就能找到你的机器人，并可以成功聊天</p>
 <figure class="post__image align-left"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064438.png" alt="" width="366" height="275" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-xl.webp 1024w"></figure>
