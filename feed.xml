@@ -3,136 +3,158 @@
     <title>云泽の小屋</title>
     <link href="https://zeyun.org/feed.xml" rel="self" />
     <link href="https://zeyun.org" />
-    <updated>2026-07-08T12:39:48+09:00</updated>
+    <updated>2026-07-15T06:53:27+09:00</updated>
     <author>
         <name>云泽</name>
     </author>
     <id>https://zeyun.org</id>
 
     <entry>
-        <title>使用 Shadowrocket 去除应用内置广告</title>
+        <title>使用 PVE 内网部署 Hermes Agent</title>
         <author>
             <name>云泽</name>
         </author>
-        <link href="https://zeyun.org/shadowrocket_no_ad.html"/>
-        <id>https://zeyun.org/shadowrocket_no_ad.html</id>
-            <category term="网络工具介绍"/>
+        <link href="https://zeyun.org/hermes_global.html"/>
+        <id>https://zeyun.org/hermes_global.html</id>
+            <category term="Ai 工具推荐"/>
 
-        <updated>2026-07-08T10:36:03+09:00</updated>
+        <updated>2026-07-15T05:49:36+09:00</updated>
             <summary>
                 <![CDATA[
-                    众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫Shadowrocket （虽然这是一个付费的软件，但是这是我认为在iOS最值得购买的软件之一） 当然如果你想要白嫖，这里我准备了几个共享这款软件的网站，你可以点击前往（需要记住的是，里面的任何让你付费的东西，都不要去点击，谨防上当受骗！） *提示：共享的Apple&hellip;
+                    前言： 首先需要注意的是，本教程适用于具有科学上网环境的用户进行使用，如果您没有科学上网的环境，请点击此链接，进行离线安装教程：点我前往离线安装篇 本篇教程会从零基础的 Hermes 安装部署，再到与&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>众所周知，在App Store内，有着一款功能非常强大的代理软件，名叫<a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer">Shadowrocket</a></p>
-<p>（虽然这是一个付费的软件，但是这是我认为在iOS最值得购买的软件之一）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/Ping-Mu-Jie-Tu-2026-07-08-101926.png" alt="" width="2793" height="1508" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/Ping-Mu-Jie-Tu-2026-07-08-101926-xl.webp 1024w"></figure>
-<p>当然如果你想要白嫖，这里我准备了几个共享这款软件的网站，你可以点击前往（需要记住的是，里面的任何让你付费的东西，都不要去点击，谨防上当受骗！）</p>
-<ul>
-<li>共享 Apple ID 资源站点1：<a href="https://ccbaohe.com/appleID/" target="_blank" rel="noopener noreferrer">点我前往</a></li>
-<li>共享 Apple ID 资源站点2：<a href="https://id.ruyie.de/" target="_blank" rel="noopener noreferrer">点我前往</a></li>
+                <h4>前言：</h4>
+<p>首先需要注意的是，本教程适用于具有科学上网环境的用户进行使用，如果您没有科学上网的环境，请点击此链接，进行离线安装教程：<a href="#" target="_blank" rel="noopener noreferrer">点我前往离线安装篇</a></p>
+<p><strong>本篇教程会从零基础的 Hermes 安装部署，再到与 Telegram Bot 对接</strong></p>
+<h5 class="align-left">搭建环境推荐：</h5>
+<ul style="list-style-type: square;">
+<li>一台可以做到长期不关机的电脑（如果宿主机断了，你的Ai对话也就断了）</li>
+<li>需要你有一个 Telegram 账户（以便于开通Telegram Bot）</li>
+<li>安装Hermes的电脑的系统需要为Linux（无需图形化界面）</li>
+<li>Linux系统可以科学上网（需要拉取 Hermes 相关包）</li>
 </ul>
-<p><code>*提示</code>：共享的Apple ID千万不要在这【设置】里面登录，也不要给这不属于你的ID充钱（我最推荐的方法还是自己注册一个外区的Apple ID）</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/appleID.jpg" alt="" width="600" height="713" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/appleID-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/appleID-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/appleID-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/appleID-xl.webp 1024w"></figure>
-<p>上图是一个登录共享 ID 使用的教程，自己可以跟着做（已经更新iOS26系统的，需要在【设置】的App Store软件的选项中，退出和登录Apple ID）</p>
-<h5>可曾想过，它不仅仅可以是一个代理软件，它也可以是一个广告过滤软件？</h5>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">我们平时把 </span><span class="_animating_6ta1u_10" data-newtext-seq="6">Shadowrocket </span><span class="_animating_6ta1u_10" data-newtext-seq="19">当成一个"科学上网"的工具，</span><span class="_animating_6ta1u_10" data-newtext-seq="19">导入机场订阅、点一下连接，仅此而已。但它</span><span class="_animating_6ta1u_10" data-newtext-seq="54">的本体其实是一台运</span><span class="_animating_6ta1u_10" data-newtext-seq="63">行在你 </span><span class="_animating_6ta1u_10" data-newtext-seq="67">iPhone / </span><span class="_animating_6ta1u_10" data-newtext-seq="76">iPad </span><span class="_animating_6ta1u_10" data-newtext-seq="81">上的</span><strong><span class="_animating_6ta1u_10" data-newtext-seq="83">本地流量处理引擎</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="83">（这款软件能做的事情和玩法，超乎你的想象）</span></p>
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="83">所有出入设</span><span class="_animating_6ta1u_10" data-newtext-seq="101">备的网络请</span><span class="_animating_6ta1u_10" data-newtext-seq="106">求都要先经过它</span><span class="_animating_6ta1u_10" data-newtext-seq="113">，这意味着它不仅</span><span class="_animating_6ta1u_10" data-newtext-seq="121">能决定"这条</span><span class="_animating_6ta1u_10" data-newtext-seq="127">流量走代理还是直</span><span class="_animating_6ta1u_10" data-newtext-seq="135">连"，还能决定</span><span class="_animating_6ta1u_10" data-newtext-seq="142">"这条流量要</span><span class="_animating_6ta1u_10" data-newtext-seq="148">不要被改写、要</span><span class="_animating_6ta1u_10" data-newtext-seq="155">不要被拦截、</span><span class="_animating_6ta1u_10" data-newtext-seq="161">响应内容要</span><span class="_animating_6ta1u_10" data-newtext-seq="166">不要被清洗"</span></p>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><strong><span class="_animating_6ta1u_10" data-newtext-seq="0">去广告</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="3">，用的就是</span><span class="_animating_6ta1u_10" data-newtext-seq="8">后面这套能力</span></p>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">这篇文章</span><span class="_animating_6ta1u_10" data-newtext-seq="4">会分两条线</span><span class="_animating_6ta1u_10" data-newtext-seq="10">：</span></p>
-<ol>
-<li><strong><span class="_animating_6ta1u_10" data-newtext-seq="75">操作部分：</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="75">在一台干</span><span class="_animating_6ta1u_10" data-newtext-seq="88">净的iOS设备上，一步步复现整个过程</span><span class="_animating_6ta1u_10" data-newtext-seq="91">（这里我演示的设备是搭载了iPadOS </span><span class="_animating_6ta1u_10" data-newtext-seq="103">18.5，并且仅仅导入了机场订阅和基础的 </span><span class="_animating_6ta1u_10" data-newtext-seq="118">VPN，其余未配置的干净环境）</span></li>
-<li class="font-claude-response-body break-words whitespace-normal"><strong><span class="_animating_6ta1u_10" data-newtext-seq="14">原理部分：</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="14">为什么一个</span><span class="_animating_6ta1u_10" data-newtext-seq="28">代理软件能去掉 </span><span class="_animating_6ta1u_10" data-newtext-seq="36">YouTube 和 </span><span class="_animating_6ta1u_10" data-newtext-seq="46">Spotify </span><span class="_animating_6ta1u_10" data-newtext-seq="54">的内置广告，它到底对你的流量做了什么</span></li>
-</ol>
-<p>首先，我先来带领你从零开始搭建这个过程</p>
-<p> </p>
-<p> </p>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<h5 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold"><span class="_animating_6ta1u_10" data-newtext-seq="3">一、先想清楚：广告是怎么进来的</span></h5>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">你有没有想过，在我们打开的软件中</span><span class="_animating_6ta1u_10" data-newtext-seq="7">：</span><strong><span class="_animating_6ta1u_10" data-newtext-seq="17">广告到底藏在哪？</span></strong></p>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">很多人以为去广告就是</span><span class="_animating_6ta1u_10" data-newtext-seq="10">"把广告服务器的</span><span class="_animating_6ta1u_10" data-newtext-seq="18">域名封掉"。对于早期那种"</span><span class="_animating_6ta1u_10" data-newtext-seq="31">广告单独从 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">ads.xxx.com</code></span> <span class="_animating_6ta1u_10" data-newtext-seq="51">拉取"的场景，这确实有效（但 </span><span class="_animating_6ta1u_10" data-newtext-seq="66">YouTube 和 </span><span class="_animating_6ta1u_10" data-newtext-seq="76">Spotify 这样的商业公司</span><span class="_animating_6ta1u_10" data-newtext-seq="84">早就不这么干了，他们的技术也在升级）</span></p>
-</div>
-<div class="_chunkWrapper_6ta1u_30">
-<p class="font-claude-response-body break-words whitespace-normal"><span class="_animating_6ta1u_10" data-newtext-seq="0">以 </span><span class="_animating_6ta1u_10" data-newtext-seq="2">YouTube </span><span class="_animating_6ta1u_10" data-newtext-seq="10">为例，它的视频信息、推荐列表、播放器配置，全都通过一个核心接口返</span><span class="_animating_6ta1u_10" data-newtext-seq="42">回：</span></p>
-</div>
-<pre class="language-http line-numbers"><code>https://youtubei.googleapis.com/youtubei/v1/player
-https://youtubei.googleapis.com/youtubei/v1/browse
-https://youtubei.googleapis.com/youtubei/v1/next</code></pre>
-<p class="font-claude-response-body break-words whitespace-normal"><strong>广告数据和正片数据，走的是同一个域名、同一个接口、同一个响应。</strong> 广告以 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adPlacements</code>、<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">playerAds</code>、<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adSlots</code> 这样的字段，混在返回给 App 的那一大坨 JSON 里</p>
-<p class="font-claude-response-body break-words whitespace-normal">这就直接堵死了"封域名"这条路：你一封 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code>，广告是没了，但视频也打不开了——因为它们是同一个东西</p>
-<p class="font-claude-response-body break-words whitespace-normal">所以真正的思路必须换成：<strong>放行这个域名，但在流量经过 Shadowrocket 时把它拆开，从响应里精准地删掉广告字段，再把清理干净的内容交给 App</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">而"拆开"这个动作，就是整篇文章的技术核心——因为这些流量是 <strong>HTTPS 加密</strong>的</p>
-<h4 class="text-text-100 mt-3 -mb-1 text-[1.125rem] font-bold">二、原理：为什么需要"解密"，MITM 是怎么做到的</h4>
-<h5 class="text-text-100 mt-2 -mb-1 text-base font-bold">2.1 HTTPS 把门锁上了</h5>
-<p class="font-claude-response-body break-words whitespace-normal">现代 App 的流量几乎全走 HTTPS，也就是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">HTTP over TLS</code>。TLS 的作用是加密：数据从 App 出来时就被加密成密文，一直到服务器才解开</p>
-<p>中间任何节点——包括你的路由器、你的运营商、以及此刻的 Shadowrocket——看到的都只是密文</p>
-<p class="font-claude-response-body break-words whitespace-normal">这就是矛盾所在：<strong>Shadowrocket 想删掉响应里的广告字段，但它看到的是一团加密后的乱码，根本读不到里面的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">adPlacements</code></strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">要动内容，必须先解密，而解密，就要用到 MITM</p>
-<h5 class="text-text-100 mt-2 -mb-1 text-base font-bold">2.2 MITM：站在通信双方中间</h5>
-<p class="font-claude-response-body break-words whitespace-normal">MITM 是 <strong>Man-In-The-Middle（中间人）</strong> 的缩写，名字听起来像黑客攻击，其本质手法也确实和攻击一样</p>
-<p>在通信双方中间插入一个能读写流量的节点，区别只在于：真正的攻击是攻击者<strong>背着你</strong>做的；而这里是<strong>你自己</strong>在<strong>你自己</strong>的设备上主动授权 Shadowrocket 去做（手法相同，性质相反）</p>
-<p class="font-claude-response-body break-words whitespace-normal">要理解它怎么绕过 TLS，得先明白 TLS 是靠什么防住中间人的——<strong>数字证书</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">TLS 握手时，服务器要证明"我真的是 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtube.com</code>"，它出示一张数字证书，这张证书由一个受信任的 CA（Certificate Authority，证书颁发机构）**签名担保。你的设备里内置了一份"受信任 CA 名单"，只有名单上的 CA 签发的证书才被认可。正常情况下，任何中间人都伪造不出一张能通过验证的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtube.com</code> 证书，因为它没有可信 CA 的签名——TLS 的防线就在这里</p>
-<p class="font-claude-response-body break-words whitespace-normal">Shadowrocket 的破法是：<strong>让它自己变成你设备认可的一个 CA</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">具体分三步（这也正是你安装时被要求"装一个描述文件并信任"的原因）：</p>
-<ol class="[li_&amp;]:mb-0 [li_&amp;]:mt-1 [li_&amp;]:gap-1 [&amp;:not(:last-child)_ul]:pb-1 [&amp;:not(:last-child)_ol]:pb-1 list-decimal flex flex-col gap-1 pl-8 mb-3">
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>安装并信任 Shadowrocket 的根证书。</strong> 你手动装上它自带的 CA 证书，并在 iPad/iPhone 的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">设置 → 通用 → VPN与设备管理 / 关于本机 → 证书信任设置</code> 里打开"完全信任"（这一步等于往你设备的可信 CA 名单里，塞进了 Shadowrocket 这个成员）</li>
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>对 App 一侧：现场伪造证书，</strong> 当 App 要连 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code> 时，流量先进 Shadowrocket，Shadowrocket <strong>冒充服务器</strong>，用自己的根证书<strong>当场签发</strong>一张 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">youtubei.googleapis.com</code> 的证书发给 App（因为它的根证书已被你信任，App 验证通过，握手成功——App 以为自己连上了真正的 YouTube）</li>
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>对服务器一侧：正常连接，</strong> 与此同时，Shadowrocket <strong>冒充客户端</strong>，和真正的 YouTube 服务器建立第二条正常的 TLS 连接</li>
-</ol>
-<p>于是形成两段独立的加密链路，中间那一段是明文：</p>
-<pre class="language-markdown line-numbers"><code>App  ⇄(TLS-A: Shadowrocket伪造的证书)⇄  Shadowrocket  ⇄(TLS-B: 真实证书)⇄  YouTube服务器
-                                              ▲
-                                    在这里，流量是解密后的明文，
-                                    可以读取、可以改写</code></pre>
-<p>站在中间这个点上，Shadowrocket 就能读到完整的响应 JSON，把广告字段删掉，再重新加密发回给 App。<strong>这就是"中间人"三个字的字面含义</strong></p>
-<p>2.3 HTTP/2 又是什么，为什么配置里要开 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">h2 = true</code></p>
-<p>在配置文件中：</p>
-<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/72/h2-2.png" alt="" width="2337" height="357" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/72/responsive/h2-2-xs.webp 320w ,https://zeyun.org/media/posts/72/responsive/h2-2-sm.webp 480w ,https://zeyun.org/media/posts/72/responsive/h2-2-md.webp 768w ,https://zeyun.org/media/posts/72/responsive/h2-2-xl.webp 1024w"></figure>
-<p>这里的<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">h2</code> 就是 <strong>HTTP/2</strong>，HTTP 协议的第二版（现在还有更新的 HTTP/3）。相比老的 HTTP/1.1，它主要改了传输方式：</p>
-<ul>
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>二进制分帧</strong>：数据不再是纯文本，而是以二进制帧传输</li>
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>多路复用</strong>：一条 TCP 连接上可以并行跑多个请求/响应，不用像 1.1 那样排队</li>
-<li class="font-claude-response-body whitespace-normal break-words pl-2"><strong>头部压缩（HPACK）</strong>：压掉重复的请求头</li>
+<h5 class="align-center">本教程的示例配置如下</h5>
+<ul style="list-style-type: square;">
+<li>使用 Proxmox Virtual Environment 9.1.6</li>
+<li>Hermes 所占用资源分配为：CPU R7 4750U，2core，4GB RAM 40GB ROM</li>
+<li>系统为 Ubuntu 24.04.4-live-server-amd64</li>
 </ul>
-<p class="font-claude-response-body break-words whitespace-normal">YouTube、Spotify、Google 系服务全都跑在 HTTP/2 上。所以当 Shadowrocket 拆开 TLS 后，看到的不是可读的文本，而是 HTTP/2 的二进制帧。<strong>如果不开 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">h2 = true</code>，它就没法把这些帧还原成一个个完整的请求和响应，也就无从匹配规则、无从改写内容</strong></p>
-<p>这个开关的意义就在这里</p>
-<h5 class="text-text-100 mt-2 -mb-1 text-base font-bold">2.4 解密之后，三种"动手"的方式</h5>
-<p class="font-claude-response-body break-words whitespace-normal">解密只是拿到了明文，真正去广告靠的是解密后对流量做的三类操作。这里的三个文件恰好把这三类都用上了：</p>
-<p class="font-claude-response-body break-words whitespace-normal"><strong>① URL Rewrite —— 在请求发出前拦截或改写它</strong></p>
-<p>看 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">YouTubeNoAd.sgmodule</code>：</p>
-<pre class="language-http line-numbers"><code>[URL Rewrite]
-^https?:\/\/[\w-]+\.googlevideo\.com\/initplayback.+&amp;oad - reject-200</code></pre>
-<p class="font-claude-response-body break-words whitespace-normal"><code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">googlevideo.com</code> 是 YouTube 真正拉视频流的域名，其中带 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">&amp;oad</code>（<strong>o</strong>verlay <strong>ad</strong>，覆盖式广告）参数的那种 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">initplayback</code> 请求，就是在请求贴片广告。这条规则用正则匹配到它，直接 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">reject-200</code>——<strong>返回一个空的成功响应</strong>，让 App 以为广告加载成功了，实际什么都没拿到</p>
-<p>Spotify 文件里也有一条 Rewrite，但目的不同：</p>
-<pre class="language-http line-numbers"><code>^https:\/\/...spotify.com.../artistview/v1/artist/(.*)&amp;platform=iphone  →  ...&amp;platform=ipad  header</code></pre>
-<p class="font-claude-response-body break-words whitespace-normal">它把请求里的 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">platform=iphone</code> 改写成 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">platform=ipad</code>，借此拿到 iPad 版接口的返回（通常界面更干净）这说明 Rewrite 不只能拦截，也能<strong>篡改请求参数</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal"><strong>② Map Local —— 用本地伪造的响应，顶替真实响应</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">Spotify 文件：</p>
-<pre class="language-http line-numbers"><code>[Map Local]
-^https:\/\/...spotify.com.../(?:ad-|pendragon)  data-type=text data="" status-code=200</code></pre>
-<p class="font-claude-response-body break-words whitespace-normal">凡是路径命中 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">ad-</code> 或 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">pendragon</code>（Spotify 的广告投放系统）的请求，Shadowrocket <strong>不去问真正的服务器</strong>，直接在本地伪造一个"内容为空、状态码 200"的响应塞回给 App。App 拿到的是一个合法但空白的广告数据，自然就没广告可放了。</p>
-<p class="font-claude-response-body break-words whitespace-normal">Map Local 和 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">reject-200</code> 的区别在于：<code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">reject</code> 是"拒绝，什么都不给"，Map Local 是"我给你，但给的是我编的假数据"。后者对那些"拿不到数据就报错、就重试"的 App 更友好</p>
-<p class="font-claude-response-body break-words whitespace-normal"><strong>③ Script —— 拆开响应正文</strong></p>
-<p class="font-claude-response-body break-words whitespace-normal">这是最强、也最能体现"为什么必须解密"的一类，看 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">YouTubeNoAd.sgmodule</code>：</p>
-<pre class="language-http line-numbers"><code>[Script]
-youtube.response = type=http-response,
-  pattern=^https:\/\/youtubei\.googleapis\.com\/(youtubei\/v1\/(browse|next|player|search|...))...,
-  script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js,
-  requires-body=true, binary-body-mode=true, ...</code></pre>
-<p>分享配置文件链接：<a href="https://wwbte.lanzn.com/b014xcyt1g" target="_blank" rel="noopener noreferrer">点我下载</a>  密码：8vxh</p>
+<h5 class="align-center">我的相关配置思路如下</h5>
+<ul style="list-style-type: square;">
+<li>科学上网配置，我这里使用的是 ImmortalWrt ，作为软路由整个 PVE 网络的出口，管辖所有的虚拟机（其中包括 Hermes 的宿主机）</li>
+<li>网段我选择的是 ImmortalWrt 作为接入家庭网络的旁路由，具有固定的家庭网络同网段IP（主路由下发的IP 192.168.31.11）Hermes 则是使用的是由 ImmortalWrt 划分出来的新子网（10.10.10.0网段）</li>
+<li><a href="https://zeyun.org/use_wireguard_home_to_home.html" target="_blank" rel="noopener noreferrer">点我跳转关于 ImmortalWrt+WireGuard 跨网段配置部分</a></li>
+<li><a href="https://zeyun.org/security_enhancement_of-cloud_servers.html">点我跳转 Ubuntu server的安装部分</a></li>
+</ul>
+<p><strong>这里我直接跳过科学上网配置以及虚拟机安装的相关部分，默认你已经具备了远程ssh连接上机器这台Linux，并且这台机器具备科学上网的能力</strong></p>
+<p class="align-center"><strong>（关于Ubuntu系统安装配置部分，可跳转我的博客相关文章）</strong></p>
+<h4 class="align-center">第一部分：拉取Hermes-Agent官方脚本</h4>
+<p>stp1：更新包管理器</p>
+<pre class="language-bash line-numbers"><code>sudo apt update</code></pre>
+<p>stp2：拉取安装脚本</p>
+<pre class="language-bash line-numbers"><code>curl -fsSLO https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh</code></pre>
+<p>stp3：查看脚本</p>
+<pre class="language-bash line-numbers"><code>less install.sh</code></pre>
+<p>如果显示以下内容即为成功拉取脚本</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053210.png" alt="" width="2450" height="1367" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053210-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053210-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053210-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053210-xl.webp 1024w"></figure>
+<p>stp4：按下键盘的<code>q</code>，退出查看</p>
+<p>执行以下命令，进行安装</p>
+<pre class="language-bash line-numbers"><code>bash install.sh</code></pre>
+<p>会自动拉取一长串内容</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053446.png" alt="" width="2449" height="782" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053446-xl.webp 1024w"></figure>
+<h4 class="align-center">第二部分：开始按照脚本部署Hermes</h4>
+<p>stp1：这里一步骤输入y，安装<strong><span class="_animating_6ta1u_10" data-newtext-seq="4">Playwright</span></strong><span class="_animating_6ta1u_10" data-newtext-seq="4">（一个浏览器自动</span><span class="_animating_6ta1u_10" data-newtext-seq="30">化工具库），用来给 Hermes </span><span class="_animating_6ta1u_10" data-newtext-seq="47">的"浏览器工具"（browser tools）功能提供支持</span></p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053724.png" alt="" width="1072" height="1000" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053724-xl.webp 1024w"></figure>
+<p>stp2：按向下键，选择<code>Full setup</code>选项</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-053853.png" alt="" width="1537" height="219" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053853-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053853-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053853-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-053853-xl.webp 1024w"></figure>
+<p>stp3：按需选择对应模型</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-054209.png" alt="" width="1562" height="1245" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054209-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054209-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054209-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054209-xl.webp 1024w"></figure>
+<p>这里我选择DeepSeek作为演示（DeepSeek API：<a href="https://platform.deepseek.com/" target="_blank" rel="noopener noreferrer">点我前往官方购买</a>）</p>
+<p><code>*建议</code>：第一次买的话，不要买多，10块钱的就可以了</p>
+<p>stp4：填入你的API KEY，并再次按下回车</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-054403.png" alt="" width="2440" height="1133" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054403-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054403-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054403-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054403-xl.webp 1024w"></figure>
+<p>stp5：模型选择部分，这里我选择v4-flash（v4-pro太烧token，选择flash我认为完全够用）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-054640.png" alt="" width="919" height="291" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054640-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054640-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054640-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054640-xl.webp 1024w"></figure>
+<p>stp6：除非你有特殊需求，否则这里直接选择最后一个即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-054814.png" alt="" width="1032" height="318" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054814-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054814-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054814-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-054814-xl.webp 1024w"></figure>
+<p>stp7：对接部分，这里选择Telegram，并按下空格，再次回车即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-055022.png" alt="" width="1015" height="910" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055022-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055022-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055022-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055022-xl.webp 1024w"></figure>
+<p>stp8：这里我们选择2，使用官方的Bot Father来进行对接</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-055239.png" alt="" width="1057" height="359" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055239-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055239-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055239-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055239-xl.webp 1024w"></figure>
+<p>stp9：打开你的网页版 Telegram（手机端也是同理）</p>
+<p>搜索@botfather（注意是下图的这个，后面有一个紫色小勾的，不是其他的）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/botfather.png" alt="" width="344" height="513" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/botfather-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/botfather-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/botfather-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/botfather-xl.webp 1024w"></figure>
+<p>stp10：获取 Token API &amp; User id</p>
+<p>打开这个对话后，依次输入</p>
+<pre class="language-bash line-numbers"><code>/start</code></pre>
+<p>创建新机器人</p>
+<pre class="language-bash line-numbers"><code>/newbot</code></pre>
+<p>他会让你给你的机器人取一个独一无二的名字</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-055906.png" alt="" width="1370" height="195" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055906-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055906-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055906-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-055906-xl.webp 1024w"></figure>
+<p>你的名称格式必须要以<code>_bot</code>结尾</p>
+<p>例如我这里取名是</p>
+<pre class="language-bash line-numbers"><code>fsdertest_bot
+你的名字+_bot</code></pre>
+<p>随后你会看到独属于你的机器人发给你的密钥（注意，千万不要泄露！！！）</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Mi-Yao-Bu-Fen.png" alt="" width="1329" height="672" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Mi-Yao-Bu-Fen-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Mi-Yao-Bu-Fen-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Mi-Yao-Bu-Fen-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Mi-Yao-Bu-Fen-xl.webp 1024w"></figure>
+<p>把他复制粘贴给之前的终端里，按下回车，他会让你输入你的 User ID</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-060754.png" alt="" width="1084" height="663" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-060754-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-060754-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-060754-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-060754-xl.webp 1024w"></figure>
+<p>你需要继续搜索这个叫做<code>@userinfobot</code></p>
+<p>注意，这里要选择前面有这个白色皇冠认证的</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/useridbot.png" alt="" width="358" height="547" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/useridbot-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/useridbot-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/useridbot-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/useridbot-xl.webp 1024w"></figure>
+<p>随后向他发送</p>
+<pre class="language-bash line-numbers"><code>/start</code></pre>
+<p>你就会看到你的ID，复制并粘贴到这之前的终端里</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/userid.png" alt="" width="1357" height="563" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/userid-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/userid-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/userid-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/userid-xl.webp 1024w"></figure>
+<p>stp11：选择bot的接收频道</p>
+<ul>
+<li class="font-claude-response-body whitespace-normal break-words pl-2">如果你<strong>只想通过 Telegram 私聊</strong>跟 Hermes 交互，接收所有通知 → 输入 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">Y</code></li>
+<li class="font-claude-response-body whitespace-normal break-words pl-2">如果你以后打算让 Hermes 把消息发到某个<strong>群组或频道</strong>而不是私聊 → 输入 <code class="bg-text-200/5 border border-0.5 border-border-300 text-danger-000 whitespace-pre-wrap rounded-[0.4rem] px-1 py-px text-[0.9rem]">n</code>，然后系统会让你手动填别的频道/群组 ID</li>
+<li><strong>把 Hermes 的"网关"（gateway）注册成 systemd 服务</strong>，也就是让它常驻后台运行，开机自启</li>
+</ul>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-061504.png" alt="" width="1471" height="379" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061504-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061504-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061504-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061504-xl.webp 1024w"></figure>
+<p>默认的话和我一样都输入<code>Y</code>，即可</p>
+<p>stp12：设置网关为系统服务</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-061903.png" alt="" width="1419" height="179" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061903-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061903-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061903-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-061903-xl.webp 1024w"></figure>
+<p>如果你想自己管理他的启动，那么就选择第二个跳过</p>
+<p>stp13：是否现在启动</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-062135.png" alt="" width="905" height="298" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062135-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062135-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062135-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062135-xl.webp 1024w"></figure>
+<p>这里直接输入Y（或者默认回车），即可</p>
+<p>stp14：根据自己的需求，进行对应的功能性质选择<br>我的选择如下，仅供参考</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-062453.png" alt="" width="1468" height="819" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062453-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062453-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062453-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062453-xl.webp 1024w"></figure>
+<p>stp15：选择内置浏览器</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-062925.png" alt="" width="2355" height="318" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062925-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062925-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062925-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-062925-xl.webp 1024w"></figure>
+<p>直接默认免费的即可（如果你有对应的API，也可使用其他的）</p>
+<p>下一步直接回车即可</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-063049.png" alt="" width="961" height="193" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063049-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063049-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063049-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063049-xl.webp 1024w"></figure>
+<p>stp16：选择搜索引擎</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-063251.png" alt="" width="2206" height="437" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063251-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063251-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063251-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063251-xl.webp 1024w"></figure>
+<p>选择和我上图一样的，免费的即可</p>
+<p>stp17：选择 Telegram 工具</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-063434.png" alt="" width="1475" height="825" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063434-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063434-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063434-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063434-xl.webp 1024w"></figure>
+<p>我的建议是取消勾选画图和图像识别（如果你有API，那可以使用）</p>
+<p>stp18：再次选择浏览器提供商</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-063709.png" alt="" width="2335" height="330" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063709-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063709-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063709-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063709-xl.webp 1024w"></figure>
+<p>这里将会显示<code>[active]</code>激活状态</p>
+<p>stp19：语言转文字服务提供商</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-063901.png" alt="" width="2046" height="450" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063901-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063901-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063901-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-063901-xl.webp 1024w"></figure>
+<p>这里直接默认免费的即可</p>
+<p>stp20：再次确认搜索引擎</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064020.png" alt="" width="2383" height="450" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064020-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064020-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064020-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064020-xl.webp 1024w"></figure>
+<p>这里将会显示<code>[active]</code>激活状态</p>
+<h4 class="align-center">第三部分：最终确认配置</h4>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064125.png" alt="" width="1153" height="1315" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064125-xl.webp 1024w"></figure>
+<p>这会自动把网关配置为我们在最开始提到的后台服务（如 Systemd 用户服务），让它能够一直在后台稳定守候、处理消息，即使你关掉终端也不会断线</p>
+<h4 class="align-center">聊天部分</h4>
+<p>再次在 Telegram 里搜索刚刚创建的机器人名字，就能找到你的机器人，并可以成功聊天</p>
+<figure class="post__image align-left"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064438.png" alt="" width="366" height="275" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064438-xl.webp 1024w"></figure>
+<p>尝试聊天试试</p>
+<figure class="post__image"><img loading="lazy"  src="https://zeyun.org/media/posts/73/Ping-Mu-Jie-Tu-2026-07-15-064719.png" alt="" width="364" height="407" sizes="(min-width: 760px) 660px, calc(93.18vw - 30px)" srcset="https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064719-xs.webp 320w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064719-sm.webp 480w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064719-md.webp 768w ,https://zeyun.org/media/posts/73/responsive/Ping-Mu-Jie-Tu-2026-07-15-064719-xl.webp 1024w"></figure>
+<p>成功🎉🎉🎉</p>
+<p class="align-center">至此本教程结束，感谢您的观看，我们下一篇再见😎</p>
             ]]>
         </content>
     </entry>
