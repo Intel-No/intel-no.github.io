@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zeyun.org/sitemap.xml
+Sitemap: https://old.zeyun.org/sitemap.xml
